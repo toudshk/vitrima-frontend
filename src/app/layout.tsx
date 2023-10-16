@@ -1,10 +1,13 @@
-import Header from "@/components/layout/header/Header";
 import "./assets/styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Footer from "@/components/layout/footer/Footer";
+import Header from "./components/layout/header/Header";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"] });
+const myFont = localFont({
+  src: './assets/fonts/Jura-VariableFont_wght.ttf',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: "Vitrima",
@@ -18,10 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-      <body className={inter.className}>
+      <body className={myFont.className}>
         <Header />
         {children}
-        <Footer  />
       </body>
     </html>
   );

@@ -3,13 +3,4 @@
 @tailwind utilities;
 
 
-@font-face {
-  font-family: Bicubik;
-  src: url('../fonts/Bicubik.OTF');
-  weight: 400
-}
 
-html,
-body{
-  font-family: 'Bicubik', sans-serif ;
-}

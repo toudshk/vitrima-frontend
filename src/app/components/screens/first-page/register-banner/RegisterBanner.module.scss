@@ -1,0 +1,22 @@
+.container{
+    background: url("../../../../assets/images/RegisterBannerBg.png") no-repeat center center;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 372px 0px;
+  div{
+    @apply text-left ml-24;
+    width: 1157px; 
+
+    h1{
+        @apply mb-20;
+    }
+
+    a{
+        @apply text-primary text-2xl ;
+        border: 2px solid #000;
+        border-radius: 16px;
+        padding: 16px 48px;
+    }
+  }
+}
