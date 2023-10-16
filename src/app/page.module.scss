@@ -1,7 +1,7 @@
 .container {
   @apply text-center text-white;
   height: 755px;
-  background: url("./assets/images/MainPageCover.png") no-repeat center center;
+  background: url("../components/common/images/ui/mainPage/MainPageCover.png") no-repeat center center;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;

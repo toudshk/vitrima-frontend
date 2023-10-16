@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import  { useState } from 'react'
 
 
@@ -9,7 +10,7 @@ const Navigation = () => {
   return (
     <div className='text-white'>
         {isLogin ? 
-        <div>true </div> : <div>ВХОД/РЕГИСТРАЦИЯ</div>}
+        <div>true </div> : <Link href={'/login'} >ВХОД/РЕГИСТРАЦИЯ</Link>}
     </div>
   )
 }

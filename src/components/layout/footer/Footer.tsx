@@ -1,6 +1,6 @@
 
 import { FC } from "react";
-import { WhiteIcon } from "../../common/icons/WhiteIcon";
+import { WhiteIconLogo } from "../../common/icons/WhiteIconLogo";
 
 const data = [
   {
@@ -29,7 +29,7 @@ const Footer = () => {
   return (
     <div className="text-gray-300 py-11 px-24 bg-primary">
       <div className="flex  justify-between pb-10">
-        <WhiteIcon width={24} />
+        <WhiteIconLogo width={24} />
 
         <p className="text-base">ВЕРСИЯ RU</p>
       </div>

@@ -1,10 +1,10 @@
-import icon from "@/app/assets/images/whiteIcon.svg";
+import icon from "@/app/assets/images/WhiteIconLogo.svg";
 import Image from "next/image";
 import { FC } from "react";
 
 
 
-export const WhiteIcon:FC<{width: number}> = ({width }) => {
+export const WhiteIconLogo:FC<{width: number}> = ({width }) => {
   return (
       <Image
         width={width}
