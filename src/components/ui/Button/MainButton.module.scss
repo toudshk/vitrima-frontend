@@ -1,9 +1,4 @@
 .button{
     @apply py-4 text-2xl text-center;
-    &:hover{
-        @apply bg-red;
-    }
-    &::active{
-        @apply bg-primary
-    }
+
 }

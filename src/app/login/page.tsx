@@ -8,25 +8,39 @@ import Button from "@/components/ui/Button/MainButton";
 import SwitchButtons from "./SwitchButtons";
 import MainButton from "@/components/ui/Button/MainButton";
 import Field from "@/components/ui/Form-elements/Field";
-import { FormState, UseFormRegister, useForm } from "react-hook-form";
+import {
+  FormState,
+  RegisterOptions,
+  UseFormRegister,
+  UseFormRegisterReturn,
+  useForm,
+} from "react-hook-form";
 import { validEmail } from "@/components/shared/regex";
-
+import AuthFields from "@/components/shared/user/AuthFields";
+import { IAuthInput } from "./Auth.interface";
 
 interface IAuthFields {
-	register: UseFormRegister<any>
-	// formState: FormState<any>
-	isPasswordRequired?: boolean
+  register: UseFormRegister<any>;
+  formState: FormState<any>;
+  isPasswordRequired?: boolean;
 }
 
-const LoginLayout: FC<IAuthFields> = ({
-	register,
-	// formState: { errors },
-	isPasswordRequired = false,
-}) => {
+const LoginLayout: FC<IAuthFields> = () => {
   const [type, setType] = useState<"login" | "register">("login");
 
+  const {
+    register: registerInput,
+    handleSubmit,
+    formState,
+    reset,
+  } = useForm<IAuthInput>({
+    mode: "onChange",
+  });
+
+  const [selectedButton, setSelectedButton] = useState("button1");
+
   return (
-    <section className="flex ">
+    <section className="flex">
       <div className={styles.leftBlock}>
         <Image src={imageBg} width={952} height={1080} alt={""} />
       </div>
@@ -34,47 +48,21 @@ const LoginLayout: FC<IAuthFields> = ({
         <div className={styles.logotype}>
           <MainLogoBlack width={595} />
         </div>
-        <SwitchButtons />
-        <form>
-          <Field
-            // {...register("email", {
-            //   required: "Email is required!",
-            //   pattern: {
-            //     value: validEmail,
-            //     message: "Please enter a valid email",
-            //   },
-            // })}
-            placeholder="E-mail"
-            // error={errors.email}
-          />
-          <Field
-            // {...register(
-            //   "password",
-            //   isPasswordRequired
-            //     ? {
-            //         required: "Password is required!",
-            //         minLength: {
-            //           value: 6,
-            //           message: "Min length should more 6 symbols!",
-            //         },
-            //       }
-            //     : {}
-            // )}
-            placeholder="Password"
-            type="password"
-            // error={errors.password}
-          />
-
-          <div className={styles.buttons}>
-            <MainButton text={"Вход"} px={0}/>
-           
-            
-            <MainButton text={"Регистрация"} px={0}/>
-             
-          </div>
-        </form>
+        <SwitchButtons
+          selectedButton={selectedButton}
+          setSelectedButton={setSelectedButton}
+        />
+        <AuthFields
+          register={registerInput}
+          formState={formState}
+          selectedButton={selectedButton}
+        />
+        <div className={styles.authButtons}>
+          <MainButton>Зарегистрироваться</MainButton>
+          <MainButton>Войти</MainButton>
+        </div>
       </div>
     </section>
   );
-}
-export default LoginLayout
+};
+export default LoginLayout;

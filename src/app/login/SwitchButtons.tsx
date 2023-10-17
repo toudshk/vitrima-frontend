@@ -2,9 +2,14 @@ import { FC } from 'react'
 import clsx from "clsx";
 import { SetStateAction, useState } from "react";
 
-const SwitchButtons:FC = () => {
+interface ISwitchButtons {
+  selectedButton: string,
+  setSelectedButton: any,
+}
 
-    const [selectedButton, setSelectedButton] = useState("button1");
+const SwitchButtons:FC<ISwitchButtons> = ({selectedButton , setSelectedButton}) => {
+
+   
 
   const handleButtonClick = (button: SetStateAction<string>) => {
     setSelectedButton(button);

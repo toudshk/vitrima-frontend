@@ -1,14 +1,13 @@
 import { ButtonHTMLAttributes, FC } from 'react'
-import clsx from 'clsx'
+
 import styles from './MainButton.module.scss'
 
 interface IButton{
-  'text':string,
-  'px': number
+  children: string
 }
-const MainButton:FC<IButton> = ({text, px}) => {
+const MainButton:FC<IButton> = ({children}) => {
   return (
-   <button   className={clsx(styles.button, `px-${px}`)}>{text}</button>
+   <button   className={styles.button}>{children}</button>
   )
 }
 
