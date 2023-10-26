@@ -17,81 +17,36 @@ const AuthFields: FC<IAuthFields> = ({
   formState: { errors },
   isPasswordRequired = false,
 }) => {
-  return <form>{selectedButton === "button2" ? <div>
+  return <form>
     <Field
-        // {...register('email', {
-        // 	required: 'Email is required!',
-        // 	pattern: {
-        // 		value: validEmail,
-        // 		message: 'Please enter a valid email',
-        // 	},
-        // })}
-        placeholder="Никнейм"
-        // error={errors.email}
-      />
-      <Field
-        // {...register(
-        // 	'password',
-        // 	isPasswordRequired
-        // 		? {
-        // 				required: 'Password is required!',
-        // 				minLength: {
-        // 					value: 6,
-        // 					message: 'Min length should more 6 symbols!',
-        // 				},
-        // 		  }
-        // 		: {}
-        // )}
-        placeholder="Пароль"
-        type="password"
-        // error={errors.password}
-      />
-  </div> : <div>
-  <Field
-        // {...register('email', {
-        // 	required: 'Email is required!',
-        // 	pattern: {
-        // 		value: validEmail,
-        // 		message: 'Please enter a valid email',
-        // 	},
-        // })}
+        {...register('email', {
+        	required: 'Почта обязательна',
+        	pattern: {
+        		value: validEmail,
+        		message: 'Пожалуйста, введите почту',
+        	},
+        })}
         placeholder="Почта"
-        // error={errors.email}
+        error={errors.email}
       />
       <Field
-        // {...register(
-        // 	'password',
-        // 	isPasswordRequired
-        // 		? {
-        // 				required: 'Password is required!',
-        // 				minLength: {
-        // 					value: 6,
-        // 					message: 'Min length should more 6 symbols!',
-        // 				},
-        // 		  }
-        // 		: {}
-        // )}
-        placeholder="ИНН"
-      
-        // error={errors.password}
-      />
-      <Field
-        // {...register(
-        // 	'password',
-        // 	isPasswordRequired
-        // 		? {
-        // 				required: 'Password is required!',
-        // 				minLength: {
-        // 					value: 6,
-        // 					message: 'Min length should more 6 symbols!',
-        // 				},
-        // 		  }
-        // 		: {}
-        // )}
-        placeholder="Пароль"
+        {...register(
+        	'password',
+        	isPasswordRequired
+        		? {
+        				required: 'Пароль обязателен',
+        				minLength: {
+        					value: 6,
+        					message: 'Минимальная длина пароля 6 символов',
+        				},
+        		  }
+        		: {}
+        )}
+        placeholder="Пароль" 
         type="password"
-        // error={errors.password}
-      /></div>}</form>;
+        error={errors.password}
+      />
+  </form>;
 };
 
 export default AuthFields;

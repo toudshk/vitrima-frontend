@@ -1,23 +1,28 @@
 "use client";
+
 import Image from "next/image";
 import { FC, useState } from "react";
 import imageBg from "../../components/common/images/ui/authPage/AuthBg.png";
 import { MainLogoBlack } from "@/components/common/icons/MainLogoBlack";
-import styles from "./page.module.scss";
+import styles from "../signup/page.module.scss";
 import Button from "@/components/ui/Button/MainButton";
-import SwitchButtons from "./SwitchButtons";
+import SwitchButtons from "../signup/SwitchButtons";
 import MainButton from "@/components/ui/Button/MainButton";
-import Field from "@/components/ui/Form-elements/Field";
+
 import {
   FormState,
   RegisterOptions,
   UseFormRegister,
   UseFormRegisterReturn,
   useForm,
+  SubmitHandler,
 } from "react-hook-form";
 import { validEmail } from "@/components/shared/regex";
 import AuthFields from "@/components/shared/user/AuthFields";
-import { IAuthInput } from "./Auth.interface";
+import { IAuthInput } from "../signup/Auth.interface";
+import Link from "next/link";
+import { useActions } from "@/hooks/useActions";
+import { useAuth } from "@/hooks/useAuth";
 
 interface IAuthFields {
   register: UseFormRegister<any>;
@@ -26,6 +31,8 @@ interface IAuthFields {
 }
 
 const LoginLayout: FC<IAuthFields> = () => {
+  const {login}= useActions();
+
   const [type, setType] = useState<"login" | "register">("login");
 
   const {
@@ -37,31 +44,40 @@ const LoginLayout: FC<IAuthFields> = () => {
     mode: "onChange",
   });
 
-  const [selectedButton, setSelectedButton] = useState("button1");
+  const onSubmit: SubmitHandler<IAuthInput> = (data) => {
+    login(data);
+    return reset();
+  };
 
+  const [selectedButton, setSelectedButton] = useState("contractor");
+  console.log(selectedButton);
   return (
     <section className="flex">
-      <div className={styles.leftBlock}>
-        <Image src={imageBg} width={952} height={1080} alt={""} />
-      </div>
-      <div className={styles.rightBlock}>
-        <div className={styles.logotype}>
-          <MainLogoBlack width={595} />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.leftBlock}>
+          <Image src={imageBg} width={952} height={1080} alt={""} />
         </div>
-        <SwitchButtons
-          selectedButton={selectedButton}
-          setSelectedButton={setSelectedButton}
-        />
-        <AuthFields
-          register={registerInput}
-          formState={formState}
-          selectedButton={selectedButton}
-        />
-        <div className={styles.authButtons}>
-          <MainButton>Зарегистрироваться</MainButton>
-          <MainButton>Войти</MainButton>
+        <div className={styles.rightBlock}>
+          <div className={styles.logotype}>
+            <MainLogoBlack width={595} />
+          </div>
+          <SwitchButtons
+            selectedButton={selectedButton}
+            setSelectedButton={setSelectedButton}
+          />
+          <AuthFields
+            register={registerInput}
+            formState={formState}
+            selectedButton={selectedButton}
+          />
+          <div className={styles.authButtons}>
+            <MainButton type="submit" onClick={() => onSubmit}>
+              Войти
+            </MainButton>
+            Нет аккаунта? <Link href={"/signup"}>Зарегиструйся</Link>
+          </div>
         </div>
-      </div>
+      </form>
     </section>
   );
 };

@@ -1,13 +1,12 @@
 import { ButtonHTMLAttributes, FC } from 'react'
-
+import clsx from 'clsx'
 import styles from './MainButton.module.scss'
 
-interface IButton{
-  children: string
-}
-const MainButton:FC<IButton> = ({children}) => {
+export interface 	IButton extends ButtonHTMLAttributes<HTMLButtonElement> {}
+
+const MainButton:FC<IButton> = ({children, className, ...rest}) => {
   return (
-   <button   className={styles.button}>{children}</button>
+   <button {...rest}  className={clsx(styles.button, className)}>{children}</button>
   )
 }
 
