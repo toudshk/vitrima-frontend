@@ -10,9 +10,10 @@ import {
   registerContractor,
 } from "./user.actions";
 
-const initialState = {
+const initialState: IUserInitialState = {
+  user: getStoreLocal("applicant"),
   isLoading: false,
-  applicant: getStoreLocal("applicant")
+
 };
 
 export const applicantSlice = createSlice({
@@ -25,11 +26,11 @@ export const applicantSlice = createSlice({
       })
       .addCase(registerApplicant.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.applicant = payload.user;
+        state.user = payload.user;
       })
       .addCase(registerApplicant.rejected, (state) => {
         state.isLoading = true;
-        state.applicant = null;
+        state.user = null;
       })
       
       .addCase(login.pending, (state) => {
@@ -37,19 +38,19 @@ export const applicantSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.applicant = payload.user;
+        state.user = payload.user;
       })
       .addCase(login.rejected, (state) => {
         state.isLoading = true;
-        state.applicant = null;
+        state.user = null;
       })
       .addCase(logout.fulfilled, (state) => {
         state.isLoading = false;
-        state.applicant = null;
+        state.user = null;
       })
       .addCase(checkAuth.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.applicant = payload.user;
+        state.user = payload.user;
       });
   },
 });

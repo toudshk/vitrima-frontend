@@ -8,12 +8,16 @@ import SwitchButtons from "./SwitchButtons";
 import MainButton from "@/components/ui/Button/MainButton";
 import {
   FormState,
+  SubmitHandler,
   UseFormRegister,
   useForm,
 } from "react-hook-form";
 import { IAuthInput } from "./Auth.interface";
 import Link from "next/link";
 import SignUpFields from "@/components/shared/user/SignUpFields";
+import { useActions } from "@/hooks/useActions";
+import SignUpForms from "@/components/shared/user/SignUpForms";
+import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 
 interface IAuthFields {
   register: UseFormRegister<any>;
@@ -22,7 +26,7 @@ interface IAuthFields {
 }
 
 const SignupLayout: FC<IAuthFields> = () => {
-  const [type, setType] = useState<"login" | "register">("login");
+  useAuthRedirect()
 
   const {
     register: registerInput,
@@ -33,8 +37,6 @@ const SignupLayout: FC<IAuthFields> = () => {
     mode: "onChange",
   });
 
-  const [selectedButton, setSelectedButton] = useState("contractor");
-
   return (
     <section className="flex">
       <div className={styles.leftBlock}>
@@ -44,19 +46,9 @@ const SignupLayout: FC<IAuthFields> = () => {
         <div className={styles.logotype}>
           <MainLogoBlack width={595} />
         </div>
-        <SwitchButtons
-          selectedButton={selectedButton}
-          setSelectedButton={setSelectedButton}
+        <SignUpForms formState={formState}         
         />
-        <SignUpFields
-          register={registerInput}
-          formState={formState}
-          selectedButton={selectedButton}
-        />
-        <div className={styles.authButtons}>
-          <MainButton >Зарегистрироваться</MainButton>
-        Есть аккаунт? <Link href={'/log-in'}>Войти</Link>
-        </div>
+        
       </div>
     </section>
   );

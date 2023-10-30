@@ -17,115 +17,106 @@ const SignUpFields: FC<IAuthFields> = ({
   formState: { errors },
   isPasswordRequired = false,
 }) => {
-  return <form>{selectedButton === "button2" ? <div>
-    <Field
-        {...register('email', {
-        	required: 'Email is required!',
-        	pattern: {
-        		value: validEmail,
-        		message: 'Please enter a valid email',
-        	},
-        })}
-        placeholder="Почта"
-        error={errors.email}
-      />
-      <Field
-        {...register(
-        	'password',
-        	isPasswordRequired
-        		? {
-        				required: 'Password is required!',
-        				minLength: {
-        					value: 6,
-        					message: 'Min length should more 6 symbols!',
-        				},
-        		  }
-        		: {}
-        )}
-        placeholder="Название компании / ФИО"
-      
-        error={errors.password}
-      /> 
-      <Field
-        {...register(
-        	'password',
-        	isPasswordRequired
-        		? {
-        				required: 'Password is required!',
-        				minLength: {
-        					value: 6,
-        					message: 'Min length should more 6 symbols!',
-        				},
-        		  }
-        		: {}
-        )}
-        placeholder="Пароль"
-        type="password"
-        error={errors.password}
-      />
-  </div> : <div>
-  <Field
-        // {...register('email', {
-        // 	required: 'Email is required!',
-        // 	pattern: {
-        // 		value: validEmail,
-        // 		message: 'Please enter a valid email',
-        // 	},
-        // })}
-        placeholder="Почта"
-        // error={errors.email}
-      />
-      <Field
-        // {...register(
-        // 	'password',
-        // 	isPasswordRequired
-        // 		? {
-        // 				required: 'Password is required!',
-        // 				minLength: {
-        // 					value: 6,
-        // 					message: 'Min length should more 6 symbols!',
-        // 				},
-        // 		  }
-        // 		: {}
-        // )}
-        placeholder="ИНН"
-      
-        // error={errors.password}
-      /> 
-      <Field
-        // {...register(
-        // 	'password',
-        // 	isPasswordRequired
-        // 		? {
-        // 				required: 'Password is required!',
-        // 				minLength: {
-        // 					value: 6,
-        // 					message: 'Min length should more 6 symbols!',
-        // 				},
-        // 		  }
-        // 		: {}
-        // )}
-        placeholder="Название компании / ФИО"
-      
-        // error={errors.password}
-      /> 
-      <Field
-        // {...register(
-        // 	'password',
-        // 	isPasswordRequired
-        // 		? {
-        // 				required: 'Password is required!',
-        // 				minLength: {
-        // 					value: 6,
-        // 					message: 'Min length should more 6 symbols!',
-        // 				},
-        // 		  }
-        // 		: {}
-        // )}
-        placeholder="Пароль"
-        type="password"
-        // error={errors.password}
-      /></div>}</form>;
+  return (
+    <form>
+      {selectedButton === "applicant" ? (
+        <div>
+          <Field
+            {...register("email", {
+              required: "Email is required!",
+              pattern: {
+                value: validEmail,
+                message: "Please enter a valid email",
+              },
+            })}
+            placeholder="Почта"
+            // error={errors.email}
+          />
+          <Field
+            {...register(
+              "nickname",
+            )}
+            placeholder="Никнейм"
+
+            // error={errors.password}
+          />
+          <Field
+            {...register(
+              "password",
+              isPasswordRequired
+                ? {
+                    required: "Password is required!",
+                    minLength: {
+                      value: 6,
+                      message: "Min length should more 6 symbols!",
+                    },
+                  }
+                : {}
+            )}
+            placeholder="Пароль"
+            type="password"
+            // error={errors.password}
+          />
+        </div>
+      ) : (
+        <div>
+          <Field
+            {...register('email', {
+             	required: 'Email is required!',
+             	pattern: {
+             		value: validEmail,
+             		message: 'Please enter a valid email',
+             	},
+             })}
+            placeholder="Почта"
+            // error={errors.email}
+          />
+          <Field
+            {...register(
+            	'inn',
+            	isPasswordRequired
+            		? {
+            				required: 'Password is required!',
+            				minLength: {
+            					value: 16,
+            					message: 'Min length should more 6 symbols!',
+            				},
+            		  }
+            		: {}
+             )}
+            placeholder="ИНН"
+
+            // error={errors.password}
+          />
+          <Field
+            {...register(
+            	'nickname',
+            )}
+            placeholder="Название компании / ФИО"
+
+            // error={errors.password}
+          />
+          <Field
+            {...register(
+            	'password',
+            	isPasswordRequired
+            		? {
+            				required: 'Password is required!',
+            				minLength: {
+            					value: 6,
+            					message: 'Min length should more 6 symbols!',
+            				},
+            		  }
+            		: {}
+            )}
+            placeholder="Пароль"
+            type="password"
+            // error={errors.password}
+          />
+        </div>
+      )}
+    </form>
+  );
 };
 
 export default SignUpFields;

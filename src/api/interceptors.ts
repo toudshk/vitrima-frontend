@@ -1,9 +1,7 @@
+import { API_URL } from '@/config/api.config';
 import axios from 'axios';
-import Cookies from 'js-cookie'
-const API_URL = "http://localhost:5000"
 
-
-const instance = axios.create({
+export const axiosClassic = axios.create({
 	baseURL: API_URL,
 	headers: {
 		'Content-Type': 'application/json',
@@ -11,10 +9,3 @@ const instance = axios.create({
 })
 
 
-instance.interceptors.request.use((config) => {
-	const accessToken = Cookies.get('accessToken')
-	if (config.headers && accessToken)
-		config.headers.Authorization = `Bearer ${accessToken}`
-
-	return config
-})

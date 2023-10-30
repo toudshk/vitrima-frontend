@@ -1,9 +1,11 @@
-import { IUser } from "@/components/shared/types/user.types"
+import { IApplicant, IContractor } from "@/components/shared/types/user.types"
 
 
-export interface IUserState {
+export interface IContractorState {
 	email: string
-	isAdmin: boolean
+}
+export interface IApplicantState {
+	email: string
 }
 
 export interface ITokens {
@@ -12,7 +14,7 @@ export interface ITokens {
 }
 
 export interface IUserInitialState {
-	user: IUserState | null
+	user: IApplicantState | IContractorState | null,
 	isLoading: boolean
 }
 export interface InterfaceEmailPassword {
@@ -24,14 +26,19 @@ export interface ISignUpApplicant {
 	password: string
 	nickname: string
 }
-export interface ISignContractor {
+export interface ISignUpContractor {
 	email: string
 	password: string
 	nickname: string
 	inn: string
 }
-export interface IAuthResponse extends ITokens {
-	user: IUser & {
-		isAdmin: boolean
-	}
+export interface IAuthApplicantResponse extends ITokens {
+	user:  IApplicant
+}
+export interface IAuthContractorResponse extends ITokens {
+	user:  IContractor
+}
+
+export interface IAuthResponse extends ITokens{
+	user: IApplicant | IContractor
 }
