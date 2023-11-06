@@ -4,14 +4,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import localFont from "next/font/local";
-import { Provider } from "react-redux";
-import { store } from "@/store/store";
-import { ReduxProvider } from "@/providers/ReduxProvide";
+
+import { ReduxProvider } from "@/providers/ReduxProvider";
 
 const myFont = localFont({
-  src: './assets/fonts/Jura-VariableFont_wght.ttf',
-  display: 'swap',
-})
+  src: "./assets/fonts/Jura-VariableFont_wght.ttf",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Vitrima",
@@ -24,13 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ReduxProvider>
     <html lang="ru">
       <body className={myFont.className}>
-        <Header />
-        {children}
+        <ReduxProvider>
+          <Header />
+          {children}
+        </ReduxProvider>
       </body>
     </html>
-    </ReduxProvider>
   );
 }

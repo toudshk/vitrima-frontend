@@ -1,0 +1,50 @@
+.block {
+  .links {
+    @apply text-6xl;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid black;
+    a {
+      @apply py-[35vh];
+      border-right: 1px solid black;
+      height: 80%;
+      flex: 1 0 auto;
+    }
+    a:hover {
+      @apply bg-[#E7F5FF];
+    }
+  }
+  p {
+    margin: 0 auto;
+    width: 697px;
+    @apply text-2xl text-center mt-10 ;
+  }
+}
+
+.container {
+  @apply text-center text-white;
+  height: 755px;
+  background: url("../../../../components/common/images/ui/mainPage/MainPageCover.png")
+    no-repeat center center;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  .iconContent {
+    padding-top: 379px;
+    padding-bottom: 205px;
+    img {
+      margin: 0 auto;
+    }
+
+    h4 {
+      @apply mt-16 text-3xl;
+    }
+  }
+  .detailed {
+    height: 255px;
+    padding: 104px 0px;
+    @apply bg-primary text-4xl;
+  }
+}

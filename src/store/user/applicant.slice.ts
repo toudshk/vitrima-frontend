@@ -1,4 +1,3 @@
-import { ApplicantModel } from '../../../../back/src/user/Schemas/user.model';
 import { createSlice } from "@reduxjs/toolkit";
 import { IUserInitialState } from "./user.interface";
 import { getStoreLocal } from "@/utils/local-storage";

@@ -11,7 +11,6 @@ import {
 } from "./user.interface";
 import { errorCatch } from "@/api/api.helpers";
 import { redirect } from "next/navigation";
-import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 
 export const registerApplicant = createAsyncThunk<
   IAuthApplicantResponse,

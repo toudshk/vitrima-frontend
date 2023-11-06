@@ -21,7 +21,7 @@ export interface IAuthInput {
 }
 
 const LoginForms: FC<IAuthFields> = () => {
-
+  useAuthRedirect()
   const { login } = useActions();
   const {
     register: registerInput,
@@ -37,7 +37,6 @@ const LoginForms: FC<IAuthFields> = () => {
   const onSubmit: SubmitHandler<IAuthInput> = (data) => {
     login(data);
 
-    console.log(data);
     reset();
   };
 

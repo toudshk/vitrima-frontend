@@ -1,18 +1,16 @@
 
-import { MainLogo } from "../../common/icons/MainLogo";
 import Navigation from "../navigation/Navigation";
-import Link from "next/link";
 
 const Header = () => {
  
   
-  
   return (
+
+    
+
     <div className='h-20  px-24 py-6 bg-primary'>
-      <div className="max-w-screen-2xl mx-auto flex justify-between">
-        <Link href="/">
-          <MainLogo width={200} />
-        </Link>
+      <div className="max-w-screen-[1736px] mx-auto flex justify-between">
+        
         <Navigation />
       </div>
     </div>

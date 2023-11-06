@@ -15,7 +15,7 @@ export interface ITokens {
 
 export interface IUserInitialState {
 	user: IApplicantState | IContractorState | null,
-	isLoading: boolean
+
 }
 export interface InterfaceEmailPassword {
 	email: string

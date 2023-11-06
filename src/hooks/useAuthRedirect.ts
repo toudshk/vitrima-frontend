@@ -4,13 +4,14 @@ import { useEffect } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 
 export const useAuthRedirect = () => {
-	const {applicant, contractor} = useAuth()
+	const {user} = useAuth()
 
-	const {  push } = useRouter()
-    const user = applicant || contractor;
+	const { push } = useRouter()
+    
 	const redirect = '/'
-
+console.log(user)
 	useEffect(() => {
-		if (user) push(redirect)
-	}, [user,applicant, contractor, redirect, push])
+		if (user) {push(redirect)}
+		
+	}, [user, redirect, push])
 }

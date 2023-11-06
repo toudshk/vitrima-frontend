@@ -12,6 +12,7 @@ import Link from "next/link";
 import SignUpFields from "./SignUpFields";
 import { IAuthInput } from "@/app/signup/Auth.interface";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
+import { useAuth } from "@/hooks/useAuth";
 interface IAuthFields {
   formState: FormState<any>;
   isPasswordRequired?: boolean;
@@ -19,17 +20,15 @@ interface IAuthFields {
 
 
 const SignUpForms: FC<IAuthFields> = () => {
-
+  useAuthRedirect()
     const { registerContractor, registerApplicant } = useActions();
-
+    const {isLoading} = useAuth()
     const {
         register: registerInput,
         handleSubmit,
         formState,
         reset,
-      } = useForm<IAuthInput>({
-        mode: "onChange",
-      });
+      } = useForm<IAuthInput>();
 
   const [selectedButton, setSelectedButton] = useState<
   "contractor" | "applicant"
@@ -53,7 +52,7 @@ const SignUpForms: FC<IAuthFields> = () => {
     selectedButton={selectedButton}
   />
   <div className={styles.authButtons}>
-    <MainButton type="submit" onClick={() => onSubmit}>
+    <MainButton disabled={isLoading} type="submit" onClick={() => onSubmit}>
       Зарегистрироваться
     </MainButton>
     Есть аккаунт? <Link href={"/login"}>Войди</Link>
