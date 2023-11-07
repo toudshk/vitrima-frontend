@@ -8,7 +8,10 @@ import { useTypedSelector } from "./useTypedSelector";
 
 export const useAuth = () => {
   return useTypedSelector(
-    (state: { applicant: any; contractor: any }) =>
-      state.applicant || state.contractor || null
+    (state: { applicant: any; contractor: any }) => {
+      const { applicant, contractor } = state;
+      const user = { ...applicant, ...contractor };
+      return user;
+    }
   );
 };
