@@ -10,17 +10,17 @@ import {
 } from "./user.actions";
 
 const initialState: IUserInitialState = {
-  user: getStoreLocal("applicant"),
+  user: getStoreLocal("user"),
   isLoading: false,
-
 };
 
 export const applicantSlice = createSlice({
-  name: "applicant",
+  name: "user",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(registerApplicant.pending, (state) => {
+    builder
+      .addCase(registerApplicant.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(registerApplicant.fulfilled, (state, { payload }) => {
@@ -31,7 +31,7 @@ export const applicantSlice = createSlice({
         state.isLoading = true;
         state.user = null;
       })
-      
+
       .addCase(login.pending, (state) => {
         state.isLoading = true;
       })

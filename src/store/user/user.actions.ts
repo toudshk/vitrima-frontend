@@ -22,7 +22,8 @@ export const registerApplicant = createAsyncThunk<
       const response = await AuthService.registerApplicant(
         email,
         password,
-        nickname
+        nickname,
+        
       );
 	  
       return response.data;
@@ -70,8 +71,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 });
 
 export const checkAuth = createAsyncThunk<
-  IAuthResponse,
-  InterfaceEmailPassword
+  IAuthResponse
 >("auth/check-auth", async (_, thunkApi) => {
   try {
     const response = await AuthService.getNewTokens();

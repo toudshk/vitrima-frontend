@@ -15,6 +15,8 @@ export const AuthService = {
         email,
         password,
         nickname,
+      
+
       }
     );
 
@@ -28,7 +30,8 @@ export const AuthService = {
     email: string,
     password: string,
     nickname: string,
-    inn: string
+    inn: string,
+   
   ) {
     const response = await axios.post<IAuthContractorResponse>(
       `${API_URL}${getAuthUrl("/register/contractor")}`,
@@ -37,6 +40,7 @@ export const AuthService = {
         password,
         nickname,
         inn,
+    
       }
     );
 

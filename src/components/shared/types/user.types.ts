@@ -4,7 +4,12 @@ export interface IApplicant {
   password: string;
   createdAt: string;
   nickname: string;
+isContractor: boolean
+  isAdmin: boolean
+
 }
 export interface IContractor extends IApplicant {
   inn: string
+	
+
  }

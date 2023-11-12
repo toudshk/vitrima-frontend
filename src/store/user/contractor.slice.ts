@@ -1,4 +1,4 @@
-import { ApplicantModel } from './../../../../back/src/user/Schemas/user.model';
+
 import { createSlice } from "@reduxjs/toolkit";
 import { getStoreLocal } from "@/utils/local-storage";
 import {
@@ -11,12 +11,13 @@ import {
 import { IUserInitialState } from './user.interface';
 
 const initialState:IUserInitialState = {
+  user: getStoreLocal("user"),
   isLoading: false,
-  user: getStoreLocal("contractor"),
+
 };
 
 export const contractorSlice = createSlice({
-  name: "contractor",
+  name: "user",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
