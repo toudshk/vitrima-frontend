@@ -7,6 +7,7 @@ import localFont from "next/font/local";
 
 import { ReduxProvider } from "@/providers/ReduxProvider";
 import AuthProvider from "@/providers/AuthProvider/AuthProvider";
+import MainProvider from "@/providers/MainProvider/MainProvider";
 
 const myFont = localFont({
   src: "./assets/fonts/Jura-VariableFont_wght.ttf",
@@ -26,12 +27,8 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={myFont.className}>
-        <ReduxProvider>
-          
-          <Header />
-          {children}
-         
-        </ReduxProvider>
+        
+        <MainProvider>{children}</MainProvider>
       </body>
     </html>
   );

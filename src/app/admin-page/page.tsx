@@ -1,19 +1,33 @@
-import React from 'react'
-import styles from './page.module.scss'
-import { NextPageAuth } from '@/components/shared/types/auth.types'
+"use client"
+import { NextPage } from 'next';
+import { useRouter } from 'next/navigation';
+import { NextPageAuth } from '@/components/shared/types/auth.types';
+import { Meta } from '@/utils/meta/Meta';
+import Statistics from '@/components/screens/statistics/Statistics';
+import AdminNavigation from '@/components/ui/Admin-navigation/AdminNavigation';
+import { useAuth } from '@/hooks/useAuth';
+
 const page: NextPageAuth = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { user } = useAuth();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const router = useRouter();
+
+  if (!user?.isAdmin) {
+    
+    router.push('/');
+   
+
+  }
+
   return (
-    <div className={styles.wrapper}>
-        <div className={styles.leftBlock}>
-photo
-        </div>
-        <div className={styles.rightBlock}>
-other info
+    <>
+      <Meta title="Админ панель">
+        <AdminNavigation />
+        <Statistics />
+      </Meta>
+    </>
+  );
+};
 
-        </div>
-    </div>
-  )
-}
-page.isOnlyAdmin = true
-
-export default page
+export default page;

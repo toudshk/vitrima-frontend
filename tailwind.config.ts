@@ -1,8 +1,9 @@
-import type { Config } from "tailwindcss";
+const colors = require('tailwindcss/colors')
+const plugin = require('tailwindcss/plugin')
 
 const primary = "#000";
 
-const config: Config = {
+const config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -28,6 +29,41 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+		
+		plugin(({ addComponents, theme, addUtilities }) => {
+			addComponents({
+
+				'.air-block': {
+					borderRadius: theme('borderRadius.layout'),
+					backgroundColor: theme('colors.gray.950'),
+					color: theme('colors.white'),
+					boxShadow: theme('boxShadow.lg'),
+				},
+			}),
+				addUtilities({
+					'.text-shadow': {
+						textShadow: '1px 1px rgba(0, 0, 0, 0.4)',
+					},
+
+					'.outline-border-none': {
+						outline: 'none',
+						border: 'none',
+					},
+
+					'.flex-center-between': {
+						display: 'flex',
+						alignItems: 'center',
+						justifyContent: 'space-between',
+					},
+
+					'.image-like-bg': {
+						objectPosition: 'center',
+						objectFit: 'cover',
+						pointerEvents: 'none',
+					},
+				})
+		}),
+	],
 };
 export default config;

@@ -1,4 +1,4 @@
-"use client";
+
 import Image from "next/image";
 import { FC, useState } from "react";
 import imageBg from "../../components/common/images/ui/authPage/AuthBg.png";
@@ -17,26 +17,11 @@ import Link from "next/link";
 import SignUpFields from "@/components/shared/user/SignUpFields";
 import { useActions } from "@/hooks/useActions";
 import SignUpForms from "@/components/shared/user/SignUpForms";
-import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 
-interface IAuthFields {
-  register: UseFormRegister<any>;
-  formState: FormState<any>;
-  isPasswordRequired?: boolean;
-}
+const SignupLayout: FC = () => {
 
-const SignupLayout: FC<IAuthFields> = () => {
-  useAuthRedirect()
 
-  const {
-    register: registerInput,
-    handleSubmit,
-    formState,
-    reset,
-  } = useForm<IAuthInput>({
-    mode: "onChange",
-  });
-
+  
   return (
     <section className="flex">
       <div className={styles.leftBlock}>
@@ -46,8 +31,7 @@ const SignupLayout: FC<IAuthFields> = () => {
         <div className={styles.logotype}>
           <MainLogoBlack width={595} />
         </div>
-        <SignUpForms formState={formState}         
-        />
+        <SignUpForms      />
         
       </div>
     </section>

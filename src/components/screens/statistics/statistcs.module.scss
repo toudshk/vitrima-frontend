@@ -1,0 +1,20 @@
+.statistics {
+	@apply flex items-stretch mt-10;
+
+	.block {
+		@apply  air-block w-1/6  rounded-2xl h-64	;
+	}
+
+	.countUsers {
+		@apply mr-28  items-center justify-center text-center text-primary;
+
+		.number {
+			@apply text-7xl mb-1 font-medium pb-4 pt-16;
+			
+		}
+
+		.description {
+			@apply opacity-70 text-lg;
+		}
+	}
+}

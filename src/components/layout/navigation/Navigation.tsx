@@ -1,25 +1,22 @@
 "use client";
-import { ChangeEvent, MouseEvent } from "react";
+import { ChangeEvent, MouseEvent, useEffect } from "react";
 
 import Link from "next/link";
-import { useState } from "react";
+
 import { useAuth } from "@/hooks/useAuth";
 import { useActions } from "@/hooks/useActions";
 import styles from "./Navigation.module.scss";
 import SearchField from "@/components/ui/Search-field/SearchField";
-import { useDebounce } from "@/hooks/useDebounce";
+
 import { MainLogo } from "@/components/common/icons/MainLogo";
 import clsx from "clsx";
+
 const Navigation = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const debouncedSearch = useDebounce(searchTerm, 500);
-  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-  };
+ 
+
+  const {user} = useAuth();
 
   const { logout } = useActions();
-
-  const { user } = useAuth();
 
   const logoutHandler = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -37,7 +34,7 @@ const Navigation = () => {
       </Link>
       {user ? (
         <>
-          <SearchField searchTerm={searchTerm} handleSearch={handleSearch} />
+          <SearchField />
           <div className={styles.buttons}>
             <button>ЛЕНТА</button>
             <button>ФИЛЬТР</button>
@@ -52,5 +49,17 @@ const Navigation = () => {
     </div>
   );
 };
+
+// export const getServerSideProps = async () => {
+//   // Получите данные пользователя (роль) с сервера или из вашего API
+//   // eslint-disable-next-line react-hooks/rules-of-hooks
+//   const { user } = useAuth();
+
+//   return {
+//     props: {
+//       isUser: user,
+//     },
+//   };
+// };
 
 export default Navigation;

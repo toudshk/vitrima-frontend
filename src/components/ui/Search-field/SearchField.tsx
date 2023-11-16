@@ -1,17 +1,21 @@
-import { ChangeEvent, FC } from 'react'
+import { ChangeEvent, FC, useState } from 'react'
 
 
 import styles from './SearchField.module.scss'
+import { useDebounce } from '@/hooks/useDebounce'
 
-interface ISearchField {
-	searchTerm: string
-	handleSearch: (event: ChangeEvent<HTMLInputElement>) => void
-}
 
-const SearchField: FC<ISearchField> = ({searchTerm, handleSearch }) => {
+
+const SearchField: FC= () => {
+	const [searchTerm, setSearchTerm] = useState("");
+	const debouncedSearch = useDebounce(searchTerm, 500);
+	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+	  setSearchTerm(e.target.value);
+	};
+
+
 	return (
 		<div className={styles.search}>
-			
 			<input placeholder="Search" value={searchTerm} onChange={handleSearch} />
 		</div>
 	)

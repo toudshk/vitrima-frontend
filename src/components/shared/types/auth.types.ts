@@ -5,4 +5,5 @@ export type TypeRoles = { isOnlyAdmin?: boolean; isOnlyContractor?: boolean }
 
 export type NextPageAuth<P = {}> = NextPage<P> & TypeRoles
 
-export type TypeComponentAuthFields = { Component: TypeRoles, children: ReactNode }
+export type TypeComponentAuthFields = { children: ReactNode }
+// Component: TypeRoles, 

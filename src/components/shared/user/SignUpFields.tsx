@@ -1,3 +1,4 @@
+"use client";
 import { FC } from "react";
 import { FormState, UseFormRegister } from "react-hook-form";
 
@@ -33,9 +34,7 @@ const SignUpFields: FC<IAuthFields> = ({
             // error={errors.email}
           />
           <Field
-            {...register(
-              "nickname",
-            )}
+            {...register("nickname")}
             placeholder="Никнейм"
 
             // error={errors.password}
@@ -61,53 +60,51 @@ const SignUpFields: FC<IAuthFields> = ({
       ) : (
         <div>
           <Field
-            {...register('email', {
-             	required: 'Email is required!',
-             	pattern: {
-             		value: validEmail,
-             		message: 'Please enter a valid email',
-             	},
-             })}
+            {...register("email", {
+              required: "Email is required!",
+              pattern: {
+                value: validEmail,
+                message: "Please enter a valid email",
+              },
+            })}
             placeholder="Почта"
             // error={errors.email}
           />
           <Field
             {...register(
-            	'inn',
-            	isPasswordRequired
-            		? {
-            				required: 'Password is required!',
-            				minLength: {
-            					value: 16,
-            					message: 'Min length should more 6 symbols!',
-            				},
-            		  }
-            		: {}
-             )}
+              "inn",
+              isPasswordRequired
+                ? {
+                    required: "Password is required!",
+                    minLength: {
+                      value: 16,
+                      message: "Min length should more 6 symbols!",
+                    },
+                  }
+                : {}
+            )}
             placeholder="ИНН"
 
             // error={errors.password}
           />
           <Field
-            {...register(
-            	'nickname',
-            )}
+            {...register("nickname")}
             placeholder="Название компании / ФИО"
 
             // error={errors.password}
           />
           <Field
             {...register(
-            	'password',
-            	isPasswordRequired
-            		? {
-            				required: 'Password is required!',
-            				minLength: {
-            					value: 6,
-            					message: 'Min length should more 6 symbols!',
-            				},
-            		  }
-            		: {}
+              "password",
+              isPasswordRequired
+                ? {
+                    required: "Password is required!",
+                    minLength: {
+                      value: 6,
+                      message: "Min length should more 6 symbols!",
+                    },
+                  }
+                : {}
             )}
             placeholder="Пароль"
             type="password"

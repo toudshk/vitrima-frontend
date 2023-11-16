@@ -22,7 +22,7 @@ export const useUpload: TypeUpload = (onChange, folder) => {
 				onChange(data[0].url)
 			},
 			onError(error) {
-				toastError(error, 'Upload image')
+				console.log(error)
 			},
 		}
 	)

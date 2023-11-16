@@ -17,7 +17,7 @@ export interface IUploadField {
 	placeholder: string
 	error?: FieldError
 	style?: CSSProperties
-	isNoImage?: boolean
+	
 }
 
 

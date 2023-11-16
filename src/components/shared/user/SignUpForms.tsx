@@ -1,4 +1,4 @@
-
+"use client"
 
 import SwitchButtons from "@/app/signup/SwitchButtons";
 import AuthFields from "@/components/shared/user/AuthFields";
@@ -13,10 +13,12 @@ import SignUpFields from "./SignUpFields";
 import { IAuthInput } from "@/app/signup/Auth.interface";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 import { useAuth } from "@/hooks/useAuth";
+
 interface IAuthFields {
-  formState: FormState<any>;
+  
   isPasswordRequired?: boolean;
 }
+
 
 
 const SignUpForms: FC<IAuthFields> = () => {
@@ -42,6 +44,7 @@ const SignUpForms: FC<IAuthFields> = () => {
   };
   
   return <form onSubmit={handleSubmit(onSubmit)}>
+   
   <SwitchButtons
     selectedButton={selectedButton}
     setSelectedButton={setSelectedButton}
@@ -55,7 +58,7 @@ const SignUpForms: FC<IAuthFields> = () => {
     <MainButton disabled={isLoading} type="submit" onClick={() => onSubmit}>
       Зарегистрироваться
     </MainButton>
-    Есть аккаунт? <Link href={"/login"}>Войди</Link>
+    Есть аккаунт? <Link href={"/login"}>Войти</Link>
   </div>
 </form>;
 };
