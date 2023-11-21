@@ -10,6 +10,7 @@ import SearchField from "@/components/ui/Search-field/SearchField";
 
 import { MainLogo } from "@/components/common/icons/MainLogo";
 import clsx from "clsx";
+import Search from "./search/search";
 
 const Navigation = () => {
  
@@ -34,7 +35,7 @@ const Navigation = () => {
       </Link>
       {user ? (
         <>
-          <SearchField />
+          <Search />
           <div className={styles.buttons}>
             <button>ЛЕНТА</button>
             <button>ФИЛЬТР</button>

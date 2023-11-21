@@ -12,12 +12,13 @@ type TypeInputPropsField = InputHTMLAttributes<HTMLInputElement> & IFieldProps
 export interface IField extends TypeInputPropsField {}
 export interface IUploadField {
 	folder?: string
-	image?: string
+	image?: string[]
 	onChange: (...event: any[]) => void
 	placeholder: string
 	error?: FieldError
 	style?: CSSProperties
-	
+	title: string
+	isNoImage?: boolean
 }
 
 
@@ -26,4 +27,5 @@ type TypeEditorPropsField = {/*EditorProps*/} & IFieldProps
 export interface ITextEditor extends Omit<TypeEditorPropsField, 'editorState'> {
 	onChange: (...event: any[]) => void
 	value: string
+	title: string
 }

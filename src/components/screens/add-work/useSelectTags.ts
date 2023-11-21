@@ -1,17 +1,19 @@
+import { IOption } from '@/components/ui/Select/Select.interface'
+import { TagService } from '@/services/tag/tag.service'
 import { useQuery } from 'react-query'
 
 
-export const useAdminActors = () => {
-	const queryData = useQuery('list of actor', () => ActorService.getAll(), {
+export const useSelectTags = () => {
+	const queryData = useQuery('list of tag', () => TagService.getAll(), {
 		select: ({ data }) =>
 			data.map(
-				(actor): IOption => ({
-					label: actor.name,
-					value: actor._id,
+				(tag): IOption => ({
+					label: tag.title,
+					value: tag._id,
 				})
 			),
 		onError(error) {
-			toastError(error, 'actor list')
+			console.log(error, 'tag list')
 		},
 	})
 

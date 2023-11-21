@@ -24,10 +24,18 @@ const config = {
         300: "#EAEAEA",
         450: "#c5c5c5",
         400: "#ABABAB",
+		500: "#9A9A9A",
         600: "#5F5F5F",
         700: "#303030",
-      },
+      }, 
+	  transparent: colors.transparent,
     },
+	extend: {
+		animation: {
+			fade: 'fade .5s ease-in-out',
+			scaleIn: 'scaleIn .35s ease-in-out',
+		},
+	}
   },
   plugins: [
 		

@@ -1,0 +1,26 @@
+.header{
+    @apply flex items-center justify-between mt-8;
+    .search {
+        @apply ml-32     flex items-center transition-colors text-base;
+        > svg {
+            @apply fill-white mr-2 text-3xl transition-colors;
+        }
+    
+        > input {
+            @apply  border border-gray-400 rounded-3xl px-8 py-2 bg-gray-300 placeholder:text-gray-600 block w-auto text-gray-600  outline-none;
+        }
+    
+        &:focus-within {
+            @apply border-gray-600;
+            > svg {
+                @apply fill-gray-400;
+            }
+        }
+    }
+
+
+
+> button{
+    @apply bg-blue-500 bg-opacity-80;
+}
+}

@@ -4,12 +4,13 @@ export interface IContractorState {
   email: string;
   isContractor: boolean
   isAdmin: boolean
-
+_id: string
 }
 export interface IApplicantState {
   email: string;
   isContractor: boolean
   isAdmin: boolean
+  _id: string
 }
 
 export interface ITokens {

@@ -1,13 +1,17 @@
+import { NextPageAuth } from '@/components/shared/types/auth.types'
 import AdminNavigation from '@/components/ui/Admin-navigation/AdminNavigation'
 import {FC} from 'react'
+import WorkList from './WorkList'
 
-const page:FC = () => {
+const page: NextPageAuth = () => {
   return (
     <>
     <AdminNavigation/>
-    <div>works</div>
+ <WorkList /> 
     </>
   )
 }
+
+page.isOnlyAdmin = true
 
 export default page

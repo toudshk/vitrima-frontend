@@ -1,49 +1,44 @@
+import { IWorkEditInput } from "@/app/add-work/edit-work.interface";
+import { getWorkUrl } from "@/config/api.config";
+import { getAdminUrl } from "@/config/url.config";
+import { useAuth } from "@/hooks/useAuth";
+import { WorkService } from "@/services/work/work.service";
+import { getKeys } from "@/utils/object/getKeys";
+import { useRouter, useSearchParams } from "next/navigation";
+import { SubmitHandler, UseFormSetValue } from "react-hook-form";
+import { useMutation, useQuery } from "react-query";
 
-import { IWorkEditInput } from '@/app/add-work/edit-work.interface'
-import { WorkService } from '@/services/work/work.service'
-import { useRouter } from 'next/router'
-import { SubmitHandler, UseFormSetValue } from 'react-hook-form'
-import { useMutation, useQuery } from 'react-query'
+export const  useWorkEdit = (setValue: UseFormSetValue<IWorkEditInput>) => {
+  const {user} = useAuth()
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const workId = String(searchParams.get("id"));
+  const { push } = router;
 
+ 
 
-export const useWorkEdit = (setValue: UseFormSetValue<IWorkEditInput>) => {
-	const { query, push } = useRouter()
+  const { mutateAsync } = useMutation(
+    "create work",
+  async (data: IWorkEditInput) => {
+    const updatedData: IWorkEditInput = {
+      ...data,
+      contractorId: user?._id as string,
+    };
+console.log(updatedData)
+ 
+    try {
+      await WorkService.create(updatedData);
+      
+    } catch (error) {
+      console.log(error, "create work");
+     
+    }
+  }
+  );
 
-	const movieId = String(query.id)
+  const onSubmit: SubmitHandler<IWorkEditInput> = async (data) => {
+    await mutateAsync(data);
+  };
 
-	const { isLoading } = useQuery(
-		['movie', movieId],
-		() => WorkService.getById(movieId),
-		{
-			onSuccess({ data }) {
-				getKeys(data).forEach((key) => {
-					setValue(key, data[key])
-				})
-			},
-			onError(error) {
-				toastError(error, 'Get movie')
-			},
-			enabled: !!query.id,
-		}
-	)
-
-	const { mutateAsync } = useMutation(
-		'update movie',
-		(data: IWorkEditInput) => WorkService.update(movieId, data),
-		{
-			onError(error) {
-				toastError(error, 'Update movie')
-			},
-			onSuccess() {
-				toastr.success('Update movie', 'update was successful')
-				push(getAdminUrl('movies'))
-			},
-		}
-	)
-
-	const onSubmit: SubmitHandler<IWorkEditInput> = async (data) => {
-		await mutateAsync(data)
-	}
-
-	return { onSubmit, isLoading }
-}
+  return { onSubmit };
+};

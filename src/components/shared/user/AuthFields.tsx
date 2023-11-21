@@ -27,6 +27,7 @@ const AuthFields: FC<IAuthFields> = ({
         	},
         })}
         placeholder="Почта"
+       
        // error={errors.email}
       />
       <Field

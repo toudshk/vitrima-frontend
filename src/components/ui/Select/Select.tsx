@@ -1,5 +1,6 @@
 import { FC } from 'react'
-import ReactSelect, {OnChangeValue} from 'react-select'
+import ReactSelect from 'react-select'
+import ValueType from 'react-select'
 import makeAnimated from 'react-select/animated'
 
 import formStyles from '../form-elements/form.module.scss'
@@ -17,7 +18,7 @@ const Select: FC<ISelect> = ({
 	field,
 	isLoading,
 }) => {
-	const onChange = (newValue: OnChangeValue<IOption, boolean>) => {
+	const onChange = (newValue: ValueType<IOption, boolean>) => {
 		field.onChange(
 			isMulti
 				? (newValue as IOption[]).map((item: IOption) => item.value)

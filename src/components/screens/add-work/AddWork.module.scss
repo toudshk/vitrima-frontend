@@ -1,0 +1,21 @@
+.form {
+	@apply mt-12 max-w-[1734px] mx-auto;
+	.fields {
+		@apply flex items-center flex-wrap justify-between mt-20;
+		> div {
+			width: 48%;
+		}
+		.leftBlock{
+			@apply pr-10;
+			width: 70%
+			
+		}
+		.rightBlock{
+			width: 30%;
+		}
+	}
+
+	> button {
+		@apply mt-10;
+	}
+}
