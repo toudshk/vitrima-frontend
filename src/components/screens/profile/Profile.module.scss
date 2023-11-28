@@ -1,9 +1,12 @@
 .header {
-  @apply flex justify-between items-center  ;
+  @apply flex justify-between items-center h-[72px] ;
   .leftBlock {
-    @apply flex ;
+    @apply flex h-full;
+    >img{
+      @apply rounded-full;
+    }
     > p {
-      @apply text-4xl py-3 mx-6;
+      @apply text-4xl py-3 mx-6 font-bold;
     }
   }
 

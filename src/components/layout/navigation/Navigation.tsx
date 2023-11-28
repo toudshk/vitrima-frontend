@@ -11,11 +11,11 @@ import SearchField from "@/components/ui/Search-field/SearchField";
 import { MainLogo } from "@/components/common/icons/MainLogo";
 import clsx from "clsx";
 import Search from "./search/search";
+import Avatar from "./avatar/Avatar";
+import DropdownMenu from "./dropdown-menu/DropdownMenu";
 
 const Navigation = () => {
- 
-
-  const {user} = useAuth();
+  const { user } = useAuth();
 
   const { logout } = useActions();
 
@@ -24,29 +24,33 @@ const Navigation = () => {
     logout();
   };
   return (
-    <div
-      className={clsx({
-        [styles.navigationAuth]: user !== null,
-        [styles.navigationNotAuth]: user === null,
-      })}
-    >
-      <Link href="/">
-        <MainLogo width={200} />
-      </Link>
-      {user ? (
-        <>
-          <Search />
-          <div className={styles.buttons}>
-            <button>ЛЕНТА</button>
-            <button>ФИЛЬТР</button>
-            <a onClick={logoutHandler}>ВЫХОД</a>
-          </div>
-        </>
-      ) : (
-        <Link className={styles.button} href={"/login"}>
-          ВХОД / РЕГИСТРАЦИЯ
+    <div className={styles.wrapper}>
+      <div
+        className={clsx({
+          [styles.navigationAuth]: user !== null,
+          [styles.navigationNotAuth]: user === null,
+        })}
+      >
+        <Link href="/">
+          <MainLogo width={201} />
         </Link>
-      )}
+        {user ? (
+          <>
+            <div className="mx-12">
+              <Search />
+            </div>
+            <div className={styles.buttons}>
+              <button>ЛЕНТА</button>
+              <button>ФИЛЬТР</button>
+              <DropdownMenu />
+            </div>
+          </>
+        ) : (
+          <Link className={styles.button} href={"/login"}>
+            ВХОД / РЕГИСТРАЦИЯ
+          </Link>
+        )}
+      </div>
     </div>
   );
 };

@@ -7,9 +7,12 @@ export interface IApplicant {
 isContractor: boolean
   isAdmin: boolean
   works: string[]
+  image: string
+  
+
 }
 export interface IContractor extends IApplicant {
   inn: string
-	
+	description: string
 
  }

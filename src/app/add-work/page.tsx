@@ -17,12 +17,8 @@ const page: NextPageAuth = () => {
   const router = useRouter();
 
   if (!user?.isContractor) {
-    
-    router.push('/');
-   
-
+    router.push("/");
   }
-
 
   const {
     handleSubmit,
@@ -39,10 +35,9 @@ const page: NextPageAuth = () => {
 
   return (
     <>
-     
-        <div className={styles.wrapper}>
-          <AddWork/>
-        </div>
+      <div className={styles.wrapper}>
+        <AddWork />
+      </div>
     </>
   );
 };

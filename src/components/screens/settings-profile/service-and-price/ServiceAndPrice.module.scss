@@ -1,0 +1,10 @@
+.item{
+    @apply flex justify-between text-gray-700 text-2xl mt-10 pb-2 border-b border-gray-300;
+
+    .rightBlock{
+        @apply flex;
+        .price{
+            @apply mr-6; 
+        }
+    }
+}

@@ -1,0 +1,12 @@
+.fields{
+    @apply mx-auto w-3/6 mt-10;
+    .fieldsTitlePhoto{
+        @apply flex;
+    }
+    .button{
+        @apply bg-primary w-full text-white text-xl h-16 rounded-2xl;
+        :hover{
+            @apply bg-gray-600;
+        }
+    }
+}

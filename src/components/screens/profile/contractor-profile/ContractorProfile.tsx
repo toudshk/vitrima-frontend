@@ -1,29 +1,24 @@
 import { FC } from "react";
 import styles from "./ContractorProfile.module.scss";
-import { IData, IWorks } from "../Profile.interface";
+import { ContractorProfileProps, IData, IWorks } from "../Profile.interface";
 import Header from "../header";
 import ProfileWorks from "./profile-works/ProfileWorks";
 import Image from "next/image";
 
-interface ContractorProfileProps {
-  data: IData;
-  works: IWorks[];
-}
 
-const ContractorProfile: FC<ContractorProfileProps> = ({ works, data }) => {
-  console.log(works);
-  let counter = 0;
+const ContractorProfile: FC<ContractorProfileProps> = ({ works, data, id }) => {
+ 
 
   return (
     <div className={styles.wrapper}>
-      <Header data={data} />
+      <Header data={data} id={id}/>
 
       <div className={styles.blockTitle}>
         <div className={styles.leftBlock}>{data.email}</div>
         <div className={styles.rightBlock}>
           <div className={styles.subscribers}>
             <p>Подписчики</p>
-            <div>{data.subscribers.length}</div>
+            <div>{data.subscribers?.length}</div>
           </div>
 
           <div className={styles.inn}>

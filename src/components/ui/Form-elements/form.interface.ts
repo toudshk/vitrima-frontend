@@ -12,13 +12,14 @@ type TypeInputPropsField = InputHTMLAttributes<HTMLInputElement> & IFieldProps
 export interface IField extends TypeInputPropsField {}
 export interface IUploadField {
 	folder?: string
-	image?: string[]
+	image?: string
 	onChange: (...event: any[]) => void
 	placeholder: string
 	error?: FieldError
 	style?: CSSProperties
 	title: string
 	isNoImage?: boolean
+	images?: string[]
 }
 
 

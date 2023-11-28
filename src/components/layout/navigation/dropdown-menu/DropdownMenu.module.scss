@@ -1,0 +1,14 @@
+/* styles/DropdownMenu.css */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown:hover .group-hover\:block {
+    @apply block;
+  }
+.dropdownItems {
+  @apply absolute hidden bg-gray-600 p-2 space-y-2 group-hover:block transition-all;
+  > a {
+    @apply block cursor-pointer;
+  }
+}

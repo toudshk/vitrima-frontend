@@ -8,11 +8,11 @@ interface IAuthFields {
   register: UseFormRegister<any>;
   formState: FormState<any>;
   isPasswordRequired?: boolean;
-  selectedButton: string;
+
 }
 
 const AuthFields: FC<IAuthFields> = ({
-  selectedButton,
+  
   register,
   formState: { errors },
   isPasswordRequired = false,

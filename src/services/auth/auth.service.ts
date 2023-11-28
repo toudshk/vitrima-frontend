@@ -1,7 +1,11 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-import { IAuthApplicantResponse, IAuthContractorResponse, IAuthResponse } from "@/store/user/user.interface";
+import {
+  IAuthApplicantResponse,
+  IAuthContractorResponse,
+  IAuthResponse,
+} from "@/store/user/user.interface";
 import { removeTokensStorage, saveToStorage } from "./auth.helper";
 import { API_URL, getAuthUrl } from "@/config/api.config";
 import { getContentType } from "@/api/api.helpers";
@@ -15,23 +19,20 @@ export const AuthService = {
         email,
         password,
         nickname,
-      
-
       }
     );
 
     if (response.data.accessToken) {
       saveToStorage(response.data);
     }
-   
+
     return response;
   },
   async registerContractor(
     email: string,
     password: string,
     nickname: string,
-    inn: string,
-   
+    inn: string
   ) {
     const response = await axios.post<IAuthContractorResponse>(
       `${API_URL}${getAuthUrl("/register/contractor")}`,
@@ -40,7 +41,6 @@ export const AuthService = {
         password,
         nickname,
         inn,
-    
       }
     );
 
@@ -58,12 +58,9 @@ export const AuthService = {
         password,
       }
     );
-console.log(response)
     if (response.data.accessToken) {
-
       saveToStorage(response.data);
     }
-    
 
     return response;
   },
@@ -73,6 +70,7 @@ console.log(response)
   },
   async getNewTokens() {
     const refreshToken = Cookies.get("refreshToken");
+    console.log(refreshToken)
     const response = await axios.post<IAuthResponse>(
       `${API_URL}${getAuthUrl("/login/access-token")}`,
       {

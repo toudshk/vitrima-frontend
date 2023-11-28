@@ -20,12 +20,12 @@ export const  useWorkEdit = (setValue: UseFormSetValue<IWorkEditInput>) => {
   const { mutateAsync } = useMutation(
     "create work",
   async (data: IWorkEditInput) => {
+    
     const updatedData: IWorkEditInput = {
       ...data,
       contractorId: user?._id as string,
     };
-console.log(updatedData)
- 
+
     try {
       await WorkService.create(updatedData);
       
