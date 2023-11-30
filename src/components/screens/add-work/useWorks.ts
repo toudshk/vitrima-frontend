@@ -8,32 +8,28 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { SubmitHandler, UseFormSetValue } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 
-export const  useWorkEdit = (setValue: UseFormSetValue<IWorkEditInput>) => {
-  const {user} = useAuth()
+export const useWorks = (setValue: UseFormSetValue<IWorkEditInput>) => {
+  const { user } = useAuth();
   const searchParams = useSearchParams();
   const router = useRouter();
   const workId = String(searchParams.get("id"));
   const { push } = router;
 
- 
-
   const { mutateAsync } = useMutation(
     "create work",
-  async (data: IWorkEditInput) => {
-    
-    const updatedData: IWorkEditInput = {
-      ...data,
-      contractorId: user?._id as string,
-    };
+    async (data: IWorkEditInput) => {
+      const updatedData: IWorkEditInput = {
+        ...data,
+        contractorId: user?._id as string,
+      };
 
-    try {
-      await WorkService.create(updatedData);
-      
-    } catch (error) {
-      console.log(error, "create work");
-     
+      try {
+        await WorkService.create(updatedData);
+        router.push(`profile/${user?._id}`)
+      } catch (error) {
+        console.log(error, "create work");
+      }
     }
-  }
   );
 
   const onSubmit: SubmitHandler<IWorkEditInput> = async (data) => {

@@ -1,5 +1,5 @@
 
-import { ITableItem } from "@/components/ui/Admin-table/AdminTable/admin-table.interface"
+import { ITableItem } from "@/components/ui/Admin-table/AdminTable/table.interface"
 import { getServicePrice } from "@/config/api.config"
 
 import { useAuth } from "@/hooks/useAuth"

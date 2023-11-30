@@ -1,28 +1,36 @@
-
+"use client"
 import { UserService } from "@/services/user/user.service";
 import ContractorProfile from "./contractor-profile/ContractorProfile";
-import { FC } from "react";
-import { WorkService } from "@/services/work/work.service";
+
 import ApplicantProfile from "./applicant-profile/ApplicantProfile";
 
-const Profile: FC<{ id: string }> = async ({ id }) => {
+import { useQuery } from "react-query";
 
-	
-	try {
-		
-		const response = await UserService.getUserById(id) ;
-		const works = await WorkService.getByContractor(id)
- 		if (response.data.isContractor) {
-		  return <ContractorProfile works={works.data} data={response.data} id={id}/>
-		} else{
+import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
+interface ProfileProps {
+  id: string;
+}
 
-		  return <div><ApplicantProfile data={response.data}  id={id}/></div>;
-		}
+const Profile: React.FC<ProfileProps> = ({ id }) => {
+	const { data, isLoading } = useQuery({
+		queryKey: ["user", id],
+		queryFn: async (userId) => {
+		  const userData = await UserService.getUserById(id);
+		  const { data } = userData;
+		 
+	return data
+      
+    },
+  });
 
-	  } catch (error) {
-		console.error(error);
-		return <div>Такого пользователя не существует</div>;
-	  }
+  if (isLoading) return <SkeletonLoader />;
+
+console.log(data)
+  if (data?.isContractor) {
+    return <ContractorProfile userData={data} id={id}  />;
+  } else {
+    return <ApplicantProfile data={data} id={id} />;
+  }
 };
 
 export default Profile;

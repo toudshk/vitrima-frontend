@@ -1,7 +1,7 @@
-import { axiosClassic } from "@/api/interceptors"
+import axios, { axiosClassic } from "@/api/interceptors"
 import { IWorkEditInput } from "@/app/add-work/edit-work.interface"
 import { IWork } from "@/components/shared/types/work.types"
-import axios from "axios"
+
 import { API_URL, getWorkUrl } from "../../config/api.config"
 import { IAddWork } from "@/store/work/work.interface"
 
@@ -14,12 +14,7 @@ export const WorkService = {
 		return axiosClassic.get<IWork[]>(getWorkUrl(`/by-contractor/${id}`))
 	},
 
-	async getByGenres(genreIds: string[]) {
-		return axiosClassic.post<IWork[]>(getWorkUrl(`/by-genres`), {
-			genreIds,
-		})
-	},
-
+	
 	async create(data: IWorkEditInput) {
 		console.log(data)
 		const response = await axiosClassic.post<IAddWork>(
@@ -28,20 +23,17 @@ export const WorkService = {
 		return response
 	},
 
-	async updateCountOpened(slug: string) {
-		return axiosClassic.post(getWorkUrl('/update-count-opened'), {
-			slug,
-		})
-	},
+	
 
 	async update(_id: string, data: IWorkEditInput) {
 		return axios.put<string>(getWorkUrl(`/${_id}`), data)
 	},
 	
 
-	async deleteWork(_id: string) {
-		return axios.delete<string>(getWorkUrl(`/${_id}`))
+	async delete(_id: string, contractorId: any) {
+		return axios.delete<string>(getWorkUrl(`/${_id}`), contractorId)
 	},
+	
 
 	async getWorks(searchTerm?: string) {
 		return axiosClassic.get<IWork[]>(getWorkUrl(``), {
@@ -54,14 +46,8 @@ export const WorkService = {
 	},
 
 	async getById(_id: string) {
-		return axios.get<IWorkEditInput>(getWorkUrl(`/${_id}`))
+		return axiosClassic.get<IWorkEditInput>(getWorkUrl(`/${_id}`))
 	},
 
-	async getMostPopularMovies() {
-		const { data: movies } = await axiosClassic.get<IWork[]>(
-			getWorkUrl('/most-popular')
-		)
-
-		return movies
-	},
+	
 }

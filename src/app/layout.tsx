@@ -5,9 +5,9 @@ import { Inter } from "next/font/google";
 
 import localFont from "next/font/local";
 
-import { ReduxProvider } from "@/providers/ReduxProvider";
-import AuthProvider from "@/providers/AuthProvider/AuthProvider";
-import MainProvider from "@/providers/MainProvider/MainProvider";
+import { ReduxProvider } from "@/components/providers/ReduxProvider";
+import AuthProvider from "@/components/providers/AuthProvider/AuthProvider";
+import MainProvider from "@/components/providers/MainProvider/MainProvider";
 
 const myFont = localFont({
   src: "./assets/fonts/Jura-VariableFont_wght.ttf",

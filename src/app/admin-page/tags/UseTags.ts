@@ -1,6 +1,6 @@
 "use client"
 
-import { ITableItem } from '@/components/ui/Admin-table/AdminTable/admin-table.interface'
+import { ITableItem } from '@/components/ui/Admin-table/AdminTable/table.interface'
 import { getAdminUrl } from '@/config/url.config'
 import { useDebounce } from '@/hooks/useDebounce'
 import { TagService } from '@/services/tag/tag.service'

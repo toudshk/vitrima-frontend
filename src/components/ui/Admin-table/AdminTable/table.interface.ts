@@ -3,6 +3,7 @@ export interface ITableItem {
     editUrl: string
     title: string
     price: number
+     
 }
 
 export interface IAdminTableItem {

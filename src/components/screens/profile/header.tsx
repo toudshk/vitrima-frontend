@@ -23,7 +23,7 @@ const Header: FC<{ data: IData; id: string }> = ({ data, id }) => {
         />
         <p>{data.nickname}</p>
       </div>
-      {isOwner ? (
+      {isOwner && (
         <div className={styles.rightBlock}>
           {user.isContractor && (
             <Link className={styles.firstLink} href={"/add-work"}>
@@ -40,8 +40,6 @@ const Header: FC<{ data: IData; id: string }> = ({ data, id }) => {
             Редактировать профиль
           </Link>
         </div>
-      ) : (
-        <></>
       )}
     </div>
   );

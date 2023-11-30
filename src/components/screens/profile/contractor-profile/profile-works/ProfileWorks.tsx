@@ -1,47 +1,56 @@
-
-
-import { WorkService } from "@/services/work/work.service";
-import { FC, useEffect } from "react";
-import { IWorks } from "../../Profile.interface";
+"use client"
+import { FC } from "react";
+import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 import styles from "./ProfileWorks.module.scss";
 import Image from "next/image";
-const ProfileWorks: FC<IWorks> = async (work, {index}) => {
+import { useWork } from "./useWork";
 
-  console.log(index)
- 
+
+const ProfileWorks: FC<{id: string}> = ({id}) => {
+  const { data, isLoading } = useWork();
+
+  if(isLoading ) return <SkeletonLoader />
   return (
     <div className={styles.wrapper}>
-      {index % 2 ===0 ? (
-        <>
-          <div className={styles.imageBlock}>
-            <Image
-              src={work.images[0]}
-              width={860}
-              height={348}
-              alt={"фотография"}
-            />
+     
+      {data.map((work: any, index: number) => {
+        return (
+          <div className={styles.itemBlock} key={index}>
+            {index % 2 === 0 ? (
+              <>
+                <div className={styles.imageBlock}>
+                  <Image
+                    src={work.images[0]}
+                    width={860}
+                    height={348}
+                    alt={"фотография"}
+                  />
+                </div>
+                <div className={styles.textBlock}>
+                  <h1>{work.title}</h1>
+                  <p>{work.description}</p>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className={styles.textBlock}>
+                  <h1>{work.title}</h1>
+                  <p>{work.description}</p>
+                </div>
+                <div className={styles.imageBlock}>
+                  <Image
+                    src={work.images[0]}
+                    width={860}
+                    height={348}
+                    alt={"фотография"}
+                  />
+                </div>
+              </>
+            )}
           </div>
-          <div className={styles.textBlock}>
-            <h1>{work.title}</h1>
-            <p>{work.description}</p>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className={styles.textBlock}>
-            <h1>{work.title}</h1>
-            <p>{work.description}</p>
-          </div>
-          <div className={styles.imageBlock}>
-            <Image
-              src={work.images[0]}
-              width={860}
-              height={348}
-              alt={"фотография"}
-            />
-          </div>
-        </>
-      )}
+        );
+      })}
+      
     </div>
   );
 };

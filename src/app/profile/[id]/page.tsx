@@ -4,6 +4,8 @@ import { IContractor } from "@/components/shared/types/user.types";
 import { UserService } from "@/services/user/user.service";
 import { GetStaticProps, NextPage } from "next";
 
-export default async function page({ params: { id } }) {
+export default async function page({ params: { id } }: { params: { id: string } }) {
+
+	
   return <Profile id={id} />;
 }

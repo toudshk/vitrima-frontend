@@ -3,7 +3,7 @@ import { FC } from 'react'
 
 import styles from './AdminTable.module.scss'
 
-import { ITableItem } from './admin-table.interface'
+import { ITableItem } from './table.interface'
 import SkeletonLoader from '../../skeleton-loader/skeletonLoader'
 import AdminTableHeader from './AdminTableHeader'
 import AdminTableItem from './AdminTableItem'

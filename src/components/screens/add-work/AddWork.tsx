@@ -9,7 +9,7 @@ import Field from "@/components/ui/Form-elements/Field";
 import generateSlug from "@/utils/generateSlug";
 import SlugField from "@/components/ui/Form-elements/slug-field/SlugField";
 import { IWorkEditInput } from "@/app/add-work/edit-work.interface";
-import { useWorkEdit } from "./useWorkEdit";
+import { useWorks } from "./useWorks";
 import { useSelectTags } from "./useSelectTags";
 // @ts-ignore
 import { stripHtml } from "string-strip-html";
@@ -30,7 +30,7 @@ const AddWork: FC = () => {
     mode: "onChange",
   });
 
-  const { onSubmit, isLoading } = useWorkEdit(setValue);
+  const { onSubmit, isLoading } = useWorks(setValue);
   const { data: tags, isLoading: isTagsLoading } = useSelectTags();
 
   return (
@@ -54,7 +54,9 @@ const AddWork: FC = () => {
                     error={error}
                     folder="images"
                     image={value}
-                    onChange={onChange} title={""}                  />
+                    onChange={onChange}
+                    title={""}
+                  />
                 )}
                 rules={{
                   required: "Фотография обязательна",

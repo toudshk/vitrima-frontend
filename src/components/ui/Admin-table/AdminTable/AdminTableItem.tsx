@@ -1,5 +1,5 @@
 import AdminActions from './AdminActions/AdminActions'
-import { IAdminTableItem } from './admin-table.interface'
+import { IAdminTableItem } from './table.interface'
 import { FC } from 'react'
 
 import styles from './AdminTable.module.scss'

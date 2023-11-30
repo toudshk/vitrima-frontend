@@ -11,6 +11,7 @@ export interface IData {
 }
 
 export interface IWorks {
+  
   price: number;
   title: string;
   description: string;
@@ -21,8 +22,8 @@ export interface IWorks {
 }
 
 export interface ContractorProfileProps {
-  data: IData;
-  works: IWorks[];
+  userData: IData;
+  
   id: string;
 }
 

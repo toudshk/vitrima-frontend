@@ -1,15 +1,18 @@
 .wrapper {
-    @apply flex;
-    .imageBlock{
-        @apply mr-10 mb-20;
+  
+    .itemBlock{
+        @apply flex;
+    .imageBlock {
+      @apply mr-10 mb-20 ;
     }
-    .textBlock{
-        @apply w-2/4;
-        >h1{
-            @apply text-4xl mb-6;
-        }
-        >p{
-            @apply text-xl;
-        }
+    .textBlock {
+      @apply w-2/4;
+      > h1 {
+        @apply text-4xl mb-6;
+      }
+      > p {
+        @apply text-xl;
+      }
     }
+}
 }

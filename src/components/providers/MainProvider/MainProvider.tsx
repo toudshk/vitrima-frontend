@@ -2,20 +2,15 @@
 
 import { TypeComponentAuthFields } from "@/components/shared/types/auth.types";
 import { store } from "@/store/store";
-import { FC } from "react";
+import { FC, useState } from "react";
 
 
 import { ReduxProvider } from "../ReduxProvider";
 import Header from "@/components/layout/header/Header";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-    },
-  },
-});
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const queryClient = new QueryClient()
 
 const MainProvider: FC<TypeComponentAuthFields> = ({ children }) => {
   return (
