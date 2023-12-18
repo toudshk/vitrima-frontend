@@ -1,0 +1,29 @@
+.wrapper {
+  @apply max-w-[1736px] mx-auto;
+
+  .header {
+    @apply border-b-[1px] border-gray-400 mb-8;
+    > ul {
+      @apply flex;
+      > li {
+        @apply mr-10  text-gray-450 transition-all  ease-in-out;
+        > button {
+          @apply text-xl mb-3;
+        }
+        &.active {
+          @apply border-b-[1px] border-gray-600 z-20 text-gray-700;
+        }
+      }
+    }
+  }
+  .item{
+    @apply flex justify-between text-gray-700 text-2xl mt-10 pb-2 border-b border-gray-300;
+
+    .rightBlock{
+        @apply flex;
+        .price{
+            @apply mr-6; 
+        }
+    }
+}
+}

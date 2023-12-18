@@ -1,9 +1,9 @@
-export interface IData {
+export interface IUser {
  
     isContractor: boolean;
     nickname: string;
     email: string;
-    inn: string;
+    inn?: string;
     subscribers?: string[];
     image: string
     // Другие свойства пользователя
@@ -22,13 +22,13 @@ export interface IWorks {
 }
 
 export interface ContractorProfileProps {
-  userData: IData;
+  userData: IUser;
   
   id: string;
 }
 
 export interface ApplicantProfileProps {
-  data: IData;
+  data: IUser;
   
   id: string
 }

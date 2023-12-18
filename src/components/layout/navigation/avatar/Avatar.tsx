@@ -13,8 +13,8 @@ const Avatar: FC<{id:string}> = async ({id}) => {
       width={32}
       height={32}
       className={styles.avatar}
-      src={response ? response.data.image : baseImage}
-      alt={""}
+      src={response && response.data && response.data.image ? response.data.image : baseImage}
+   alt={""}
     />
   );
 };

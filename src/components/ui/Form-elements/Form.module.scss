@@ -18,7 +18,7 @@
 	@apply text-left mb-8 ;
 
 	input {
-		@apply outline-border-none focus:ring-0 bg-transparent text-gray-450 w-full mx-4 px-0 h-14 text-2xl; 
+		@apply outline-border-none focus:ring-0 bg-transparent text-gray-450 w-full px-4  h-14 text-2xl; 
 	}
 }
 
@@ -48,7 +48,7 @@
 		}
 
 		> label {
-			@apply block mr-6;
+			@apply block mr-6 w-[127px];
 
 			.error {
 				@apply relative -bottom-3;
@@ -59,7 +59,7 @@
 			}
 
 			> input {
-				@apply block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary opacity-70 file:text-white transition-opacity;
+				@apply w-[127px] block  mx-0 text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary opacity-70 file:text-white transition-opacity;
 			}
 
 			&:hover > input {

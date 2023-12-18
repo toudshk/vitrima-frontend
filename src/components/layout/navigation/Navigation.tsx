@@ -13,11 +13,17 @@ import clsx from "clsx";
 import Search from "./search/search";
 import Avatar from "./avatar/Avatar";
 import DropdownMenu from "./dropdown-menu/DropdownMenu";
+import Filter from "@/components/screens/filter/Filter";
 
 const Navigation = () => {
   const { user } = useAuth();
 
   const { logout } = useActions();
+
+ 
+
+
+
 
   const logoutHandler = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -32,6 +38,7 @@ const Navigation = () => {
         })}
       >
         <Link href="/">
+          
           <MainLogo width={201} />
         </Link>
         {user ? (
@@ -40,9 +47,9 @@ const Navigation = () => {
               <Search />
             </div>
             <div className={styles.buttons}>
-              <button>ЛЕНТА</button>
-              <button>ФИЛЬТР</button>
-              <DropdownMenu />
+              <Link className="mr-6" href={'/chat'}>ЧАТ</Link>
+              <Filter/>
+              <DropdownMenu />  
             </div>
           </>
         ) : (

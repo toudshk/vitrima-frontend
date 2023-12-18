@@ -11,7 +11,7 @@ export const useWork = () => {
     queryFn: async () => {
       const workData = await WorkService.getByContractor(id);
       const { data } = workData;
-      console.log(data);
+   
       return data;
     },
   });

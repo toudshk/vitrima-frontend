@@ -7,9 +7,8 @@ import { useAuth } from "@/hooks/useAuth"
 import { ServicePriceService } from "@/services/service-price/servicePrice.service"
 import { ChangeEvent, useMemo, useState } from "react"
 import { useMutation, useQuery } from "react-query"
-import { IServicePriceEditInput } from './service-price-edit/edit-servicePrice.interface';
-import { SubmitHandler } from 'react-hook-form';
-import { useRouter } from "next/navigation"
+
+import { useParams, useRouter } from "next/navigation"
 
 export const useServicePrice = () => {
 	const router = useRouter()
@@ -36,6 +35,8 @@ export const useServicePrice = () => {
 			},
 		}
 	)
+
+	
 
 
 	

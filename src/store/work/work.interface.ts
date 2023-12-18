@@ -1,3 +1,5 @@
+
+
 export interface IAddWork {
     title: string
     price: number
@@ -7,5 +9,6 @@ export interface IAddWork {
     images: string[]
     slug: string
     contractorId: string
-
+    workType: string
+    subTypes: string[]
 }

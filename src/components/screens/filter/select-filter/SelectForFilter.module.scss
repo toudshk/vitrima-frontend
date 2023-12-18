@@ -1,0 +1,11 @@
+.selectContainer {
+	@apply relative mt-2 animate-fade;
+
+	> label {
+		@apply block;
+
+		> span {
+			@apply text-xl  text-gray-600 block mb-1 rounded-xl;
+		}
+	}
+}

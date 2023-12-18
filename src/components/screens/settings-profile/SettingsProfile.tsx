@@ -40,7 +40,7 @@ const SettingsProfile: NextPageAuth<{user: any}> = ({user}) => {
           </ul>
         </div>
 
-        {showPersonalInfo ? <PersonalInfo /> : <ServiceAndPrice user={user}/>}
+        {showPersonalInfo ? <PersonalInfo /> : <ServiceAndPrice />}
       </div>
     </Meta>
   );

@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import styles from "./AddWork.module.scss";
 import MainButton from "@/components/ui/Button/MainButton";
@@ -11,8 +11,10 @@ import SlugField from "@/components/ui/Form-elements/slug-field/SlugField";
 import { IWorkEditInput } from "@/app/add-work/edit-work.interface";
 import { useWorks } from "./useWorks";
 import { useSelectTags } from "./useSelectTags";
-// @ts-ignore
-import { stripHtml } from "string-strip-html";
+import { useTypeWorks } from "./useTypeWork";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { useSubTypes } from "./useSubTypes";
+import { IWorkType } from "@/components/shared/types/work.types";
 
 const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
@@ -32,6 +34,23 @@ const AddWork: FC = () => {
 
   const { onSubmit, isLoading } = useWorks(setValue);
   const { data: tags, isLoading: isTagsLoading } = useSelectTags();
+  const { data: workTypes, isLoading: isWorkTypeLoading } = useTypeWorks();
+
+  const [selectedItem, setSelectedItem] = useState<IWorkType | null>(null);
+  console.log(selectedItem?._id);
+  const {
+    data: subTypes,
+    isLoading: isSubTypeLoading,
+    refetch,
+  } = useSubTypes(selectedItem?._id);
+ 
+
+  useEffect(() => {
+    // Fetch subtypes whenever selectedItem changes
+    if (selectedItem?._id) {
+      refetch();
+    }
+  }, [selectedItem]);
 
   return (
     <>
@@ -40,6 +59,47 @@ const AddWork: FC = () => {
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <div className={styles.fields}>
+            <Controller
+              name="workType"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <ToggleButtonGroup
+                  color="primary"
+                  value={selectedItem?._id || field.value}
+                  exclusive
+                  onChange={(event, value) => {
+                    const selectedWorkType = workTypes?.find(
+                      (item) => item._id === value
+                    );
+                    field.onChange(selectedWorkType);
+                    setSelectedItem(selectedWorkType);
+                  }}
+                
+                  aria-label="Platform"
+                >
+                  {workTypes?.map((item) => (
+                    <ToggleButton value={item._id} key={item._id}>
+                      {item.title}
+                    </ToggleButton>
+                  ))}
+                </ToggleButtonGroup>
+              )}
+            />
+            <Controller
+              name="subTypes"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <DynamicSelect
+                  error={error}
+                  field={field}
+                  placeholder="Стили"
+                  options={subTypes || []}
+                  isLoading={isSubTypeLoading}
+                  isMulti
+                />
+              )}
+            />
+
             <div className={styles.leftBlock}>
               <Controller
                 name="images"

@@ -1,0 +1,45 @@
+/* Общий контейнер для сообщения */
+.message {
+  display: flex;
+  width: fit-content;
+  max-width:500px;
+  margin: 8px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Стиль для собственных сообщений */
+.ownMessage {
+  align-self: flex-end;
+  margin-left: auto; /* Установим margin-left в auto для сдвига вправо */
+  background-color: #0088cc; /* Цвет фона для собственных сообщений */
+  color: #fff; /* Цвет текста для собственных сообщений */
+  .messageBottom{
+    @apply text-white;
+  }
+}
+
+/* Стиль для сообщений от друзей */
+.friendMessage {
+  align-self: flex-start;
+  background-color: #e4e6eb; /* Цвет фона для сообщений от друзей */
+}
+
+/* Стиль верхней части сообщения */
+.messageTop {
+  margin-bottom: 4px; /* Уменьшаем отступ сверху */
+}
+
+/* Стиль текста сообщения */
+.messageText {
+@apply text-xl;
+  margin-right: 15px;
+  overflow-wrap: break-word; /* Разрывать слова для переноса текста на новую строку */
+}
+
+/* Стиль нижней части сообщения */
+.messageBottom {
+  align-self: flex-end;
+  font-size: 12px;
+  color: #777;
+}

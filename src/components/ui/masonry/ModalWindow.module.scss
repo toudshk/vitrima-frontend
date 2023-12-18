@@ -1,0 +1,23 @@
+.content {
+  @apply my-11 mx-12 ;
+ 
+.selectedWork{
+  @apply flex mb-16;
+  .title {
+    @apply text-[2vw] mb-6 font-bold;
+  }
+  .description {
+    @apply text-[1vw] text-gray-700;
+  }
+
+  .textBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: full;
+
+    .link {
+      @apply block w-full rounded-lg border-2 text-2xl text-center;
+    }
+  }}
+}

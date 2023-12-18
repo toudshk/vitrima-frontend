@@ -1,0 +1,12 @@
+.item{
+    @apply flex p-3 h-[90px] items-center cursor-pointer;
+    &:hover{
+        @apply bg-gray-300;
+    }
+    .avatar{
+        @apply rounded-full mr-4 h-16 w-16; 
+    }
+    .nickname{
+        @apply text-2xl;
+    }
+}

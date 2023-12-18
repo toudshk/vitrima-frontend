@@ -1,21 +1,19 @@
-"use client"
-
 import React from "react";
 import styles from "./page.module.scss";
-import { useAuth } from "@/hooks/useAuth";
 
-export default function Interior() {
-  const { user } = useAuth();
+import InteriorGallery from "@/components/screens/main-page-interior/InteriorGallery";
 
+
+export default function Page() {
+ 
   return (
     <>
-      {user ? (
         <div className={styles.container}>
           <div className={styles.title}>Интерьер</div>
+          <InteriorGallery />
         </div>
-      ) : (
-        <div>данная страница вам недоступна</div>
-      )}
+     
     </>
   );
 }
+

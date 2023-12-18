@@ -1,11 +1,9 @@
 
 import { FC } from "react";
 import styles from "./ContractorProfile.module.scss";
-import { ContractorProfileProps, IData, IWorks } from "../Profile.interface";
+import { ContractorProfileProps } from "../Profile.interface";
 import Header from "../header";
 import { useWorks } from "../useWorks";
-
-
 import ProfileWorks from "./profile-works/ProfileWorks";
 
 const ContractorProfile: FC<ContractorProfileProps> = ({ userData, id }) => {
@@ -35,6 +33,7 @@ const ContractorProfile: FC<ContractorProfileProps> = ({ userData, id }) => {
       <div className={styles.blockWorks}>
       <ProfileWorks  id={id}/>
       </div>
+     
     </div>
   );
 };

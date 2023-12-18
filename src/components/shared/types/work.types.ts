@@ -4,16 +4,27 @@ export interface ITag{
     works: IWork[]
 }
 
-
-interface ICategory {
-    _id: string 
-    name: string
+export interface IWorkType
+{
+    _id: string
+    slug: any
+    title: string
 }
+
+export interface ISubType{
+    _id: string 
+    title: string 
+    image: string
+    description: string 
+    workTypeId: string 
+}
+
 
 export interface IWork{
     _id: string
     price: number 
-    category: ICategory
+    workType: string
+    subTypes: ISubType[] 
     title: string
     description: string
     tags: ITag[]
@@ -23,3 +34,4 @@ export interface IWork{
    
     createdAt: string
  }
+

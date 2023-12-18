@@ -1,5 +1,5 @@
 .wrapper {
-  @apply mt-12 w-10/12 mx-auto;
+  @apply mt-12 max-w-[1736px] mx-auto;
   .blockTitle {
     @apply flex justify-between mt-6 items-center mb-10;
     .leftBlock {

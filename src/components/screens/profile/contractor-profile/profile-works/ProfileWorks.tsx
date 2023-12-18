@@ -5,15 +5,21 @@ import styles from "./ProfileWorks.module.scss";
 import Image from "next/image";
 import { useWork } from "./useWork";
 
+import SecondWorks from "../second-works/SecondWorks";
+
 
 const ProfileWorks: FC<{id: string}> = ({id}) => {
-  const { data, isLoading } = useWork();
+  const { data, isLoading} = useWork();
 
   if(isLoading ) return <SkeletonLoader />
+
+  if(!data) return <div>Работы не найдены</div>
+  const firstTwoWorks = data.slice(0, 2);
+
   return (
     <div className={styles.wrapper}>
-     
-      {data.map((work: any, index: number) => {
+
+      {firstTwoWorks.map((work: any, index: number) => {
         return (
           <div className={styles.itemBlock} key={index}>
             {index % 2 === 0 ? (
@@ -51,6 +57,10 @@ const ProfileWorks: FC<{id: string}> = ({id}) => {
         );
       })}
       
+
+      <div>
+        <SecondWorks />
+      </div>
     </div>
   );
 };

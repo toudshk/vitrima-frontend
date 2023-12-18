@@ -25,7 +25,7 @@ const Profile: React.FC<ProfileProps> = ({ id }) => {
 
   if (isLoading) return <SkeletonLoader />;
 
-console.log(data)
+
   if (data?.isContractor) {
     return <ContractorProfile userData={data} id={id}  />;
   } else {
