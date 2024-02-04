@@ -1,11 +1,31 @@
 .selectContainer {
-	@apply relative mt-2 animate-fade;
+  @apply relative mt-2 animate-fade;
 
-	> label {
-		@apply block;
+  > label {
+    @apply block;
 
-		> span {
-			@apply text-xl  text-gray-600 block mb-1 rounded-xl;
-		}
-	}
+    > span {
+      @apply text-xl  text-gray-600 block mb-1 rounded-xl;
+    }
+  }
+}
+@media (max-width: 700px) {
+  .selectContainer {
+    > label {
+      > span {
+        @apply text-base;
+      }
+    }
+  }
+}
+
+.itemBlock {
+  @apply flex ;
+  .infoButton {
+    @apply z-50;
+    display: none;
+  }
+  &:hover .infoButton {
+    @apply block;
+  }
 }

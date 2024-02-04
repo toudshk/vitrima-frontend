@@ -5,7 +5,7 @@ import styles from './SecondWorks.module.scss'
 const ServiceAndPriceInProfile:FC = () => {
     const {data, isLoading} = useServicesPrice()
   return (
-    <div>
+    <div className='mb-16'>
     {isLoading ? (
         <SkeletonLoader count={1} height={48} className="mt-4" />
       ) : (

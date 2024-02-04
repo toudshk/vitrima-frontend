@@ -1,8 +1,7 @@
-import Header from "@/components/layout/header/Header";
+
 import "./assets/styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-
 import localFont from "next/font/local";
 
 import { ReduxProvider } from "@/components/providers/ReduxProvider";
@@ -24,11 +23,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+ 
   return (
     <html lang="ru">
       <body className={myFont.className}>
-        
+    
         <MainProvider>{children}</MainProvider>
+
       </body>
     </html>
   );

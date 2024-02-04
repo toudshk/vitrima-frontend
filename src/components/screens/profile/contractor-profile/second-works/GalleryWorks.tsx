@@ -7,11 +7,10 @@ const GalleryWorks: FC = () => {
   const { data, isLoading } = useWork();
   const tagData = data?.flatMap((workItem) => workItem.tags);
 
-console.log(data)
   return (
     <div>
       <div className="mb-20">
-        <MasonryGallery data={data} />
+        <MasonryGallery data={data} isLoading={isLoading} />
       </div>
       <Tags tagData={tagData} isLoading={isLoading} title={"Работы представлены в следующих категориях"}/>
     </div>

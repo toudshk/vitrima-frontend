@@ -4,11 +4,16 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState: {
     minPrice: 0,
-    maxPrice: 100000000,
-    subTypes: []
+    maxPrice: 1000000,
+    subTypes: [],
+    contractorType: null,
+    buildingTechnique: [],
+    workingArea: null,
+    
   },
   reducers: {
     updateFilter: (state, action) => {
+    
       return { ...state, ...action.payload };
     },
   },

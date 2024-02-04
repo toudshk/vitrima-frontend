@@ -1,27 +1,29 @@
 import { IWork } from "@/components/shared/types/work.types";
-import Masonry from "@mui/lab/Masonry";
+
 import Image from "next/image";
 import { FC, useEffect, useRef, useState } from "react";
 import SkeletonLoader from "../skeleton-loader/skeletonLoader";
-import ModalWindow from "./ModalWindow";
+import ModalWindow from "./modal-window/ModalWindow";
 import { DialogProps } from "@mui/material";
+import Masonry from 'react-masonry-css'
+import GalleryItem from "./GalleryItem";
 
 
-const MasonryGallery: FC<{ data: IWork[]; isLoading: any }> = ({
+const MasonryGallery: FC<{ data: any; isLoading: boolean  }> = ({
   data,
   isLoading,
+  
 }) => {
-  const getRandomDimension = () => {
-    // Generate random dimensions, you can adjust the range as needed
-
-    const height = Math.floor(Math.random() * (200 - 100 + 1)) + 100;
-    return { height };
+ 
+  const breakpointColumnsObj = {
+    default: 6,
+    900: 3,
+  400:2,
   };
-
 
   
   const [workData, setWorkData] = useState();
-  console.log(workData)
+  
 
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState<DialogProps['scroll']>('body');
@@ -51,35 +53,15 @@ const MasonryGallery: FC<{ data: IWork[]; isLoading: any }> = ({
     setOpen(true);
   };
 
-
-
   if (!Array.isArray(data)) {
     // Handle the case where data is not an array (or is undefined)
     return <div>No data available.</div>;
   }
 
   return (
-    <Masonry columns={6} spacing={2}>
-      {data.map((item, index) => (
-        <div key={item._id}>
-          {isLoading ? (
-            // Render skeleton loader while data is loading
-            <SkeletonLoader {...getRandomDimension()} />
-          ) : (
-            // Render the image if it's available, otherwise render the skeleton loader
-
-            <Image
-              width={350}
-              height={100}
-              src={item.images[0]}
-              onClick={(e) => {
-                handleWorkData(item);
-                handleClickOpen('body');
-              }}
-              alt={`Фотография работы ${item.title}`}
-            />
-          )}
-        </div>
+    <Masonry breakpointCols={breakpointColumnsObj}  className="flex gap-3 mx-[1vw] ">
+      {data.map((item) => (
+        <GalleryItem item={item} key={item._id} handleWorkData={handleWorkData} handleClickOpen={handleClickOpen} />
       ))}
       <ModalWindow open={open} scroll={scroll} workData={workData} handleClose={handleClose} isLoading={isLoading}/>
     </Masonry>

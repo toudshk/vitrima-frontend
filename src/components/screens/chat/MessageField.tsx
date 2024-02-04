@@ -23,13 +23,11 @@ const MessageField: FC<{
     (message) => MessagesService.createMessage(message),
     {
       onError(error) {
-        console.log(error, "Create work");
-      },
+       },
       onSuccess(createdMessage) {
         setMessages([...messages, createdMessage]);
         setNewMessage("");
-        console.log("Create work", "create was successful");
-      },
+       },
     }
   );
 
@@ -56,9 +54,9 @@ const MessageField: FC<{
          
         />
       </div>
-      <button className={styles.chatSubmitButton} onClick={handleSubmit}>
-        <SendIcon fontSize="large" />
-      </button>
+ 
+        <SendIcon className={styles.chatSubmitButton} onClick={handleSubmit} fontSize="large" />
+
     </>
   );
 };

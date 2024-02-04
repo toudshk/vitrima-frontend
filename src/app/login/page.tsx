@@ -20,9 +20,9 @@ const LoginLayout: FC = () => {
 
 
   return (
-    <section className="flex">
+    <section className={styles.container}>
       <div className={styles.leftBlock}>
-        <Image src={imageBg} width={952} height={1080} alt={""} />
+      
       </div>
       <div className={styles.rightBlock}>
         <div className={styles.logotype}>

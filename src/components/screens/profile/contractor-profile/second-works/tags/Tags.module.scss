@@ -1,9 +1,20 @@
-.header{
-    @apply text-3xl mb-6;
+.header {
+  @apply text-[1.6vw] mb-[2vw];
 }
-.tags{
-    @apply flex ;
-    .tag{
-        @apply text-base py-2 px-3 border-gray-300 bg-gray-300 rounded-lg mr-3 mb-3 text-gray-600; 
+.tags {
+  @apply flex;
+  .tag {
+    @apply text-[1vw] py-[0.5vw] px-[0.7vw] border-gray-300 bg-gray-300 rounded-[0.4vw] mr-[1vw] mb-3 text-gray-600;
+  }
+}
+
+@media (max-width: 1000px) {
+  .header {
+    @apply text-[3vw];
+  }
+  .tags {
+    .tag {
+      @apply text-[2vw];
     }
+  }
 }

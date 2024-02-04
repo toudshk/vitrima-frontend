@@ -1,0 +1,18 @@
+.content {
+  @apply text-gray-300 py-[3vw] px-[4vw] bg-primary;
+  .topBlock {
+    @apply flex  justify-between pb-[2vw];
+    img {
+      @apply w-[2vw];
+    }
+  }
+  .links {
+    @apply flex gap-[1.5vw] text-[1.1vw];
+    @media (max-width: 700px) {
+     @apply text-[1.5vw]
+    }
+    .link {
+      justify-content: start;
+    }
+  }
+}

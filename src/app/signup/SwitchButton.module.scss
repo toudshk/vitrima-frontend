@@ -1,0 +1,11 @@
+.switchButton{
+    @apply rounded-2xl  py-3 w-[19vw] transition duration-300 ease-in-out text-[1.2vw];
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+-webkit-tap-highlight-color: transparent;
+    &:first-child{
+        @apply mr-[1vw];
+    }
+    @media (max-width: 700px){ 
+        @apply w-[41vw] text-[4vw]
+    }
+}

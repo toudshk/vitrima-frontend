@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { SubmitHandler, UseFormSetValue } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { ISettingsProfileInput } from "./settings.interface";
+import { toast } from "react-toastify";
 
 export const useProfile = (
   setValue: any
@@ -16,7 +17,7 @@ export const useProfile = (
 
   const { isLoading } = useQuery("profile", () => UserService.getProfile(), {
     onSuccess: ({ data }) => {
-      const fieldsToSet = ["email", "nickname", "image"];
+      const fieldsToSet = ["email", "nickname","description", "image", "location"];
 
       // Пройдемся по массиву и установим значения для каждого поля
       fieldsToSet.forEach((field) => {
@@ -33,14 +34,15 @@ export const useProfile = (
   const { mutateAsync } = useMutation(
     "update profile",
     (data: ISettingsProfileInput) => UserService.updateProfile(data),
+    
     {
-      onError: (error) => {
-        console.log(error, "Update profile");
+      onError: (error, data) => {
+      console.log(data)
+        toast.error(error)
       },
       onSuccess(){
-        console.log('Update profile: success')
-
-      }
+      toast.success('Данные профиля обновлены')
+    }
     }
   );
 

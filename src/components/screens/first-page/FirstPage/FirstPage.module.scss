@@ -1,50 +1,85 @@
 .block {
+  @apply mt-[9vh];
   .links {
-    @apply text-6xl;
+    @media (max-width: 800px) {
+      display: flex;
+      flex-direction: column;
+      a {
+        @apply text-[4vw];
+        min-width: 100vw;
+        &:first-child {
+          border: none;
+          border-bottom: 1px solid black;
+        }
+      }
+    }
+
+    @apply text-[3.5vw];
+
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     border-bottom: 1px solid black;
     a {
-      @apply py-[35vh];
-      border-right: 1px solid black;
-      height: 80%;
+      @apply py-[14%];
+      width: 50%;
       flex: 1 0 auto;
+      &:first-child {
+        border-right: 1px solid black;
+      }
     }
+
     a:hover {
       @apply bg-[#E7F5FF];
     }
   }
   p {
     margin: 0 auto;
-    width: 697px;
-    @apply text-2xl text-center mt-10 ;
+    width: 50vw;
+    @apply text-[2.8vh] text-center mt-[5vh];
   }
 }
 
 .container {
   @apply text-center text-white;
-  height: 755px;
-  background: url("../../../../components/common/images/ui/mainPage/MainPageCover.png")
-    no-repeat center center;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+
   .iconContent {
-    padding-top: 379px;
-    padding-bottom: 205px;
+@apply h-[80vh];
+
+    background: url("../../../../components/common/images/ui/mainPage/MainPageCover.png")
+      no-repeat center center;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 30vh;
+    padding-bottom: 30vh;
+
     img {
+
+      @apply w-[30vw] ;
       margin: 0 auto;
     }
 
     h4 {
-      @apply mt-16 text-3xl;
+      @apply mt-[3vw] text-[1.5vw];
+    }
+
+    @media (max-width: 700px) {
+      padding-top: 40vh;
+      img {
+        @apply w-[60vw];
+      }
+      h4{
+        @apply text-[5vw];
+      }
     }
   }
   .detailed {
-    height: 255px;
-    padding: 104px 0px;
-    @apply bg-primary text-4xl;
+    padding: 3vw 0px;
+    @apply bg-primary text-[2.6vw];
+    @media (max-width: 700px) {
+      @apply text-[5vw];
+    }
   }
 }

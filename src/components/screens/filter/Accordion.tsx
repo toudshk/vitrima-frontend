@@ -1,5 +1,6 @@
 "use client";
-import * as React from "react";
+import "react-dadata/dist/react-dadata.css";
+import { AddressSuggestions } from "react-dadata";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -7,24 +8,35 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { makeStyles } from "@mui/styles";
 import dynamic from "next/dynamic";
-import { useSubTypes } from "../add-work/useSubTypes";
+import styles from "./Accordion.module.scss";
 import { Controller, useForm } from "react-hook-form";
-import MainButton from "@/components/ui/Button/MainButton";
 import PriceFilter from "./price-category/PriceFilter";
 import { IFilterInput } from "./Filter.interface";
-import { useGalleryInterior } from "../main-page-interior/UseGalleryInterior";
+import { useGallery } from "../main-page/UseGallery";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFilter, updateFilter } from "@/store/work/filter.slice";
+import { useState } from "react";
+import {
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "@mui/material";
+import SecondButton from "@/components/ui/Button/SecondButton";
+import { usePathname } from "next/navigation";
+import { useBuildingTechnique } from "@/hooks/buildingTechnique/useBuildingTechnique";
 
 const DynamicSelect = dynamic(() => import("./select-filter/SelectForFilter"), {
   ssr: false,
 });
-
+const DADATA_KEY = "4a9e155a8d8b3989ac9f4a5e58269c44c65f049b";
 const useStyles = makeStyles({
   accordion: {
     backgroundColor: "#eaeaea",
+
     boxShadow: "none",
-    marginBottom: "40px",
+    marginBottom: "3vw",
 
     // Добавим пустой псевдоэлемент ::before
     "&::before": {
@@ -40,59 +52,101 @@ const useStyles = makeStyles({
     paddingLeft: "0px",
     paddingRight: "0px",
   },
+  horizontalToggleButtonGroup: {
+    display: "flex",
+  },
+  horizontalToggleButton: {
+    position: "relative",
+    border: "none",
+    width: "auto",
+    fontSize: "1vw",
+    marginLeft: "0",
+  },
+  checkbox: {
+    position: "absolute",
+    left: "10px",
+    border: "black",
+    "&.Mui-checked": {
+      color: "#EAEAEA",
+    },
+  },
 });
 
-export default function ControlledAccordions() {
+export default function ControlledAccordions({ setCurrentSubType, subTypes }) {
+  const pathname = usePathname().substring(1);
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState<string[]>([]);
-  const { data: subTypes, isLoading: isSubTypeLoading } = useSubTypes(
-    "656c0a3cfad5c309cd6a9433"
-  );
+  const [expanded, setExpanded] = useState<string[]>([]);
+  const [selectedValue, setSelectedValue] = useState(null);
 
-  const { control, handleSubmit } = useForm<IFilterInput>({
+  const { control, handleSubmit, reset } = useForm<IFilterInput>({
     mode: "onChange",
   });
 
-  const [localMinPrice, setLocalMinPrice] = React.useState<number | undefined>(
+  const [localMinPrice, setLocalMinPrice] = useState<number | undefined>(
     undefined
   );
-  const [localMaxPrice, setLocalMaxPrice] = React.useState<number | undefined>(
+  const [localMaxPrice, setLocalMaxPrice] = useState<number | undefined>(
     undefined
   );
-  const [selectedSubTypes, setSelectedSubTypes] = React.useState<string[]>([]);
+  const [selectedSubTypes, setSelectedSubTypes] = useState<string[]>([]);
+
+  const [selectedBuildingTechnique, setSelectedBuildingTechnique] = useState<
+    string[]
+  >([]);
+  const [selectedLocation, setSelectedLocation] = useState<string>();
+
+  const handleBuildingTechniqueChange = (selectedBuildingTechnique: any[]) => {
+    const selectedIds = selectedBuildingTechnique.map(
+      (option: { value: any }) => option.value
+    );
+    setSelectedBuildingTechnique(selectedIds.join(","));
+  };
+
+  const [contractorType, setContractorType] = useState(null);
 
   const dispatch = useDispatch();
   const { minPrice, maxPrice } = useSelector(selectFilter);
-
-  
-  
-  const handleSubTypesChange = (selectedValues) => {
-    console.log('Selected subTypes:', selectedValues);
+  const { data: buildingTechnique } = useBuildingTechnique();
+  const handleSubTypesChange = (selectedValues: any[]) => {
     const selectedIds = selectedValues.map((option) => option.value);
-  
-    // Если вы хотите передать как строку (если isMulti === false)
-    setSelectedSubTypes(selectedIds.join(','));
-  
-    // Если вы хотите передать как массив строк
-    //setSelectedSubTypes(selectedIds);
+    setSelectedSubTypes(selectedIds.join(","));
+  };
+  const handleLocationChange = (selectedValue: any) => {
+    setSelectedLocation(selectedValue.data.region_fias_id);
   };
   const handleUpdateButtonClick = () => {
     // Обновление состояния Redux только при нажатии на кнопку "Update"
-    dispatch(updateFilter({
-      minPrice: localMinPrice,
-      maxPrice: localMaxPrice,
-      subTypes: selectedSubTypes,
-    }));
+    dispatch(
+      updateFilter({
+        minPrice: localMinPrice,
+        maxPrice: localMaxPrice,
+        subTypes: selectedSubTypes,
+        contractorType: contractorType,
+        buildingTechnique: selectedBuildingTechnique,
+        location: selectedLocation,
+      })
+    );
   };
 
-  const { data, isLoading } = useGalleryInterior("interior", {
+  const { data } = useGallery(pathname, {
     minPrice,
     maxPrice,
     subTypes: selectedSubTypes,
+    contractorType,
+
+    location,
   });
 
+  const handleChangeType = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string
+  ) => {
+    setContractorType(newAlignment);
+    setSelectedValue(newAlignment);
+  };
+
   const handleChange =
-    (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
+    (panel: string) => (_event: SyntheticEvent, isExpanded: boolean) => {
       setExpanded((prevExpanded) => {
         if (isExpanded) {
           return [...prevExpanded, panel];
@@ -103,8 +157,11 @@ export default function ControlledAccordions() {
     };
 
   return (
-    <div className="w-[24vw]">
-      <form onSubmit={handleSubmit(handleUpdateButtonClick)}>
+    <div className={styles.accordionBlock}>
+      <form
+        onSubmit={(e) => { e.preventDefault(); handleUpdateButtonClick(); }}
+       
+      >
         <Accordion
           expanded={expanded.includes("panel1")}
           onChange={handleChange("panel1")}
@@ -116,7 +173,7 @@ export default function ControlledAccordions() {
             id="panel1bh-header"
             className={classes.titleAccordion}
           >
-            <p className="text-4xl ">Цена</p>
+            <p className={styles.title}>Цена</p>
           </AccordionSummary>
           <AccordionDetails
             onKeyDown={(e) => e.stopPropagation()}
@@ -141,10 +198,40 @@ export default function ControlledAccordions() {
             id="panel2bh-header"
             className={classes.titleAccordion}
           >
-            <p className="text-4xl">Вид предпринимательства</p>
+            <p className={styles.title}>Вид предпринимательства</p>
           </AccordionSummary>
           <AccordionDetails className={classes.contentAccordion}>
-            <p className="text-4xl">пункты такие-то такие</p>
+            <ToggleButtonGroup
+              className={classes.horizontalToggleButtonGroup}
+              orientation="vertical"
+              value={contractorType}
+              onChange={handleChangeType}
+              exclusive
+              aria-label="Toggle buttons"
+            >
+              <ToggleButton
+                value="INDIVIDUAL"
+                className={classes.horizontalToggleButton}
+              >
+                <Checkbox
+                  onChange={handleChangeType}
+                  className={classes.checkbox}
+                  checked={selectedValue === "INDIVIDUAL"}
+                />
+                <h2 className={styles.checkBoxTitle}>ИП</h2>
+              </ToggleButton>
+              <ToggleButton
+                value="LEGAL"
+                className={classes.horizontalToggleButton}
+              >
+                <Checkbox
+                  onChange={handleChangeType}
+                  className={classes.checkbox}
+                  checked={selectedValue === "LEGAL"}
+                />
+                <h2 className={styles.checkBoxTitle}>Юр. лицо</h2>
+              </ToggleButton>
+            </ToggleButtonGroup>
           </AccordionDetails>
         </Accordion>
         <Accordion
@@ -158,7 +245,7 @@ export default function ControlledAccordions() {
             id="panel3bh-header"
             className={classes.titleAccordion}
           >
-            <p className="text-4xl">Стили</p>
+            <p className={styles.title}>Стили</p>
           </AccordionSummary>
           <AccordionDetails
             onKeyDown={(e) => e.stopPropagation()}
@@ -172,35 +259,18 @@ export default function ControlledAccordions() {
                   error={error}
                   field={field}
                   options={subTypes || []}
-                  isLoading={isSubTypeLoading}
                   isMulti
                   onSelectChange={handleSubTypesChange}
+                  setCurrentSubType={setCurrentSubType}
                 />
               )}
             />
           </AccordionDetails>
         </Accordion>
-        {/* <Accordion
-        expanded={expanded.includes("panel4")}
-        onChange={handleChange("panel4")}
-       
-        className={classes.accordion}
 
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel4bh-content"
-          id="panel4bh-header"
-        >
-          <p className="text-4xl">Теги</p>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>выбор тегов</Typography>
-        </AccordionDetails>
-      </Accordion> */}
         <Accordion
-          expanded={expanded.includes("panel5")}
-          onChange={handleChange("panel5")}
+          expanded={expanded.includes("panel4")}
+          onChange={handleChange("panel4")}
           className={classes.accordion}
         >
           <AccordionSummary
@@ -209,13 +279,98 @@ export default function ControlledAccordions() {
             id="panel4bh-header"
             className={classes.titleAccordion}
           >
-            <p className="text-4xl">Расположение</p>
+            <p className={styles.title}>Расположение</p>
           </AccordionSummary>
-          <AccordionDetails className={classes.contentAccordion}>
-            <Typography>введите свое расположение</Typography>
-          </AccordionDetails>
+          <AccordionDetails className={classes.contentAccordion}  onKeyDown={(e) => e.stopPropagation()}>
+  <Controller
+    name="location"
+    control={control}
+    render={({ field, fieldState: { error } }) => (
+      <AddressSuggestions
+      count={4}
+        inputProps={{
+          placeholder: "Начните вводить область",
+          tabIndex: 0,
+          className: "border  border-gray-400 w-full px-3 text-xl py-3 rounded-2xl bg-gray-300 transition-colors focus-within:border-primary  "
+           
+        }}
+        token={DADATA_KEY}
+        onSubmit={(e) => { e.preventDefault(); handleUpdateButtonClick(); }}
+        onChange={(newValue) => {
+          // Проверьте данные в консоли
+          handleLocationChange(newValue);
+        }}
+        value={field.value}
+
+        filterFromBound="region"
+        filterToBound="region"
+        filterLocations={[{ country: "россия" }]}
+      />
+    )}
+    rules={{
+      required: "Выбор",
+    }}
+  />
+</AccordionDetails>
         </Accordion>
-        <MainButton type="submit">Update</MainButton>
+
+        {pathname === "architecture" && (
+          <Accordion
+            expanded={expanded.includes("panel5")}
+            onChange={handleChange("panel5")}
+            className={classes.accordion}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel5bh-content"
+              id="panel5bh-header"
+              className={classes.titleAccordion}
+            >
+              <p className={styles.title}>Технологии строительства</p>
+            </AccordionSummary>
+            <AccordionDetails
+              onKeyDown={(e) => e.stopPropagation()}
+              className={classes.contentAccordion}
+            >
+              <Controller
+                name="buildingTechnique"
+                control={control}
+                render={({ field, fieldState: { error } }) => (
+                  <DynamicSelect
+                    error={error}
+                    field={field}
+                    options={buildingTechnique || []}
+                    isMulti
+                    onSelectChange={handleBuildingTechniqueChange}
+                    setCurrentSubType={setCurrentSubType}
+                  />
+                )}
+              />
+            </AccordionDetails>
+          </Accordion>
+        )}
+
+        <div className="flex gap-5 ">
+          <SecondButton type="submit"  >Применть</SecondButton>
+          <button
+            className="text-primary border border-primary px-[3vw] rounded-2xl text-xl"
+            type="reset"
+            onClick={() =>
+              dispatch(
+                updateFilter({
+                  minPrice: 0,
+                  maxPrice: 100000000,
+                  subTypes: [],
+                  contractorType: undefined,
+                  buildingTechnique: null,
+                  location: null,
+                })
+              )
+            }
+          >
+            Сбросить
+          </button>
+        </div>
       </form>
     </div>
   );

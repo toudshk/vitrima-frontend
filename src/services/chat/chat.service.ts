@@ -16,22 +16,34 @@ export const ChatsService = {
   },
   async createChat({
     senderId,
-    receiverId
- 
+    receiverId,
   }: {
-    
     senderId: string;
-    receiverId:string
+    receiverId: string;
   }) {
     try {
       const response = await axiosClassic.post(`${API_URL}/chat`, {
-       
         senderId,
         receiverId,
       });
       return response.data;
     } catch (error) {
       console.error("Error creating message:", error);
+      throw error;
+    }
+  },
+
+  async findChatByUserIds(
+    senderId: string,
+    receiverId: string,
+  ) {
+    try {
+      const response = await axiosClassic.get(
+        `${API_URL}/chat/find/${senderId}/${receiverId}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error", error);
       throw error;
     }
   },

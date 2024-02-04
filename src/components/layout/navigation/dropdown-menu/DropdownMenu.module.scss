@@ -1,14 +1,51 @@
-/* styles/DropdownMenu.css */
 .dropdown {
   position: relative;
   display: inline-block;
-}
-.dropdown:hover .group-hover\:block {
-    @apply block;
+  cursor: pointer;
+
+  .dropdownItems {
+    margin-top: 0.7vw;
+    position: absolute;
+    transform-origin: top center; /* Set the transform origin to the top center */
+    transform: scale(0); /* Start with zero scale */
+    opacity: 0; /* Start with zero opacity */
+    display: block;
+    background-color: #f9f9f9;
+    width: 140px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+    > a {
+      @apply font-semibold; 
+      display: block;
+      cursor: pointer;
+      padding: 0.7vw 1vw;
+      font-size: 16px;
+      text-decoration: none;
+      transition: background-color 0.3s ease-in-out;
+
+      svg {
+        @apply w-[15%] pb-1;
+      }
+      &:hover {
+        @apply bg-gray-300;
+      }
+    }
+    @media (max-width: 800px) {
+      max-width: 30vw;
+      right: 0px;
+      > a {
+        padding: 2vw 3vw;
+      }
+    }
   }
-.dropdownItems {
-  @apply absolute hidden bg-gray-600 p-2 space-y-2 group-hover:block transition-all;
-  > a {
-    @apply block cursor-pointer;
+
+  &.open {
+    @apply text-primary;
+    .dropdownItems {
+      transform: scale(1); /* Expand to full size when open */
+      opacity: 1;
+    }
   }
 }

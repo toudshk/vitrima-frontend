@@ -14,8 +14,8 @@ const ChatItem: FC< IChatItem> = ({ chat, currentUser }) => {
 
 
   const friendId = chat.members.find((m: any) => m !== currentUser);
-console.log(friendId)
-  const { data, isLoading } = useUserInfo(friendId);
+
+  const { data } = useUserInfo(friendId);
 
   return (
     <div className={styles.item}>

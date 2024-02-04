@@ -1,43 +1,51 @@
 .wrapper {
-  @apply mt-12 max-w-[1736px] mx-auto;
+  @apply mt-[13vh] max-w-[1736px] mx-auto px-[1vw];
   .blockTitle {
-    @apply flex justify-between mt-6 items-center mb-10;
+    @apply flex justify-between mt-[2.3vw] items-center mb-10;
     .leftBlock {
-      @apply text-4xl text-gray-600;
+      @apply text-[2vw] text-gray-600;
     }
     .rightBlock {
       @apply flex;
+
       .subscribers {
-        @apply flex mr-8 text-xl;
+        @apply flex mr-[2vw] text-[1.15vw];
         > p {
-          @apply text-gray-500 mr-2;
+          @apply text-gray-500 mr-[0.5vw];
         }
       }
       .inn {
-        @apply flex text-xl;
+        @apply flex text-[1.15vw];
         > p {
-          @apply text-gray-500 mr-2;
+          @apply text-gray-500 mr-[0.5vw];
+        }
+      }
+      @media (max-width: 500px) {
+        .subscribers {
+          @apply text-[2vw];
+        }
+        .inn {
+          @apply text-[2vw];
         }
       }
     }
-  }
-  .blockWorks{
-    .itemBlock{
-        
-            @apply flex;
-            .imageBlock{
-                @apply mr-10 mb-20;
-            }
-            .textBlock{
-                @apply w-2/4;
-                >h1{
-                    @apply text-4xl mb-6;
-                }
-                >p{
-                    @apply text-xl;
-                }
-            }
-        
+    .blockWorks {
+      .itemBlock {
+        @apply flex;
+
+        .imageBlock {
+          @apply mr-10 mb-20;
+        }
+        .textBlock {
+          @apply w-2/4;
+          > h1 {
+            @apply text-4xl mb-6;
+          }
+          > p {
+            @apply text-xl;
+          }
+        }
+      }
     }
   }
 }

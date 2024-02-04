@@ -8,8 +8,9 @@ import baseImage from "@/app/assets/images/base-avatar.jpg";
 import Image from "next/image";
 import { useAuth } from "@/hooks/useAuth";
 import { useChat } from "@/hooks/chat/useChat";
+import SecondButton from "@/components/ui/Button/SecondButton";
 const Header: FC<{ data: IUser; id: string }> = ({ data, id }) => {
-  console.log(data, id)
+  
   const { user } = useAuth();
 const {onSubmit} = useChat(user._id, id)
   const isOwner = user && user._id === id;
@@ -18,6 +19,7 @@ const {onSubmit} = useChat(user._id, id)
     <div className={styles.header}>
       <div className={styles.leftBlock}>
         <Image
+      
           width={72}
           height={72}
           src={data.image ? data.image : baseImage}
@@ -44,7 +46,7 @@ const {onSubmit} = useChat(user._id, id)
         </div>
       ) : (
         <div>
-          <button onClick={onSubmit}>написать собщение</button>
+          <SecondButton className='text-xs' onClick={onSubmit}>написать собщение</SecondButton>
         </div>
       )}
     </div>

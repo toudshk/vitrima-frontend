@@ -1,21 +1,28 @@
-import { useAuth } from "@/hooks/useAuth";
-import { UserService } from "@/services/user/user.service";
+"use client";
 import Image from "next/image";
 import { FC } from "react";
-import { useQuery } from "react-query";
 import baseImage from "@/app/assets/images/base-avatar.jpg";
 import styles from "../Navigation.module.scss";
-const Avatar: FC<{id:string}> = async ({id}) => {
-  const response = await UserService.getUserById(id)
 
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useUser } from "@/components/screens/profile/useUser";
+// eslint-disable-next-line @next/next/no-async-client-component
+const Avatar: FC<{ id: string }> = ({ id }) => {
+  const { data } = useUser(id);
   return (
-    <Image
-      width={32}
-      height={32}
-      className={styles.avatar}
-      src={response && response.data && response.data.image ? response.data.image : baseImage}
-   alt={""}
-    />
+    <div className="flex items-center  w-[10vh] h-full pl-[1vh]   pr-[4vh] py-[1.6vh] hover:bg-gray-700">
+      <Image
+        width={100}
+        height={100}
+        className={styles.avatar}
+        src={data?.image ? data?.image : baseImage}
+        alt={""}
+      />
+      
+      
+        <ExpandMoreIcon className={styles.icon}/>
+      
+    </div>
   );
 };
 

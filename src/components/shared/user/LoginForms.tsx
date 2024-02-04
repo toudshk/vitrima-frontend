@@ -10,6 +10,7 @@ import styles from "@/app/signup/page.module.scss";
 import MainButton from "@/components/ui/Button/MainButton";
 import Link from "next/link";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
+import { toast } from "react-toastify";
 
 interface IAuthFields {
   formState: FormState<any>;
@@ -21,43 +22,63 @@ export interface IAuthInput {
 }
 
 const LoginForms: FC<IAuthFields> = () => {
-  useAuthRedirect()
+  useAuthRedirect();
   const { login } = useActions();
   const {
     register: registerInput,
     handleSubmit,
     formState,
     reset,
+    setError,
   } = useForm<IAuthInput>({
     mode: "onChange",
   });
 
   const [selectedButton, setSelectedButton] = useState("contractor");
+  const [isLoading, setIsLoading] = useState(false); 
+  const onSubmit: SubmitHandler<IAuthInput> = async (data) => {
+    // Отключаем кнопку перед отправкой данных
+    setIsLoading(true);
 
-  const onSubmit: SubmitHandler<IAuthInput> = (data) => {
-    login(data);
-
-    reset();
+    try {
+      await login(data);
+      reset();
+    } catch (error) {
+      
+       setError('email', { message: 'Ошибка входа' });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <SwitchButtons
+    <>
+     <SwitchButtons
         selectedButton={selectedButton}
         setSelectedButton={setSelectedButton}
       />
+    <form onSubmit={handleSubmit(onSubmit)}>
+     
       <AuthFields
         register={registerInput}
         formState={formState}
         selectedButton={selectedButton}
       />
-      <div className={styles.authButtons}>
-        <MainButton type="submit" onClick={() => onSubmit}>
-          Войти
+
+<div className={styles.authButtons}>
+        {/* Используем isLoading для отключения кнопки */}
+        <MainButton type="submit" onClick={() => onSubmit} disabled={isLoading}>
+          {isLoading ? 'Подождите' : 'Войти'}
         </MainButton>
-        Нет аккаунта? <Link href={"/signup"}>Зарегиструйся</Link>
+        <div className="text-xl mt-[2vh]">
+          Нет аккаунта?
+          <Link href={"/signup"} className="ml-2 ">
+            Зарегиструйся
+          </Link>
+        </div>
       </div>
     </form>
+    </>
   );
 };
 

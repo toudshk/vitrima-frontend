@@ -1,34 +1,21 @@
-"use client";
-import { ChangeEvent, MouseEvent, useEffect } from "react";
+import { MouseEvent } from "react";
 
 import Link from "next/link";
 
 import { useAuth } from "@/hooks/useAuth";
 import { useActions } from "@/hooks/useActions";
 import styles from "./Navigation.module.scss";
-import SearchField from "@/components/ui/Search-field/SearchField";
-
 import { MainLogo } from "@/components/common/icons/MainLogo";
 import clsx from "clsx";
 import Search from "./search/search";
-import Avatar from "./avatar/Avatar";
+
 import DropdownMenu from "./dropdown-menu/DropdownMenu";
 import Filter from "@/components/screens/filter/Filter";
+import { usePathname } from "next/navigation";
 
 const Navigation = () => {
   const { user } = useAuth();
-
-  const { logout } = useActions();
-
- 
-
-
-
-
-  const logoutHandler = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    logout();
-  };
+  const pathname = usePathname().substring(1);
   return (
     <div className={styles.wrapper}>
       <div
@@ -37,41 +24,39 @@ const Navigation = () => {
           [styles.navigationNotAuth]: user === null,
         })}
       >
-        <Link href="/">
+        <Link className={styles.logo} href="/">
           
-          <MainLogo width={201} />
+            <MainLogo height={30} />
+          
         </Link>
         {user ? (
           <>
-            <div className="mx-12">
+            <div className="w-[65vw] mx-[2.5vw]">
               <Search />
             </div>
             <div className={styles.buttons}>
-              <Link className="mr-6" href={'/chat'}>ЧАТ</Link>
-              <Filter/>
-              <DropdownMenu />  
+              <Link className="mr-[2vw]" href={"/chat"}>
+                ЧАТ
+              </Link>
+              {pathname === "architecture" || pathname === "interior" && <Filter />}
+
+              <DropdownMenu />
             </div>
           </>
         ) : (
-          <Link className={styles.button} href={"/login"}>
-            ВХОД / РЕГИСТРАЦИЯ
-          </Link>
+          <div className="flex  select-none ">
+            <Link className={styles.button} href={"/login"}>
+              ВХОД
+            </Link>
+            <p className={styles.apost}>&nbsp;/&nbsp;</p>
+            <Link className={styles.button} href={"/signup"}>
+              РЕГИСТРАЦИЯ
+            </Link>
+          </div>
         )}
       </div>
     </div>
   );
 };
-
-// export const getServerSideProps = async () => {
-//   // Получите данные пользователя (роль) с сервера или из вашего API
-//   // eslint-disable-next-line react-hooks/rules-of-hooks
-//   const { user } = useAuth();
-
-//   return {
-//     props: {
-//       isUser: user,
-//     },
-//   };
-// };
 
 export default Navigation;

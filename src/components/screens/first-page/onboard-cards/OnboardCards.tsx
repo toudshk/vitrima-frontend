@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import bigImg from "../../../common/images/ui/mainPage/bigImage.png"
+import bigImg from "../../../common/images/ui/mainPage/bigImage.png";
 import smallImg from "../../../common/images/ui/mainPage/smallImage1.png";
 import smallImg2 from "../../../common/images/ui/mainPage/smallImage2.png";
 import bigImg2 from "../../../common/images/ui/mainPage/bigImage2.png";
@@ -9,23 +9,17 @@ import smallImg3 from "../../../common/images/ui/mainPage/smallImage3.png";
 import smallImg4 from "../../../common/images/ui/mainPage/smallImage4.png";
 const OnboardCards = () => {
   return (
-    <div>
+    <div className='max-w-[1736px] mx-auto'>
       <div className={styles.content}>
         <div className={styles.images}>
-          <Image
-            className="mr-4"
-            src={bigImg}
-            height={960}
-            width={472}
-            alt={""}
-          />
-          <div>
+          <Image src={bigImg} height={960} width={472} alt={""} />
+          <div className={styles.smallImages}>
             <Image
-              className="mb-4"
               src={smallImg}
               height={472}
               width={472}
               alt={""}
+              
             />
             <Image src={smallImg2} height={472} width={472} alt={""} />
           </div>
@@ -57,9 +51,9 @@ const OnboardCards = () => {
           </p>
         </div>
         <div className={styles.images}>
-          <div>
+          <div className={styles.smallImages}>
             <Image
-              className="mb-4"
+           
               src={smallImg3}
               height={472}
               width={472}
@@ -67,7 +61,7 @@ const OnboardCards = () => {
             />
             <Image src={smallImg4} height={472} width={472} alt={""} />
           </div>
-          <Image className="ml-4" src={bigImg2} height={960} width={472} alt={""} />
+          <Image src={bigImg2} height={960} width={472} alt={""} />
         </div>
       </div>
     </div>

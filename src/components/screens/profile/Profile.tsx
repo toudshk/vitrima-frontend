@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { UserService } from "@/services/user/user.service";
 import ContractorProfile from "./contractor-profile/ContractorProfile";
 
@@ -7,27 +7,29 @@ import ApplicantProfile from "./applicant-profile/ApplicantProfile";
 import { useQuery } from "react-query";
 
 import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
+import { useUser } from "./useUser";
+import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 interface ProfileProps {
   id: string;
 }
 
 const Profile: React.FC<ProfileProps> = ({ id }) => {
-	const { data, isLoading } = useQuery({
-		queryKey: ["user", id],
-		queryFn: async (userId) => {
-		  const userData = await UserService.getUserById(id);
-		  const { data } = userData;
-		 
-	return data
-      
-    },
-  });
+  const { data, isLoading } = useUser(id)
+const { user } = useAuth();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const router = useRouter();
 
+
+  if (!user) {
+    router.push("/");
+  }
+
+  
   if (isLoading) return <SkeletonLoader />;
 
-
   if (data?.isContractor) {
-    return <ContractorProfile userData={data} id={id}  />;
+    return <ContractorProfile userData={data} id={id} />;
   } else {
     return <ApplicantProfile data={data} id={id} />;
   }

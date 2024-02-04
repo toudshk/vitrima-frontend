@@ -1,21 +1,28 @@
 .form {
-	@apply mt-12 max-w-[1734px] mx-auto;
-	.fields {
-		@apply flex items-center flex-wrap justify-between mt-20;
-		> div {
-			width: 48%;
-		}
-		.leftBlock{
-			@apply pr-10;
-			width: 70%
-			
-		}
-		.rightBlock{
-			width: 30%;
-		}
-	}
+  @apply mt-12 max-w-[1734px] mx-auto px-3;
+  .fields {
+    @apply items-center flex  mt-20;
+    .topBlock {
+      @apply flex  gap-10 justify-between;
+      > div {
+        @apply w-1/4;
+      }
+    }
+    .mainBlocks {
+      @media (max-width: 800px) {
+        @apply block;
+      }
+      .leftBlock {
+        @apply pr-10;
+        width: 70%;
+      }
+      .rightBlock {
+        width: 30%;
+      }
+    }
+  }
 
-	> button {
-		@apply mt-10;
-	}
+  > button {
+    @apply mt-10;
+  }
 }

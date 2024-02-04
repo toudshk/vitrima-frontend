@@ -1,7 +1,7 @@
 
 import { FC } from "react";
 import { WhiteIconLogo } from "../../common/icons/WhiteIconLogo";
-
+import styles from './Footer.module.scss'
 const data = [
   {
     title: "VITRIMA",
@@ -27,16 +27,16 @@ const data = [
 
 const Footer = () => {
   return (
-    <div className="text-gray-300 py-11 px-24 bg-primary">
-      <div className="flex  justify-between pb-10">
+    <div className={styles.content}>
+      <div className={styles.topBlock}>
         <WhiteIconLogo width={24} />
 
-        <p className="text-base">ВЕРСИЯ RU</p>
+        <p className="text-[1.4vw]">ВЕРСИЯ RU</p>
       </div>
       <div>
-        <ul className="text-xl flex">
+        <ul className={styles.links}>
           {data.map((item) => (
-            <li className="pr-10" key={item.id}>{item.title}</li>
+            <li className={styles.link} key={item.id}>{item.title}</li>
           ))}
         </ul>
       </div>

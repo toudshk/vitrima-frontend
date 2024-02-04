@@ -1,10 +1,11 @@
 import axios, { axiosClassic } from "@/api/interceptors"
 import { IWorkEditInput, IWorkTypeEditInput } from "@/app/add-work/edit-work.interface"
-import { ISubType, IWork, IWorkType } from "@/components/shared/types/work.types"
+import { IBuildingTechnique, ISubType, IWork, IWorkType } from "@/components/shared/types/work.types"
 
 import { API_URL, getWorkUrl } from "../../config/api.config"
 import { IAddWork } from "@/store/work/work.interface"
 import { IFilterInput } from "@/components/screens/filter/Filter.interface"
+import { AxiosRequestConfig } from "axios"
 
 export const WorkService = {
 	async getBySlug(slug: string) {
@@ -31,13 +32,20 @@ export const WorkService = {
 	},
 	
 
-	async delete(_id: string, contractorId: any) {
-		return axios.delete<string>(getWorkUrl(`/${_id}`), contractorId)
-	},
+	async delete(_id: string, contractorId: string) {
+		console.log(contractorId);
+	  
+		const config: AxiosRequestConfig = {
+		  data: { contractorId }, // Передаем contractorId в виде данных
+		};
+	  
+		return axios.delete<string>(getWorkUrl(`/${_id}`), config);
+	  },
 	
 
-	async getWorks(searchTerm?: string) {
-		return axiosClassic.get<IWork[]>(getWorkUrl(``), {
+	  async getWorksBySearch(slug: string, searchTerm?: string) {
+	
+		return axiosClassic.get<IWork[]>(getWorkUrl(`/search/${slug}`), {
 			params: searchTerm
 				? {
 						searchTerm,
@@ -67,7 +75,11 @@ export const WorkService = {
 
 
 	async getSubTypeByWorkType(id: string) {
-		return axiosClassic.get<ISubType[]>(getWorkUrl(`/by-work-type/${id}`))
+		return await axiosClassic.get<ISubType[]>(getWorkUrl(`/by-work-type/${id}`))
+	},
+
+	async getBuildingTechniqueForArchitecture() {
+		return await axiosClassic.get<IBuildingTechnique[]>(getWorkUrl(`/building-technique`))
 	},
 	
 	async getSimilarWorks(subTypes: string[]) {
@@ -84,19 +96,30 @@ export const WorkService = {
 	
 	
 	async getWorkByWorkType(slug: string, filters: IFilterInput = {}) {
-		
 		const apiUrl = getWorkUrl(`/get-work-by-work-type/${slug}`);
-		const queryParams = { ...filters }; // Добавьте ваши параметры запроса
-	
+		const queryParams = { ...filters };
+
+		
 		try {
 		  const response = await axiosClassic.get(apiUrl, { params: queryParams });
-		  
+	
 		  return response.data;
-
+	
 		} catch (error) {
 		  console.error('Error fetching work by work type', error);
 		  throw error;
 		}
+	  },
+	
+	  async getWorksWithPagination(slug: any, filters: any,pageParam: number  ) {
+	
+		const data = await this.getWorkByWorkType(slug, { ...filters, _page: pageParam, _limit: 6 });
+		
+		// Возвращаем данные и мета-информацию о пагинации
+		return {
+		  data: data, // Ваши данные, полученные с сервера
+		  pageParam: pageParam
+		};
 	  },
 	async createSubType(data: IWorkTypeEditInput) {
 		
@@ -105,5 +128,6 @@ export const WorkService = {
 		)
 		return response
 	},
+	
 	
 }

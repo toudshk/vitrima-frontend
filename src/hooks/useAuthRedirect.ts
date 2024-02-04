@@ -9,7 +9,6 @@ export const useAuthRedirect = () => {
 	const { push } = useRouter()
     
 	const redirect = '/'
-console.log(user)
 	useEffect(() => {
 		if (user) {push(redirect)}
 		

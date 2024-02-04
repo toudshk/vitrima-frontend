@@ -7,6 +7,7 @@ import { WorkService } from '@/services/work/work.service'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useMemo} from 'react'
 import { useMutation, useQuery } from 'react-query'
+import { toast } from 'react-toastify'
 
 
 export const useWorks = () => {
@@ -43,7 +44,7 @@ export const useWorks = () => {
 		(data) => WorkService.create(data),
 		{
 			onError(error) {
-				console.log(error, 'Create work')
+				toast.error(error)
 			},
 			onSuccess() {
 				console.log('Create work', 'create was successful')

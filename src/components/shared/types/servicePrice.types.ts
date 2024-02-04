@@ -5,4 +5,5 @@ export interface IServicePrice{
     price: number 
     title: string
     createdAt: string
+    contractorId: any
  }

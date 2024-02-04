@@ -21,8 +21,14 @@ const UploadField: FC<IUploadField> = ({
   return (
     <div className={cn(styles.field, styles.uploadField)} style={style}>
       <div className={styles.uploadImageContainer}>
-        {image !== null ? (
-          <Image src={image[0]} alt="" layout="fill" unoptimized />
+        {image?.length !== 0 ? (
+          isLoading ? (
+            <SkeletonLoader className="h-full absolute -top-1" />
+          ) : image.length == 1 ? (
+            <Image src={image[0]} alt="" layout="fill" unoptimized />
+          ) : (
+            <Image src={image} alt="" layout="fill" unoptimized />
+          )
         ) : (
           <Image
             className={styles.uploadContainerSvg}
@@ -33,9 +39,9 @@ const UploadField: FC<IUploadField> = ({
       </div>
       <label>
         <span>{placeholder}</span>
-      
-        <input type="file" onChange={uploadImage} className=""/>
-      
+
+        <input type="file" onChange={uploadImage} className="" />
+
         {error && <div className={styles.error}>{error.message}</div>}
       </label>
     </div>

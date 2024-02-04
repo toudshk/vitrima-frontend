@@ -18,6 +18,12 @@ export interface ISubType{
     description: string 
     workTypeId: string 
 }
+export interface IBuildingTechnique{
+    _id: string
+    title: string 
+    description: string
+    image: string
+}
 
 
 export interface IWork{
@@ -31,6 +37,7 @@ export interface IWork{
     images: string[]
     contractorId: any
     slug: string
+    buildingTechnique: string
    
     createdAt: string
  }

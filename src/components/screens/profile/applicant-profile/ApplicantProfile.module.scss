@@ -1,3 +1,28 @@
 .wrapper{
-    @apply mt-12 w-10/12 mx-auto;
+    @apply mt-32 w-10/12 mx-auto ;
+    overflow: visible; /* Разрешить видимость "выхода" за пределы .wrapper */
+
+  &::after {
+    content: '';
+    position: absolute;
+   top:  280px; /* Устанавливаем высоту линии и приподнимаем ее над содержимым .wrapper */
+    left: 0;
+    right: 0;
+    height: 1px; /* Высота вашего border */
+    background-color: #EAEAEA; /* Цвет вашего border */
+    z-index: -50;
+  }
+
+    .navigation {
+        @apply flex mt-10 mb-12; 
+        > li {
+          @apply mr-10  text-gray-450 transition-all  ease-in-out;
+          > button {
+            @apply text-xl mb-3;
+          }
+          &.active {
+            @apply border-b-[1px] border-gray-600 z-20 text-gray-700;
+          }
+        }
+      }
 }

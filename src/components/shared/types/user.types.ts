@@ -8,11 +8,13 @@ isContractor: boolean
   isAdmin: boolean
   works: string[]
   image: string
-  
+  subscriptions?: string[]
+  saved?: string[]
 
 }
 export interface IContractor extends IApplicant {
   inn: string
 	description: string
-
+  subscribers?: string[]
+  location?: any
  }

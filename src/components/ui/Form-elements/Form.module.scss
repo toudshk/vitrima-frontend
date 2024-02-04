@@ -3,7 +3,7 @@
 }
 
 .common {
-	@apply relative border border-gray-400 rounded-xl transition-colors focus-within:border-primary;
+	@apply relative border border-gray-400 rounded-2xl transition-colors focus-within:border-primary;
 
 	> label {
 		@apply block;
@@ -13,12 +13,14 @@
 		}
 	}
 }
-
+.subtitle{
+	@apply text-xl mb-[1vw]
+}
 .field {
-	@apply text-left mb-8 ;
+	@apply text-left mb-[1.5vh] ;
 
 	input {
-		@apply outline-border-none focus:ring-0 bg-transparent text-gray-450 w-full px-4  h-14 text-2xl; 
+		@apply outline-border-none focus:ring-0 bg-transparent text-gray-700 w-full  px-[1vw]  h-[6vh] text-base; 
 	}
 }
 
@@ -28,10 +30,10 @@
 		
 
 		> .uploadImageContainer {
-			@apply shrink-0 relative h-96 border border-gray-400 ;
+			@apply shrink-0 relative h-[20vw] border border-gray-400 ;
 
 			img {
-				@apply image-like-bg rounded-md;
+				@apply image-like-bg rounded-md ;
 			}
 
 			> span {
@@ -48,7 +50,7 @@
 		}
 
 		> label {
-			@apply block mr-6 w-[127px];
+			@apply block mr-6 w-[12.5%];
 
 			.error {
 				@apply relative -bottom-3;
@@ -59,7 +61,7 @@
 			}
 
 			> input {
-				@apply w-[127px] block  mx-0 text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary opacity-70 file:text-white transition-opacity;
+				@apply block  mx-0 text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary opacity-70 file:text-white transition-opacity;
 			}
 
 			&:hover > input {

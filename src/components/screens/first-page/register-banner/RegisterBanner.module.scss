@@ -3,20 +3,34 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  padding: 372px 0px;
+  padding: 14vw 0px;
+  
   div{
-    @apply text-left ml-24;
-    width: 1157px; 
+    @apply text-left ml-[10vw];
+    width: 70%; 
+   
 
     h1{
-        @apply mb-20;
+        @apply mb-[3vw] text-[4vw] font-bold text-primary;
+      
     }
 
     a{
-        @apply text-primary text-2xl ;
-        border: 2px solid #000;
-        border-radius: 16px;
-        padding: 16px 48px;
+        @apply text-primary text-[1.3vw] font-semibold;
+        border: 0.2vw solid #000;
+        border-radius: 1vw;
+        padding: 0.7vw 2.2vw;
+    }
+  }
+  @media (max-width: 700px) {
+    div{
+      @apply ml-[4vw];
+      h1{
+        @apply text-[7vw];
+      }
+     a{
+      @apply text-[5vw] rounded-[3vw] border-[0.3vw]
+     }
     }
   }
 }

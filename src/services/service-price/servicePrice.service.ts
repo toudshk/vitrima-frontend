@@ -15,9 +15,13 @@ export const ServicePriceService = {
 		return axiosClassic.get<IServicePrice[]>(getServicePrice(`/by-contractor/${id}`))
 	},
 
-	
-	async create() {
-		return axios.post<string>(getServicePrice(''))
+
+	async create(data: IServicePriceEditInput) {
+		
+		const response = await axiosClassic.post<IAddServicePrice>(
+			`${API_URL}${getServicePrice('')}`, data
+		)
+		return response
 	},
 	
 

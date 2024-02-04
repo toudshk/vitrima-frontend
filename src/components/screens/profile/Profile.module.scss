@@ -1,26 +1,50 @@
 .header {
-  @apply flex justify-between items-center h-[72px] ;
+  @apply flex justify-between items-center h-[5vw];
+ 
   .leftBlock {
-    @apply flex h-full;
-    >img{
-      @apply rounded-full;
+    @apply flex h-full items-center;
+   
+    > img {
+      @apply image-like-bg rounded-full w-[3.3vw] h-[3.3vw] max-w-[72px] max-h-[72px];
     }
+
     > p {
-      @apply text-4xl py-3 mx-6 font-bold;
+      @apply text-[1.8vw] mx-[1.1vw] font-bold;
+    }
+    @media (min-width: 1736px) {
+      p {
+        @apply text-4xl;
+      }
+    }
+    @media (max-width: 1000px) {
+       img {
+        @apply w-[10vw] h-[10vw];
+      }
+       p {
+        @apply text-[3vw];
+       }
     }
   }
 
   .rightBlock {
     .firstLink {
-      @apply border border-blue-500 bg-blue-500 text-white px-6 py-3 text-xl rounded-lg mr-10  transition-all ease-in-out duration-200;
+      @apply border border-blue-500 bg-blue-500 text-white px-[1.1vw]  py-[1vw] text-[1.1vw] rounded-[0.7vw] mr-[1.6vw]  transition-all ease-in-out duration-200;
       &:hover {
         @apply border-blue-800 bg-blue-800;
       }
     }
     .secondLink {
-      @apply border border-primary px-6 py-3 text-xl rounded-lg transition-all ease-in-out duration-200;
+      @apply border-[0.1vw] border-primary px-[1.1vw] py-[1vw] text-[1.1vw] rounded-[0.7vw] transition-all ease-in-out duration-200;
       &:hover {
         @apply opacity-50;
+      }
+    }
+    @media (max-width: 500px) {
+      .firstLink {
+        @apply text-[2vw]
+      }
+      .secondLink{
+        @apply text-[2vw] ;
       }
     }
   }

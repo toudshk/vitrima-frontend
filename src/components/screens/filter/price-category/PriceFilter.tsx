@@ -24,15 +24,15 @@ const PriceFilter:FC<IPrice> = ({minPrice, maxPrice, setMinPrice,setMaxPrice}) =
     <div className={styles.block}>
       <label>
         <input
-        className={`${styles.input} mr-4`}
+        className={`${styles.input} mr-[0.8vw]`}
           type="text"
           value={minPrice}
           onChange={handleMinPriceChange}
-          placeholder="0"
+          placeholder="от 0"
         />
       </label>
       <label>
-        <input  className={styles.input} type="text" value={maxPrice} onChange={handleMaxPriceChange} />
+        <input  className={styles.input} type="text" placeholder="до 1000000" value={maxPrice} onChange={handleMaxPriceChange} />
       </label>
     </div>
   );

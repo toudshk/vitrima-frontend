@@ -28,7 +28,7 @@ const UploadAvatar: FC<IUploadField> = ({
   onChange,
   isNoImage = false,
 }) => {
-  const { uploadImage, isLoading } = useUpload(onChange, folder);
+  const { uploadImage } = useUpload(onChange, folder);
 
   return (
     <div className={cn(styles.field, styles.uploadField)} style={style}>

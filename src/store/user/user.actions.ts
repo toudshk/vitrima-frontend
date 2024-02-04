@@ -1,4 +1,5 @@
 import { AuthService } from "@/services/auth/auth.service";
+import { toast } from 'react-toastify'
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
@@ -25,9 +26,13 @@ export const registerApplicant = createAsyncThunk<
         nickname,
         
       );
-	  
+      toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее уже отправлено письмо")
+     
       return response.data;
     } catch (error) {
+      
+      toast.error(error.response.data.message)
+     
       return thunkApi.rejectWithValue(error);
     }
   }
@@ -46,9 +51,12 @@ export const registerContractor = createAsyncThunk<
         nickname,
         inn
       );
-
+      toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее отправлено уже письмо")
+     
       return response.data;
     } catch (error) {
+      toast.error(error.response.data.message)
+     
       return thunkApi.rejectWithValue(error);
     }
   }
@@ -59,8 +67,17 @@ export const login = createAsyncThunk<IAuthResponse, InterfaceEmailPassword>(
   async ({ email, password }, thunkApi) => {
     try {
       const response = await AuthService.login(email, password);
+     
       return response.data;
-    } catch (error) {
+    }catch (error) {
+      if (error.response && error.response.data && error.response.data.message) {
+        const errorMessage = error.response.data.message;
+        const errorToShow = Array.isArray(errorMessage) ? errorMessage[0] : errorMessage;
+    
+        toast.error(errorToShow || 'Не удалось получить текст ошибки.');
+      } else {
+        console.error('Не удалось получить текст ошибки.');
+      }
       return thunkApi.rejectWithValue(error);
     }
   }

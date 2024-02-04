@@ -1,0 +1,9 @@
+.container{
+    @apply w-[50vw] flex ;
+    .imageBlock{
+        @apply w-[16vw];
+    }
+    @media (max-width: 700px) {
+       @apply w-[90vw];
+    }
+    }

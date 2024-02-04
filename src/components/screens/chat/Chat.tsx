@@ -7,20 +7,27 @@ import { useChats } from "./useChats";
 import { useAuth } from "@/hooks/useAuth";
 import ChatItem from "./chatItems/ChatItems";
 import styles from "./Chat.module.scss";
+import { useChat } from "@/hooks/chat/useChat";
+import clsx from "clsx";
+// ... (previous imports)
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentChat, setCurrentChat } from "@/store/chat/chat.slice";
+import SecondButton from "@/components/ui/Button/SecondButton";
 
 const Chat: FC = () => {
   const [chats, setChats] = useState([]);
-  const [currentChat, setCurrentChat] = useState(null);
+  const currentChat = useSelector(selectCurrentChat);
+  const dispatch = useDispatch();
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef();
   const { user } = useAuth();
-console.log(chats)
-  const { data: chatData } = useChats(user?._id);
+  const nonEmptyChats = useChats(user?._id);
+
   useEffect(() => {
-    if (chatData) {
-      setChats(chatData);
+    if (nonEmptyChats) {
+      setChats(nonEmptyChats);
     }
-  }, [chatData]);
+  }, [nonEmptyChats]);
 
   const { data: messageData } = useMessages(currentChat?._id);
   useEffect(() => {
@@ -28,48 +35,69 @@ console.log(chats)
       setMessages(messageData);
     }
   }, [messageData]);
+
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  
+  const handleChatItemClick = (chat: any) => {
+    // Set the current chat using Redux
+ 
+    dispatch(setCurrentChat(chat));
+    setMenuOpen(!isMenuOpen);
+  };
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  console.log(isMenuOpen);
+  const handleToggleMenu = () => {
+    setMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className={styles.messenger}>
-      <div className={styles.chatMenu}>
-        {chats.map((chat) => (
-          <div onClick={() => setCurrentChat(chat)} key={chat._id}>
+      <div
+        className={clsx(styles.chatMenu, {
+          [styles.menuOpen]: isMenuOpen,
+        })}
+      >
+        <h2 className={styles.title}>Собеседники</h2>
+        {chats.map((chat: any) => (
+          <div onClick={() => handleChatItemClick(chat)} key={chat._id}>
             <ChatItem chat={chat} currentUser={user?._id} />
           </div>
         ))}
       </div>
       <div className={styles.chatBox}>
+        <div className={styles.buttonBlock}>
+        <SecondButton  onClick={handleToggleMenu}>
+          Собеседники
+        </SecondButton>
+        </div>
         <div className={styles.chatBoxWrapper}>
           {currentChat ? (
             <>
-            <div className={styles.chatBoxTop}>
-              {messages?.map((message) => (
-                <div ref={scrollRef}  key={message._id}> 
-                <Message
-                 
-                  message={message}
-                  own={message.sender === user?._id}
-               
+              <div className={styles.chatBoxTop}>
+                {messages?.map((message: any) => (
+                  <div ref={scrollRef} key={message._id}>
+                    <Message
+                      message={message}
+                      own={message.sender === user?._id}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className={styles.chatBoxBottom}>
+                <MessageField
+                  currentChat={currentChat}
+                  setMessages={setMessages}
+                  messages={messages}
                 />
-                   </div>
-              ))}
-            </div>
-            <div className={styles.chatBoxBottom}>
-            <MessageField
-              currentChat={currentChat}
-              setMessages={setMessages}
-              messages={messages}
-            />
-          </div>
-          </>
+              </div>
+            </>
           ) : (
-            <span className={styles.noConversationText}>Выберите чат</span>
+            <div className={styles.noConversationText}>
+              <span>Выберите чат</span>
+            </div>
           )}
-          
         </div>
       </div>
     </div>

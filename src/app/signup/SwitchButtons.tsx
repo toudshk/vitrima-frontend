@@ -2,7 +2,7 @@
 import { FC } from 'react'
 import clsx from "clsx";
 import { SetStateAction, useState } from "react";
-
+import styles from './SwitchButton.module.scss'
 interface ISwitchButtons {
   selectedButton: string,
   setSelectedButton: any,
@@ -19,7 +19,7 @@ const SwitchButtons:FC<ISwitchButtons> = ({selectedButton , setSelectedButton}) 
     <div>
           <button
             className={clsx(
-              "rounded-2xl mr-4 py-4 w-[349px] rounded transition duration-300 ease-in-out text-2xl",
+              styles.switchButton,
               {
                 "bg-gray-300 text-gray-600 hover:bg-blue-700":
                   selectedButton === "contractor",
@@ -32,12 +32,11 @@ const SwitchButtons:FC<ISwitchButtons> = ({selectedButton , setSelectedButton}) 
             Я подрядчик
           </button>
           <button
-            className={clsx(
-              "rounded-2xl py-4 w-[349px] rounded transition duration-300 ease-in-out text-2xl",
+            className={clsx( styles.switchButton,
               {
-                "bg-primary text-white hover:bg-blue-700":
+                "bg-primary text-white ":
                   selectedButton === "contractor",
-                "bg-gray-300 text-gray-600 hover:bg-green-700":
+                "bg-gray-300 text-gray-600 ":
                   selectedButton === "applicant",
               }
             )}

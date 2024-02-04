@@ -1,44 +1,92 @@
 .messenger {
-  @apply flex max-w-7xl mx-auto;
-  
+  @apply flex max-w-7xl mx-auto relative;
+  height: 81vh;
   .chatMenu {
+    @apply mt-[1vw] pr-12 text-3xl;
     width: 50%;
+    transition: left 0.3s ease;
+  }
+
+  @media (max-width: 700px) {
+    .chatMenu {
+      @apply absolute h-full bg-gray-300 z-20;
+      left: -300px;
+      .title{
+        @apply text-xl;
+        
+      }
+    }
+
+    .menuOpen {
+      left: 0 !important;
+    }
+  }
+  
+  .buttonBlock {
+    @apply w-full h-[38px] bg-blue-300   ;
+    display: none;
+    .toggleButton {
+      
+      position: fixed;
+      z-index: 10;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      cursor: pointer;
+     
+    }
+    @media (max-width: 700px) {
+      @apply block;
+    }
   }
   .chatBox {
-    
-    width: 80%;
+    @apply w-full;
+
     .chatBoxWrapper {
-      height: full;
+      @apply mt-[1vw];
+      height: 90vh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
+      @media (max-width: 700px) {
+        @apply h-[80vh];
+      }
       .noConversationText {
         position: absolute;
-        top: 50%;
+margin-left: 10%;
+        margin-top: 40%;
         font-size: 50px;
         color: rgb(224, 220, 220);
         cursor: default;
+        user-select: none;
       }
       .chatBoxTop {
-       @apply  overflow-y-scroll;
-       height: 36vw;
+        @apply overflow-y-scroll;
+        height: 90vh;
+        overflow: auto;
+        scrollbar-width: thin; /* для Firefox */
+        scrollbar-color: transparent transparent; /* для Firefox */
+        -ms-overflow-style: none; /* для IE и Edge */
 
         padding-right: 10px;
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: transparent;
+        }
       }
+
       .chatBoxBottom {
-        margin-top: 5px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         .chatMessageInput {
-          width: 80%;
-          height: 90px;
-          
+          width: 90%;
         }
         .chatSubmitButton {
-          width: 70px;
-          height: 70px;
+          width: 10%;
           border: none;
           border-radius: 5px;
           cursor: pointer;

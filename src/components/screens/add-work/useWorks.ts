@@ -7,6 +7,7 @@ import { getKeys } from "@/utils/object/getKeys";
 import { useRouter, useSearchParams } from "next/navigation";
 import { SubmitHandler, UseFormSetValue } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
+import { toast } from "react-toastify";
 
 export const useWorks = (setValue: UseFormSetValue<IWorkEditInput>) => {
   const { user } = useAuth();
@@ -25,9 +26,13 @@ export const useWorks = (setValue: UseFormSetValue<IWorkEditInput>) => {
 
       try {
         await WorkService.create(updatedData);
+        toast.success("Работа опубликована")
+     
         router.push(`profile/${user?._id}`)
       } catch (error) {
-        console.log(error, "create work");
+        toast.error(error.response.data.message)
+     
+       
       }
     }
   );

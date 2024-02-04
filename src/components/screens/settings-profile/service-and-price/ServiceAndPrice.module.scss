@@ -1,10 +1,39 @@
-.item{
-    @apply flex justify-between text-gray-700 text-2xl mt-10 pb-2 border-b border-gray-300;
+/* YourStyles.module.css */
+.container {
+  @apply max-w-[1736px] mx-auto;
+  .button {
+    @apply ml-10 mt-6 text-3xl border border-gray-600 p-2 rounded-xl hover:border-gray-400 hover:text-gray-400 transition  duration-300 ease-in-out;
+  }
+  .items {
+   @apply mx-10;
+    .item {
+      @apply flex justify-between text-gray-700 text-2xl mt-10 pb-2 border-b border-gray-300;
+      position: relative;
+      transition: opacity 0.3s;
+      button {
+        background: white;
+        transition: opacity 0.3s;
+      }
 
-    .rightBlock{
-        @apply flex;
-        .price{
-            @apply mr-6; 
-        }
+      &:hover button {
+        opacity: 1; /* Прозрачность при наведении */
+      }
     }
+
+    .item .rightBlock {
+      @apply flex;
+    }
+
+    .item .price {
+      @apply mr-6;
+    }
+  }
+  .button-wrapper {
+    @apply bg-none border-none cursor-pointer absolute opacity-0 transition-opacity duration-300;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+  }
+}
+@media (max) {
 }

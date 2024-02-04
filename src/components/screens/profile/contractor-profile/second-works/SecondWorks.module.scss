@@ -2,16 +2,17 @@
   @apply max-w-[1736px] mx-auto;
 
   .header {
-    @apply border-b-[1px] border-gray-400 mb-8;
+    @apply border-b-[0.1vw] border-gray-400 mb-[1.8vw] ;
     > ul {
       @apply flex;
       > li {
-        @apply mr-10  text-gray-450 transition-all  ease-in-out;
+        @apply mr-[4vw]  text-gray-450 transition-all  ease-in-out;
         > button {
-          @apply text-xl mb-3;
+          @apply text-[1.1vw] mb-[0.5vw];
         }
         &.active {
-          @apply border-b-[1px] border-gray-600 z-20 text-gray-700;
+          @apply border-b-[0.1vw]  border-gray-600 z-20 text-gray-700 ;
+          margin-bottom: -0.5px;
         }
       }
     }

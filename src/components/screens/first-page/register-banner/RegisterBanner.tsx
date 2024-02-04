@@ -5,8 +5,8 @@ const RegisterBanner = () => {
   return (
     <div className={styles.container}>
         <div>
-        <h1 className='text-7xl text-primary'>Зарегистрируйтесь, чтобы смотреть ленту</h1>
-        <Link href={''}>Зарегистрироваться</Link>
+        <h1 >Зарегистрируйтесь, чтобы смотреть ленту</h1>
+        <Link href={'/signup'}>Зарегистрироваться</Link>
         </div>
     </div>
   )

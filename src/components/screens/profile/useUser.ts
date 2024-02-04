@@ -3,32 +3,22 @@ import { UserService } from "@/services/user/user.service";
 import { useParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { UseFormSetValue } from "react-hook-form";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 
-export const useUser = (setValue: UseFormSetValue<IContractor>) => {
-    const params = useParams();
-    const userId = params.id;
+export const useUser = (id: string ) => {
+  const queryClient = useQueryClient();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["user", id],
+    queryFn: async () => {
+      const userData = await UserService.getUserById(id);
+      const { data } = userData;
+
+      return data;
+    },
+  });
+
   
-    const queryData = useQuery(
-      ["user by id"],
 
-      () => UserService.getUserById(userId),
-      {
-        onSuccess({ data }) {
-            const fieldsToSet = ["email", "nickname", "image", "description"];
-
-        // Пройдемся по массиву и установим значения для каждого поля
-        fieldsToSet.forEach((field) => {
-          if (data[field]) {
-            setValue(field, data[field]);
-          }
-        });
-        },
-        onError(error) {
-            console.log(error, 'Get user')
-        },
-        enabled: !!userId,
-    }
-    )
-    return useMemo(() => ({ ...queryData }), [queryData]);
-  };
+  return { data, isLoading };
+}

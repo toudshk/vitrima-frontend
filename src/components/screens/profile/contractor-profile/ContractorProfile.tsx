@@ -20,7 +20,7 @@ const ContractorProfile: FC<ContractorProfileProps> = ({ userData, id }) => {
         <div className={styles.leftBlock}>{userData.email}</div>
         <div className={styles.rightBlock}>
           <div className={styles.subscribers}>
-            <p>Подписчики</p>
+            <p>Подписчики</p> 
             <div>{userData.subscribers?.length}</div>
           </div>
 

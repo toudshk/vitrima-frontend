@@ -53,5 +53,19 @@ export const UserService = {
 		return axios.delete<string>(getUsersUrl(`/${_id}`))
 	},
 
+
+	async subscribe(applicantId: string, contractorId:string) {
+		return await axios.post(getUsersUrl(`/${applicantId}/subscribe/${contractorId}`))
+	},
+	async unSubscribe(applicantId: string, contractorId:string) {
+		return await axios.post(getUsersUrl(`/${applicantId}/unsubscribe/${contractorId}`))
+	},
+
+	async addSavedWork(applicantId: string, workId:string) {
+		return await axios.post(getUsersUrl(`/add-saved-work/${applicantId}/${workId}`))
+	},
 	
+	async removeSavedWork(applicantId: string, workId:string) {
+		return await axios.post(getUsersUrl(`/remove-saved-work/${applicantId}/${workId}`))
+	}
 }

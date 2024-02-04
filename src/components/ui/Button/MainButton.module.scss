@@ -1,4 +1,21 @@
 .button{
-    @apply py-4 text-2xl text-center;
+    
+    @apply  text-xl  border-2 text-center bg-blue-500 text-white px-[50px] py-[1.5vh] rounded-2xl;
+    transition: background-color 0.2s ease-in-out; /* Добавляем плавность для изменения цвета фона */
 
+    &:hover{
+        @apply bg-gray-600;
+    }
+   
+
+   
+
+}
+.secondButton{
+    @apply  text-xl bg-primary border-2 text-center text-white px-[3vw] py-[1vw] rounded-2xl;
+    transition: background-color 0.2s ease-in-out; /* Добавляем плавность для изменения цвета фона */
+
+    &:hover{
+        @apply bg-gray-600;
+    }
 }

@@ -3,7 +3,7 @@ import { IWork } from "@/components/shared/types/work.types"
 export interface IWidgetWork
 	extends Pick<
 		IWork,
-		'_id' | 'tags'  | 'title' | 'slug' | 'images'
+		'_id' | 'tags'  | 'title' | 'slug' | 'images' | 'contractorId'
 	> {}
 
 export interface IWorkList {

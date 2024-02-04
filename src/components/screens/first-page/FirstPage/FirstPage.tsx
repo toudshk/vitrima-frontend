@@ -24,6 +24,7 @@ const FirstPage: FC = () => {
       {user ? (
         <div className={styles.block}>
           <div className={styles.links}>
+            
             <Link href="/interior">Интерьер</Link>
             <Link href="/architecture">Архитектура</Link>
           </div>

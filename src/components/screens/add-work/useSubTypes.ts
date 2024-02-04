@@ -5,7 +5,7 @@ import { useQuery } from 'react-query'
 
 
 export const useSubTypes = (_id: string) => {
-	const queryData = useQuery('list of sub types', () => WorkService.getSubTypeByWorkType(_id), {
+	const queryData = useQuery('list of sub types', async () => await WorkService.getSubTypeByWorkType(_id), {
 		select: ({ data }) =>
 			data.map(
 				(subType) => ({

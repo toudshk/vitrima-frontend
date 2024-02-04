@@ -14,16 +14,16 @@ export const useServicePriceEdit = (
   const { user } = useAuth();
   const pathname = useParams();
   const id = String(pathname.id);
-const router = useRouter()
+  const router = useRouter();
   const { isLoading } = useQuery(
     ["service-price", id],
     () => ServicePriceService.getById(id),
     {
-		onSuccess({ data }) {
-			getKeys(data).forEach((key) => {
-				setValue(key, data[key])
-			})
-		},
+      onSuccess({ data }) {
+        getKeys(data).forEach((key) => {
+          setValue(key, data[key]);
+        });
+      },
       onError(error) {
         console.log(error, "Редактирование услуги");
       },
@@ -39,7 +39,6 @@ const router = useRouter()
         ...data,
         contractorId: user?._id,
       };
-      console.log(updatedData);
       return ServicePriceService.update(id, updatedData);
     },
     {
@@ -48,13 +47,13 @@ const router = useRouter()
       },
       onSuccess() {
         console.log("Update serviceprice", "update was successful");
-		router.push('/contractor/settings#works')
+        router.push("/contractor/settings#works");
       },
     }
   );
 
   const onSubmit: SubmitHandler<IServicePriceEditInput> = async (data) => {
-	const numericPrice = parseFloat(data.price);
+    const numericPrice = parseFloat(data.price);
 
     // Передать на сервер с числовым значением
     await mutateAsync({ ...data, price: numericPrice });

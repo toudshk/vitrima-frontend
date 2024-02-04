@@ -24,10 +24,10 @@ const SignUpFields: FC<IAuthFields> = ({
         <div>
           <Field
             {...register("email", {
-              required: "Email is required!",
+              required: "Почта обязательна",
               pattern: {
                 value: validEmail,
-                message: "Please enter a valid email",
+                message: "Пожалуйста, введите почту",
               },
             })}
             placeholder="Почта"
@@ -44,10 +44,10 @@ const SignUpFields: FC<IAuthFields> = ({
               "password",
               isPasswordRequired
                 ? {
-                    required: "Password is required!",
+                    required: "Пароль обязателен!",
                     minLength: {
                       value: 6,
-                      message: "Min length should more 6 symbols!",
+                      message: "Минимальное количество 6 символов",
                     },
                   }
                 : {}
@@ -61,10 +61,10 @@ const SignUpFields: FC<IAuthFields> = ({
         <div>
           <Field
             {...register("email", {
-              required: "Email is required!",
+              required: "Почта обязательная!",
               pattern: {
                 value: validEmail,
-                message: "Please enter a valid email",
+                message: "Пожалуйста, введите почту",
               },
             })}
             placeholder="Почта"
@@ -75,10 +75,10 @@ const SignUpFields: FC<IAuthFields> = ({
               "inn",
               isPasswordRequired
                 ? {
-                    required: "Password is required!",
+                    required: "Пароль обязателен!",
                     minLength: {
                       value: 16,
-                      message: "Min length should more 6 symbols!",
+                      message: "Минимальное количество 6 символов!",
                     },
                   }
                 : {}

@@ -10,7 +10,7 @@ const Field = forwardRef<HTMLInputElement, IField>(
   ({ title, placeholder, error, type = "text", style, ...rest }, ref) => {
     return (
       <>
-        <p className="text-xl mb-4">{title}</p>
+        <p className={styles.subtitle}>{title}</p>
 
         <div className={clsx(styles.common, styles.field)} style={style}>
           

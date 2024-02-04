@@ -1,11 +1,14 @@
 .search {
-	@apply     flex items-center transition-colors text-base ;
+	@apply     flex items-center transition-colors text-[2vh] ;
 	> svg {
 		@apply fill-gray-600 mr-2 text-3xl transition-colors;
 	}
 
 	> input {
-		@apply w-full  border border-gray-700 rounded-3xl px-8 bg-gray-700 placeholder:text-gray-600 block  text-gray-600  outline-none;
+		@apply w-full  border border-gray-700 rounded-3xl px-[2vw] bg-gray-700 placeholder:text-gray-600 block  text-gray-600  outline-none;
+		@media (max-screen: 960) {
+				visibility: hidden;
+		}
 	}
 
 	&:focus-within {

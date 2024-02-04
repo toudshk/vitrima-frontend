@@ -1,36 +1,43 @@
 .wrapper {
-  @apply pt-6 items-center;
- 
+  @apply w-[90%] max-w-[1736px]  mx-auto   h-[9vh] ;
+
   .navigationAuth {
-    
-    min-height: 34px;
-    display: grid;
-    grid-template-columns: 11.6% 69.94% 13.77%;
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    @apply h-[9.5vh];
+    align-items: center;
+
+    display: flex;
 
     .buttons {
-      @apply text-xl text-white flex;
-
-      button {
-        @apply mr-10;
-      }
+      @apply text-[2.3vh] text-white flex items-center h-full;
     }
   }
   .navigationNotAuth {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
+    @apply h-[9.5vh];
 
-  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   .button {
     @apply text-white text-xl;
+
+    @media (max-width: 400px) {
+      @apply text-[4vw];
+    }
+  }
+  .apost {
+    @apply text-xl text-white;
+
+    @media (max-width: 400px) {
+      @apply text-[4vw];
+    }
   }
 
   .avatar {
-    @apply rounded-full h-8 w-8;
+    @apply image-like-bg rounded-full w-[10vh] h-[5vh]  mr-1;
+  }
+  .icon {
+    @apply w-[3vh] h-[4vh];
   }
 }

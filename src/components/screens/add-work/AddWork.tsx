@@ -15,10 +15,14 @@ import { useTypeWorks } from "./useTypeWork";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { useSubTypes } from "./useSubTypes";
 import { IWorkType } from "@/components/shared/types/work.types";
+import SecondButton from "@/components/ui/Button/SecondButton";
+import { useBuildingTechnique } from "@/hooks/buildingTechnique/useBuildingTechnique";
 
 const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
 });
+
+
 
 const AddWork: FC = () => {
   const {
@@ -32,18 +36,19 @@ const AddWork: FC = () => {
     mode: "onChange",
   });
 
-  const { onSubmit, isLoading } = useWorks(setValue);
+  const { onSubmit } = useWorks(setValue);
+
   const { data: tags, isLoading: isTagsLoading } = useSelectTags();
   const { data: workTypes, isLoading: isWorkTypeLoading } = useTypeWorks();
+  const { data: buildingTechniques } = useBuildingTechnique();
 
   const [selectedItem, setSelectedItem] = useState<IWorkType | null>(null);
-  console.log(selectedItem?._id);
+ 
   const {
     data: subTypes,
     isLoading: isSubTypeLoading,
     refetch,
   } = useSubTypes(selectedItem?._id);
- 
 
   useEffect(() => {
     // Fetch subtypes whenever selectedItem changes
@@ -54,127 +59,146 @@ const AddWork: FC = () => {
 
   return (
     <>
-      {isLoading ? (
-        <SkeletonLoader count={5} />
-      ) : (
+     
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <div className={styles.fields}>
-            <Controller
-              name="workType"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <ToggleButtonGroup
-                  color="primary"
-                  value={selectedItem?._id || field.value}
-                  exclusive
-                  onChange={(event, value) => {
-                    const selectedWorkType = workTypes?.find(
-                      (item) => item._id === value
-                    );
-                    field.onChange(selectedWorkType);
-                    setSelectedItem(selectedWorkType);
-                  }}
-                
-                  aria-label="Platform"
-                >
-                  {workTypes?.map((item) => (
-                    <ToggleButton value={item._id} key={item._id}>
-                      {item.title}
-                    </ToggleButton>
-                  ))}
-                </ToggleButtonGroup>
-              )}
-            />
-            <Controller
-              name="subTypes"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <DynamicSelect
-                  error={error}
-                  field={field}
-                  placeholder="Стили"
-                  options={subTypes || []}
-                  isLoading={isSubTypeLoading}
-                  isMulti
-                />
-              )}
-            />
-
-            <div className={styles.leftBlock}>
+            <div className={styles.topBlock}>
               <Controller
-                name="images"
+                name="workType"
                 control={control}
-                defaultValue={[]}
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
-                  <UploadField
-                    placeholder="Фотография"
-                    error={error}
-                    folder="images"
-                    image={value}
-                    onChange={onChange}
-                    title={""}
+                render={({ field, fieldState: { error } }) => (
+                  <ToggleButtonGroup
+                  sx={{height: '60px', marginTop: '20px'
+                }}
+                    color="primary"
+                    value={selectedItem?._id || field.value}
+                    exclusive
+                    onChange={(event, value) => {
+                      const selectedWorkType = workTypes?.find(
+                        (item) => item._id === value
+                      );
+                      field.onChange(selectedWorkType);
+                      setSelectedItem(selectedWorkType);
+                    }}
+                    aria-label="Platform"
+                  >
+                    {workTypes?.map((item) => (
+                      <ToggleButton value={item._id} key={item._id} sx={{borderRadius: '12px'}}>
+                        {item.title}
+                      </ToggleButton>
+                    ))}
+                  </ToggleButtonGroup>
+                )}
+              />
+              {selectedItem &&
+                selectedItem._id === "656c0a67fad5c309cd6a9853" && (
+                  <Controller
+                    name="buildingTechnique"
+                    control={control}
+                    render={({ field, fieldState: { error } }) => (
+                      <DynamicSelect
+                        error={error}
+                        field={field}
+                        placeholder="Технология строительства"
+                        options={buildingTechniques || []}
+                        isMulti={false}
+                      />
+                    )}
                   />
                 )}
-                rules={{
-                  required: "Фотография обязательна",
-                }}
-              />
-            </div>
-            <div className={styles.rightBlock}>
-              <Field
-                {...register("title", {
-                  required: "Название обязательно",
-                })}
-                placeholder="Фигурка из дерева"
-                error={errors.title}
-                title="Название работы"
-              />
-              <SlugField
-                generate={() =>
-                  setValue("slug", generateSlug(getValues("title")))
-                }
-                register={register}
-                error={errors.slug}
-              />
-              <Field
-                {...register("price", {
-                  required: "Цена обязательна",
-                })}
-                placeholder="Ваша цена"
-                title="Цена"
-                error={errors.price}
-              />
-
               <Controller
-                name="tags"
+                name="subTypes"
                 control={control}
                 render={({ field, fieldState: { error } }) => (
                   <DynamicSelect
                     error={error}
                     field={field}
-                    placeholder="Теги"
-                    options={tags || []}
-                    isLoading={isTagsLoading}
+                    placeholder="Стили"
+                    options={subTypes || []}
+                    isLoading={isSubTypeLoading}
                     isMulti
                   />
                 )}
               />
+              
+            </div>
+            <div className='flex'>
+              <div className={styles.leftBlock}>
+                <Controller
+                  name="images"
+                  control={control}
+                  defaultValue={[]}
+                  render={({
+                    field: { value, onChange },
+                    fieldState: { error },
+                  }) => (
+                    <UploadField
+                      placeholder="Фотография"
+                      error={error}
+                      folder="images"
+                      image={value}
+                      onChange={onChange}
+                      title={""}
+                    />
+                  )}
+                  rules={{
+                    required: "Фотография обязательна",
+                  }}
+                />
+              </div>
+              <div className={styles.rightBlock}>
+                <Field
+                  {...register("title", {
+                    required: "Название обязательно",
+                  })}
+                  placeholder="Фигурка из дерева"
+                  error={errors.title}
+                  title="Название работы"
+                />
+                <SlugField
+                  generate={() =>
+                    setValue("slug", generateSlug(getValues("title")))
+                  }
+                  register={register}
+                  error={errors.slug}
+                />
+                <Field
+                  {...register("price", {
+                    required: "Цена обязательна",
+                  })}
+                  placeholder="Ваша цена"
+                  title="Цена"
+                  error={errors.price}
+                />
 
-              <Field
-                {...register("description")}
-                placeholder="Расскажите о чём ваша работа"
-                error={errors.description}
-                title="Описание работы"
-              />
+                <Controller
+                  name="tags"
+                  control={control}
+                  render={({ field, fieldState: { error } }) => (
+                    <DynamicSelect
+                      error={error}
+                      field={field}
+                      placeholder="Теги"
+                      options={tags || []}
+                      isLoading={isTagsLoading}
+                      isMulti
+                    />
+                  )}
+                />
+
+                <Field
+                  {...register("description")}
+                  placeholder="Расскажите о чём ваша работа"
+                  error={errors.description}
+                  title="Описание работы"
+                />
+              </div>
             </div>
           </div>
 
-          <MainButton>Update</MainButton>
+          <SecondButton>Добавить работу</SecondButton>
         </form>
-      )}
+      
     </>
   );
 };
