@@ -1,9 +1,7 @@
-import { MouseEvent } from "react";
 
 import Link from "next/link";
 
 import { useAuth } from "@/hooks/useAuth";
-import { useActions } from "@/hooks/useActions";
 import styles from "./Navigation.module.scss";
 import { MainLogo } from "@/components/common/icons/MainLogo";
 import clsx from "clsx";

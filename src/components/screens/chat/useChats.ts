@@ -7,8 +7,7 @@ import { ChangeEvent, useMemo, useState} from 'react'
 import { useMutation, useQuery } from 'react-query'
 
 
-export const useChats = (id: string) => {
-	const { user } = useAuth();
+export const useChats = (id: any) => {
 	const [nonEmptyChats, setNonEmptyChats] = useState<any>([]);
   
 	useQuery(

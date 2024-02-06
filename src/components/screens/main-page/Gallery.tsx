@@ -9,16 +9,9 @@ import { selectFilter } from "@/store/work/filter.slice";
 import { useInView } from "react-intersection-observer";
 
 const Gallery: FC<{slug: string}> = ({slug}) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { user } = useAuth();
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const router = useRouter();
+  
 
   const { ref, inView } = useInView();
-
-  if (!user) {
-    router.push("/");
-  }
 
   
   const { minPrice, maxPrice, subTypes, contractorType, buildingTechnique,location } = useSelector(selectFilter);

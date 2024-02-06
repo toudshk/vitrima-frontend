@@ -13,7 +13,6 @@ import { useMutation, useQuery } from 'react-query'
 
 export const useAdminWorks = () => {
 	const {user} = useAuth()
-	let userId = user?._id
 	const [searchTerm, setSearchTerm] = useState('')
 	const debouncedSearch = useDebounce(searchTerm, 500)
 

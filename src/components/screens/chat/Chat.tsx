@@ -20,7 +20,7 @@ const Chat: FC = () => {
   const [messages, setMessages] = useState([]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { user } = useAuth();
-  const nonEmptyChats = useChats(user!._id);
+  const nonEmptyChats = useChats(user?._id);
 
   useEffect(() => {
     if (nonEmptyChats) {

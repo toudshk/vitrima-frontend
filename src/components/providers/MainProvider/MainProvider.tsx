@@ -1,7 +1,6 @@
 "use client";
 
-import { TypeComponentAuthFields } from "@/components/shared/types/auth.types";
-import { store } from "@/store/store";
+
 import { FC, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 

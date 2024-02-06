@@ -5,14 +5,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
 const page: NextPageAuth = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { user } = useAuth();
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const router = useRouter();
-
-  if (!user) {
-    router.push("/");
-  }
+  
 
   return <SettingsProfileApplicant />;
 };

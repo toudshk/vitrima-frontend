@@ -8,17 +8,7 @@ import AdminNavigation from '@/components/ui/Admin-navigation/AdminNavigation';
 import { useAuth } from '@/hooks/useAuth';
 
 const page: NextPageAuth = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { user } = useAuth();
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const router = useRouter();
-
-  if (!user?.isAdmin) {
-    
-    router.push('/');
-   
-
-  }
+  
 
   return (
     <>

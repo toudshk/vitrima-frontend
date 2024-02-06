@@ -7,16 +7,8 @@ import { useRouter } from "next/navigation";
 import AddWork from "@/components/screens/add-work/AddWork";
 
 const page: NextPageAuth = () => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { user } = useAuth();
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const router = useRouter();
-
-  if (!user?.isContractor) {
-    router.push("/");
-  }
-
+  
+  
   return (
     <>
       <div className={styles.wrapper}>
