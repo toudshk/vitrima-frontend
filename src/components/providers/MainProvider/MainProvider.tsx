@@ -1,9 +1,7 @@
 "use client";
 
-
-import { FC, useState } from "react";
-import "react-toastify/dist/ReactToastify.css";
-
+import { FC } from "react";
+import 'react-toastify/scss/main.scss'
 import { ReduxProvider } from "../ReduxProvider";
 import Header from "@/components/layout/header/Header";
 import { QueryClient, QueryClientProvider } from "react-query";
