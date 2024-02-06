@@ -3,7 +3,6 @@ import ReactSelect from 'react-select'
 import ValueType from 'react-select'
 import makeAnimated from 'react-select/animated'
 
-import formStyles from '../Form-elements/form.module.scss'
 
 import styles from './Select.module.scss'
 import { IOption, ISelect } from './Select.interface'
@@ -59,7 +58,7 @@ const Select: FC<ISelect> = ({
 					isLoading={isLoading}
 				/>
 			</label>
-			{error && <div className={formStyles.error}>{error.message}</div>}
+			
 		</div>
 	)
 }
