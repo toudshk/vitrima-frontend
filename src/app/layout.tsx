@@ -4,8 +4,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 
-import { ReduxProvider } from "@/components/providers/ReduxProvider";
-import AuthProvider from "@/components/providers/AuthProvider/AuthProvider";
 import MainProvider from "@/components/providers/MainProvider/MainProvider";
 
 const myFont = localFont({

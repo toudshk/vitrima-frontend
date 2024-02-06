@@ -29,7 +29,7 @@ const Search: FC = () => {
 	return (
 		<div className={styles.wrapper}>
 			<SearchField searchTerm={searchTerm} handleSearch={handleSearch} />
-			{isSuccess && <SearchList works={popularWorks || []} isLoading={isLoading}/>}
+			{isSuccess && <SearchList works={popularWorks || []} />}
 		</div>
 	)
 }

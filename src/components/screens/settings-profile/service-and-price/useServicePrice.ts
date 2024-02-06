@@ -33,7 +33,7 @@ export const useServicePrice = () => {
           })
         ),
       onError(error) {
-        toast.error(error);
+        toast.error("Ошибка");
       },
     }
   );
@@ -59,7 +59,7 @@ export const useServicePrice = () => {
         await ServicePriceService.create(updatedData);
       } catch (error) {
 		
-        toast.error(error);
+        toast.error("Ошибка");
       }
     }
   );
@@ -69,8 +69,7 @@ export const useServicePrice = () => {
     (tagId: string) => ServicePriceService.delete(tagId),
     {
       onError(error) {
-        toast.error(error);
-        //toastError(error, 'Delete tag')
+        toast.error("Ошибка");
       },
       onSuccess() {
         queryData.refetch();

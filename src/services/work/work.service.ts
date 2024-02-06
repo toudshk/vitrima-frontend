@@ -12,7 +12,7 @@ export const WorkService = {
 		return axiosClassic.get<IWork>(getWorkUrl(`/by-slug/${slug}`))
 	},
 
-	async getByContractor(id: string) {
+	async getByContractor(id: any) {
 		return axiosClassic.get<IWork[]>(getWorkUrl(`/by-contractor/${id}`))
 	},
 
@@ -33,8 +33,7 @@ export const WorkService = {
 	
 
 	async delete(_id: string, contractorId: string) {
-		console.log(contractorId);
-	  
+	
 		const config: AxiosRequestConfig = {
 		  data: { contractorId }, // Передаем contractorId в виде данных
 		};

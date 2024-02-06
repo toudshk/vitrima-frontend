@@ -30,8 +30,9 @@ const Gallery: FC<{slug: string}> = ({slug}) => {
     const loadInitialPage = async () => {
       // Если компонент уже виден, загрузите первую страницу
       if (inView) {
+      
         await fetchNextPage({
-          pageParam: data?.pages[data.pages.length - 1]?.pageParam + 1,
+          pageParam: data!.pages[data!.pages.length - 1]!.pageParam + 1,
         });
       }
     };
@@ -41,7 +42,7 @@ const Gallery: FC<{slug: string}> = ({slug}) => {
     // Добавьте существующую логику для последующих изменений inView
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage({
-        pageParam: data?.pages[data.pages.length - 1]?.pageParam + 1,
+        pageParam: data!.pages[data!.pages.length - 1]?.pageParam + 1,
       });
     }
   }, [inView, hasNextPage, fetchNextPage, data, isFetchingNextPage])

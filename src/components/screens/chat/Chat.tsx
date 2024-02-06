@@ -7,7 +7,6 @@ import { useChats } from "./useChats";
 import { useAuth } from "@/hooks/useAuth";
 import ChatItem from "./chatItems/ChatItems";
 import styles from "./Chat.module.scss";
-import { useChat } from "@/hooks/chat/useChat";
 import clsx from "clsx";
 // ... (previous imports)
 import { useDispatch, useSelector } from "react-redux";
@@ -19,9 +18,9 @@ const Chat: FC = () => {
   const currentChat = useSelector(selectCurrentChat);
   const dispatch = useDispatch();
   const [messages, setMessages] = useState([]);
-  const scrollRef = useRef();
+  const scrollRef = useRef<HTMLDivElement>(null);
   const { user } = useAuth();
-  const nonEmptyChats = useChats(user?._id);
+  const nonEmptyChats = useChats(user!._id);
 
   useEffect(() => {
     if (nonEmptyChats) {
@@ -37,7 +36,11 @@ const Chat: FC = () => {
   }, [messageData]);
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    const scrollElement = scrollRef.current as HTMLElement | undefined;
+  
+    if (scrollElement) {
+      scrollElement.scrollIntoView({ behavior: "smooth" });
+    }
   }, [messages]);
 
   const handleChatItemClick = (chat: any) => {
@@ -62,7 +65,7 @@ const Chat: FC = () => {
         <h2 className={styles.title}>Собеседники</h2>
         {chats.map((chat: any) => (
           <div onClick={() => handleChatItemClick(chat)} key={chat._id}>
-            <ChatItem chat={chat} currentUser={user?._id} />
+            <ChatItem chat={chat} currentUser={user!._id} />
           </div>
         ))}
       </div>

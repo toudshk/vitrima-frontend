@@ -2,8 +2,8 @@
 import AdminHeader from '@/components/ui/Admin-table/AdminHeader'
 import { Meta } from '@/utils/meta'
 import {FC} from 'react'
-import { useAdminWorks } from './useAdminWorks'
 import AdminTable from '@/components/ui/Admin-table/AdminTable/AdminTable'
+import { useAdminWorks } from './UseAdminWorks'
 
 const WorkList:FC = () => {
   const { handleSearch, isLoading, searchTerm, data, deleteAsync } = useAdminWorks()

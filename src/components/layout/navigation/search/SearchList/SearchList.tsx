@@ -5,7 +5,7 @@ import baseImage from "@/app/assets/images/base-avatar.jpg";
 import styles from "./SearchList.module.scss";
 import { IWidgetWork } from "../work.types";
 
-const SearchList: FC<{ works: IWidgetWork[] }> = ({ works, isLoading }) => {
+const SearchList: FC<{ works: IWidgetWork[] }> = ({ works }) => {
   return (
     <div className={styles.list}>
       {works.length ? (

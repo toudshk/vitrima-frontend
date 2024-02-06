@@ -14,7 +14,7 @@ export const useWorks = (setValue: UseFormSetValue<IWorkEditInput>) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const workId = String(searchParams.get("id"));
-  const { push } = router;
+ 
 
   const { mutateAsync } = useMutation(
     "create work",
@@ -29,7 +29,7 @@ export const useWorks = (setValue: UseFormSetValue<IWorkEditInput>) => {
         toast.success("Работа опубликована")
      
         router.push(`profile/${user?._id}`)
-      } catch (error) {
+      } catch (error: any) {
         toast.error(error.response.data.message)
      
        

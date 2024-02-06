@@ -1,19 +1,15 @@
 "use client";
 import React, { FC, useEffect, useState } from "react";
 
+import Image from "next/image";
 import styles from "./FirstPage.module.scss";
-
+import icon from "@/app/assets/images/MainLogo.svg";
 import { MainLogo } from "@/components/common/icons/MainLogo";
 import OnboardCards from "../onboard-cards/OnboardCards";
 import RegisterBanner from "../register-banner/RegisterBanner";
 import Footer from "@/components/layout/footer/Footer";
 import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
-import { GetServerSideProps } from "next";
-import { IUserInitialState } from "@/store/user/user.interface";
-
-
-
 
 const FirstPage: FC = () => {
 
@@ -36,7 +32,7 @@ const FirstPage: FC = () => {
       ) : (
         <div className={styles.container}>
           <div className={styles.iconContent}>
-            <MainLogo width={590} />
+          <Image src={icon} width={590} draggable={false} alt='Vitrima'/>
             <h4>Сервис возможностей </h4>
           </div>
           <div className={styles.detailed}>Подробнее</div>

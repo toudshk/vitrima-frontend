@@ -1,4 +1,5 @@
 
+import { FC } from "react";
 import { useTypedSelector } from "./useTypedSelector";
 
 

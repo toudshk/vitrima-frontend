@@ -8,39 +8,42 @@ import { isMobile } from "react-device-detect";
 import styles from "./SelectForFilter.module.scss";
 import { IOption, ISelect } from "./SelectForFilter.interface";
 import Image from "next/image";
+import { ISubType } from "@/components/shared/types/work.types";
 
 const animatedComponents = makeAnimated();
 const customStyles = {
-  control: (provided, state) => ({
+  control: (provided: any, state: any) => ({
     ...provided,
 
     backgroundColor: "#EAEAEA",
     border: "1px solid #ABABAB",
     borderRadius: "0.8vw",
   }),
-  option: (provided, state) => ({
+  option: (provided: any, state: any) => ({
     ...provided,
     fontSize: isMobile ? "12px" : "24px", // Adjust the font size as needed
   }),
-  placeholder: (provided, state) => ({
+  placeholder: (provided: any, state: any) => ({
     ...provided,
     fontSize: isMobile ? "12px" : "24px", // Размер шрифта для плейсхолдера
   }),
-  multiValue: (provided) => ({
+  multiValue: (provided: any) => ({
     ...provided,
     fontSize: isMobile ? "12px" : "24px", // Adjust the font size for the multi-value container
   }),
-  multiValueLabel: (provided) => ({
+  multiValueLabel: (provided: any) => ({
     ...provided,
     fontSize: isMobile ? "12px" : "24px", // Adjust the font size for the label within the multi-value container
   }),
-  multiValueRemove: (provided) => ({
+  multiValueRemove: (provided: any) => ({
     ...provided,
     fontSize: isMobile ? "12px" : "24px", // Adjust the font size for the remove button within the multi-value container
   }),
 
   // Add more styles for other components as needed
 };
+
+
 const DynamicSelect: FC<ISelect> = ({
   placeholder,
   error,
@@ -51,8 +54,8 @@ const DynamicSelect: FC<ISelect> = ({
   setCurrentSubType,
 }) => {
   const onChange = (
-    newValue: ValueType<IOption, boolean>,
-    { action }: ActionMeta<IOption>
+    newValue: IOption | IOption[],
+    { action }: any
   ) => {
     if (action !== "input-change") {
       field.onChange(
@@ -67,14 +70,14 @@ const DynamicSelect: FC<ISelect> = ({
   const getValue = () => {
     if (field.value) {
       return isMulti
-        ? options.filter((option) => field.value.indexOf(option.value) >= 0)
-        : options.find((option) => option.value === field.value);
+        ? options.filter((option: { value: any; }) => field.value.indexOf(option.value) >= 0)
+        : options.find((option: { value: any; }) => option.value === field.value);
     } else {
       return isMulti ? [] : ("" as any);
     }
   };
 
-  const handleMouseEnter = (label, description, image) => {
+  const handleMouseEnter = (label: any, description: any, image: any) => {
     setCurrentSubType({ label, description, image });
   };
 
@@ -84,7 +87,7 @@ const DynamicSelect: FC<ISelect> = ({
 
   
 
-  const formatOptionLabel = ({ label, description, image }) => (
+  const formatOptionLabel = ({ label, description, image }: ISubType) => (
     <div className={styles.itemBlock}>
       <div className="mr-auto ">{label}</div>
       <button

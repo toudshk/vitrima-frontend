@@ -12,38 +12,13 @@ import { toast } from 'react-toastify'
 
 export const useWorks = () => {
 	const {user} = useAuth()
-	
-	const queryData = useQuery(
-		['work list'],
-		() => WorkService.getWorks(),
-		{
-			select: ({ data }) =>
-				data.map(
-					(work) => ({
-						_id: work._id,
-						title:	work.title,
-						images:	work.images,
-						description:work.description
-						
-					})
-				),
-			onError(error) {
-				console.log(error, 'work list')
-			},
-		}
-	)
-
-
-	
-	
-
 	const router = useRouter()
 
 	const { mutateAsync: createAsync } = useMutation(
 		'create work', 
-		(data) => WorkService.create(data),
+		(data: any) => WorkService.create(data),
 		{
-			onError(error) {
+			onError(error: any) {
 				toast.error(error)
 			},
 			onSuccess() {
@@ -55,26 +30,32 @@ export const useWorks = () => {
 
 	const { mutateAsync: deleteAsync } = useMutation(
 		'delete work',
-		(workId: string) => WorkService.delete(workId, user?._id),
+		(workId: string) => {
+		  if (user?._id) {
+			return WorkService.delete(workId, user._id);
+		  } else {
+			// Handle the case when user?._id is undefined
+			return Promise.reject(new Error('user._id is undefined'));
+		  }
+		},
 		{
-			onError(error) {
-				console.log(error, 'Delete work')
-			},
-			onSuccess() {
-				console.log('Delete work', 'delete was successful')
-				queryData.refetch()
-			},
+		  onError(error) {
+			console.log(error, 'Delete work');
+		  },
+		  onSuccess() {
+			console.log('Delete work', 'delete was successful');
+			
+		  },
 		}
-	)
+	  );
 
 	return useMemo(
 		() => ({
 			
-			...queryData,
 			
 			deleteAsync,
 			createAsync,
 		}),
-		[queryData, deleteAsync, createAsync]
+		[ deleteAsync, createAsync]
 	)
 }

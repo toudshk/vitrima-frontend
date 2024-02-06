@@ -4,6 +4,7 @@ import { MessagesService } from '@/services/messages/messages.service'
 
 import { ChangeEvent, useMemo} from 'react'
 import { useMutation, useQuery } from 'react-query'
+import { IMessage } from './Chat.types'
 
 
 export const useMessages = (id: string) => {
@@ -34,7 +35,7 @@ export const useMessages = (id: string) => {
 
 	const { mutateAsync: createAsync } = useMutation(
 		'create message', 
-		(data) => MessagesService.createMessage(data),
+		(data: any) => MessagesService.createMessage(data),
 		{
 			onError(error) {
 				console.log(error, 'Create work')

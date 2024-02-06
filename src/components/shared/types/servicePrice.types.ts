@@ -2,7 +2,7 @@
 
 export interface IServicePrice{
     _id: string
-    price: number 
+    price: any 
     title: string
     createdAt: string
     contractorId: any

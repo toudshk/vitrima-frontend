@@ -5,6 +5,7 @@ export interface IMessage {
 	text: string
 	createdAt: string
 	sender: IUser
+
 }
 
 export interface IChat {

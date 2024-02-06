@@ -4,27 +4,16 @@ import { useMutation } from "react-query";
 import { useRouter } from "next/navigation"; // Assuming you are using Next.js
 import { ChatsService } from "@/services/chat/chat.service";
 import { setCurrentChat } from "@/store/chat/chat.slice";
-import { useDispatch } from 'react-redux';
-interface CreateChatData {
-  receiverId: string;
-  senderId: string;
-  // Add other necessary fields
-}
+import { useDispatch } from "react-redux";
+import { FC } from "react";
 
-interface ChatHook {
-  onSubmit: SubmitHandler<CreateChatData>;
-}
 
-export const useChat: (
-  receiverId: string,
-  senderId: string,
-  
-) => ChatHook = (receiverId, senderId) => {
+export const useChat = (receiverId: string, senderId: string) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
   const { mutateAsync } = useMutation("create chat", async () => {
-    const data: CreateChatData = {
+    const data = {
       receiverId,
       senderId,
       // Add other necessary fields from your form
@@ -32,7 +21,10 @@ export const useChat: (
 
     try {
       // Check if the chat already exists
-      const existingChat = await ChatsService.findChatByUserIds(senderId, receiverId);
+      const existingChat = await ChatsService.findChatByUserIds(
+        senderId,
+        receiverId
+      );
 
       if (existingChat) {
         // Redirect to the existing chat
@@ -49,13 +41,13 @@ export const useChat: (
         router.push(`/chat`); // Adjust the path accordingly
       }
     } catch (error) {
-      console.log(error, 'create chat');
+      console.log(error, "create chat");
     }
   });
 
   const { handleSubmit } = useForm();
 
-  const onSubmit: SubmitHandler<CreateChatData> = async (data) => {
+  const onSubmit = async (data: any) => {
     await mutateAsync(data);
   };
 

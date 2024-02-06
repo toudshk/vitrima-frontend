@@ -2,6 +2,7 @@
 
 import { ITableItem } from '@/components/ui/Admin-table/AdminTable/table.interface'
 import { getAdminUrl } from '@/config/url.config'
+import { useAuth } from '@/hooks/useAuth'
 import { useDebounce } from '@/hooks/useDebounce'
 import { WorkService } from '@/services/work/work.service'
 import { convertMongoDate } from '@/utils/date/ConverMongoDate'
@@ -11,16 +12,18 @@ import { useMutation, useQuery } from 'react-query'
 
 
 export const useAdminWorks = () => {
+	const {user} = useAuth()
+	let userId = user?._id
 	const [searchTerm, setSearchTerm] = useState('')
 	const debouncedSearch = useDebounce(searchTerm, 500)
 
 	const queryData = useQuery(
 		['work list', debouncedSearch],
-		() => WorkService.getWorks(debouncedSearch),
+		() => WorkService.getWorkByWorkType(debouncedSearch),
 		{
 			select: ({ data }) =>
 				data.map(
-					(work): ITableItem => ({
+					(work: any) => ({
 						_id: work._id,
 						editUrl: getAdminUrl(`work/edit/${work._id}`),
 						items: [work.title, convertMongoDate(work.createdAt)],
@@ -38,7 +41,7 @@ export const useAdminWorks = () => {
 
 	const { mutateAsync: deleteAsync } = useMutation(
 		'delete work',
-		(workId: string ) => WorkService.delete(workId),
+		(workId: string ) => WorkService.delete(workId, user!._id),
 		{
 			onError(error) {
 				console.log(error,'ошибка') 

@@ -36,8 +36,8 @@ export const useWorkEdit = (setValue: UseFormSetValue<IWorkEditInput>) => {
     "update work",
     (data: IWorkEditInput) => WorkService.update(workId, data),
     {
-      onError(error) {
-                toast.error(error)
+      onError() {
+                toast.error('Ошибка, повторите позже')
 
       },
       onSuccess() {        toast.success("Работа обновлена")

@@ -9,14 +9,14 @@ import { useUpload } from "@/components/ui/Form-elements/upload-fields/useUpload
 import baseAvatar from "@/app/assets/images/base-avatar.jpg";
 export interface IUploadField {
   folder?: string;
-  image?: string;
+  image?: any;
   onChange: (...event: any[]) => void;
   placeholder: string;
   error?: FieldError;
   style?: CSSProperties;
   title: string;
   isNoImage?: boolean;
-  images?: string[];
+  images?: any;
 }
 
 const UploadAvatar: FC<IUploadField> = ({

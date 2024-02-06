@@ -22,8 +22,6 @@ const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
 });
 
-
-
 const AddWork: FC = () => {
   const {
     handleSubmit,
@@ -43,7 +41,7 @@ const AddWork: FC = () => {
   const { data: buildingTechniques } = useBuildingTechnique();
 
   const [selectedItem, setSelectedItem] = useState<IWorkType | null>(null);
- 
+
   const {
     data: subTypes,
     isLoading: isSubTypeLoading,
@@ -59,146 +57,145 @@ const AddWork: FC = () => {
 
   return (
     <>
-     
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          <div className={styles.fields}>
-            <div className={styles.topBlock}>
-              <Controller
-                name="workType"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <ToggleButtonGroup
-                  sx={{height: '60px', marginTop: '20px'
-                }}
-                    color="primary"
-                    value={selectedItem?._id || field.value}
-                    exclusive
-                    onChange={(event, value) => {
-                      const selectedWorkType = workTypes?.find(
-                        (item) => item._id === value
-                      );
-                      field.onChange(selectedWorkType);
-                      setSelectedItem(selectedWorkType);
-                    }}
-                    aria-label="Platform"
-                  >
-                    {workTypes?.map((item) => (
-                      <ToggleButton value={item._id} key={item._id} sx={{borderRadius: '12px'}}>
-                        {item.title}
-                      </ToggleButton>
-                    ))}
-                  </ToggleButtonGroup>
-                )}
-              />
-              {selectedItem &&
-                selectedItem._id === "656c0a67fad5c309cd6a9853" && (
-                  <Controller
-                    name="buildingTechnique"
-                    control={control}
-                    render={({ field, fieldState: { error } }) => (
-                      <DynamicSelect
-                        error={error}
-                        field={field}
-                        placeholder="Технология строительства"
-                        options={buildingTechniques || []}
-                        isMulti={false}
-                      />
-                    )}
-                  />
-                )}
-              <Controller
-                name="subTypes"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <DynamicSelect
-                    error={error}
-                    field={field}
-                    placeholder="Стили"
-                    options={subTypes || []}
-                    isLoading={isSubTypeLoading}
-                    isMulti
-                  />
-                )}
-              />
-              
-            </div>
-            <div className='flex'>
-              <div className={styles.leftBlock}>
-                <Controller
-                  name="images"
-                  control={control}
-                  defaultValue={[]}
-                  render={({
-                    field: { value, onChange },
-                    fieldState: { error },
-                  }) => (
-                    <UploadField
-                      placeholder="Фотография"
-                      error={error}
-                      folder="images"
-                      image={value}
-                      onChange={onChange}
-                      title={""}
-                    />
-                  )}
-                  rules={{
-                    required: "Фотография обязательна",
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <div className={styles.fields}>
+          <div className={styles.topBlock}>
+            <Controller
+              name="workType"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <ToggleButtonGroup
+                  sx={{ height: "60px", marginTop: "20px" }}
+                  color="primary"
+                  value={selectedItem?._id || field.value}
+                  exclusive
+                  onChange={(event, value: string) => {
+                    const selectedWorkType = workTypes?.find((item) => item._id === value) ?? null;
+                  
+                    field.onChange(selectedWorkType);
+                    setSelectedItem(selectedWorkType);
                   }}
-                />
-              </div>
-              <div className={styles.rightBlock}>
-                <Field
-                  {...register("title", {
-                    required: "Название обязательно",
-                  })}
-                  placeholder="Фигурка из дерева"
-                  error={errors.title}
-                  title="Название работы"
-                />
-                <SlugField
-                  generate={() =>
-                    setValue("slug", generateSlug(getValues("title")))
-                  }
-                  register={register}
-                  error={errors.slug}
-                />
-                <Field
-                  {...register("price", {
-                    required: "Цена обязательна",
-                  })}
-                  placeholder="Ваша цена"
-                  title="Цена"
-                  error={errors.price}
-                />
-
+                  aria-label="Platform"
+                >
+                  {workTypes?.map((item) => (
+                    <ToggleButton
+                      value={item._id}
+                      key={item._id}
+                      sx={{ borderRadius: "12px" }}
+                    >
+                      {item.title}
+                    </ToggleButton>
+                  ))}
+                </ToggleButtonGroup>
+              )}
+            />
+            {selectedItem &&
+              selectedItem._id === "656c0a67fad5c309cd6a9853" && (
                 <Controller
-                  name="tags"
+                  name="buildingTechnique"
                   control={control}
                   render={({ field, fieldState: { error } }) => (
                     <DynamicSelect
                       error={error}
                       field={field}
-                      placeholder="Теги"
-                      options={tags || []}
-                      isLoading={isTagsLoading}
-                      isMulti
+                      placeholder="Технология строительства"
+                      options={buildingTechniques || []}
+                      isMulti={false}
                     />
                   )}
                 />
-
-                <Field
-                  {...register("description")}
-                  placeholder="Расскажите о чём ваша работа"
-                  error={errors.description}
-                  title="Описание работы"
+              )}
+            <Controller
+              name="subTypes"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <DynamicSelect
+                  error={error}
+                  field={field}
+                  placeholder="Стили"
+                  options={subTypes || []}
+                  isLoading={isSubTypeLoading}
+                  isMulti
                 />
-              </div>
+              )}
+            />
+          </div>
+          <div className="flex">
+            <div className={styles.leftBlock}>
+              <Controller
+                name="images"
+                control={control}
+                defaultValue={[]}
+                render={({
+                  field: { value, onChange },
+                  fieldState: { error },
+                }) => (
+                  <UploadField
+                    placeholder="Фотография"
+                    error={error}
+                    folder="images"
+                    image={value}
+                    onChange={onChange}
+                    title={""}
+                  />
+                )}
+                rules={{
+                  required: "Фотография обязательна",
+                }}
+              />
+            </div>
+            <div className={styles.rightBlock}>
+              <Field
+                {...register("title", {
+                  required: "Название обязательно",
+                })}
+                placeholder="Фигурка из дерева"
+                error={errors.title}
+                title="Название работы"
+              />
+              <SlugField
+                generate={() =>
+                  setValue("slug", generateSlug(getValues("title")))
+                }
+                register={register}
+                error={errors.slug}
+              />
+              <Field
+                {...register("price", {
+                  required: "Цена обязательна",
+                })}
+                placeholder="Ваша цена"
+                title="Цена"
+                error={errors.price}
+              />
+
+              <Controller
+                name="tags"
+                control={control}
+                render={({ field, fieldState: { error } }) => (
+                  <DynamicSelect
+                    error={error}
+                    field={field}
+                    placeholder="Теги"
+                    options={tags || []}
+                    isLoading={isTagsLoading}
+                    isMulti
+                  />
+                )}
+              />
+
+              <Field
+                {...register("description")}
+                placeholder="Расскажите о чём ваша работа"
+                error={errors.description}
+                title="Описание работы"
+              />
             </div>
           </div>
+        </div>
 
-          <SecondButton>Добавить работу</SecondButton>
-        </form>
-      
+        <SecondButton>Добавить работу</SecondButton>
+      </form>
     </>
   );
 };

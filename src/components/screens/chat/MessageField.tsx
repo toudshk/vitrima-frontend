@@ -7,8 +7,12 @@ import { MessagesService } from "@/services/messages/messages.service";
 import { useParams } from "next/navigation";
 import React, { FC, useCallback, useState } from "react";
 import { useMutation } from "react-query";
-import { useMessages } from "./useMessage";
 import styles from "./Chat.module.scss";
+interface IMessage {
+  chatId: string
+  text: string
+  sender: string
+}
 const MessageField: FC<{
   currentChat: any;
   setMessages: any;
@@ -20,7 +24,7 @@ const MessageField: FC<{
   const { user } = useAuth();
   const mutation = useMutation(
     "create message",
-    (message) => MessagesService.createMessage(message),
+    (message:IMessage ) => MessagesService.createMessage(message),
     {
       onError(error) {
        },
@@ -35,7 +39,7 @@ const MessageField: FC<{
     (e: React.FormEvent) => {
       e.preventDefault();
       const message = {
-        sender: user?._id,
+        sender: user!._id,
         text: newMessage,
         chatId: currentChat._id,
       };

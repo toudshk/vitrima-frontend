@@ -12,11 +12,13 @@ export interface IWorkType
 }
 
 export interface ISubType{
+
     _id: string 
     title: string 
     image: string
     description: string 
     workTypeId: string 
+    label?:string
 }
 export interface IBuildingTechnique{
     _id: string

@@ -9,7 +9,7 @@ export interface IOption {
 }
 
 export interface ISelect extends IFieldProps {
-	options: Options<IOption>
+	options: any
 	isMulti?: boolean
 	field: ControllerRenderProps<any, any>
 	isLoading?: boolean

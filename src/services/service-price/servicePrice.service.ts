@@ -10,7 +10,7 @@ import { IServicePriceEditInput } from "@/components/screens/settings-profile/se
 export const ServicePriceService = {
 	
 
-	async getByContractor(id: string) {
+	async getByContractor(id: any) {
 		
 		return axiosClassic.get<IServicePrice[]>(getServicePrice(`/by-contractor/${id}`))
 	},

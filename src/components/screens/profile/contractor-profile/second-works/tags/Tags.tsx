@@ -16,7 +16,7 @@ const Tags: FC<ITag> = ({ tagData, isLoading , title}) => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  const uniqueTags = Array.from(new Set(tagData.map(tag => tag._id)));
+  const uniqueTags = Array.from(new Set(tagData.map((tag: { _id: any }) => tag._id)));
 
   return (
     <div className='mb-16'>
@@ -25,7 +25,7 @@ const Tags: FC<ITag> = ({ tagData, isLoading , title}) => {
       
 
       {uniqueTags.map(tagId => {
-        const tag = tagData.find(tag => tag._id === tagId);
+        const tag = tagData.find((tag: { _id: any }) => tag._id === tagId);
 
         return (
           <div key={tag._id} className={styles.tag}>

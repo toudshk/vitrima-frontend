@@ -1,8 +1,5 @@
-import { IWork } from "@/components/shared/types/work.types";
 
-import Image from "next/image";
 import { FC, useEffect, useRef, useState } from "react";
-import SkeletonLoader from "../skeleton-loader/skeletonLoader";
 import ModalWindow from "./modal-window/ModalWindow";
 import { DialogProps } from "@mui/material";
 import Masonry from 'react-masonry-css'

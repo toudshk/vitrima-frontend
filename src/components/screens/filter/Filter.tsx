@@ -7,6 +7,7 @@ import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 import { useSubTypes } from "../add-work/useSubTypes";
 import { usePathname } from 'next/navigation'
  import styles from './Filter.module.scss'
+import { ISubType } from "@/components/shared/types/work.types";
 type Anchor = "right";
 
 export default function Filter() {
@@ -21,8 +22,7 @@ export default function Filter() {
   const { data: subTypes, isLoading: isSubTypeLoading } = useSubTypes(
     typeId
   );
-  const [currentSubType, setCurrentSubType] = useState(null);
-
+  const [currentSubType, setCurrentSubType] = useState<ISubType | null>(null);
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -58,7 +58,7 @@ export default function Filter() {
             currentSubType !== null && (
               <Image
 
-                src={currentSubType?.image}
+                src={currentSubType.image}
                 width={300}
                 height={200} 
                 alt=""

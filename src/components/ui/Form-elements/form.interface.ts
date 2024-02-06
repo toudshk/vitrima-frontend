@@ -12,7 +12,7 @@ type TypeInputPropsField = InputHTMLAttributes<HTMLInputElement> & IFieldProps
 export interface IField extends TypeInputPropsField {}
 export interface IUploadField {
 	folder?: string
-	image?: string
+	image?: any
 	onChange: (...event: any[]) => void
 	placeholder: string
 	error?: FieldError

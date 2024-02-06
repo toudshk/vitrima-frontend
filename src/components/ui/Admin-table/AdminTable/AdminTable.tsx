@@ -9,7 +9,7 @@ import AdminTableHeader from './AdminTableHeader'
 import AdminTableItem from './AdminTableItem'
 
 interface IAdminTable {
-	tableItems: ITableItem[]
+	tableItems: any
 	headerItems: string[]
 	isLoading: boolean
 	removeHandler: (id: string) => void
@@ -28,7 +28,7 @@ const AdminTable: FC<IAdminTable> = ({
 			{isLoading ? (
 				<SkeletonLoader count={1} height={48} className="mt-4" />
 			) : tableItems.length ? (
-				tableItems.map((tableItem) => (
+				tableItems.map((tableItem: ITableItem) => (
 					<AdminTableItem
 						key={tableItem._id}
 						tableItem={tableItem}

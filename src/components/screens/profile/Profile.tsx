@@ -1,10 +1,7 @@
 "use client";
-import { UserService } from "@/services/user/user.service";
 import ContractorProfile from "./contractor-profile/ContractorProfile";
 
 import ApplicantProfile from "./applicant-profile/ApplicantProfile";
-
-import { useQuery } from "react-query";
 
 import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 import { useUser } from "./useUser";

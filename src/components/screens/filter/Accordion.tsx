@@ -15,7 +15,7 @@ import { IFilterInput } from "./Filter.interface";
 import { useGallery } from "../main-page/UseGallery";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFilter, updateFilter } from "@/store/work/filter.slice";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import {
   Checkbox,
   FormControlLabel,
@@ -71,12 +71,19 @@ const useStyles = makeStyles({
     },
   },
 });
+interface ControlledAccordionsProps {
+  setCurrentSubType: any; // Adjust the type based on your actual implementation
+  subTypes: any; // Adjust the type based on your actual implementation
+}
 
-export default function ControlledAccordions({ setCurrentSubType, subTypes }) {
+export default function ControlledAccordions({
+  setCurrentSubType,
+  subTypes,
+}: ControlledAccordionsProps) {
   const pathname = usePathname().substring(1);
   const classes = useStyles();
   const [expanded, setExpanded] = useState<string[]>([]);
-  const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValue, setSelectedValue] = useState<string | null>(null);
 
   const { control, handleSubmit, reset } = useForm<IFilterInput>({
     mode: "onChange",
@@ -88,7 +95,7 @@ export default function ControlledAccordions({ setCurrentSubType, subTypes }) {
   const [localMaxPrice, setLocalMaxPrice] = useState<number | undefined>(
     undefined
   );
-  const [selectedSubTypes, setSelectedSubTypes] = useState<string[]>([]);
+  const [selectedSubTypes, setSelectedSubTypes] = useState<string>("");
 
   const [selectedBuildingTechnique, setSelectedBuildingTechnique] = useState<
     string[]
@@ -99,10 +106,10 @@ export default function ControlledAccordions({ setCurrentSubType, subTypes }) {
     const selectedIds = selectedBuildingTechnique.map(
       (option: { value: any }) => option.value
     );
-    setSelectedBuildingTechnique(selectedIds.join(","));
+    setSelectedBuildingTechnique(selectedIds);
   };
 
-  const [contractorType, setContractorType] = useState(null);
+  const [contractorType, setContractorType] = useState<string | null>(null);;
 
   const dispatch = useDispatch();
   const { minPrice, maxPrice } = useSelector(selectFilter);
@@ -133,7 +140,6 @@ export default function ControlledAccordions({ setCurrentSubType, subTypes }) {
     maxPrice,
     subTypes: selectedSubTypes,
     contractorType,
-
     location,
   });
 
@@ -159,8 +165,10 @@ export default function ControlledAccordions({ setCurrentSubType, subTypes }) {
   return (
     <div className={styles.accordionBlock}>
       <form
-        onSubmit={(e) => { e.preventDefault(); handleUpdateButtonClick(); }}
-       
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleUpdateButtonClick();
+        }}
       >
         <Accordion
           expanded={expanded.includes("panel1")}
@@ -214,7 +222,7 @@ export default function ControlledAccordions({ setCurrentSubType, subTypes }) {
                 className={classes.horizontalToggleButton}
               >
                 <Checkbox
-                  onChange={handleChangeType}
+                  
                   className={classes.checkbox}
                   checked={selectedValue === "INDIVIDUAL"}
                 />
@@ -225,7 +233,6 @@ export default function ControlledAccordions({ setCurrentSubType, subTypes }) {
                 className={classes.horizontalToggleButton}
               >
                 <Checkbox
-                  onChange={handleChangeType}
                   className={classes.checkbox}
                   checked={selectedValue === "LEGAL"}
                 />
@@ -258,7 +265,7 @@ export default function ControlledAccordions({ setCurrentSubType, subTypes }) {
                 <DynamicSelect
                   error={error}
                   field={field}
-                  options={subTypes || []}
+                  options={subTypes}
                   isMulti
                   onSelectChange={handleSubTypesChange}
                   setCurrentSubType={setCurrentSubType}
@@ -281,37 +288,38 @@ export default function ControlledAccordions({ setCurrentSubType, subTypes }) {
           >
             <p className={styles.title}>Расположение</p>
           </AccordionSummary>
-          <AccordionDetails className={classes.contentAccordion}  onKeyDown={(e) => e.stopPropagation()}>
-  <Controller
-    name="location"
-    control={control}
-    render={({ field, fieldState: { error } }) => (
-      <AddressSuggestions
-      count={4}
-        inputProps={{
-          placeholder: "Начните вводить область",
-          tabIndex: 0,
-          className: "border  border-gray-400 w-full px-3 text-xl py-3 rounded-2xl bg-gray-300 transition-colors focus-within:border-primary  "
-           
-        }}
-        token={DADATA_KEY}
-        onSubmit={(e) => { e.preventDefault(); handleUpdateButtonClick(); }}
-        onChange={(newValue) => {
-          // Проверьте данные в консоли
-          handleLocationChange(newValue);
-        }}
-        value={field.value}
-
-        filterFromBound="region"
-        filterToBound="region"
-        filterLocations={[{ country: "россия" }]}
-      />
-    )}
-    rules={{
-      required: "Выбор",
-    }}
-  />
-</AccordionDetails>
+          <AccordionDetails
+            className={classes.contentAccordion}
+            onKeyDown={(e) => e.stopPropagation()}
+          >
+            <Controller
+              name="location"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <AddressSuggestions
+                  count={4}
+                  inputProps={{
+                    placeholder: "Начните вводить область",
+                    tabIndex: 0,
+                    className:  
+                      "border  border-gray-400 w-full px-3 text-xl py-3 rounded-2xl bg-gray-300 transition-colors focus-within:border-primary  ",
+                  }}
+                  token={DADATA_KEY}
+                   onChange={(newValue) => {
+                    // Проверьте данные в консоли
+                    handleLocationChange(newValue);
+                  }}
+                  value={field.value}
+                  filterFromBound="region"
+                  filterToBound="region"
+                  filterLocations={[{ country: "россия" }]}
+                />
+              )}
+              rules={{
+                required: "Выбор",
+              }}
+            />
+          </AccordionDetails>
         </Accordion>
 
         {pathname === "architecture" && (
@@ -351,7 +359,7 @@ export default function ControlledAccordions({ setCurrentSubType, subTypes }) {
         )}
 
         <div className="flex gap-5 ">
-          <SecondButton type="submit"  >Применть</SecondButton>
+          <SecondButton type="submit">Применть</SecondButton>
           <button
             className="text-primary border border-primary px-[3vw] rounded-2xl text-xl"
             type="reset"

@@ -37,14 +37,14 @@ const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
     const { data: tags, isLoading: isTagsLoading } = useSelectTags();
     const { data: workTypes, isLoading: isWorkTypeLoading } = useTypeWorks();
   const { data: buildingTechniques } = useBuildingTechnique();
+  const [selectedItem, setSelectedItem] = useState<any>(null);
 
-  const [selectedItem, setSelectedItem] = useState<IWorkType | null>(null);
  
   const {
     data: subTypes,
     isLoading: isSubTypeLoading,
     refetch,
-  } = useSubTypes(selectedItem?._id);
+  } = useSubTypes(selectedItem!._id);
 
   useEffect(() => {
     // Fetch subtypes whenever selectedItem changes

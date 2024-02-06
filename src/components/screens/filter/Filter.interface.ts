@@ -4,5 +4,5 @@ export interface IFilterInput{
     subTypes?: any  
     contractorType?: any
     buildingTechnique?: any
-    location?: string
+    location?: any
 }

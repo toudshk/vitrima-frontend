@@ -7,7 +7,7 @@ import { IFilterInput } from "../filter/Filter.interface";
 import { useEffect, useState } from "react";
 
 export const useGallery = (slug: string, filters: IFilterInput) => {
-  console.log(filters)
+  
   const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } =
     useInfiniteQuery({
       queryKey: ["get works by workType", slug, filters],
@@ -21,7 +21,7 @@ export const useGallery = (slug: string, filters: IFilterInput) => {
         
         return workData;
       },
-      getNextPageParam: (lastPage) => lastPage?.pages?.pageParam + 1,
+      getNextPageParam: (lastPage) => lastPage?.data.pages?.pageParam + 1,
     });
 
   return { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage };

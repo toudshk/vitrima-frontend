@@ -23,7 +23,7 @@ const ServiceAndPrice: FC = () => {
     mode: "onChange",
   });
 
-  const { data, isLoading, deleteAsync, onSubmit } = useServicePrice(setValue);
+  const { data, isLoading, deleteAsync, onSubmit } = useServicePrice();
 
 
   const [creating, setCreating] = useState(false);
@@ -75,7 +75,7 @@ const ServiceAndPrice: FC = () => {
                       },
                     })}
                     placeholder="Цена"
-                    error={errors.price} // Исправлено с errors.title на errors.price
+                   
                     style={{
                       width: "100%",
                       border: "none",

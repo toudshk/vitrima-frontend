@@ -9,7 +9,7 @@ import { useMutation, useQuery } from 'react-query'
 
 export const useChats = (id: string) => {
 	const { user } = useAuth();
-	const [nonEmptyChats, setNonEmptyChats] = useState([]);
+	const [nonEmptyChats, setNonEmptyChats] = useState<any>([]);
   
 	useQuery(
 	  ['chat list', id],
@@ -17,7 +17,7 @@ export const useChats = (id: string) => {
 		const chats = await ChatsService.getChats(id);
   
 		const chatsWithMessages = await Promise.all(
-		  chats.map(async (chat) => {
+		  chats.map(async (chat: { _id: string }) => {
 			const messages = await MessagesService.getMessages(chat._id);
 			return { ...chat, hasMessages: messages.length > 0 };
 		  })

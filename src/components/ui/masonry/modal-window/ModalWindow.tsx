@@ -20,7 +20,7 @@ import ModalButtons from "./ModalButtons";
 import { usePathname } from "next/navigation";
 interface IModalWindow {
   open: any;
-  workData: IWork;
+  workData: any;
   handleClose: any;
   isLoading: any;
   scroll: any;

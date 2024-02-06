@@ -31,7 +31,7 @@ export const registerApplicant = createAsyncThunk<
       return response.data;
     } catch (error) {
       
-      toast.error(error.response.data.message)
+      toast.error("Ошибка, попробуйте снова")
      
       return thunkApi.rejectWithValue(error);
     }
@@ -55,7 +55,7 @@ export const registerContractor = createAsyncThunk<
      
       return response.data;
     } catch (error) {
-      toast.error(error.response.data.message)
+      toast.error("Ошибка, попробуйте снова")
      
       return thunkApi.rejectWithValue(error);
     }
@@ -70,14 +70,8 @@ export const login = createAsyncThunk<IAuthResponse, InterfaceEmailPassword>(
      
       return response.data;
     }catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
-        const errorMessage = error.response.data.message;
-        const errorToShow = Array.isArray(errorMessage) ? errorMessage[0] : errorMessage;
-    
-        toast.error(errorToShow || 'Не удалось получить текст ошибки.');
-      } else {
         console.error('Не удалось получить текст ошибки.');
-      }
+      
       return thunkApi.rejectWithValue(error);
     }
   }

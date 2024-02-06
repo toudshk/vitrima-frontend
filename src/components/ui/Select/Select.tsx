@@ -25,7 +25,7 @@ const Select: FC<ISelect> = ({
 	field,
 	isLoading,
 }) => {
-	const onChange = (newValue: ValueType<IOption, boolean>) => {
+	const onChange = (newValue: any) => {
 		field.onChange(
 			isMulti
 				? (newValue as IOption[]).map((item: IOption) => item.value)

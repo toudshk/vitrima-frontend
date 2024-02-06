@@ -41,17 +41,16 @@ const ServicePriceEdit: FC = () => {
               />
 
               <Field
-                 {...register("price", {
+                {...register("price", {
                   required: "Пожалуйста, укажите цену",
                   pattern: {
-                      value: /^\d+$/,
-                      message: "Цена должна быть числом",
+                    value: /^\d+$/,
+                    message: "Цена должна быть числом",
                   },
-              })}
-              placeholder="Цена"
-              error={errors.price} // Исправлено с errors.title на errors.price
-              style={{ width: "31%" }}
-              title="Цена"
+                })}
+                placeholder="Цена"
+                style={{ width: "31%" }}
+                title="Цена"
               />
             </div>
 

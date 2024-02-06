@@ -1,6 +1,5 @@
 "use client"
 
-import { ITableItem } from '@/components/ui/Admin-table/AdminTable/table.interface'
 import { getAdminUrl } from '@/config/url.config'
 import { useDebounce } from '@/hooks/useDebounce'
 import { TagService } from '@/services/tag/tag.service'
@@ -20,7 +19,7 @@ export const useTags = () => {
 		{
 			select: ({ data }) =>
 				data.map(
-					(tag): ITableItem => ({
+					(tag) => ({
 						_id: tag._id,
 						editUrl: getAdminUrl(`tag/edit/${tag._id}`),
 						items: [tag.title],

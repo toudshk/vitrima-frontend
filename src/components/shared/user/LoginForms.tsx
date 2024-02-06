@@ -62,7 +62,6 @@ const LoginForms: FC<IAuthFields> = () => {
       <AuthFields
         register={registerInput}
         formState={formState}
-        selectedButton={selectedButton}
       />
 
 <div className={styles.authButtons}>

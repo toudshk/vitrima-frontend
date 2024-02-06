@@ -1,16 +1,18 @@
 "use client";
 import { FC, useState } from "react";
-import clsx from 'clsx'
-import styles from './ApplicantProfile.module.scss'
+import clsx from "clsx";
+import styles from "./ApplicantProfile.module.scss";
 import Subscription from "./Subscription";
 import { IApplicant } from "@/components/shared/types/user.types";
 import MasonryGallery from "@/components/ui/masonry/MasonryGallery";
 
-interface IDataApplicant  {
-  data: IApplicant
-} 
+interface IDataApplicant {
+  data: any;
+}
 
-const ApplicantMenu:FC<IDataApplicant> = ({data}) => {
+
+
+const ApplicantMenu: FC<IDataApplicant> = ({ data }) => {
   const [showDownloading, setShowDownloading] = useState(true);
   const [activeTab, setActiveTab] = useState("downloading");
 
@@ -24,29 +26,35 @@ const ApplicantMenu:FC<IDataApplicant> = ({data}) => {
     }
   };
   return (
-<div>
     <div>
-    <ul className={styles.navigation}>
-      <li className={clsx({ [styles.active]: activeTab === "downloading" })}>
-        <button onClick={() => handleNavigation("downloading")}>
-          Подписки
-        </button>
-      </li>
-      <li className={clsx({ [styles.active]: activeTab === "price-service" })}>
-        <button onClick={() => handleNavigation("price-service")}>
-          Сохранённые
-        </button>
-      </li>
-    </ul>
+      <div>
+        <ul className={styles.navigation}>
+          <li
+            className={clsx({ [styles.active]: activeTab === "downloading" })}
+          >
+            <button onClick={() => handleNavigation("downloading")}>
+              Подписки
+            </button>
+          </li>
+          <li
+            className={clsx({ [styles.active]: activeTab === "price-service" })}
+          >
+            <button onClick={() => handleNavigation("price-service")}>
+              Сохранённые
+            </button>
+          </li>
+        </ul>
+      </div>
+      {showDownloading ? (
+        <div>
+          {data.subscriptions?.map((sub: any) => (
+            <Subscription key={sub._id} data={sub} />
+          ))}
+        </div>
+      ) : (
+        <MasonryGallery data={data?.saved} isLoading={false}  />
+      )}
     </div>
-{showDownloading ? (
-  <div>
-     {data.subscriptions?.map((sub) => (
-          <Subscription key={sub._id} data={sub} />
-        ))}
-  </div>
-) : (<MasonryGallery data={data?.saved} isLoading={undefined} />)}
-</div>
   );
 };
 

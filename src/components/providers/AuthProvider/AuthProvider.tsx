@@ -28,7 +28,7 @@ const AuthProvider: FC<TypeComponentAuthFields> = ({
 	useEffect(() => {
 		const refreshToken = Cookies.get('refreshToken')
 		if (!refreshToken && user) logout()
-	}, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
+	}, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	return !isOnlyAdmin && !isOnlyContractor && isOnlyContractor ? (
 		<>{children}</>

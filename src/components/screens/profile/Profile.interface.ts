@@ -28,7 +28,6 @@ export interface ContractorProfileProps {
 }
 
 export interface ApplicantProfileProps {
-  data: IUser;
-  
+  data: any;
   id: string
 }

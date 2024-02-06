@@ -38,8 +38,7 @@ const Navigation = () => {
               <Link className="mr-[2vw]" href={"/chat"}>
                 ЧАТ
               </Link>
-              {pathname === "architecture" || pathname === "interior" && <Filter />}
-
+              {(pathname === "architecture" || pathname === "interior") && <Filter />}
               <DropdownMenu />
             </div>
           </>

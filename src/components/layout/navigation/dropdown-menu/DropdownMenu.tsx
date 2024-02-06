@@ -23,7 +23,7 @@ const DropdownMenu = () => {
       className={clsx(styles.dropdown, { [styles.open]: menuOpen })}
       onClick={() => setMenuOpen(!menuOpen)}
     >
-      <Avatar id={user?._id} />
+      <Avatar id={user!._id} />
       <div className={clsx(styles.dropdownItems, { [styles.open]: menuOpen })}>
         <a href={`/profile/${user?._id}`}> <PersonIcon/> Профиль</a>
         <a onClick={logoutHandler}><LogoutIcon/> Выход</a>

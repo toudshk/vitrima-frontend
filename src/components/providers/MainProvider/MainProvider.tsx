@@ -13,7 +13,7 @@ import { ToastContainer } from "react-toastify";
 // eslint-disable-next-line react-hooks/rules-of-hooks
 const queryClient = new QueryClient();
 
-const MainProvider: FC<TypeComponentAuthFields> = ({ children }) => {
+const MainProvider: FC<{children: any}> = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
       

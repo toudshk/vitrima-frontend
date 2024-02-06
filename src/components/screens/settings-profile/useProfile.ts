@@ -5,6 +5,7 @@ import { SubmitHandler, UseFormSetValue } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { ISettingsProfileInput } from "./settings.interface";
 import { toast } from "react-toastify";
+import { IContractor } from "@/components/shared/types/user.types";
 
 export const useProfile = (
   setValue: any
@@ -21,8 +22,8 @@ export const useProfile = (
 
       // Пройдемся по массиву и установим значения для каждого поля
       fieldsToSet.forEach((field) => {
-        if (data[field]) {
-          setValue(field, data[field]);
+        if (data[field as keyof IContractor]) {
+          setValue(field, data[field as keyof IContractor]);
         }
       });
     },
@@ -36,9 +37,9 @@ export const useProfile = (
     (data: ISettingsProfileInput) => UserService.updateProfile(data),
     
     {
-      onError: (error, data) => {
-      console.log(data)
-        toast.error(error)
+      onError: () => {
+      
+        toast.error("Произошла ошибка, повторите снова")
       },
       onSuccess(){
       toast.success('Данные профиля обновлены')
