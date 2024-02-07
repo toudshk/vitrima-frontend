@@ -3,14 +3,14 @@
   justify-content: center;
 
   .images {
-    @apply max-w-[50%];
+    @apply max-w-[50%] ;
     display: grid;
     grid-column-gap: 12px;
    
    
   }
   .smallImages{
-    @apply flex mb-10;
+    @apply flex mb-10 w-[50%];
   }
 
   .text {

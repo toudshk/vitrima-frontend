@@ -9,21 +9,14 @@ import smallImg3 from "../../../common/images/ui/mainPage/smallImage3.jpg";
 import smallImg4 from "../../../common/images/ui/mainPage/smallImage4.jpg";
 const OnboardCards = () => {
   return (
-    <div className='max-w-[1736px] mx-auto'>
+    <div className="max-w-[1736px] mx-auto">
       <div className={styles.content}>
         <div className={styles.images}>
-         
           <div className={styles.smallImages}>
-            <Image
-              src={smallImg}
-              height={245}
-              width={245}
-              alt={""}
-              
-            />
-            <Image src={smallImg2} height={245} width={245} alt={""} />
+            <Image src={smallImg} height={440} width={440} alt={""}draggable={false} />
+            <Image src={smallImg2} height={440} width={440} alt={""}draggable={false} />
           </div>
-          <Image src={bigImg} height={960} width={472} alt={""} />
+          <Image src={bigImg} height={500} width={1000} alt={""}draggable={false} />
         </div>
         <div className={styles.text}>
           <h1>Подрядчики</h1>
@@ -53,16 +46,10 @@ const OnboardCards = () => {
         </div>
         <div className={styles.images}>
           <div className={styles.smallImages}>
-            <Image
-           
-              src={smallImg3}
-              height={245}
-              width={245}
-              alt={""}
-            />
-            <Image src={smallImg4} height={245} width={245} alt={""} />
+            <Image src={smallImg3} height={440} width={440} alt={""}  draggable={false}/>
+            <Image src={smallImg4} height={440} width={440} alt={""} draggable={false}/>
           </div>
-          <Image src={bigImg2} height={960} width={472} alt={""} />
+          <Image src={bigImg2} height={500} width={1000} alt={""}draggable={false} />
         </div>
       </div>
     </div>
