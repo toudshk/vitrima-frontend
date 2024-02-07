@@ -7,14 +7,14 @@
     display: grid;
     grid-column-gap: 12px;
    
-    grid-template-columns: repeat(2, 1fr);
+   
   }
   .smallImages{
-    @apply grid gap-3;
+    @apply flex mb-10;
   }
 
   .text {
-    @apply text-primary text-left mt-[7vw] mx-[4vw] max-w-[50%];
+    @apply text-primary text-left mt-[1vw] mx-[4vw] max-w-[50%];
 
     width: 960px;
 

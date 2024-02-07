@@ -45,24 +45,30 @@
   @apply text-center text-white;
 
   .iconContent {
-@apply h-[80vh];
+@apply h-[80vh] relative;
 
-    background: url("../../../../components/common/images/ui/mainPage/MainPageCover.png")
+    background: url("../../../../components/common/images/ui/mainPage/MainPageCover.jpg")
       no-repeat center center;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     padding-top: 30vh;
     padding-bottom: 30vh;
+    &::before {
+      @apply absolute inset-0 bg-primary opacity-50;
+      content: '';
+      z-index: -1;
+    } 
 
     img {
 
       @apply w-[30vw] ;
       margin: 0 auto;
+      z-index: 1;
     }
 
     h4 {
-      @apply mt-[3vw] text-[1.5vw];
+      @apply mt-[3vw] text-[1.5vw] z-10;
     }
 
     @media (max-width: 700px) {

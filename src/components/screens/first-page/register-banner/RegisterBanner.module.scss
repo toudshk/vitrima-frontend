@@ -1,9 +1,10 @@
 .container{
-    background: url("../../../common/images/ui/mainPage/RegisterBannerBg.png") no-repeat center center;
+    background: url("../../../common/images/ui/mainPage/RegisterBanner.jpg") no-repeat center center;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  padding: 14vw 0px;
+  padding: 18vw 0px;
+ 
   
   div{
     @apply text-left ml-[10vw];
@@ -11,15 +12,15 @@
    
 
     h1{
-        @apply mb-[3vw] text-[4vw] font-bold text-primary;
+        @apply mb-[3vw] text-[3.8vw] font-bold text-primary ;
       
     }
 
     a{
-        @apply text-primary text-[1.3vw] font-semibold;
-        border: 0.2vw solid #000;
-        border-radius: 1vw;
-        padding: 0.7vw 2.2vw;
+        @apply text-primary text-[1vw] font-semibold rounded-xl;
+        border: 0.1vw solid #000;
+      
+        padding: 0.7vw 1vw;
     }
   }
   @media (max-width: 700px) {
