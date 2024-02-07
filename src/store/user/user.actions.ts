@@ -29,9 +29,9 @@ export const registerApplicant = createAsyncThunk<
       toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее уже отправлено письмо")
      
       return response.data;
-    } catch (error) {
+    } catch (error:any) {
       
-      toast.error("Ошибка, попробуйте снова")
+      toast.error(error);
      
       return thunkApi.rejectWithValue(error);
     }
@@ -54,8 +54,9 @@ export const registerContractor = createAsyncThunk<
       toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее отправлено уже письмо")
      
       return response.data;
-    } catch (error) {
-      toast.error("Ошибка, попробуйте снова")
+    } catch (error: any) {
+      
+      toast.error(error.message);
      
       return thunkApi.rejectWithValue(error);
     }
@@ -70,7 +71,7 @@ export const login = createAsyncThunk<IAuthResponse, InterfaceEmailPassword>(
      
       return response.data;
     }catch (error) {
-        console.error('Не удалось получить текст ошибки.');
+      toast.error("Неправильный логин или пароль");
       
       return thunkApi.rejectWithValue(error);
     }
