@@ -4,17 +4,18 @@
 .tags {
   @apply flex;
   .tag {
-    @apply text-[1vw] py-[0.5vw] px-[0.7vw] border-gray-300 bg-gray-300 rounded-[0.4vw] mr-[1vw] mb-3 text-gray-600;
+    @apply text-[1vw] py-[0.5vw] px-[0.7vw] border-gray-300 bg-gray-300 rounded-lg mr-[1vw] mb-3 text-gray-600;
   }
 }
 
 @media (max-width: 1000px) {
   .header {
-    @apply text-[3vw];
+    @apply text-lg;
   }
   .tags {
     .tag {
-      @apply text-[2vw];
+      @apply text-base py-1 px-2;
     }
   }
 }
+

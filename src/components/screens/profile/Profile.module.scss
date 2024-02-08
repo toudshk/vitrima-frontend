@@ -1,9 +1,9 @@
 .header {
-  @apply flex justify-between items-center h-[5vw];
- 
+  @apply flex justify-between items-center h-[5vw] mx-4;
+
   .leftBlock {
     @apply flex h-full items-center;
-   
+
     > img {
       @apply image-like-bg rounded-full w-[3.3vw] h-[3.3vw] max-w-[72px] max-h-[72px];
     }
@@ -15,14 +15,6 @@
       p {
         @apply text-4xl;
       }
-    }
-    @media (max-width: 1000px) {
-       img {
-        @apply w-[10vw] h-[10vw];
-      }
-       p {
-        @apply text-[3vw];
-       }
     }
   }
 
@@ -39,12 +31,27 @@
         @apply opacity-50;
       }
     }
-    @media (max-width: 500px) {
-      .firstLink {
-        @apply text-[2vw]
+  }
+}
+@media (max-width: 700px) {
+  .header {
+    @apply  mb-10;
+
+    .leftBlock {
+      > img {
+        @apply w-[15vw] h-[15vw];
       }
-      .secondLink{
-        @apply text-[2vw] ;
+      > p {
+        @apply text-[5vw];
+      }
+    }
+    .rightBlock {
+      @apply flex flex-col w-[40%] ;
+      .firstLink {
+        @apply text-[2.5vw] mr-0 mb-2 text-center;
+      }
+      .secondLink {
+        @apply text-[2.5vw] text-center;
       }
     }
   }

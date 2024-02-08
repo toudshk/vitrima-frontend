@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styles from './Tags.module.scss'
 import { useWorks } from '@/components/screens/profile/useWorks'
+import SkeletonLoader from '@/components/ui/skeleton-loader/skeletonLoader'
 
 interface ITag { 
   tagData: any
@@ -14,7 +15,7 @@ const Tags: FC<ITag> = ({ tagData, isLoading , title}) => {
 
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <SkeletonLoader />
   }
   const uniqueTags = Array.from(new Set(tagData.map((tag: { _id: any }) => tag._id)));
 

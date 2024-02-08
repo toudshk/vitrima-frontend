@@ -52,7 +52,7 @@ const MasonryGallery: FC<{ data: any; isLoading: boolean  }> = ({
 
   if (!Array.isArray(data)) {
     // Handle the case where data is not an array (or is undefined)
-    return <div>No data available.</div>;
+    return <div>.</div>;
   }
 
   return (

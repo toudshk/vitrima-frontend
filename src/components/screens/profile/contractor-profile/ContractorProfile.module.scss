@@ -6,26 +6,18 @@
       @apply text-[2vw] text-gray-600;
     }
     .rightBlock {
-      @apply flex;
+      @apply flex  text-[1.15vw];
 
       .subscribers {
-        @apply flex mr-[2vw] text-[1.15vw];
+        @apply flex mr-[2vw];
         > p {
           @apply text-gray-500 mr-[0.5vw];
         }
       }
       .inn {
-        @apply flex text-[1.15vw];
+        @apply flex;
         > p {
           @apply text-gray-500 mr-[0.5vw];
-        }
-      }
-      @media (max-width: 500px) {
-        .subscribers {
-          @apply text-[2vw];
-        }
-        .inn {
-          @apply text-[2vw];
         }
       }
     }
@@ -45,6 +37,21 @@
             @apply text-xl;
           }
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .wrapper {
+    @apply mt-[15vh];
+    .blockTitle {
+      @apply mx-4;
+      .leftBlock {
+        @apply text-base;
+      }
+      .rightBlock {
+        @apply text-sm;
       }
     }
   }
