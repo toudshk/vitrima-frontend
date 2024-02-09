@@ -50,7 +50,7 @@ const Chat: FC = () => {
     setMenuOpen(!isMenuOpen);
   };
   const [isMenuOpen, setMenuOpen] = useState(false);
-  console.log(isMenuOpen);
+
   const handleToggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
@@ -72,7 +72,7 @@ const Chat: FC = () => {
       <div className={styles.chatBox}>
         <div className={styles.buttonBlock}>
         <SecondButton  onClick={handleToggleMenu}>
-          Собеседники
+        {'< Чаты'}
         </SecondButton>
         </div>
         <div className={styles.chatBoxWrapper}>

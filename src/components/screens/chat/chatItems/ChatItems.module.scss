@@ -1,26 +1,42 @@
-.item{
-    @apply flex p-3 h-[90px] items-center cursor-pointer;
-    &:hover{
-        @apply bg-gray-300;
+.item {
+  @apply flex p-3 h-[90px] items-center cursor-pointer;
+  &:hover {
+    @apply bg-gray-300;
+  }
+  &::active {
+    @apply bg-gray-400;
+  }
+  .avatar {
+    @apply image-like-bg rounded-full w-[60px] h-[60px] mr-4;
+  }
+  .textBlock {
+    @apply w-full relative;
+    .nickname {
+      @apply text-2xl;
     }
-    &::active{
-        @apply bg-gray-400;
+    .lastMessage {
+      @apply text-lg flex justify-between w-full;
+      .text {
+      }
+      .timestamp {
+@apply absolute top-3 right-2;
+      }
     }
-    .avatar{
-        @apply  image-like-bg rounded-full w-[60px] h-[60px] mr-4 ; 
-    }
-    .nickname{
-        @apply text-2xl;
-    }
+  }
 }
 @media (max-width: 700px) {
-    .item{
-        @apply h-[50px];
-        .avatar{
-            @apply min-w-[28px] h-7 mr-2;
-        }
-        .nickname{
-            @apply text-lg;
-        }
+  .item {
+    @apply h-[55px];
+
+    .avatar {
+      @apply w-10 h-10 mr-2;
     }
+    .textBlock {
+      .nickname {
+        @apply text-xl;
+      }
+      .lastMessage {
+      }
+    }
+  }
 }

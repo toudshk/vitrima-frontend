@@ -9,11 +9,10 @@
 
   @media (max-width: 700px) {
     .chatMenu {
-      @apply absolute h-full bg-gray-300 z-20;
-      left: -300px;
-      .title{
-        @apply text-xl;
-        
+      @apply absolute h-[100vh] pt-3 pl-2 bg-gray-300 z-20 w-[80%];
+      left: -400px;
+      .title {
+        @apply text-2xl;
       }
     }
 
@@ -21,19 +20,17 @@
       left: 0 !important;
     }
   }
-  
+
   .buttonBlock {
-    @apply w-full h-[38px] bg-blue-300   ;
+    @apply w-[24%]  h-[35px];
     display: none;
     .toggleButton {
-      
       position: fixed;
       z-index: 10;
       position: absolute;
       top: 10px;
       left: 10px;
       cursor: pointer;
-     
     }
     @media (max-width: 700px) {
       @apply block;
@@ -54,7 +51,7 @@
       }
       .noConversationText {
         position: absolute;
-margin-left: 10%;
+        margin-left: 10%;
         margin-top: 40%;
         font-size: 50px;
         color: rgb(224, 220, 220);
@@ -92,6 +89,9 @@ margin-left: 10%;
           cursor: pointer;
         }
       }
+    }
+    .buttonBlock{
+      @apply mt-4;
     }
   }
 }
