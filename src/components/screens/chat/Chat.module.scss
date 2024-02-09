@@ -1,6 +1,6 @@
 .messenger {
   @apply flex max-w-7xl mx-auto relative;
-  height: 81vh;
+  height: 80vh;
   .chatMenu {
     @apply mt-[1vw] pr-12 text-3xl;
     width: 50%;
@@ -50,7 +50,7 @@
       justify-content: space-between;
       position: relative;
       @media (max-width: 700px) {
-        @apply h-[80vh];
+        @apply h-full;
       }
       .noConversationText {
         position: absolute;

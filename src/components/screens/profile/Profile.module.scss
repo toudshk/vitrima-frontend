@@ -39,7 +39,7 @@
 
     .leftBlock {
       > img {
-        @apply w-[15vw] h-[15vw];
+        @apply w-[15vw] h-[15vw] mr-2;
       }
       > p {
         @apply text-[5vw];
@@ -48,10 +48,10 @@
     .rightBlock {
       @apply flex flex-col w-[40%] ;
       .firstLink {
-        @apply text-[2.5vw] mr-0 mb-2 text-center;
+        @apply text-[2.7vw] mr-0 mb-2 text-center;
       }
       .secondLink {
-        @apply text-[2.5vw] text-center;
+        @apply text-[2.7vw] text-center;
       }
     }
   }
