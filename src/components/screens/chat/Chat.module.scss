@@ -7,22 +7,8 @@
     transition: left 0.3s ease;
   }
 
-  @media (max-width: 700px) {
-    .chatMenu {
-      @apply absolute h-[100vh] pr-0 pt-3 pl-2 bg-gray-300 z-20 w-[80%];
-      left: -400px;
-      .title {
-        @apply text-2xl;
-      }
-    }
-
-    .menuOpen {
-      left: 0 !important;
-    }
-  }
-
   .buttonBlock {
-    @apply w-[24%]  h-[35px];
+    @apply w-[24%]   h-[35px] mt-20;
     display: none;
     .toggleButton {
       position: fixed;
@@ -37,11 +23,11 @@
     }
   }
   .chatBox {
-    @apply w-full;
+    @apply w-full h-[80vh];
 
     .chatBoxWrapper {
       @apply mt-[1vw];
-      height: 90vh;
+      height: 50vh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -60,7 +46,7 @@
       }
       .chatBoxTop {
         @apply overflow-y-scroll;
-        height: 90vh;
+        height: 70vh;
         overflow: auto;
         scrollbar-width: thin; /* для Firefox */
         scrollbar-color: transparent transparent; /* для Firefox */
@@ -83,15 +69,30 @@
           width: 90%;
         }
         .chatSubmitButton {
-         
           border: none;
           border-radius: 5px;
           cursor: pointer;
         }
       }
     }
-    .buttonBlock{
+    .buttonBlock {
       @apply mt-4;
+    }
+  }
+}
+@media (max-width: 700px) {
+  .messenger {
+    @apply h-[70vh];
+    .chatMenu {
+      @apply absolute h-[92vh] pr-0 pt-3 pl-2 bg-gray-300 z-20 w-[80%];
+      left: -400px;
+      .title {
+        @apply text-2xl;
+      }
+    }
+
+    .menuOpen {
+      left: 0 !important;
     }
   }
 }

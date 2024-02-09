@@ -10,9 +10,9 @@
     @apply image-like-bg rounded-full w-[60px] h-[60px] mr-4;
   }
   .textBlock {
-    @apply w-[80%] relative;
+    @apply w-[80%] relative -mt-4;
     .nickname {
-      @apply text-2xl;
+      @apply text-2xl font-semibold;
     }
     .lastMessage {
       @apply text-lg flex justify-between w-full -mt-1;
@@ -43,7 +43,7 @@
       .lastMessage {
         @apply w-full ;
         .text {
-       @apply w-[60%] text-base -mt-2; 
+       @apply w-[60%] text-base -mt-1; 
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
