@@ -30,7 +30,7 @@
 }
 @media (max-width: 700px) {
   .item {
-    @apply h-[55px];
+    @apply h-[55px] w-full mb-2;
 
     .avatar {
       @apply w-10 h-10 mr-2;
@@ -40,6 +40,16 @@
         @apply text-xl;
       }
       .lastMessage {
+        @apply w-full;
+        .text {
+       @apply w-[60%];
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .timestamp {
+          @apply absolute top-3 right-2;
+        }
       }
     }
   }

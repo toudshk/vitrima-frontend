@@ -44,7 +44,7 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser }) => {
     } else if (messageDate.isSame(yesterday, 'day')) {
       return messageDate.format('DD.MM');
     } else if (messageDate.isAfter(lastWeek)) {
-      return messageDate.format('dddd');
+      return messageDate.format('dd');
     } else {
       return messageDate.format('DD.MM');
     }
