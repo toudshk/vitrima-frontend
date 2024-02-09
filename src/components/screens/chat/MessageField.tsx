@@ -47,7 +47,7 @@ const MessageField: FC<{
       mutation.mutate(message);
 
       if (inputRef.current) {
-        inputRef.current.style.height = 'auto';
+        inputRef.current.style.height = '40px';
       }
 
       // Optionally, you can also clear the input value after submitting the form
@@ -67,7 +67,8 @@ const MessageField: FC<{
       </div>
       <IconButton
         onClick={handleSubmit}
-        disabled={!newMessage.trim()} // Отключить кнопку, если newMessage не содержит никаких символов после удаления пробелов
+        disabled={!newMessage.trim()} 
+        // Отключить кнопку, если newMessage не содержит никаких символов после удаления пробелов
       >
         <SendIcon className={styles.chatSubmitButton} />
       </IconButton>

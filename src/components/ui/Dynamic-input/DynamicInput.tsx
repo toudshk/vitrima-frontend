@@ -34,13 +34,13 @@ interface DynamicInputProps {
   
       // Check if the new value is empty, then reset the textarea height
       if (inputRef.current && !newValue.trim()) {
-        inputRef.current.style.height = 'auto';
+        inputRef.current.style.height = '40px';
       }
     };
   
     const adjustTextareaHeight = () => {
       if (inputRef.current) {
-        inputRef.current.style.height = 'auto';
+        inputRef.current.style.height = '40px';
         inputRef.current.style.height = inputRef.current.scrollHeight + 'px';
       }
     };
