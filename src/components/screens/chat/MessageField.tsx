@@ -5,33 +5,34 @@ import { useAuth } from "@/hooks/useAuth";
 import { useReactQuerySubscription } from "@/hooks/useReactQuerySubscription";
 import { MessagesService } from "@/services/messages/messages.service";
 import { useParams } from "next/navigation";
-import React, { FC, useCallback, useState } from "react";
+import React, { FC, useCallback, useRef, useState } from "react";
 import { useMutation } from "react-query";
 import styles from "./Chat.module.scss";
+import { IconButton } from "@mui/material";
+import DynamicInput from "@/components/ui/Dynamic-input/DynamicInput";
 interface IMessage {
-  chatId: string
-  text: string
-  sender: string
+  chatId: string;
+  text: string;
+  sender: string;
 }
 const MessageField: FC<{
   currentChat: any;
   setMessages: any;
   messages: any;
 }> = ({ currentChat, setMessages, messages }) => {
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const [newMessage, setNewMessage] = useState("");
-  const send = useReactQuerySubscription();
-  const { id } = useParams();
+  console.log(newMessage);
   const { user } = useAuth();
   const mutation = useMutation(
     "create message",
-    (message:IMessage ) => MessagesService.createMessage(message),
+    (message: IMessage) => MessagesService.createMessage(message),
     {
-      onError(error) {
-       },
+      onError(error) {},
       onSuccess(createdMessage) {
         setMessages([...messages, createdMessage]);
         setNewMessage("");
-       },
+      },
     }
   );
 
@@ -44,6 +45,13 @@ const MessageField: FC<{
         chatId: currentChat._id,
       };
       mutation.mutate(message);
+
+      if (inputRef.current) {
+        inputRef.current.style.height = 'auto';
+      }
+
+      // Optionally, you can also clear the input value after submitting the form
+      setNewMessage('');
     },
     [newMessage, user, currentChat, mutation, setMessages, messages]
   );
@@ -51,16 +59,19 @@ const MessageField: FC<{
   return (
     <>
       <div className={styles.chatMessageInput}>
-        <Field
+        <DynamicInput
           placeholder="Напишите сообщение..."
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-         
-        />
+          inputValue={newMessage}
+          setInputValue={setNewMessage}
+          inputRef={inputRef}        />
       </div>
- 
-        <SendIcon className={styles.chatSubmitButton} onClick={handleSubmit} fontSize="large" />
-
+      <IconButton
+        className={styles.chatSubmitButton}
+        onClick={handleSubmit}
+        disabled={!newMessage.trim()} // Отключить кнопку, если newMessage не содержит никаких символов после удаления пробелов
+      >
+        <SendIcon className={styles.chatSubmitButton} />
+      </IconButton>
     </>
   );
 };

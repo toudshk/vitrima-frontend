@@ -13,7 +13,6 @@ const Field = forwardRef<HTMLInputElement, IField>(
         <p className={styles.subtitle}>{title}</p>
 
         <div className={clsx(styles.common, styles.field)} style={style}>
-          
           <input ref={ref} type={type} {...rest} placeholder={placeholder} />
           {error && <div className={styles.error}>{error.message}</div>}
         </div>

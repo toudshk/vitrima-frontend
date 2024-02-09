@@ -1,5 +1,5 @@
 .item {
-  @apply flex p-3 h-[90px] items-center cursor-pointer;
+  @apply flex p-3 h-[90px] w-[30vw] items-center cursor-pointer;
   &:hover {
     @apply bg-gray-300;
   }
@@ -10,16 +10,20 @@
     @apply image-like-bg rounded-full w-[60px] h-[60px] mr-4;
   }
   .textBlock {
-    @apply w-full relative;
+    @apply w-[80%] relative;
     .nickname {
       @apply text-2xl;
     }
     .lastMessage {
       @apply text-lg flex justify-between w-full;
       .text {
+     @apply w-[60%];
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .timestamp {
-@apply absolute top-3 right-2;
+        @apply absolute top-3 right-2;
       }
     }
   }

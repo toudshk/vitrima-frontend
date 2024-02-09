@@ -1,0 +1,31 @@
+.textArea {
+  @apply relative border border-gray-400 rounded-2xl transition-colors focus-within:border-primary;
+
+  resize: none;
+  overflow-y: auto;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+  max-height: 25vh;
+  font-size: 16px;
+  &:active{
+    @apply border-gray-400;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
+
+.textArea::-webkit-scrollbar {
+    width: 0.5em; /* ширина полосы прокрутки */
+  }
+  
+  .textArea::-webkit-scrollbar-track {
+    background: transparent; /* цвет фона трека (пустота, чтобы не было видно) */
+  }
+  
+  .textArea::-webkit-scrollbar-thumb {
+    background-color: transparent; /* цвет полосы прокрутки (пустота, чтобы не было видно) */
+  }
