@@ -1,6 +1,6 @@
 .messenger {
-  @apply flex max-w-7xl mx-auto relative;
-  height: 80vh;
+  @apply flex max-w-7xl mx-auto relative  h-[90vh];
+
   .chatMenu {
     @apply mt-[1vw] pr-12 text-3xl;
     width: 50%;
@@ -23,18 +23,16 @@
     }
   }
   .chatBox {
-    @apply w-full h-[80vh];
+    @apply w-[120vw] h-[80vh];
 
     .chatBoxWrapper {
-      @apply mt-[1vw];
-      height: 50vh;
+      @apply mt-[1vw]  h-[90vh];
+
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
-      @media (max-width: 700px) {
-        @apply h-[75vh];
-      }
+
       .noConversationText {
         position: absolute;
         margin-left: 10%;
@@ -45,33 +43,36 @@
         user-select: none;
       }
       .chatBoxTop {
-        @apply overflow-y-scroll;
-        height: 70vh;
+        @apply overflow-y-scroll h-[220vh];
+
         overflow: auto;
         scrollbar-width: thin; /* для Firefox */
         scrollbar-color: transparent transparent; /* для Firefox */
         -ms-overflow-style: none; /* для IE и Edge */
 
-        padding-right: 10px;
         &::-webkit-scrollbar {
-          width: 6px;
+          width: 0px;
         }
         &::-webkit-scrollbar-thumb {
           background-color: transparent;
         }
       }
-
-      .chatBoxBottom {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .chatMessageInput {
-          width: 90%;
-        }
-        .chatSubmitButton {
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
+      .chatBoxBottomContainer {
+        @apply bg-white w-full h-[24%];
+        z-index: 10;
+        .chatBoxBottom {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .chatMessageInput {
+            width: 90%;
+          }
+          .chatSubmitButton {
+            @apply w-10 h-10 -mt-2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          }
         }
       }
     }
@@ -82,12 +83,19 @@
 }
 @media (max-width: 700px) {
   .messenger {
-    @apply h-[70vh];
     .chatMenu {
       @apply absolute h-[92vh] pr-0 pt-3 pl-2 bg-gray-300 z-20 w-[80%];
       left: -400px;
       .title {
         @apply text-2xl;
+      }
+    }
+    .chatBox {
+      .chatBoxWrapper {
+        @apply h-[84vh];
+        .chatBoxBottom {
+          @apply w-full;
+        }
       }
     }
 

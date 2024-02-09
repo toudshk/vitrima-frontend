@@ -66,7 +66,6 @@ const MessageField: FC<{
           inputRef={inputRef}        />
       </div>
       <IconButton
-        className={styles.chatSubmitButton}
         onClick={handleSubmit}
         disabled={!newMessage.trim()} // Отключить кнопку, если newMessage не содержит никаких символов после удаления пробелов
       >

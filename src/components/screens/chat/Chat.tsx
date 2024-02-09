@@ -88,13 +88,15 @@ const Chat: FC = () => {
                   </div>
                 ))}
               </div>
+              <div className={styles.chatBoxBottomContainer}>
               <div className={styles.chatBoxBottom}>
+                
                 <MessageField
                   currentChat={currentChat}
                   setMessages={setMessages}
                   messages={messages}
                 />
-              </div>
+              </div></div>
             </>
           ) : (
             <div className={styles.noConversationText}>
