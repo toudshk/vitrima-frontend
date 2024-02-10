@@ -120,7 +120,7 @@ const AddWork: FC = () => {
               )}
             />
           </div>
-          <div className="flex">
+          <div className={styles.mainBlock}>
             <div className={styles.leftBlock}>
               <Controller
                 name="images"

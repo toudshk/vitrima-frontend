@@ -1,5 +1,5 @@
 .form {
-  @apply mt-12 max-w-[1734px] mx-auto;
+  @apply mt-12 max-w-[1734px] mx-auto px-5;
   .fields {
     @apply items-center flex-wrap  mt-20;
     .topBlock {
@@ -7,19 +7,38 @@
       > div {
         @apply w-1/4;
       }
-     
     }
-
-    .leftBlock {
-      @apply pr-10;
-      width: 70%;
-    }
-    .rightBlock {
-      width: 30%;
+    .mainBlock {
+      @apply flex;
+      .leftBlock {
+        @apply pr-10;
+        width: 70%;
+      }
+      .rightBlock {
+        width: 30%;
+      }
     }
   }
-
   > button {
     @apply mt-10;
+  }
+}
+
+@media (max-width: 700px) {
+  .form {
+  
+     .fields {
+     
+      .mainBlock {
+        @apply block;
+        .leftBlock {
+          @apply w-full;
+         }
+        .rightBlock {
+          @apply w-full;
+        }
+      }
+    }
+ 
   }
 }

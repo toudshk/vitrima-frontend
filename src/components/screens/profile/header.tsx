@@ -46,7 +46,7 @@ const {onSubmit} = useChat(user!._id, id)
         </div>
       ) : (
         <div>
-          <SecondButton className='text-xs' onClick={onSubmit}>написать собщение</SecondButton>
+          <SecondButton className='text-xs' onClick={onSubmit}>написать</SecondButton>
         </div>
       )}
     </div>
