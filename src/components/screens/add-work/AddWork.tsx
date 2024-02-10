@@ -34,7 +34,7 @@ const AddWork: FC = () => {
     mode: "onChange",
   });
 
-  const { onSubmit } = useWorks(setValue);
+  const { onSubmit } = useWorks();
 
   const { data: tags, isLoading: isTagsLoading } = useSelectTags();
   const { data: workTypes, isLoading: isWorkTypeLoading } = useTypeWorks();
@@ -70,8 +70,9 @@ const AddWork: FC = () => {
                   value={selectedItem?._id || field.value}
                   exclusive
                   onChange={(event, value: string) => {
-                    const selectedWorkType = workTypes?.find((item) => item._id === value) ?? null;
-                  
+                    const selectedWorkType =
+                      workTypes?.find((item) => item._id === value) ?? null;
+
                     field.onChange(selectedWorkType);
                     setSelectedItem(selectedWorkType);
                   }}
@@ -89,36 +90,42 @@ const AddWork: FC = () => {
                 </ToggleButtonGroup>
               )}
             />
-            {selectedItem &&
-              selectedItem._id === "656c0a67fad5c309cd6a9853" && (
+            <div className={styles.rightTopBlock}>
+              {selectedItem &&
+                selectedItem._id === "656c0a67fad5c309cd6a9853" && (
+                  <div className={styles.buildingTechniqueBlock}>
+                    <Controller
+                      name="buildingTechnique"
+                      control={control}
+                      render={({ field, fieldState: { error } }) => (
+                        <DynamicSelect
+                          error={error}
+                          field={field}
+                          placeholder="Технология строительства"
+                          options={buildingTechniques || []}
+                          isMulti={false}
+                        />
+                      )}
+                    />
+                  </div>
+                )}
+              <div className={styles.subTypeBlock}>
                 <Controller
-                  name="buildingTechnique"
+                  name="subTypes"
                   control={control}
                   render={({ field, fieldState: { error } }) => (
                     <DynamicSelect
                       error={error}
                       field={field}
-                      placeholder="Технология строительства"
-                      options={buildingTechniques || []}
-                      isMulti={false}
+                      placeholder="Стили"
+                      options={subTypes || []}
+                      isLoading={isSubTypeLoading}
+                      isMulti
                     />
                   )}
                 />
-              )}
-            <Controller
-              name="subTypes"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <DynamicSelect
-                  error={error}
-                  field={field}
-                  placeholder="Стили"
-                  options={subTypes || []}
-                  isLoading={isSubTypeLoading}
-                  isMulti
-                />
-              )}
-            />
+              </div>
+            </div>
           </div>
           <div className={styles.mainBlock}>
             <div className={styles.leftBlock}>
@@ -153,13 +160,7 @@ const AddWork: FC = () => {
                 error={errors.title}
                 title="Название работы"
               />
-              <SlugField
-                generate={() =>
-                  setValue("slug", generateSlug(getValues("title")))
-                }
-                register={register}
-                error={errors.slug}
-              />
+
               <Field
                 {...register("price", {
                   required: "Цена обязательна",
@@ -183,13 +184,15 @@ const AddWork: FC = () => {
                   />
                 )}
               />
-
-              <Field
-                {...register("description")}
-                placeholder="Расскажите о чём ваша работа"
-                error={errors.description}
-                title="Описание работы"
-              />
+              <div>
+                <p className={styles.titleTextArea}>Описание работы</p>
+                <textarea
+                  className={styles.textArea}
+                  {...register("description")}
+                  placeholder="Расскажите о чём ваша работа"
+                  title="Описание работы"
+                />
+              </div>
             </div>
           </div>
         </div>

@@ -9,4 +9,13 @@
 		}
 	}
 }
+@media (max-width: 700px) {
+	.selectContainer{
+		> label{
+			>span {
+				@apply text-base;
+			}
+		}
+	}
+}
 

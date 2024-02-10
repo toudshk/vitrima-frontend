@@ -9,12 +9,7 @@ import { IOption, ISelect } from './Select.interface'
 
 const animatedComponents = makeAnimated()
 
-const customStyles = {
-    multiValue: () => ({
-        
-        borderRadius: "12px",
-    }),
-}
+
 
 const Select: FC<ISelect> = ({
 	placeholder,
@@ -47,8 +42,7 @@ const Select: FC<ISelect> = ({
 			<label>
 				<span>{placeholder}</span>
 				<ReactSelect
-				styles={customStyles}
-				classNamePrefix="custom-select"
+				
 					placeholder={''}
 					options={options}
 					value={getValue()}

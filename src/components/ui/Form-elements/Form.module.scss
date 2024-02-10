@@ -1,111 +1,92 @@
 .button {
-	@apply  py-2 px-10;
+  @apply py-2 px-10;
 }
 
 .common {
-	@apply relative border border-gray-400 rounded-2xl transition-colors focus-within:border-primary;
+  @apply relative border border-gray-400 rounded-2xl transition-colors focus-within:border-primary;
 
-	> label {
-		@apply block;
+  > label {
+    @apply block;
 
-		> span {
-			@apply text-xs uppercase text-gray-600 block;
-		}
-	}
+    > span {
+      @apply text-xs uppercase text-gray-600 block;
+    }
+  }
 }
-.subtitle{
-	@apply text-xl mb-[1vw]
+.subtitle {
+  @apply text-xl mb-[1vw];
 }
 .field {
-	@apply text-left mb-[1.5vh] ;
+  @apply  mb-[1.5vh]; ;
 
-	input {
-		@apply outline-border-none focus:ring-0 bg-transparent text-gray-700 w-full  px-[1vw]  min-h-[6vh] text-base; 
-	}
+  input {
+    @apply outline-border-none focus:ring-0 bg-transparent text-gray-700 w-full  h-10 px-[1vw]  text-base;
+   
+  }
 }
 
 .uploadField {
-	@apply relative ;
-	
-		
+  @apply relative;
 
-		> .uploadImageContainer {
-			@apply shrink-0 relative h-[20vw] border border-gray-400 ;
+  > .uploadImageContainer {
+    @apply shrink-0 relative h-[20vw] border border-gray-400;
 
-			img {
-				@apply  rounded-md ;
-				object-fit: contain; /* или другое значение, например, cover */
-				object-position: center center;
-			}
+    img {
+      @apply rounded-md;
+      object-fit: contain; /* или другое значение, например, cover */
+      object-position: center center;
+    }
 
-			> span {
-				@apply animate-fade;
-			}
-			.uploadContainerSvg{
-				position: absolute;
-				margin: auto;
-				left: 0;
-				top: 0;
-				bottom: 0;
-				right: 0;
-			}
-		}
+    > span {
+      @apply animate-fade;
+    }
+    .uploadContainerSvg {
+      position: absolute;
+      margin: auto;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+    }
+  }
 
-		> label {
-			@apply block mr-6 w-[12.5%];
+  > label {
+    @apply block mr-6;
 
-			.error {
-				@apply relative -bottom-3;
-			}
+    .error {
+      @apply relative -bottom-3;
+    }
 
-			> span {
-				@apply text-xs uppercase text-gray-600 block mb-4;
-			}
+    > span {
+      @apply text-xs uppercase text-gray-600 block mb-4;
+    }
 
-			> input {
-				@apply block  mx-0 text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary opacity-70 file:text-white transition-opacity;
-			}
+    > input {
+      @apply block w-[25%]   mx-0 text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary opacity-70 file:text-white transition-opacity;
+    }
 
-			&:hover > input {
-				@apply opacity-100;
-			}
-		}
-	}
-
+    &:hover > input {
+      @apply opacity-100;
+    }
+  }
+}
 
 .error {
-	@apply absolute -bottom-6 left-0 text-sm w-full text-primary;
+  @apply absolute -bottom-6 left-0 text-sm w-full text-primary;
 }
 @media (max-width: 700px) {
-	.uploadField{
-		.uploadImageContainer{
-			@apply h-[60vw];
-		}
-		>label {
-			@apply w-[35%]
-		}
+  .uploadField {
+    .uploadImageContainer {
+      @apply h-[60vw];
+    }
+  }
+  .common {
+	@apply  rounded-xl mb-6;
+
+	> label {
+	
+	  > span {
+	 }
 	}
-}
-
-
-.editorWrapper {
-	@apply border-0;
-
-	.wrapper {
-		.toolbar {
-			@apply mt-4 outline-border-none rounded-t-lg mb-0 bg-gray-600 bg-opacity-40 p-3;
-
-			> div {
-				@apply m-0;
-
-				> div {
-					@apply outline-border-none shadow-none transition-colors border-gray-450 bg-gray-450 hover:bg-gray-300 mx-1.5;
-				}
-			}
-		}
-
-		.editor {
-			@apply h-96 border rounded-b-lg border-gray-700 px-4 text-gray-450 overflow-hidden;
-		}
-	}
+  }
 }
