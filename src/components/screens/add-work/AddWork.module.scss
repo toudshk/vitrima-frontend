@@ -46,7 +46,11 @@
         .rightTopBlock {
           @apply w-full;
           .subTypeBlock {
-            @apply w-[80%];
+            @apply w-[45%];
+          }
+          .buildingTechniqueBlock{
+            @apply w-[60%];
+           
           }
         }
       }

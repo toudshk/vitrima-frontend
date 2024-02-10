@@ -63,8 +63,12 @@
 
     > input {
       @apply block w-[25%]   mx-0 text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary opacity-70 file:text-white transition-opacity;
+      @media (max-width: 700px) {
+      @apply w-[45%]
+      }
+  
     }
-
+    
     &:hover > input {
       @apply opacity-100;
     }
