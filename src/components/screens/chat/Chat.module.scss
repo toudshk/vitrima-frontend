@@ -43,7 +43,7 @@
         user-select: none;
       }
       .chatBoxTop {
-        @apply overflow-y-scroll h-[220vh];
+        @apply overflow-y-scroll ;
 
         overflow: auto;
         scrollbar-width: thin; /* для Firefox */
@@ -85,7 +85,7 @@
   .messenger {
     .chatMenu {
       @apply absolute h-[92vh] pr-0 pt-3 pl-2 bg-gray-300 z-20 w-[80%];
-      left: -400px;
+      left: -600px;
       .title {
         @apply text-2xl;
       }
