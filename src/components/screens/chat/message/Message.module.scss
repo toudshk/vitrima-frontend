@@ -2,6 +2,8 @@
 .message {
   display: flex;
   width: fit-content;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   max-width:500px;
   margin: 8px;
   padding: 10px;
@@ -34,7 +36,10 @@
 .messageText {
 @apply text-xl;
   margin-right: 15px;
-  overflow-wrap: break-word; /* Разрывать слова для переноса текста на новую строку */
+
+  word-break: break-all;
+  overflow-wrap: break-word; /* For additional support */
+  max-width: 100%;
 }
 
 /* Стиль нижней части сообщения */
@@ -53,6 +58,7 @@
   }
   .messageText{
     @apply text-sm mr-2;
+    
   }
   .messageBottom{
     @apply text-[10px]
