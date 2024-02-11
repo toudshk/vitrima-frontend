@@ -58,7 +58,7 @@
         }
       }
       .chatBoxBottomContainer {
-        @apply bg-white w-full h-[24%];
+        @apply bg-white w-full ;
         z-index: 10;
         .chatBoxBottom {
           display: flex;
