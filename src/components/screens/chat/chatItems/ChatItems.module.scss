@@ -1,5 +1,5 @@
 .item {
-  @apply flex p-3 h-[90px] w-[30vw] items-center cursor-pointer;
+  @apply flex p-3 h-[90px] w-full items-center cursor-pointer;
   &:hover {
     @apply bg-gray-300;
   }

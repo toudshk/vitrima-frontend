@@ -8,7 +8,7 @@
   }
 
   .buttonBlock {
-    @apply w-[24%]   h-[35px] mt-20;
+    @apply w-[24%]   h-[35px] mt-[50%];
     display: none;
     .toggleButton {
       position: fixed;
@@ -93,7 +93,7 @@
     }
     .chatBox {
       .chatBoxWrapper {
-        @apply h-[85vh];
+        @apply h-[75vh];
         .chatBoxTop{
           @apply h-[180%]
         }
