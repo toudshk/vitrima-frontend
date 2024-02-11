@@ -43,7 +43,7 @@
         user-select: none;
       }
       .chatBoxTop {
-        @apply overflow-y-scroll ;
+        @apply overflow-y-scroll h-[300%] ;
 
         overflow: auto;
         scrollbar-width: thin; /* для Firefox */
@@ -93,6 +93,9 @@
     .chatBox {
       .chatBoxWrapper {
         @apply h-[85vh];
+        .chatBoxTop{
+          @apply h-[220%]
+        }
         .chatBoxBottom {
           @apply w-full;
         }
