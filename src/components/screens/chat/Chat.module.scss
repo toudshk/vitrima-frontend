@@ -83,7 +83,7 @@
 }
 @media (max-width: 700px) {
   .messenger {
-    @apply h-[80vh];
+    @apply h-[70vh];
     .chatMenu {
       @apply absolute h-[92vh] pr-0 pt-3 pl-2 bg-gray-300 z-20 w-[80%];
       left: -600px;
