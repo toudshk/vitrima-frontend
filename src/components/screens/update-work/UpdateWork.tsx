@@ -120,7 +120,7 @@ const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
               />
               
             </div>
-            <div className={styles.mainBlocks}>
+            <div className={styles.mainBlock}>
               <div className={styles.leftBlock}>
                 <Controller
                   name="images"

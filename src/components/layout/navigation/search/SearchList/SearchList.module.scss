@@ -13,6 +13,7 @@
     &:hover .textBlock {
       @apply text-white;
     }
+    
 
     .textBlock {
       @apply ml-8 text-gray-600 truncate text-[2vw] h-full my-[1vh];
@@ -31,6 +32,39 @@
       }
       .link {
         @apply text-white  text-[2vh];
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .list {
+    @apply w-[80vw] py-4 px-4 ;
+    > a {
+      @apply mb-2 ;
+      >img{
+        @apply w-[130px];
+      }
+   
+  
+      .textBlock {
+        @apply ml-2  text-sm h-full my-[1vh];
+        text-transform: capitalize;
+        &:last-child {
+          width: 70%;
+        }
+        .author {
+          @apply flex items-center mt-2;
+          .profileImg {
+            @apply image-like-bg rounded-full h-[20px] w-[20px] mr-1;
+          }
+          p {
+            @apply text-xs;
+          }
+        }
+        .link {
+          @apply  text-sm;
+        }
       }
     }
   }

@@ -2,7 +2,7 @@
   @apply flex max-w-7xl mx-auto relative  h-[90vh];
 
   .chatMenu {
-    @apply mt-[1vw] pr-12 text-3xl;
+    @apply mt-[1vw] pr-12 text-3xl ;
     width: 50%;
     transition: left 0.3s ease;
   }
@@ -23,10 +23,10 @@
     }
   }
   .chatBox {
-    @apply w-[120vw] h-[80vh];
+    @apply w-[120vw]  h-full;
 
     .chatBoxWrapper {
-      @apply mt-[1vw]  h-[90vh];
+      @apply mt-[1vw]  h-full;
 
       display: flex;
       flex-direction: column;
@@ -43,7 +43,7 @@
         user-select: none;
       }
       .chatBoxTop {
-        @apply overflow-y-scroll h-[300%] ;
+        @apply overflow-y-scroll h-[120%] ;
 
         overflow: auto;
         scrollbar-width: thin; /* для Firefox */
@@ -83,7 +83,7 @@
 }
 @media (max-width: 700px) {
   .messenger {
-    @apply h-[70vh];
+    @apply h-[95vh];
     .chatMenu {
       @apply absolute h-[92vh] pr-0 pt-3 pl-2 bg-gray-300 z-20 w-[80%];
       left: -600px;
@@ -95,7 +95,7 @@
       .chatBoxWrapper {
         @apply h-[75vh];
         .chatBoxTop{
-          @apply h-[180%]
+          @apply h-[120%];
         }
         .chatBoxBottom {
           @apply w-full;

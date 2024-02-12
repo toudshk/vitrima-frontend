@@ -1,28 +1,68 @@
 .form {
-  @apply mt-12 max-w-[1734px] mx-auto px-3;
+  @apply mt-20 max-w-[1734px] mx-auto px-5;
   .fields {
-    @apply items-center flex  mt-20;
+    @apply items-center flex-wrap  mt-20;
     .topBlock {
-      @apply flex  gap-10 justify-between;
-      > div {
-        @apply w-1/4;
+      @apply flex justify-between gap-10;
+
+      .rightTopBlock {
+        @apply flex w-[60%];
+        .buildingTechniqueBlock {
+          @apply mr-3 w-full;
+        }
+        .subTypeBlock {
+          @apply w-full;
+        }
       }
     }
-    .mainBlocks {
-      @media (max-width: 800px) {
-        @apply block;
-      }
+    .mainBlock {
+      @apply flex;
       .leftBlock {
         @apply pr-10;
         width: 70%;
       }
       .rightBlock {
         width: 30%;
+        .titleTextArea {
+          @apply text-xl mb-[1vw];
+        }
+        .textArea {
+          @apply border border-gray-400 bg-transparent rounded-2xl text-gray-700 w-full pt-2  px-[1vw]  text-base;
+          height: 150px;
+
+          resize: none;
+        }
       }
     }
   }
+}
 
-  > button {
-    @apply mt-10;
+@media (max-width: 700px) {
+  .form {
+    @apply my-16;
+    .fields {
+      .topBlock {
+        @apply block;
+        .rightTopBlock {
+          @apply w-full;
+          .subTypeBlock {
+            @apply w-[45%];
+          }
+          .buildingTechniqueBlock{
+            @apply w-[60%];
+           
+          }
+        }
+      }
+      .mainBlock {
+        @apply block;
+        .leftBlock {
+          @apply w-full pr-0;
+        }
+        .rightBlock {
+          @apply w-full;
+        }
+      }
+    }
   }
 }

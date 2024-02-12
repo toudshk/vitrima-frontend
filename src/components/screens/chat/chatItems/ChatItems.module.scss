@@ -30,26 +30,26 @@
 }
 @media (max-width: 700px) {
   .item {
-    @apply h-[55px] w-full mb-2;
+    @apply h-[65px] w-full mb-2   border-b-[0.1vw] border-[#bfbfbf];
 
     .avatar {
       @apply w-10 h-10 mr-2;
     }
     .textBlock {
-      @apply -mt-3;
+      @apply -mt-3 ;
       .nickname {
         @apply text-xl ;
       }
       .lastMessage {
         @apply w-full ;
         .text {
-       @apply w-[60%] text-base -mt-1; 
+       @apply w-[60%] text-base; 
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
         }
         .timestamp {
-          @apply absolute top-3 right-2;
+          @apply absolute text-sm top-3 right-2;
         }
       }
     }
