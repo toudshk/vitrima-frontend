@@ -17,6 +17,8 @@ const ModalButtons: FC<{ workData: IWork }> = ({ workData }) => {
 
   const userId = user?._id || "";
   const { data: userData } = useUser(userId);
+  
+  
   const { deleteAsync } = useWorks();
   const { onSubmit: addSavedWorkSubmit } = useAddSavedWork(
     userId,
@@ -39,10 +41,13 @@ const ModalButtons: FC<{ workData: IWork }> = ({ workData }) => {
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
+    const isSubscribed = userData?.subscriptions?.some((subscription: any) => subscription._id === workData?.contractorId._id);
+    
     setIsSubscribed(
-      userData?.subscriptions?.includes(workData?.contractorId._id) || false
+     isSubscribed ||false
     );
-    setIsSaved(userData?.saved?.includes(workData?._id) || false);
+    const isWorkSaved = userData?.saved?.some((savedWork:any) => savedWork._id === workData?._id);
+    setIsSaved(isWorkSaved || false);
   }, [userData, workData]);
 
   const handleSubscribe = async () => {
@@ -69,7 +74,7 @@ const ModalButtons: FC<{ workData: IWork }> = ({ workData }) => {
       {user?._id !== workData?.contractorId._id ? (
         <>
           <div className={styles.leftButtons}>
-            <button className={`${styles.secondButton} mr-[0.7vw]`}>
+            {/* <button className={`${styles.secondButton} mr-[0.7vw]`}>
               <div className={styles.icon}>
                 Отправить{" "}
                 <Image
@@ -80,7 +85,7 @@ const ModalButtons: FC<{ workData: IWork }> = ({ workData }) => {
                   width={16}
                 />
               </div>
-            </button>
+            </button> */}
             <button
               className={styles.secondButton}
               onClick={isSaved ? handleRemoveSavedWork : handleAddSavedWork}
