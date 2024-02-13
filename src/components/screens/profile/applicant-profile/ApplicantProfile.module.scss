@@ -55,9 +55,13 @@
 @media (max-width: 700px) {
   .wrapper {
     .navigation {
+      @apply  mb-6;
       > li {
         > button {
           @apply text-base mb-[1vw];
+          outline: none;
+  
+          text-decoration: none;
         }
         &.active {
           @apply border-b-[0.1vw]  border-gray-600 z-20 text-gray-700;
