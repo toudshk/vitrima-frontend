@@ -1,52 +1,51 @@
-.list {
-  @apply absolute w-full animate-fade z-10 bg-gray-300  rounded-md py-10 px-10 mt-[1vw];
 
-  top: calc(100% + 15px);
+  .list {
+    @apply absolute w-full animate-fade z-10 bg-gray-300  rounded-md py-10 px-10 mt-[1vw];
 
-  > a {
-    @apply flex items-center mb-4 relative bg-white rounded-2xl transition-all duration-300 ease-in-out;
+    top: calc(100% + 15px);
 
-    &:hover {
-      @apply bg-gray-400;
-    }
+    > a {
+      @apply flex items-center mb-4 relative bg-white rounded-2xl transition-all duration-300 ease-in-out;
 
-    &:hover .textBlock {
-      @apply text-white;
-    }
-    
-
-    .textBlock {
-      @apply ml-8 text-gray-600 truncate text-[2vw] h-full my-[1vh];
-      text-transform: capitalize;
-      &:last-child {
-        width: 70%;
+      &:hover {
+        @apply bg-gray-400;
       }
-      .author {
-        @apply flex items-center mt-[2vh];
-        .profileImg {
-          @apply image-like-bg rounded-full h-[30px] w-[30px] mr-3;
-        }
-        p {
-          @apply text-[1vw];
-        }
+
+      &:hover .textBlock {
+        @apply text-white;
       }
-      .link {
-        @apply text-white  text-[2vh];
+
+      .textBlock {
+        @apply ml-8 text-gray-600 truncate text-[2vw] h-full my-[1vh];
+        text-transform: capitalize;
+        &:last-child {
+          width: 70%;
+        }
+        .author {
+          @apply flex items-center mt-[2vh];
+          .profileImg {
+            @apply image-like-bg rounded-full h-[30px] w-[30px] mr-3;
+          }
+          p {
+            @apply text-[1vw];
+          }
+        }
+        .link {
+          @apply text-white  text-[2vh];
+        }
       }
     }
   }
-}
 
 @media (max-width: 700px) {
   .list {
-    @apply w-[80vw] py-4 px-4 ;
+    @apply w-[80vw] py-4 px-4;
     > a {
-      @apply mb-2 ;
-      >img{
+      @apply mb-2;
+      > img {
         @apply w-[130px];
       }
-   
-  
+
       .textBlock {
         @apply ml-2  text-sm h-full my-[1vh];
         text-transform: capitalize;
@@ -63,7 +62,7 @@
           }
         }
         .link {
-          @apply  text-sm;
+          @apply text-sm;
         }
       }
     }

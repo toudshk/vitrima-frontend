@@ -25,11 +25,12 @@ const Search: FC = () => {
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)
 	}
-
+	
 	return (
 		<div className={styles.wrapper}>
 			<SearchField searchTerm={searchTerm} handleSearch={handleSearch} />
-			{isSuccess && <SearchList works={popularWorks || []} />}
+		
+			{isSuccess && <SearchList works={popularWorks || []}  />}
 		</div>
 	)
 }

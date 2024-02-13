@@ -1,5 +1,5 @@
 .header {
-  @apply flex justify-between items-center h-[5vw] mx-4;
+  @apply flex justify-between items-center h-[5vw] mx-auto px-4 max-w-[1736px] ;
 
   .leftBlock {
     @apply flex h-full items-center;

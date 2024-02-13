@@ -7,6 +7,7 @@ import Image from "next/image";
 import { FC, useState } from "react";
 import checkMarkSvg from "@/app/assets/images/check-mark.svg";
 import plusMarkSvg from "@/app/assets/images/plus.svg";
+import styles from './ApplicantProfile.module.scss'
 interface ISubscription {
   nickname: string;
   email: string;
@@ -39,23 +40,23 @@ const Subscription: FC<IData> = ({ data }) => {
   };
 
   return (
-    <div className="mb-8 flex  justify-between">
-      <Link className="text-2xl font-semibold" href={`/profile/${data._id}`}>
+    <div className={styles.subscriptionTitle}>
+      <Link className={styles.title} href={`/profile/${data._id}`}>
         {data.nickname}
       </Link>
-    
+    <div className={styles.buttonBlock}>
         {isSubscribed ? (
-          <button  className="flex items-center text-xl font-semibold bg-primary text-white px-8 py-4 rounded-lg " onClick={handleUnsubscribe}>
-            <Image className="mr-4" src={checkMarkSvg} width={17} height={12} alt={""} />
+          <button  className={styles.firstButton} onClick={handleUnsubscribe}>
+            <Image className={styles.checkmark} src={checkMarkSvg} width={17} height={12} alt={""} />
             Вы подписаны
           </button>
         ) : (
-            <button className="flex items-center text-xl font-semibold  bg-primary text-white px-[39px] py-4 rounded-lg " onClick={handleSubscribe}>
-            <Image className="mr-4" src={plusMarkSvg} width={17} height={15} alt={""} />
+            <button className={styles.secondButton} onClick={handleSubscribe}>
+            <Image className={styles.checkmark} src={plusMarkSvg} width={17} height={15} alt={""} />
             Подписаться
           </button>
         )}
-     
+     </div>
     </div>
   );
 };

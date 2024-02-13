@@ -1,26 +1,30 @@
 .wrapper {
-  @apply max-w-[1736px] mx-auto;
+  @apply  mx-auto;
   overflow: visible; /* Разрешить видимость "выхода" за пределы .wrapper */
 
-  &::after {
-    content: '';
-    position: absolute;
-   top: 188px; /* Устанавливаем высоту линии и приподнимаем ее над содержимым .wrapper */
-    left: 0;
-    right: 0;
-    height: 1px; /* Высота вашего border */
-    background-color: #EAEAEA; /* Цвет вашего border */
-    z-index: -50;
-  }
+ 
   .header {
-
-    >p {
-        @apply border-b-[1px] border-gray-600 text-xl pt-20 w-[206px] z-20 mb-10;
+    @apply relative;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0.1vw; /* Высота вашего border */
+      background-color: #eaeaea; /* Цвет вашего border */
+      z-index: -50;
     }
-    
+    >p {
+        @apply border-b-[1px] border-gray-600 text-xl pt-20 w-[206px] z-20 mb-10 ml-[10%];
+      
+    }
+   
+      
   }
+  
   .fields {
-    @apply mx-auto w-3/6 mt-10;
+    @apply mx-auto w-3/6 mt-10 max-w-[1736px];
     
     .button {
       @apply bg-primary w-full text-white text-xl h-16 rounded-2xl;
