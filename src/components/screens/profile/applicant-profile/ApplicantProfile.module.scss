@@ -38,7 +38,7 @@
 
       justify-content: center;
       text-align: center;
-      .checkmark{
+      .checkmark {
         @apply mr-4;
       }
     }
@@ -46,30 +46,44 @@
       @apply flex items-center text-xl font-semibold  bg-primary text-white w-full py-4 rounded-lg;
       justify-content: center;
       text-align: center;
-      .checkmark{
+      .checkmark {
         @apply mr-4;
       }
     }
   }
 }
 @media (max-width: 700px) {
+  .wrapper {
+    .navigation {
+      > li {
+        > button {
+          @apply text-base mb-[1vw];
+        }
+        &.active {
+          @apply border-b-[0.1vw]  border-gray-600 z-20 text-gray-700;
+          margin-bottom: -0.5px;
+        }
+      }
+    }
+  }
+
   .subscriptionTitle {
-    @apply mb-3;
+    @apply mb-3 items-center;
     .title {
       @apply text-base;
     }
     .buttonBlock {
-      @apply w-[45%];
+      @apply w-[47%];
       .firstButton {
         @apply text-base px-3 py-2;
-        .checkmark{
-          @apply mr-2 h-3;
+        .checkmark {
+          @apply mr-2 h-2.5;
         }
       }
       .secondButton {
         @apply text-base px-5 py-2;
-        .checkmark{
-          @apply mr-2 h-3;
+        .checkmark {
+          @apply mr-2 h-2.5;
         }
       }
     }
