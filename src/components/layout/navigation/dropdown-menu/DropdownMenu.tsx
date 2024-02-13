@@ -6,7 +6,7 @@ import { useActions } from "@/hooks/useActions";
 import clsx from 'clsx'
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
-
+import { redirect } from 'next/navigation'
 
 const DropdownMenu = () => {
   const { user } = useAuth();
@@ -16,6 +16,7 @@ const DropdownMenu = () => {
   const logoutHandler = (e: React.MouseEvent) => {
     e.preventDefault();
     logout();
+    redirect('/')
   };
 
   return (
