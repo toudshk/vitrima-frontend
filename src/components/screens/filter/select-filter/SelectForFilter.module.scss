@@ -20,12 +20,23 @@
 }
 
 .itemBlock {
-  @apply flex ;
+  @apply flex;
   .infoButton {
     @apply z-50;
     display: none;
   }
   &:hover .infoButton {
     @apply block;
+  }
+}
+
+@media (max-width: 700px) {
+  .itemBlock {
+    
+    .infoButton {
+      @apply block  ;
+      z-index: 100;
+      
+    }
   }
 }

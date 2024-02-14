@@ -29,7 +29,7 @@
 @media (max-width: 700px) {
   .content {
     
-    @apply block mb-0;
+    @apply block mb-10;
     .images {
       @apply max-w-full;
       grid-column-gap: 2vw;
