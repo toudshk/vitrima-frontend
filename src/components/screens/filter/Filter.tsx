@@ -62,14 +62,14 @@ export default function Filter() {
                 width={300}
                 height={200} 
                 alt=""
-                className="transition-opacity opacity-0 duration-[0.7s] mb-[2vw] w-[17vw]"
+                className="transition-opacity opacity-0 duration-[0.7s] mb-[2vw] w-full"
         onLoadingComplete={(image) => image.classList.remove('opacity-0')}
               />
             )
           )}
 
-          <h2 className="text-[2vw] mb-[2vw]">{currentSubType?.label}</h2>
-          <p className="text-gray-600 text-[1.1vw]">{currentSubType?.description}</p>
+          <h2 className={styles.title}>{currentSubType?.label}</h2>
+          <p className={styles.subscription}>{currentSubType?.description}</p>
         </div>
       </div>
     </Box>

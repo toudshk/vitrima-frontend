@@ -1,14 +1,28 @@
 .accordionBlock {
   @apply w-[24vw];
+  .buttons {
+    @apply flex gap-5;
+  }
 }
 
+@media (max-width: 700px) {
+  .accordionBlock {
+    .buttons {
+      @apply block ;
+            > button{
+              @apply mb-3;
+            }
+    }
 
-  .title {
-    @apply text-2xl;
   }
-  .checkBoxTitle{
-    @apply text-2xl;
-  }
+}
+
+.title {
+  @apply text-2xl;
+}
+.checkBoxTitle {
+  @apply text-2xl;
+}
 
 .MuiSwipeableDrawer-paper {
   @apply bg-gray-400;
@@ -24,7 +38,7 @@
     overflow: hidden; /* или overflow: auto; */
     text-overflow: ellipsis;
   }
-  .checkBoxTitle{
+  .checkBoxTitle {
     @apply text-base;
   }
 }

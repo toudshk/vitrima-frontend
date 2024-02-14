@@ -358,7 +358,7 @@ export default function ControlledAccordions({
           </Accordion>
         )}
 
-        <div className="flex gap-5 ">
+        <div className={styles.buttons}>
           <SecondButton type="submit">Применть</SecondButton>
           <button
             className="text-primary border border-primary px-[3vw] rounded-2xl text-xl"
