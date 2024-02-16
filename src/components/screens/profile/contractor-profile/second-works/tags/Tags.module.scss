@@ -14,7 +14,7 @@
   }
   .tags {
     .tag {
-      @apply text-base py-1 px-2;
+      @apply text-base py-1 px-2 max-w-[100vw];
     }
   }
 }

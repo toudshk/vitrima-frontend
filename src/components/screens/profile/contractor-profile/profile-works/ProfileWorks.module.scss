@@ -3,6 +3,12 @@
   .skeletonLoader {
     @apply h-[600px];
   }
+  @media (max-width: 700px) {
+    @apply block;
+    .skeletonLoader{
+      @apply h-[300px];
+    }
+  }
 }
 
 .wrapper {
