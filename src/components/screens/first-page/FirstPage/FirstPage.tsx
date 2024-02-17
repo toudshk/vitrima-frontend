@@ -12,15 +12,13 @@ import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
 
 const FirstPage: FC = () => {
-
-  const {user} = useAuth()
+  const { user } = useAuth();
 
   return (
     <div>
       {user ? (
         <div className={styles.block}>
           <div className={styles.links}>
-            
             <Link href="/interior">Интерьер</Link>
             <Link href="/architecture">Архитектура</Link>
           </div>
@@ -32,7 +30,7 @@ const FirstPage: FC = () => {
       ) : (
         <div className={styles.container}>
           <div className={styles.iconContent}>
-          <Image src={icon} width={590} draggable={false} alt='Vitrima'/>
+            <Image src={icon} width={590} draggable={false} alt="Vitrima" />
             <h4>Сервис возможностей </h4>
           </div>
           <div className={styles.detailed}>Подробнее</div>
@@ -44,7 +42,5 @@ const FirstPage: FC = () => {
     </div>
   );
 };
-
-
 
 export default FirstPage;

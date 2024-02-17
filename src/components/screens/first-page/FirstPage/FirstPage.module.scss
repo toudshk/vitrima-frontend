@@ -39,19 +39,16 @@
     width: 50vw;
     @apply text-[2.8vh] text-center mt-[5vh];
     @media (max-width: 800px) {
-  
       @apply w-[90vw];
-    
+    }
   }
-  }
-
 }
 
 .container {
   @apply text-center text-white;
 
   .iconContent {
-    @apply h-[80vh] relative;
+    @apply h-[75vh] relative;
 
     background: url("../../../../components/common/images/ui/mainPage/MainPageCover.jpg")
       no-repeat center center;
@@ -75,22 +72,25 @@
     h4 {
       @apply mt-[3vw] text-[1.5vw] z-10;
     }
-
-    @media (max-width: 700px) {
-      padding-top: 40vh;
+  }
+  .detailed {
+    padding: 3vw 0px;
+    @apply bg-primary text-[2.6vw];
+    
+  }
+  @media (max-width: 700px) {
+    .iconContent {
+      @apply h-[80vh];
       img {
         @apply w-[60vw];
       }
       h4 {
         @apply text-[5vw];
       }
+      
     }
-  }
-  .detailed {
-    padding: 3vw 0px;
-    @apply bg-primary text-[2.6vw];
-    @media (max-width: 700px) {
-      @apply text-[5vw];
+    .detailed{
+      @apply text-[5vw] py-[6vw];
     }
   }
 }
