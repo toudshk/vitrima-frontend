@@ -33,12 +33,13 @@ const UploadAvatar: FC<IUploadField> = ({
   return (
     <div className={cn(styles.field, styles.uploadField)} style={style}>
       <div className={styles.uploadImageContainer}>
-        {isNoImage ? (
-          <Image src={baseAvatar} alt="" />
-        ) : (
-          <Image width={72} height={72} src={image} alt=""  unoptimized />
-        )}
-      
+        <Image
+          width={72}
+          height={72}
+          src={isNoImage ? baseAvatar : image}
+          alt=""
+          unoptimized
+        />
       </div>
       <label>
         <input type="file" onChange={uploadImage} />
