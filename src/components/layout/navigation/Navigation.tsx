@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 
 import { useAuth } from "@/hooks/useAuth";
@@ -6,7 +5,7 @@ import styles from "./Navigation.module.scss";
 import { MainLogo } from "@/components/common/icons/MainLogo";
 import clsx from "clsx";
 import Search from "./search/search";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 import DropdownMenu from "./dropdown-menu/DropdownMenu";
 import Filter from "@/components/screens/filter/Filter";
 import { usePathname } from "next/navigation";
@@ -15,28 +14,31 @@ const animation = {
     y: -50,
     opacity: 0,
   },
-  visible:{
+  visible: {
     y: 0,
     opacity: 1,
-    
-  }
+    transition: { delay: 0.5 },
+  },
 };
 const Navigation = () => {
   const { user } = useAuth();
   const pathname = usePathname().substring(1);
   return (
-    <motion.div className={styles.wrapper}>
+    <motion.div className={styles.wrapper} initial="hidden" whileInView="visible" variants={animation}>
       <div
         className={clsx({
           [styles.navigationAuth]: user !== null,
           [styles.navigationNotAuth]: user === null,
         })}
       >
-        <Link className={styles.logo} href="/">
+        {" "}
+        
+          <Link className={styles.logo} href="/">
           
             <MainLogo height={30} />
-          
-        </Link>
+           
+
+          </Link>
         {user ? (
           <>
             <div className="w-[65vw] mx-[2.5vw]">
@@ -46,7 +48,9 @@ const Navigation = () => {
               <Link className="mr-[2vw]" href={"/chat"}>
                 ЧАТ
               </Link>
-              {(pathname === "architecture" || pathname === "interior") && <Filter />}
+              {(pathname === "architecture" || pathname === "interior") && (
+                <Filter />
+              )}
               <DropdownMenu />
             </div>
           </>

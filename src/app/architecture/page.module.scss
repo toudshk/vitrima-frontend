@@ -1,9 +1,14 @@
 .container {
-    max-width: 1736px;
-    margin: 0 auto;
-    padding-top: 2vw;
-  @apply mt-6 ;
-  .title {
-    @apply text-4xl text-gray-450 mb-12;
+  max-width: 1736px;
+  margin:0 auto;
+padding-top: 2vw;
+@media(max-width: 700px){
+  @apply pt-[8vw];
+}
+.title {
+  @apply text-4xl mx-[1vw] text-gray-450 mb-[3vw];
+  @media(max-width: 700px) {
+    @apply text-2xl
   }
+}
 }
