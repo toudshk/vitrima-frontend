@@ -6,16 +6,26 @@ import styles from "./Navigation.module.scss";
 import { MainLogo } from "@/components/common/icons/MainLogo";
 import clsx from "clsx";
 import Search from "./search/search";
-
+import {motion} from "framer-motion"
 import DropdownMenu from "./dropdown-menu/DropdownMenu";
 import Filter from "@/components/screens/filter/Filter";
 import { usePathname } from "next/navigation";
-
+const animation = {
+  hidden: {
+    y: -50,
+    opacity: 0,
+  },
+  visible:{
+    y: 0,
+    opacity: 1,
+    
+  }
+};
 const Navigation = () => {
   const { user } = useAuth();
   const pathname = usePathname().substring(1);
   return (
-    <div className={styles.wrapper}>
+    <motion.div className={styles.wrapper}>
       <div
         className={clsx({
           [styles.navigationAuth]: user !== null,
@@ -52,7 +62,7 @@ const Navigation = () => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
