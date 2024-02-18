@@ -7,47 +7,56 @@ import MasonryGallery from "@/components/ui/masonry/MasonryGallery";
 import { useSelector } from "react-redux";
 import { selectFilter } from "@/store/work/filter.slice";
 import { useInView } from "react-intersection-observer";
-
-const Gallery: FC<{slug: string}> = ({slug}) => {
-  
-
+const Gallery: FC<{ slug: string }> = ({ slug }) => {
   const { ref, inView } = useInView();
+  const {
+    minPrice,
+    maxPrice,
+    subTypes,
+    contractorType,
+    buildingTechnique,
+    location,
+  } = useSelector(selectFilter);
 
-  
-  const { minPrice, maxPrice, subTypes, contractorType, buildingTechnique,location } = useSelector(selectFilter);
- 
-  const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-  useGallery(slug, { minPrice, maxPrice, subTypes, contractorType, buildingTechnique, location});
+  const {
+    data,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useGallery(slug, {
+    minPrice,
+    maxPrice,
+    subTypes,
+    contractorType,
+    buildingTechnique,
+    location,
+  });
+
   useEffect(() => {
     const loadInitialPage = async () => {
-      // Если компонент уже виден, загрузите первую страницу
-     
-        if (inView && data?.pages && data.pages.length > 0) {
-          await fetchNextPage({
-            pageParam: data.pages[data.pages.length - 1]?.pageParam + 1,
-          });
-        }
-      
+      if (inView && data?.pages && data.pages.length > 0) {
+        const minPage = data.pages[data.pages.length - 1]?.pageParam + 1 || 1;
+        await fetchNextPage({
+          pageParam: minPage,
+        });
+      }
     };
-  
-    loadInitialPage(); // Вызовите функцию при монтировании компонента
-  
-    // Добавьте существующую логику для последующих изменений inView
-    if (inView && hasNextPage && !isFetchingNextPage) {
-      fetchNextPage({
-        pageParam: data!.pages[data!.pages.length - 1]?.pageParam + 1,
-      });
-    }
-  }, [inView, hasNextPage, fetchNextPage, data, isFetchingNextPage])
+
+    loadInitialPage();
+  }, [inView, data, fetchNextPage]);
+
   const objects = data?.pages.flatMap((page) => page.data);
 
   return (
     <div>
-      <MasonryGallery data={objects} isLoading={isLoading}   />
+      <MasonryGallery data={objects} isLoading={isLoading} />
       {data?.pages[data.pages.length - 1]?.data.length <= 5 ? (
-        <h1 className="text-center text-[3vw] my-16 text-gray-450 select-none">На этом всё</h1>
+        <h1 className="text-center text-[3vw] my-16 text-gray-450 select-none">
+          На этом всё
+        </h1>
       ) : (
-        <button ref={ref} className="mt-1"/>
+        <button ref={ref} className="mt-1" />
       )}
     </div>
   );

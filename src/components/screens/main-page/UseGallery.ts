@@ -1,10 +1,7 @@
 "use client";
 import { WorkService } from "@/services/work/work.service";
-import { useSearchParams } from "next/navigation";
-
-import { useInfiniteQuery, useQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 import { IFilterInput } from "../filter/Filter.interface";
-import { useEffect, useState } from "react";
 
 export const useGallery = (slug: string, filters: IFilterInput) => {
   

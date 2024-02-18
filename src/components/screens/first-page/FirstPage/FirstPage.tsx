@@ -14,7 +14,13 @@ import Link from "next/link";
 
 const FirstPage: FC = () => {
   const { user } = useAuth();
-
+  const scrollToOnboardCards = () => {
+    const onboardCardsSection = document.getElementById("onboardCardsSection");
+    if (onboardCardsSection) {
+      onboardCardsSection.scrollIntoView({ behavior: "smooth",block: "start", // Align to the top of the target element
+      inline: "start", });
+    }
+  };
   return (
     <div>
       {user ? (
@@ -29,19 +35,20 @@ const FirstPage: FC = () => {
           </p>
         </div>
       ) : (
-        <div
-       
-          className={styles.container}
-        >
-          <div  className={styles.iconContent}>
-            <Image src={icon} width={590} draggable={false} alt="Vitrima" />
-            <h4 >Сервис возможностей </h4>
-          </div>
-          <div className={styles.detailed}>Подробнее</div>
-          <OnboardCards />
-          <RegisterBanner />
-          <Footer />
+        <div className={styles.container}>
+        <div className={styles.iconContent}>
+          <Image src={icon} width={590} draggable={false} alt="Vitrima" />
+          <h4>Сервис возможностей </h4>
         </div>
+        <div className={styles.detailed} onClick={scrollToOnboardCards}>
+          Подробнее
+        </div>
+        <div id="onboardCardsSection">
+          <OnboardCards />
+        </div>
+        <RegisterBanner />
+        <Footer />
+      </div>
       )}
     </div>
   );

@@ -112,7 +112,7 @@ export const WorkService = {
 	
 	  async getWorksWithPagination(slug: any, filters: any,pageParam: number  ) {
 	
-		const data = await this.getWorkByWorkType(slug, { ...filters, _page: pageParam, _limit: 6 });
+		const data = await this.getWorkByWorkType(slug, { ...filters, _page: pageParam, _limit: 6});
 		
 		// Возвращаем данные и мета-информацию о пагинации
 		return {
