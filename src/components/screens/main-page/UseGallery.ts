@@ -18,7 +18,7 @@ export const useGallery = (slug: string, filters: IFilterInput) => {
         
         return workData;
       },
-      getNextPageParam: (lastPage) => lastPage?.data.pages?.pageParam + 1,
+      // getNextPageParam: (lastPage) => lastPage?.data.pages?.pageParam + 1,
     });
 
   return { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage };
