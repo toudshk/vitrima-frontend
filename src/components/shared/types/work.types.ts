@@ -1,7 +1,7 @@
 export interface ITag{
     _id: string
     title: string
-    works: IWork[]
+   
 }
 
 export interface IWorkType

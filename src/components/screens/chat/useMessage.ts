@@ -18,6 +18,7 @@ export const useMessages = (id: string) => {
 		{
 			select: data => data,
 			onSuccess: (data) => {
+			
 				console.log('Received data:', data);
 			  },
 			onError(error) {
@@ -41,6 +42,7 @@ export const useMessages = (id: string) => {
 				console.log(error, 'Create work')
 			},
 			onSuccess() {
+				queryData.refetch();
 				console.log('Create work', 'create was successful')
 				
 			},

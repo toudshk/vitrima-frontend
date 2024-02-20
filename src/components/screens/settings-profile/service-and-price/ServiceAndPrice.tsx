@@ -43,7 +43,7 @@ const ServiceAndPrice: FC = () => {
       </button>
 
       {creating && (
-        <div >
+        <div className="mx-10">
           {/* Ваша форма для создания новой услуги */}
           <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
             {isLoading ? (

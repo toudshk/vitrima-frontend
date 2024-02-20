@@ -22,7 +22,7 @@ const AdminTable: FC<IAdminTable> = ({
 	removeHandler,
 }) => {
 	return (
-		<div className='mx-32'>
+		<div >
 			<AdminTableHeader headerItems={headerItems} />
 
 			{isLoading ? (
@@ -36,7 +36,7 @@ const AdminTable: FC<IAdminTable> = ({
 					/>
 				))
 			) : (
-				<div className={styles.notFound}>Elements not found</div>
+				<div className={styles.notFound}>Объекты не найдены</div>
 			)}
 		</div>
 	)

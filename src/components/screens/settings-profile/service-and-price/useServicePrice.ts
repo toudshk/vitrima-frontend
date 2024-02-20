@@ -13,7 +13,6 @@ import { IServicePriceEditInput } from "./service-price-edit/edit-servicePrice.i
 import { SubmitHandler } from "react-hook-form";
 
 export const useServicePrice = () => {
-  const router = useRouter();
   const { user } = useAuth();
   const id = user?._id;
   const [searchTerm, setSearchTerm] = useState("");
@@ -45,7 +44,6 @@ export const useServicePrice = () => {
   const { mutateAsync: createAsync } = useMutation(
     "create service-price",
     async (data: IServicePriceEditInput) => {
-		
       const priceAsNumber = parseFloat(data.price);
 
       const updatedData: IServicePriceEditInput = {
@@ -55,17 +53,16 @@ export const useServicePrice = () => {
       };
 
       try {
-	
         await ServicePriceService.create(updatedData);
+        queryData.refetch();
       } catch (error) {
-		
         toast.error("Ошибка");
       }
     }
   );
 
   const { mutateAsync: deleteAsync } = useMutation(
-    "delete tag",
+    "delete service-price",
     (tagId: string) => ServicePriceService.delete(tagId),
     {
       onError(error) {
@@ -87,7 +84,7 @@ export const useServicePrice = () => {
       ...queryData,
       searchTerm,
       deleteAsync,
-    onSubmit,
+      onSubmit,
     }),
     [queryData, searchTerm, deleteAsync, onSubmit]
   );

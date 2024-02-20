@@ -9,9 +9,14 @@ export const TagService = {
 		return axiosClassic.get<ITag>(getTagsUrl(`/by-slug/${slug}`))
 	},
 
-	async create() {
-		return axios.post<string>(getTagsUrl(''))
+
+	async create(data: ITagEditInput) {
+		
+		const response = await axios.post(getTagsUrl(''), data
+		)
+		return response
 	},
+	
 
 	async update(_id: string, data: ITagEditInput) {
 		return axios.put<string>(getTagsUrl(`/${_id}`), data)

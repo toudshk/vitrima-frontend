@@ -76,7 +76,8 @@ const PersonalInfo: NextPageAuth = () => {
                 error={errors.description}
                 title="Описание услуг"
               />
-
+              
+              <p className="text-xl mb-[1vw] text-primary">Регион вашей деятельности</p>
               <Controller
                 control={control}
                 name="location"
