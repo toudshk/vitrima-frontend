@@ -16,7 +16,6 @@ const DropdownMenu = () => {
   const logoutHandler = (e: React.MouseEvent) => {
     e.preventDefault();
     logout();
-    redirect('/')
   };
 
   return (

@@ -12,7 +12,7 @@ import SecondButton from "@/components/ui/Button/SecondButton";
 const Header: FC<{ data: IUser; id: string }> = ({ data, id }) => {
   
   const { user } = useAuth();
-const {onSubmit} = useChat(user!._id, id)
+const {onSubmit} = useChat(user?._id, id)
   const isOwner = user && user._id === id;
 
   return (
