@@ -6,23 +6,18 @@ import ApplicantProfile from "./applicant-profile/ApplicantProfile";
 import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 import { useUser } from "./useUser";
 import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 interface ProfileProps {
   id: string;
 }
 
 const Profile: React.FC<ProfileProps> = ({ id }) => {
-  const { data, isLoading } = useUser(id)
-const { user } = useAuth();
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const router = useRouter();
-
-
+  const { data, isLoading } = useUser(id);
+  const { user } = useAuth();
   if (!user) {
-    router.push("/");
+    redirect("/");
   }
 
-  
   if (isLoading) return <SkeletonLoader />;
 
   if (data?.isContractor) {

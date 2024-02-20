@@ -12,6 +12,7 @@ import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentChat, setCurrentChat } from "@/store/chat/chat.slice";
 import SecondButton from "@/components/ui/Button/SecondButton";
+import { redirect } from "next/navigation";
 
 const Chat: FC = () => {
   const [chats, setChats] = useState([]);
@@ -21,7 +22,10 @@ const Chat: FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { user } = useAuth();
   const nonEmptyChats = useChats(user?._id);
-
+  
+  if (!user) {
+    redirect("/");
+  }
   useEffect(() => {
     if (nonEmptyChats) {
       setChats(nonEmptyChats);

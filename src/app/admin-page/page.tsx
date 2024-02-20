@@ -1,14 +1,17 @@
 "use client"
 import { NextPage } from 'next';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { NextPageAuth } from '@/components/shared/types/auth.types';
 import { Meta } from '@/utils/meta/Meta';
 import Statistics from '@/components/screens/statistics/Statistics';
 import AdminNavigation from '@/components/ui/Admin-navigation/AdminNavigation';
 import { useAuth } from '@/hooks/useAuth';
 
-const page: NextPageAuth = () => {
-  
+const Page: NextPageAuth = () => {
+  const { user } = useAuth();
+  if (!user || user.isAdmin === false) {
+    redirect("/");
+  }
 
   return (
     <>
@@ -20,4 +23,4 @@ const page: NextPageAuth = () => {
   );
 };
 
-export default page;
+export default Page;
