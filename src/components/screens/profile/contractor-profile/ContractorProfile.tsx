@@ -5,9 +5,15 @@ import { ContractorProfileProps } from "../Profile.interface";
 import Header from "../header";
 import { useWorks } from "../useWorks";
 import ProfileWorks from "./profile-works/ProfileWorks";
+import { useAuth } from "@/hooks/useAuth";
+import { redirect } from "next/navigation";
 
 const ContractorProfile: FC<ContractorProfileProps> = ({ userData, id }) => {
-  
+  const { user } = useAuth();
+
+  if (!user) {
+    redirect("/");
+  }
 
   
 

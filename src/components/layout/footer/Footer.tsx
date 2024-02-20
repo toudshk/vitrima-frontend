@@ -31,7 +31,7 @@ const Footer = () => {
       <div className={styles.topBlock}>
         <WhiteIconLogo width={24} />
 
-        <p className="text-[1.4vw]">ВЕРСИЯ RU</p>
+     
       </div>
       <div>
         <ul className={styles.links}>

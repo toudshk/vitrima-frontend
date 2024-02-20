@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { FC } from "react";
 
 
-export const useChat = (receiverId: string, senderId: string) => {
+export const useChat = (receiverId: any, senderId: any) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
