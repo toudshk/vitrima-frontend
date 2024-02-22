@@ -26,7 +26,8 @@ export const registerApplicant = createAsyncThunk<
         nickname,
         
       );
-      toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее уже отправлено письмо")
+      // toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее уже отправлено письмо")
+      toast.success("Вы успешно зарегистрировались!")
      
       return response.data;
     } catch (error:any) {
@@ -51,7 +52,8 @@ export const registerContractor = createAsyncThunk<
         nickname,
         inn
       );
-      toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее отправлено уже письмо")
+     // toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее отправлено уже письмо")
+      toast.success("Вы успешно зарегистрировались!")
      
       return response.data;
     } catch (error: any) {
