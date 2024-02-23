@@ -89,10 +89,10 @@ export default function ControlledAccordions({
     mode: "onChange",
   });
 
-  const [localMinPrice, setLocalMinPrice] = useState<number | undefined>(
+  const [localMinPrice, setLocalMinPrice] = useState<any>(
     undefined
   );
-  const [localMaxPrice, setLocalMaxPrice] = useState<number | undefined>(
+  const [localMaxPrice, setLocalMaxPrice] = useState<any>(
     undefined
   );
   const [selectedSubTypes, setSelectedSubTypes] = useState<string>("");
@@ -109,7 +109,7 @@ export default function ControlledAccordions({
     setSelectedBuildingTechnique(selectedIds);
   };
 
-  const [contractorType, setContractorType] = useState<string | null>(null);;
+  const [contractorType, setContractorType] = useState<string | null>(null);
 
   const dispatch = useDispatch();
   const { minPrice, maxPrice } = useSelector(selectFilter);
@@ -149,6 +149,25 @@ export default function ControlledAccordions({
   ) => {
     setContractorType(newAlignment);
     setSelectedValue(newAlignment);
+  };
+  const filterReset = () => {
+    dispatch(
+       updateFilter({
+         minPrice: 0,
+          maxPrice: 1000000000,
+          subTypes: [],
+          contractorType: undefined,
+          buildingTechnique: undefined,
+          location: undefined,
+        })
+      )
+    setLocalMinPrice(0)
+    setLocalMaxPrice(1000000000)
+    setContractorType(null)
+    setSelectedSubTypes('')
+    setSelectedBuildingTechnique([])
+    setSelectedLocation(undefined)
+   
   };
 
   const handleChange =
@@ -222,7 +241,6 @@ export default function ControlledAccordions({
                 className={classes.horizontalToggleButton}
               >
                 <Checkbox
-                  
                   className={classes.checkbox}
                   checked={selectedValue === "INDIVIDUAL"}
                 />
@@ -301,11 +319,11 @@ export default function ControlledAccordions({
                   inputProps={{
                     placeholder: "Начните вводить область",
                     tabIndex: 0,
-                    className:  
+                    className:
                       "border  border-gray-400 w-full px-3 text-xl py-3 rounded-2xl bg-gray-300 transition-colors focus-within:border-primary  ",
                   }}
                   token={DADATA_KEY}
-                   onChange={(newValue) => {
+                  onChange={(newValue) => {
                     // Проверьте данные в консоли
                     handleLocationChange(newValue);
                   }}
@@ -363,18 +381,7 @@ export default function ControlledAccordions({
           <button
             className="text-primary border border-primary px-[3vw] rounded-2xl text-xl"
             type="reset"
-            onClick={() =>
-              dispatch(
-                updateFilter({
-                  minPrice: 0,
-                  maxPrice: 100000000,
-                  subTypes: [],
-                  contractorType: undefined,
-                  buildingTechnique: null,
-                  location: null,
-                })
-              )
-            }
+            onClick={() => filterReset()}
           >
             Сбросить
           </button>
