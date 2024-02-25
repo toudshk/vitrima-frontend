@@ -19,9 +19,10 @@
 
 .title {
   @apply text-2xl;
+  
 }
 .checkBoxTitle {
-  @apply text-2xl;
+  @apply text-xl;
 }
 
 .MuiSwipeableDrawer-paper {
@@ -39,6 +40,6 @@
     text-overflow: ellipsis;
   }
   .checkBoxTitle {
-    @apply text-base;
+    @apply text-sm pl-6;
   }
 }

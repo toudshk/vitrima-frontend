@@ -1,0 +1,17 @@
+.container{
+    @apply mt-32 max-w-[1736px] px-4;
+    >h1{
+        @apply text-4xl mb-3;
+    }
+    .items{
+        @apply flex items-start ;
+        flex-direction: column;
+        .button{
+            @apply mb-3 text-xl;
+        &:hover{
+            @apply underline;
+        }
+        }
+    }
+
+}

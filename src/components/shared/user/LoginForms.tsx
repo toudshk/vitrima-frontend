@@ -57,7 +57,12 @@ const LoginForms: FC<IAuthFields> = () => {
         selectedButton={selectedButton}
         setSelectedButton={setSelectedButton}
       />
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}  onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSubmit(onSubmit)();
+          }
+        }}>
      
       <AuthFields
         register={registerInput}

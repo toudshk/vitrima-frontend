@@ -2,28 +2,8 @@
 import { FC } from "react";
 import { WhiteIconLogo } from "../../common/icons/WhiteIconLogo";
 import styles from './Footer.module.scss'
-const data = [
-  {
-    title: "VITRIMA",
-    id: 0,
-  },
-  {
-    title: "Все права защищены",
-    id: 1,
-  },
-  {
-    title: "Политика конфиденциальности",
-    id: 2,
-  },
-  {
-    title: "Использование файлов cookie",
-    id: 3,
-  },
-  {
-    title: "Правовая информация",
-    id: 4,
-  },
-];
+import Link from "next/link";
+
 
 const Footer = () => {
   return (
@@ -35,9 +15,12 @@ const Footer = () => {
       </div>
       <div>
         <ul className={styles.links}>
-          {data.map((item) => (
-            <li className={styles.link} key={item.id}>{item.title}</li>
-          ))}
+         
+            <li className={styles.link} >Все права защищены</li>
+            <li className={styles.link} >Политика конфиденциальности</li>
+            <li className={styles.link} >Использование файлов cookie</li>
+            <li className={styles.link} ><Link href={"/documents"}>Правовая информация</Link></li>
+            
         </ul>
       </div>
     </div>

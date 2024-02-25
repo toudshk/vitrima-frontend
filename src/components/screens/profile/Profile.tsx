@@ -8,26 +8,20 @@ import { useUser } from "./useUser";
 import { useAuth } from "@/hooks/useAuth";
 import { redirect } from "next/navigation";
 interface ProfileProps {
-  id: string;
+  data: any;
 }
 
-const Profile: React.FC<ProfileProps> = ({ id }) => {
-  const { data, isLoading } = useUser(id);
-  const {user} = useAuth()
+const Profile: React.FC<ProfileProps> = ({ data }) => {
+
+
   
 
-  if (isLoading) return <SkeletonLoader />;
-
-
-  if(!user){
-    redirect('/')
-  }
-
   if (data?.isContractor) {
-    return <ContractorProfile userData={data} id={id} />;
+    return <ContractorProfile userData={data} id={data._id} />;
   } else {
-    return <ApplicantProfile data={data} id={id} />;
+    return <ApplicantProfile data={data} id={data._id} />;
   }
 };
 
 export default Profile;
+

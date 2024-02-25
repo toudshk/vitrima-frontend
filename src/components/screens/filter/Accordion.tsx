@@ -54,6 +54,8 @@ const useStyles = makeStyles({
   },
   horizontalToggleButtonGroup: {
     display: "flex",
+    
+  
   },
   horizontalToggleButton: {
     position: "relative",
@@ -64,7 +66,7 @@ const useStyles = makeStyles({
   },
   checkbox: {
     position: "absolute",
-    left: "10px",
+    left: "5px",
     border: "black",
     "&.Mui-checked": {
       color: "#EAEAEA",
