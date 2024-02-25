@@ -1,18 +1,15 @@
 "use client";
 
 import SwitchButtons from "@/app/signup/SwitchButtons";
-import AuthFields from "@/components/shared/user/AuthFields";
 import { useActions } from "@/hooks/useActions";
-import React, { FC, useState } from "react";
-import { FormState, SubmitHandler, useForm } from "react-hook-form";
+import React, { FC } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import styles from "@/app/signup/page.module.scss";
 import MainButton from "@/components/ui/Button/MainButton";
 import Link from "next/link";
 import SignUpFields from "./SignUpFields";
 import { IAuthInput } from "@/app/signup/Auth.interface";
-import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 import { useAuth } from "@/hooks/useAuth";
-import PdfViewer from "@/components/ui/Pdf-viewer/PdfViewer";
 
 interface IAuthFields {
   isPasswordRequired?: boolean;
@@ -64,17 +61,20 @@ const SignUpForms: FC<IAuthFields> = () => {
           <MainButton disabled={isLoading} type="submit">
             Зарегистрироваться
           </MainButton>
-          <div className="text-xl">
+          <div className={styles.docLink}>
+          
+          <p>Нажимая на кнопку “Зарегистрироваться”, вы соглашаетесь с </p>
+          <a href="/documents">Условиями использования</a> <p>и </p>
+          <a href="/documents">Политикой конфиденциальности</a>
+        </div>
+          <div className="text-lg mt-1">
             Есть аккаунт?
-            <Link href={"/login"} className="ml-2 text-xl">
+            <Link href={"/login"} className="ml-2  text-lg font-semibold text-blue-500 underline">
               Войти
             </Link>
           </div>
         </div>
-        <p>Нажимая на кнопку “Зарегистрироваться”, вы соглашаетесь с </p>
-        <a href="/documents">
-          Условиями использования и Политикой конфиденциальности
-        </a>
+       
       </form>
     </>
   );

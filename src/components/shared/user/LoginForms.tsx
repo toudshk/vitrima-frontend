@@ -76,7 +76,7 @@ const LoginForms: FC<IAuthFields> = () => {
         </MainButton>
         <div className="text-xl mt-[2vh]">
           Нет аккаунта?
-          <Link href={"/signup"} className="ml-2 ">
+          <Link href={"/signup"} className="ml-2  text-lg font-semibold text-blue-500 underline">
             Зарегиструйся
           </Link>
         </div>
