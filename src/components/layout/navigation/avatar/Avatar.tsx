@@ -9,7 +9,6 @@ import { useUser } from "@/components/screens/profile/useUser";
 // eslint-disable-next-line @next/next/no-async-client-component
 const Avatar: FC<{ id: string }> = ({ id }) => {
   const { data } = useUser(id);
-  console.log(data?.image)
   return (
     <div className="flex items-center  w-[10vh] h-full pl-[1vh]   pr-[4vh] py-[1.6vh] hover:bg-gray-700">
       <Image

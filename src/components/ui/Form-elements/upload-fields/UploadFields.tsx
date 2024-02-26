@@ -16,8 +16,8 @@ const UploadField: FC<IUploadField> = ({
   onChange,
   isNoImage = false,
 }) => {
+  const port ="https://vitrima.su"
   const { uploadImage, isLoading } = useUpload(onChange, folder);
-  console.log(image);
   return (
     <div className={cn(styles.field, styles.uploadField)} style={style}>
       <div className={styles.uploadImageContainer}>
@@ -27,7 +27,7 @@ const UploadField: FC<IUploadField> = ({
           ) : image.length == 1 ? (
             <Image src={image[0]} alt="" layout="fill" unoptimized />
           ) : (
-            <Image src={image} alt="" layout="fill" unoptimized />
+            <Image src={port + image} alt="" layout="fill" unoptimized />
           )
         ) : (
           <Image
