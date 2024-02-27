@@ -25,7 +25,8 @@
     "dayjs": "^1.11.10",
     "framer-motion": "^11.0.5",
     "js-cookie": "^3.0.5",
-    "next": "^13.5.4",
+    "next": "^13.5.2",
+    "next-images": "^1.8.5",
     "react": "^18",
     "react-dadata": "^2.23.1",
     "react-device-detect": "^2.2.3",
@@ -45,7 +46,6 @@
     "redux": "^4.2.1",
     "reselect": "^4.1.8",
     "sass": "^1.69.3",
-    "sharp": "^0.33.2",
     "socket.io-client": "^4.7.2",
     "string-strip-html": "^13.4.3"
   },
