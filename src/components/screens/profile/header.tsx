@@ -10,7 +10,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useChat } from "@/hooks/chat/useChat";
 import SecondButton from "@/components/ui/Button/SecondButton";
 import { useWork } from "./contractor-profile/profile-works/useWork";
-const Header: FC<{ data: IUser; id: string; setOpen: any }> = ({
+const Header: FC<{ data: IUser; id: string; setOpen?: any }> = ({
   data,
   id,
   setOpen,
