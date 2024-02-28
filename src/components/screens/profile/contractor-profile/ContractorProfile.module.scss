@@ -56,3 +56,28 @@
     }
   }
 }
+
+// Модальное окно с подпиской
+.container {
+  @apply h-[80vh]  ;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .logo {
+    @apply mb-16;
+  }
+  .textBlock {
+    .description {
+      @apply text-5xl;
+    }
+    .title {
+      @apply text-2xl;
+    }
+  }
+  .priceBlock {
+    @apply flex justify-end;
+    .price {
+      @apply text-4xl font-bold mr-10;
+    }
+  }
+}

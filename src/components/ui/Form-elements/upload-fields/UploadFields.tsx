@@ -1,7 +1,7 @@
 import { useUpload } from "./useUpload";
 import cn from "clsx";
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useState } from "react";
 import imgChoosePhoto from "@/app/assets/images/choosePhotosvg.svg";
 import SkeletonLoader from "../../skeleton-loader/skeletonLoader";
 import { IUploadField } from "../form.interface";
@@ -11,35 +11,52 @@ const UploadField: FC<IUploadField> = ({
   placeholder,
   error,
   style,
-  image,
   folder,
   onChange,
-  isNoImage = false,
 }) => {
+ 
   const { uploadImage, isLoading } = useUpload(onChange, folder);
+
+  const [tempImage, setTempImage] = useState<string | ArrayBuffer | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileInput = e.target;
+    if (fileInput.files && fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+      
+      const reader = new FileReader();
+  
+      reader.onloadend = () => {
+        setTempImage(reader.result);
+      };
+  
+      reader.readAsDataURL(file);
+  
+      uploadImage(e);
+    }
+  };
+
   return (
     <div className={cn(styles.field, styles.uploadField)} style={style}>
       <div className={styles.uploadImageContainer}>
-        {image?.length !== 0 ? (
+        {tempImage !== null ? (
           isLoading ? (
             <SkeletonLoader className="h-full absolute -top-1" />
-          ) : image.length == 1 ? (
-            <Image src={image[0]} alt="" layout="fill" unoptimized />
           ) : (
-            <Image src={image} alt="" layout="fill" unoptimized />
+            <Image src={tempImage as string} alt="" layout="fill" unoptimized />
           )
         ) : (
           <Image
             className={styles.uploadContainerSvg}
             src={imgChoosePhoto}
-            alt={""}
+            alt=""
           />
         )}
       </div>
       <label>
         <span>{placeholder}</span>
 
-        <input type="file" onChange={uploadImage} className="" />
+        <input type="file" onChange={handleFileChange} className="" />
 
         {error && <div className={styles.error}>{error.message}</div>}
       </label>

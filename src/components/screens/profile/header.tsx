@@ -9,17 +9,23 @@ import Image from "next/image";
 import { useAuth } from "@/hooks/useAuth";
 import { useChat } from "@/hooks/chat/useChat";
 import SecondButton from "@/components/ui/Button/SecondButton";
-const Header: FC<{ data: IUser; id: string }> = ({ data, id }) => {
-  
+import { useWork } from "./contractor-profile/profile-works/useWork";
+const Header: FC<{ data: IUser; id: string; setOpen: any }> = ({
+  data,
+  id,
+  setOpen,
+}) => {
   const { user } = useAuth();
-const {onSubmit} = useChat(user?._id, id)
+  const { onSubmit } = useChat(user?._id, id);
   const isOwner = user && user._id === id;
+  const { data: works } = useWork();
+
+  let worksLength = works ? works.length : 0;
 
   return (
     <div className={styles.header}>
       <div className={styles.leftBlock}>
         <Image
-      
           width={72}
           height={72}
           src={data.image ? data.image : baseImage}
@@ -29,11 +35,21 @@ const {onSubmit} = useChat(user?._id, id)
       </div>
       {isOwner ? (
         <div className={styles.rightBlock}>
-          {user.isContractor && (
-            <Link className={styles.firstLink} href={"/add-work"}>
-              Добавить работу
-            </Link>
-          )}
+          {user.isContractor &&
+            (worksLength > 30 ? (
+              <button
+                className={styles.firstLink}
+                onClick={(e) => {
+                  setOpen(true);
+                }}
+              >
+                Добавить работу
+              </button>
+            ) : (
+              <Link className={styles.firstLink} href={"/add-work"}>
+                Добавить работу
+              </Link>
+            ))}
 
           <Link
             className={styles.secondLink}
@@ -46,7 +62,9 @@ const {onSubmit} = useChat(user?._id, id)
         </div>
       ) : (
         <div>
-          <SecondButton className='text-xs' onClick={onSubmit}>написать</SecondButton>
+          <SecondButton className="text-xs" onClick={onSubmit}>
+            написать
+          </SecondButton>
         </div>
       )}
     </div>
