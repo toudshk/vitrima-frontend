@@ -59,25 +59,36 @@
 
 // Модальное окно с подпиской
 .container {
-  @apply h-[80vh]  ;
+  @apply h-[80vh];
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   .logo {
-    @apply mb-16;
+    @apply mb-8;
+    > img {
+      @apply mx-auto;
+    }
   }
   .textBlock {
-    .description {
-      @apply text-5xl;
+    @apply border-[1.5px] rounded-2xl h-full p-6 flex flex-col justify-between;
+    .topBlock{
+      
+      .title {
+        @apply text-3xl font-semibold mb-3;
+      }
+      .subtitle {
+        @apply text-[20px];
+      }
     }
-    .title {
-      @apply text-2xl;
+    .priceBlock {
+      @apply flex flex-col w-full;
+      > button {
+        @apply w-full mb-3;
+      }
+      > a {
+        @apply text-gray-500 text-xl mx-auto cursor-pointer;
+      }
     }
   }
-  .priceBlock {
-    @apply flex justify-end;
-    .price {
-      @apply text-4xl font-bold mr-10;
-    }
-  }
+  
 }

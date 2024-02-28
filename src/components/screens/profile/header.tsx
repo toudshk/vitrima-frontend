@@ -36,7 +36,7 @@ const Header: FC<{ data: IUser; id: string; setOpen?: any }> = ({
       {isOwner ? (
         <div className={styles.rightBlock}>
           {user.isContractor &&
-            (worksLength > 30 ? (
+            (worksLength > 5 ? (
               <button
                 className={styles.firstLink}
                 onClick={(e) => {

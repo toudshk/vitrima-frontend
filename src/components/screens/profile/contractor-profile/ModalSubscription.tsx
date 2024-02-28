@@ -21,19 +21,24 @@ const ModalSubscription: FC<{ open: any; setOpen: any }> = ({
       onClose={handleClose}
       disableScrollLock
     >
-      <DialogContent sx={{ padding: "20px" }}>
+      <DialogContent sx={{ padding: "25px" }}>
         <div className={styles.container}>
-            <div className={styles.textBlock}>
           <div className={styles.logo}>
-            <MainLogoBlack width={400} />
+            <MainLogoBlack width={350} />
           </div>
-          <p className={styles.description}>Подписка без лишних переплат</p>
+          <div className={styles.textBlock}>
+            <div className={styles.topBlock}>
+              <p className={styles.title}>Расширьте свои возможности с нами!</p>
 
-          <div className={styles.title}>Месячная подписка на платформе</div>
-          </div>
-          <div className={styles.priceBlock}>
-            <p className={styles.price}>299р</p>
-            <MainButton>Подключить</MainButton>
+              <div className={styles.subtitle}>
+                С подпиской вы сможете продемонстрировать весь свой талант в
+                полном объеме.
+              </div>
+            </div>
+            <div className={styles.priceBlock}>
+              <MainButton>Оформить подписку за 299 рублей</MainButton>
+              <a onClick={() => handleClose()}>отказаться</a>
+            </div>
           </div>
         </div>
       </DialogContent>
