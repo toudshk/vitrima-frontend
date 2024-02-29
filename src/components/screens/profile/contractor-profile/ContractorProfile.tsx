@@ -3,9 +3,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import styles from "./ContractorProfile.module.scss";
 import { ContractorProfileProps } from "../Profile.interface";
 import Header from "../header";
-import { useWorks } from "../useWorks";
 import ProfileWorks from "./profile-works/ProfileWorks";
-import { Dialog, DialogContent, DialogProps } from "@mui/material";
 import ModalSubscription from "./ModalSubscription";
 
 const ContractorProfile: FC<ContractorProfileProps> = ({ userData, id }) => {
