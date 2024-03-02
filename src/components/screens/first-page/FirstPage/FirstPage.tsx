@@ -13,6 +13,7 @@ import Link from "next/link";
 
 
 const FirstPage: FC = () => {
+  
   const { user } = useAuth();
   const scrollToOnboardCards = () => {
     const onboardCardsSection = document.getElementById("onboardCardsSection");

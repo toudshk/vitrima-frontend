@@ -29,7 +29,7 @@ const UploadAvatar: FC<IUploadField> = ({
   isNoImage = false,
 }) => {
   const { uploadImage } = useUpload(onChange, folder);
-
+console.log(image)
   // State to manage the preview image
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 

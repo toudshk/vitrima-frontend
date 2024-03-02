@@ -31,8 +31,7 @@ export const registerApplicant = createAsyncThunk<
      
       return response.data;
     } catch (error:any) {
-      
-      toast.error(error);
+      toast.error(error.response.data.message);
      
       return thunkApi.rejectWithValue(error);
     }
@@ -57,8 +56,8 @@ export const registerContractor = createAsyncThunk<
      
       return response.data;
     } catch (error: any) {
-      
-      toast.error(error.message);
+      console.log(error.response.data.message);
+      toast.error(error.response.data.message);
      
       return thunkApi.rejectWithValue(error);
     }
