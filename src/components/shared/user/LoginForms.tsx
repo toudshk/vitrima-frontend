@@ -3,14 +3,12 @@
 import SwitchButtons from "@/app/signup/SwitchButtons";
 import AuthFields from "@/components/shared/user/AuthFields";
 import { useActions } from "@/hooks/useActions";
-import { login } from "@/store/user/user.actions";
 import React, { FC, useState } from "react";
 import { FormState, SubmitHandler, useForm } from "react-hook-form";
 import styles from "@/app/signup/page.module.scss";
 import MainButton from "@/components/ui/Button/MainButton";
 import Link from "next/link";
 import { useAuthRedirect } from "@/hooks/useAuthRedirect";
-import { toast } from "react-toastify";
 
 interface IAuthFields {
   formState: FormState<any>;

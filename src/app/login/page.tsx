@@ -1,8 +1,6 @@
 "use client"
-import imageBg from "@/components/common/images/ui/authPage/AuthBg.png";
 import { FC } from "react";
 import styles from "../signup/page.module.scss";
-import Image from "next/image";
 
 import { MainLogoBlack } from "@/components/common/icons/MainLogoBlack";
 import LoginForms, { IAuthInput } from "@/components/shared/user/LoginForms";

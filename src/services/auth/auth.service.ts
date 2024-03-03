@@ -10,6 +10,7 @@ import { removeTokensStorage, saveToStorage } from "./auth.helper";
 import { API_URL, getAuthUrl } from "@/config/api.config";
 import { getContentType } from "@/api/api.helpers";
 import { axiosClassic } from "@/api/interceptors";
+import { redirect } from "next/navigation";
 
 export const AuthService = {
   async registerApplicant(email: string, password: string, nickname: string) {
@@ -46,6 +47,8 @@ export const AuthService = {
 
     if (response.data.accessToken) {
       saveToStorage(response.data);
+      window.location.reload()
+     
     }
     return response;
   },
@@ -70,7 +73,6 @@ export const AuthService = {
   },
   async getNewTokens() {
     const refreshToken = Cookies.get("refreshToken");
-    console.log(refreshToken)
     const response = await axios.post<IAuthResponse>(
       `${API_URL}${getAuthUrl("/login/access-token")}`,
       {

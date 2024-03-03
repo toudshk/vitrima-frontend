@@ -10,12 +10,14 @@ import Link from "next/link";
 import SignUpFields from "./SignUpFields";
 import { IAuthInput } from "@/app/signup/Auth.interface";
 import { useAuth } from "@/hooks/useAuth";
+import { useAuthRedirect } from "@/hooks/useAuthRedirect";
 
 interface IAuthFields {
   isPasswordRequired?: boolean;
 }
 
 const SignUpForms: FC<IAuthFields> = () => {
+  useAuthRedirect();
   const { registerContractor, registerApplicant } = useActions();
   const { isLoading } = useAuth();
 

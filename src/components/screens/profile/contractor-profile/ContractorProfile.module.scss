@@ -63,19 +63,36 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  .logo {
-    @apply mb-8;
-    > img {
-      @apply mx-auto;
-    }
+  .mainTitle {
+    @apply mb-8 text-3xl text-center uppercase font-bold;
   }
   .textBlock {
-    @apply border-[1.5px] rounded-2xl h-full p-6 flex flex-col justify-between;
-    .topBlock{
-      
-      .title {
-        @apply text-3xl font-semibold mb-3;
+    @apply rounded-2xl border-gray-300 border-2 h-full p-6 flex flex-col justify-between;
+    background: url("../../../../components/common/images/ui/subscriptionModal/background.png");
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-width: 50%;
+
+    .topBlock {
+      @apply mt-14;
+      .titleBlock{
+       
+        @apply flex mb-5 ;
+        .title {
+          @apply text-xl font-semibold ;
+          
+        }
+        .checkImg{
+          @apply mr-2 ;
+          svg{
+          font-size: 30px;
+
+          }
+        }
+        
       }
+    
       .subtitle {
         @apply text-[20px];
       }
@@ -90,5 +107,4 @@
       }
     }
   }
-  
 }

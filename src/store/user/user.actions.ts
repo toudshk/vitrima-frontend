@@ -11,7 +11,6 @@ import {
   IAuthContractorResponse,
 } from "./user.interface";
 import { errorCatch } from "@/api/api.helpers";
-import { redirect } from "next/navigation";
 
 export const registerApplicant = createAsyncThunk<
   IAuthApplicantResponse,
@@ -44,6 +43,7 @@ export const registerContractor = createAsyncThunk<
 >(
   "auth/register/contractor",
   async ({ email, password, nickname, inn }, thunkApi) => {
+ 
     try {
       const response = await AuthService.registerContractor(
         email,
@@ -51,15 +51,15 @@ export const registerContractor = createAsyncThunk<
         nickname,
         inn
       );
+      
+       
      // toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее отправлено уже письмо")
       toast.success("Вы успешно зарегистрировались!")
-     
       return response.data;
+      
     } catch (error: any) {
-      console.log(error.response.data.message);
-      toast.error(error.response.data.message);
-     
-      return thunkApi.rejectWithValue(error);
+     toast.error(error.response.data.message);
+        return thunkApi.rejectWithValue(error);
     }
   }
 );
