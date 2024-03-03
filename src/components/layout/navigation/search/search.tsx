@@ -10,7 +10,7 @@ import SearchField from '@/components/ui/Search-field/SearchField'
 
 const Search: FC = () => {
 	const [searchTerm, setSearchTerm] = useState('')
-	const debouncedSearch = useDebounce(searchTerm, 500)
+	const debouncedSearch = useDebounce(searchTerm, 100)
 	const pathname = usePathname().substring(1)
 
 	const { isSuccess, data: popularWorks, isLoading } = useQuery(
@@ -21,16 +21,16 @@ const Search: FC = () => {
 			enabled: !!debouncedSearch,
 		}
 	)
-
+console.log(isSuccess)
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		setSearchTerm(e.target.value)
 	}
 	
 	return (
-		<div className={styles.wrapper}>
+		<div>
 			<SearchField searchTerm={searchTerm} handleSearch={handleSearch} />
 		
-			{isSuccess && <SearchList works={popularWorks || []}  />}
+			{isSuccess && <SearchList works={popularWorks || []} setSearchTerm={setSearchTerm}  />}
 		</div>
 	)
 }

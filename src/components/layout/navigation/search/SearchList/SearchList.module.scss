@@ -1,28 +1,31 @@
-
+.wrapper {
+  @apply absolute  animate-fade z-10 bg-primary bg-opacity-70  w-full  py-10 px-10 mt-[1vw] cursor-pointer;
+  backdrop-filter: blur(10px);
+  max-height: 92vh;
+  left: 0;
+  top: calc(78%);
+  overflow-y: auto;
+  z-index: 10;
   .list {
-    @apply absolute w-full animate-fade z-10 bg-gray-300  rounded-md py-10 px-10 mt-[1vw];
-
-    top: calc(100% + 15px);
-
+    @apply bg-white w-[70vw] h-full p-10 rounded-xl   ;
+    
     > a {
-      @apply flex items-center mb-4 relative bg-white rounded-2xl transition-all duration-300 ease-in-out;
+      @apply flex items-center mb-4 max-w-[1000px] relative border-2 border-gray-300 rounded-2xl transition-all duration-300 ease-in-out;
 
       &:hover {
-        @apply bg-gray-400;
-      }
-
-      &:hover .textBlock {
-        @apply text-white;
+        -webkit-box-shadow: -1px 16px 40px -25px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: -1px 16px 40px -25px rgba(0, 0, 0, 0.75);
+        box-shadow: -1px 16px 40px -25px rgba(0, 0, 0, 0.75);
       }
 
       .textBlock {
-        @apply ml-8 text-gray-600 truncate text-[2vw] h-full my-[1vh];
+        @apply ml-8 text-gray-600 truncate text-[2vw] h-full my-[1vh] ;
         text-transform: capitalize;
         &:last-child {
           width: 70%;
         }
         .author {
-          @apply flex items-center mt-[2vh];
+          @apply flex items-center mt-[2vh] ;
           .profileImg {
             @apply image-like-bg rounded-full h-[30px] w-[30px] mr-3;
           }
@@ -31,38 +34,46 @@
           }
         }
         .link {
-          @apply text-white  text-[2vh];
+          @apply text-white  text-[2vh]  ml-auto;
+        }
+      }
+      &:hover{
+        .textBlock{
+          .link{
+            @apply text-gray-450;
+          }
         }
       }
     }
   }
 
-@media (max-width: 700px) {
-  .list {
-    @apply w-[80vw] py-4 px-4;
-    > a {
-      @apply mb-2;
-      > img {
-        @apply w-[130px];
-      }
+  @media (max-width: 700px) {
+    .wrapper {
+      @apply w-[80vw] py-4 px-4;
+      > a {
+        @apply mb-2;
+        > img {
+          @apply w-[130px];
+        }
 
-      .textBlock {
-        @apply ml-2  text-sm h-full my-[1vh];
-        text-transform: capitalize;
-        &:last-child {
-          width: 70%;
-        }
-        .author {
-          @apply flex items-center mt-2;
-          .profileImg {
-            @apply image-like-bg rounded-full h-[20px] w-[20px] mr-1;
+        .textBlock {
+          @apply ml-2  text-sm h-full my-[1vh];
+          text-transform: capitalize;
+          &:last-child {
+            width: 70%;
           }
-          p {
-            @apply text-xs;
+          .author {
+            @apply flex items-center mt-2;
+            .profileImg {
+              @apply image-like-bg rounded-full h-[20px] w-[20px] mr-1;
+            }
+            p {
+              @apply text-xs;
+            }
           }
-        }
-        .link {
-          @apply text-sm;
+          .link {
+            @apply text-sm;
+          }
         }
       }
     }

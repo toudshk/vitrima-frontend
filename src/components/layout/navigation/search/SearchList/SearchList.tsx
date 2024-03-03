@@ -5,9 +5,14 @@ import baseImage from "@/app/assets/images/base-avatar.jpg";
 import styles from "./SearchList.module.scss";
 import { IWidgetWork } from "../work.types";
 
-const SearchList: FC<{ works: IWidgetWork[] }> = ({ works }) => {
+const SearchList: FC<{ works: IWidgetWork[], setSearchTerm: any }> = ({ works, setSearchTerm }) => {
+  const clearSearchTerm = () => {
+    return setSearchTerm("");
+  };
   return (
-      <div className={styles.list}>
+
+      <div className={styles.wrapper}  onClick={clearSearchTerm}>
+        <div className={styles.list}>
         {works.length ? (
           works.map((work) => (
             <Link key={work._id} href={`/profile/${work.contractorId._id}`}>
@@ -15,7 +20,7 @@ const SearchList: FC<{ works: IWidgetWork[] }> = ({ works }) => {
                 loading="lazy"
                 className="rounded-l-lg transition-opacity opacity-0 duration-[0.7s]"
                 src={work.images[0]}
-                width={150}
+                width={180}
                 height={300}
                 onLoadingComplete={(image) =>
                   image.classList.remove("opacity-0")
@@ -50,6 +55,7 @@ const SearchList: FC<{ works: IWidgetWork[] }> = ({ works }) => {
         ) : (
           <div className="text-gray-700 text-center my-4">Таких работ нет</div>
         )}
+        </div>
       </div>
     
   );
