@@ -95,9 +95,9 @@
 
         @apply h-full mt-3;
       .chatBoxWrapper {
-        @apply h-full;
+        @apply h-[80vh];
         .chatBoxTop{
-          @apply h-[120%];
+          @apply h-[80vh];
         }
         .chatBoxBottom {
           @apply w-full;
