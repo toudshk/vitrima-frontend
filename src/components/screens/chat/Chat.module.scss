@@ -77,15 +77,15 @@
       }
     }
     .buttonBlock {
-      @apply mt-4;
+      @apply mt-2;
     }
   }
 }
 @media (max-width: 700px) {
   .messenger {
-    @apply h-[90vh];
+    @apply h-[80vh] mt-16;
     .chatMenu {
-      @apply absolute h-[90vh] pr-0 pt-3 pl-2 bg-gray-300 z-20 w-[80%];
+      @apply absolute h-full pr-0 pt-3 pl-2 bg-gray-300 z-20 w-[80%];
       left: -600px;
       .title {
         @apply text-2xl;
@@ -93,11 +93,11 @@
     }
     .chatBox {
 
-        @apply h-full mt-3;
+        @apply h-full ;
       .chatBoxWrapper {
-        @apply h-[80vh];
+        @apply h-[75vh];
         .chatBoxTop{
-          @apply h-[80vh];
+          @apply h-full;
         }
         .chatBoxBottom {
           @apply w-full;
