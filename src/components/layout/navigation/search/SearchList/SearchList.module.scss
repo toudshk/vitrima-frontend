@@ -1,5 +1,5 @@
 .wrapper {
-  @apply absolute  animate-fade z-10 bg-primary bg-opacity-70  w-full  py-10 px-10 mt-[1vw] cursor-pointer;
+  @apply absolute  animate-fade z-10 bg-primary bg-opacity-70  w-full  py-[6vh] px-[3vw] mt-[1vw] cursor-pointer;
   backdrop-filter: blur(10px);
   max-height: 92vh;
   left: 0;
@@ -7,8 +7,8 @@
   overflow-y: auto;
   z-index: 10;
   .list {
-    @apply bg-white w-[70vw] h-full p-10 rounded-xl   ;
-    
+    @apply bg-white w-[70vw] min-h-[80vh] p-10 rounded-xl;
+
     > a {
       @apply flex items-center mb-4 max-w-[1000px] relative border-2 border-gray-300 rounded-2xl transition-all duration-300 ease-in-out;
 
@@ -19,13 +19,13 @@
       }
 
       .textBlock {
-        @apply ml-8 text-gray-600 truncate text-[2vw] h-full my-[1vh] ;
+        @apply ml-8 text-gray-600 truncate text-[2vw] h-full my-[1vh];
         text-transform: capitalize;
         &:last-child {
           width: 70%;
         }
         .author {
-          @apply flex items-center mt-[2vh] ;
+          @apply flex items-center mt-[2vh];
           .profileImg {
             @apply image-like-bg rounded-full h-[30px] w-[30px] mr-3;
           }
@@ -37,9 +37,9 @@
           @apply text-white  text-[2vh]  ml-auto;
         }
       }
-      &:hover{
-        .textBlock{
-          .link{
+      &:hover {
+        .textBlock {
+          .link {
             @apply text-gray-450;
           }
         }
@@ -47,13 +47,17 @@
     }
   }
 
-  @media (max-width: 700px) {
-    .wrapper {
-      @apply w-[80vw] py-4 px-4;
+  
+}
+@media (max-width: 700px) {
+  .wrapper {
+    @apply  min-h-[90vh]  ;
+    .list {
+      @apply w-[80vw] p-6 mx-auto;
       > a {
         @apply mb-2;
         > img {
-          @apply w-[130px];
+          @apply w-[150px];
         }
 
         .textBlock {

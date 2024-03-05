@@ -46,14 +46,14 @@ const SearchList: FC<{ works: IWidgetWork[], setSearchTerm: any }> = ({ works, s
                   />
                   <div className="flex justify-between">
                     <p>{work.contractorId.nickname}</p>
-                    <p className={styles.link}>Перейти в профиль {">"}</p>
+                    {/* <p className={styles.link}>Перейти в профиль {">"}</p> */}
                   </div>
                 </div>
               </div>
             </Link>
           ))
         ) : (
-          <div className="text-gray-700 text-center my-4">Таких работ нет</div>
+          <div className="text-gray-500 text-3xl text-center my-[23%]">Таких работ нет</div>
         )}
         </div>
       </div>

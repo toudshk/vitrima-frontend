@@ -1,0 +1,12 @@
+.searchListContainer {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .fadeIn {
+    opacity: 1 !important;
+  }
+  
+  .fadeOut {
+    opacity: 0 !important;
+  }

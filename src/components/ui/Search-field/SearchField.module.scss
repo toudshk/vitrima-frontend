@@ -5,7 +5,16 @@
 	}
 
 	> input {
-		@apply w-full  border border-gray-700 rounded-3xl px-[2vw] bg-gray-700 placeholder:text-gray-600 block  text-gray-600  outline-none;
+		@apply w-full  border border-gray-700 rounded-3xl px-[2vw] text-gray-600 bg-gray-700 focus:border-gray-600 focus:text-gray-400 placeholder:text-gray-600   outline-none;
+		transition: all 0.2s ease; /* Анимация светлой тени */
+  
+	  &::placeholder {
+		color: #ccc; /* Цвет подсветки для placeholder */
+	  }
+  
+	  &:focus {
+		box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); /* Светлая тень с размытием при фокусе */
+	  }
 		@media (max-screen: 960) {
 				visibility: hidden;
 		}
@@ -18,3 +27,4 @@
 		}
 	}
 }
+
