@@ -15,9 +15,10 @@ interface DynamicInputProps {
   inputValue?: string
   setInputValue?: any
   inputRef?: any
+  onEnterPress: any
   }
   const DynamicInput: React.ForwardRefRenderFunction<HTMLTextAreaElement, DynamicInputProps> = (
-    {inputValue, setInputValue, inputRef, title, placeholder, error, type = "text", style, onChange, ...rest},
+    {inputValue, setInputValue, inputRef, title, onEnterPress, placeholder, error, type = "text", style, onChange, ...rest},
     ref, 
   ) => {
   
@@ -38,6 +39,13 @@ interface DynamicInputProps {
       }
     };
   
+    const handleKeyDown = (e: any) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault(); // Предотвращаем перенос строки
+        onEnterPress(e); // Вызываем функцию для отправки сообщения
+      }
+    }
+    
     const adjustTextareaHeight = () => {
       if (inputRef.current) {
         inputRef.current.style.height = '40px';
@@ -54,6 +62,7 @@ interface DynamicInputProps {
           value={inputValue}
           onChange={handleInputChange}
           placeholder={placeholder}
+          onKeyDown={handleKeyDown}
         />
         {error && <div className={styles.error}>{error.message}</div>}
       </div>

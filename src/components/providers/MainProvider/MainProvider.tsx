@@ -23,6 +23,8 @@ const animation = {
 const queryClient = new QueryClient();
 
 const MainProvider: FC<{ children: any }> = ({ children }) => {
+ 
+
   return (
     <QueryClientProvider client={queryClient}>
       <ReduxProvider>

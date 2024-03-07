@@ -7,7 +7,6 @@ export const ChatsService = {
   async getChats(id: string) {
     try {
       const response = await axiosClassic.get(`${API_URL}/chat/${id}`);
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error("Error fetching chats:", error);

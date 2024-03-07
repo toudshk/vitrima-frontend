@@ -1,13 +1,13 @@
-// api/messages.ts
 
 import axios, { axiosClassic } from "@/api/interceptors";
+import SocketApi from "@/api/socket";
 import { API_URL } from "@/config/api.config";
 
 export const MessagesService = {
   async getMessages(id: string) {
     try {
       const response = await axiosClassic.get(`${API_URL}/message/${id}`);
-      console.log(response.data);
+      
       return response.data;
     } catch (error) {
       console.error("Error fetching messages:", error);
@@ -18,14 +18,14 @@ export const MessagesService = {
   async createMessage({
     text,
     sender,
-    chatId
- 
+    chatId,
   }: {
     text: string;
     sender: string;
-    chatId:string
+    chatId: string;
   }) {
     try {
+      SocketApi.socket?.emit('server-path', {text, sender, chatId})
       const response = await axiosClassic.post(`${API_URL}/message`, {
         text,
         sender,
@@ -37,4 +37,5 @@ export const MessagesService = {
       throw error;
     }
   },
+ 
 };

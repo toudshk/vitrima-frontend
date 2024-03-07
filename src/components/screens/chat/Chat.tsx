@@ -13,16 +13,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentChat, setCurrentChat } from "@/store/chat/chat.slice";
 import SecondButton from "@/components/ui/Button/SecondButton";
 import { redirect } from "next/navigation";
+import SocketApi from "@/api/socket";
 
 const Chat: FC = () => {
   const [chats, setChats] = useState([]);
   const currentChat = useSelector(selectCurrentChat);
   const dispatch = useDispatch();
-  const [messages, setMessages] = useState([]);
+  const [arrivalMessage, setArrivalMessage] = useState<any>(null)
+console.log(arrivalMessage)
+ const [messages, setMessages] = useState<any>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { user } = useAuth();
   const nonEmptyChats = useChats(user?._id);
-  
+
+  useEffect(() => {
+    SocketApi.createConnection();
+
+    SocketApi.socket?.on("client-path", (data) => {
+      
+      setArrivalMessage({
+        chatId: data.chatId,
+        sender: data.sender,
+        text: data.text,
+        createdAt: Date.now(),
+      })
+    });
+  }, []);
+
+
   if (!user) {
     redirect("/");
   }
@@ -34,10 +52,18 @@ const Chat: FC = () => {
 
   const { data: messageData } = useMessages(currentChat?._id);
   useEffect(() => {
-    if (messageData) {
+    if (messageData){
       setMessages(messageData);
     }
   }, [messageData]);
+  
+  useEffect(() => {
+    arrivalMessage &&
+      currentChat?.members.includes(arrivalMessage.sender) &&
+      setMessages((prev: any) => [...prev, arrivalMessage]);
+  }, [arrivalMessage, currentChat]);
+
+  
 
   useEffect(() => {
     const scrollElement = scrollRef.current as HTMLElement | undefined;
@@ -97,7 +123,7 @@ const Chat: FC = () => {
                 
                 <MessageField
                   currentChat={currentChat}
-                  setMessages={setMessages}
+                 
                   messages={messages}
                 />
               </div></div>

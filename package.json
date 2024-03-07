@@ -47,8 +47,10 @@
     "reselect": "^4.1.8",
     "sass": "^1.69.3",
     "sharp": "^0.33.2",
+    "socket.io": "^4.7.4",
     "socket.io-client": "^4.7.2",
-    "string-strip-html": "^13.4.3"
+    "string-strip-html": "^13.4.3",
+    "utf-8-validate": "^5.0.5"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.5",
