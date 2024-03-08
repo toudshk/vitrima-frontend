@@ -4,7 +4,7 @@ class SocketApi {
   static socket: null | Socket = null;
 
   static createConnection() {
-    this.socket = io("http://localhost:5000/");
+    this.socket = io(`${process.env.APP_URL}`)
 
     this.socket.on("connect", () => {
       console.log("connected");
