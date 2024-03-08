@@ -25,7 +25,6 @@ export const MessagesService = {
     chatId: string;
   }) {
     try {
-      SocketApi.socket?.emit('server-path', {text, sender, chatId})
       const response = await axiosClassic.post(`${API_URL}/message`, {
         text,
         sender,

@@ -15,7 +15,7 @@ interface IMessage {
 
 const MessageField: FC<{
   currentChat: any;
-
+  
   messages: any;
 }> = ({ currentChat, messages }) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -31,8 +31,8 @@ const MessageField: FC<{
     (message: IMessage) => MessagesService.createMessage(message),
     {
       onError(error) {},
-      onSuccess() {
-      
+      onSuccess(createdMessage) {
+       
         setNewMessage("");
       },
     }
@@ -40,7 +40,7 @@ const MessageField: FC<{
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
-      e.preventDefault();
+   
 
       // Your existing logic for creating and sending a message using mutation
       const messageData = {
@@ -51,7 +51,6 @@ const MessageField: FC<{
 
         createdAt: Date.now(),
       };
-
       mutation.mutate(messageData);
 
       if (inputRef.current) {

@@ -42,7 +42,7 @@ interface DynamicInputProps {
     const handleKeyDown = (e: any) => {
       if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault(); // Предотвращаем перенос строки
-        onEnterPress(e); // Вызываем функцию для отправки сообщения
+        onEnterPress(); // Вызываем функцию для отправки сообщения
       }
     }
     

@@ -20,8 +20,9 @@ const Chat: FC = () => {
   const currentChat = useSelector(selectCurrentChat);
   const dispatch = useDispatch();
   const [arrivalMessage, setArrivalMessage] = useState<any>(null)
-console.log(arrivalMessage)
  const [messages, setMessages] = useState<any>([]);
+
+
   const scrollRef = useRef<HTMLDivElement>(null);
   const { user } = useAuth();
   const nonEmptyChats = useChats(user?._id);
@@ -30,7 +31,7 @@ console.log(arrivalMessage)
     SocketApi.createConnection();
 
     SocketApi.socket?.on("client-path", (data) => {
-      
+      console.log(data)
       setArrivalMessage({
         chatId: data.chatId,
         sender: data.sender,
@@ -55,7 +56,7 @@ console.log(arrivalMessage)
     if (messageData){
       setMessages(messageData);
     }
-  }, [messageData]);
+  }, [currentChat]);
   
   useEffect(() => {
     arrivalMessage &&
@@ -122,10 +123,9 @@ console.log(arrivalMessage)
               <div className={styles.chatBoxBottom}>
                 
                 <MessageField
-                  currentChat={currentChat}
-                 
-                  messages={messages}
-                />
+                    currentChat={currentChat}
+
+                    messages={messages}                />
               </div></div>
             </>
           ) : (
