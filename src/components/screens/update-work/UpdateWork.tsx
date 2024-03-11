@@ -153,13 +153,7 @@ const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
                   error={errors.title}
                   title="Название работы"
                 />
-                <SlugField
-                  generate={() =>
-                    setValue("slug", generateSlug(getValues("title")))
-                  }
-                  register={register}
-                  error={errors.slug}
-                />
+                
                 <Field
                   {...register("price", {
                     required: "Цена обязательна",

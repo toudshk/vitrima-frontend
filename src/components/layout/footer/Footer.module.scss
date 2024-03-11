@@ -7,12 +7,15 @@
     }
   }
   .links {
-    @apply flex gap-[1.5vw] text-[1.1vw];
+    @apply flex gap-[1.5vw] text-[1.1vw] min-w-[55%];
     @media (max-width: 700px) {
      @apply text-[1.5vw]
     }
     .link {
       justify-content: start;
     }
+  }
+  .contacts{
+    @apply text-[1.1vw] ml-3 text-start;
   }
 }

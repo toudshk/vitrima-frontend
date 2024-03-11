@@ -23,7 +23,10 @@ const PersonalInfo: NextPageAuth = () => {
   } = useForm<ISettingsProfileInput>({
     mode: "onChange",
   });
+  
+  
   const { onSubmit, isLoading } = useProfile(setValue);
+
   return (
     <Meta title="Personal info">
       <div className={styles.fields}>
@@ -94,7 +97,7 @@ const PersonalInfo: NextPageAuth = () => {
                   }}  
                     token={DADATA_KEY}
                     onChange={(newValue) => {
-                      // Проверьте данные в консоли
+                  
                       field.onChange(newValue?.data.fias_id
                         );
                     }}

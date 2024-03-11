@@ -1,7 +1,7 @@
 import cn from "clsx";
 import Image from "next/image";
-import { CSSProperties, FC, useState } from "react";
-
+import { CSSProperties, FC, useEffect, useState } from "react";
+import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined';
 import styles from "./UploadAvatar.module.scss";
 import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 import { FieldError } from "react-hook-form";
@@ -18,7 +18,6 @@ export interface IUploadField {
   isNoImage?: boolean;
   images?: any;
 }
-
 const UploadAvatar: FC<IUploadField> = ({
   placeholder,
   error,
@@ -28,36 +27,34 @@ const UploadAvatar: FC<IUploadField> = ({
   onChange,
   isNoImage = false,
 }) => {
+  console.log(image)
   const { uploadImage } = useUpload(onChange, folder);
-console.log(image)
-  // State to manage the preview image
-  const [previewImage, setPreviewImage] = useState<string | null>(null);
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setPreviewImage(imageUrl);
-      uploadImage(e); // Call the uploadImage function to handle the upload logic
-    }
-  };
-
+  
+ 
   return (
-    <div className={cn(styles.field, styles.uploadField)} style={style}>
+    <div
+      className={cn(styles.field, styles.uploadField)}
+      style={style}
+      
+    >
       <div className={styles.uploadImageContainer}>
+     
+          <div className={styles.changePhotoOverlay}>
+            <label>
+              <input type="file" onChange={uploadImage} /> <PhotoCameraOutlinedIcon />
+            </label>
+          </div>
+        
         <Image
+        key={isNoImage ? 'noImage' : image}
           width={72}
           height={72}
-          src={isNoImage ? baseAvatar : previewImage || image}
+          src={isNoImage ? baseAvatar : image}
           alt=""
           unoptimized
         />
+
       </div>
-      <label>
-        <input type="file" onChange={handleImageChange} />
-        {error && <div className={styles.error}>{error.message}</div>}
-      </label>
     </div>
   );
 };

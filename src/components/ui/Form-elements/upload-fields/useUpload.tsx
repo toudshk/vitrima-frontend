@@ -11,6 +11,7 @@ type TypeUpload = (
 	isLoading: boolean
 }
 
+
 export const useUpload: TypeUpload = (onChange, folder) => {
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -19,11 +20,12 @@ export const useUpload: TypeUpload = (onChange, folder) => {
 		(data: FormData) => FileService.upload(data, folder),
 		{
 			onSuccess({ data }) {
-			console.log(data)
 				onChange(data[0].url)
+console.log(data[0].url)
+
 			},
 			onError(error) {
-				console.log(error)
+				
 			},
 		}
 	)
@@ -44,6 +46,5 @@ export const useUpload: TypeUpload = (onChange, folder) => {
 		},
 		[mutateAsync]
 	)
-
 	return useMemo(() => ({ uploadImage, isLoading }), [uploadImage, isLoading])
 }

@@ -5,42 +5,61 @@
 		
 
 		> .uploadImageContainer {
-			@apply shrink-0 relative mr-4 ;
+			@apply shrink-0 relative mr-4 rounded-full;
 
 			img {
 				@apply image-like-bg rounded-full w-[72px] h-[72px] ;
 			}
 
-			> span {
-				@apply animate-fade;
-			}
-			.uploadContainerSvg{
+			// > span {
+			// 	@apply animate-fade;
+			// }
+			// .uploadContainerSvg{
+			// 	position: absolute;
+			// 	margin: auto;
+			// 	left: 0;
+			// 	top: 0;
+			// 	bottom: 0;
+			// 	right: 0;
+			// }
+			
+			.changePhotoOverlay {
+				@apply rounded-full;
 				position: absolute;
-				margin: auto;
-				left: 0;
 				top: 0;
-				bottom: 0;
-				right: 0;
-			}
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.4);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #fff;
+				font-size: 16px;
+				cursor: pointer;
+				opacity: 0;
+				transition: opacity 0.3s ease-in-out;
+		
+				label {
+					@apply w-full relative h-full text-center;
+					
+					input {
+					  @apply w-full h-full opacity-0 rounded-full absolute inset-0;
+					}
+					
+					img {
+					  @apply mx-auto mt-10;
+					  display: block;
+					  max-width: 400%;
+					  max-height: 50%;
+					}
+				  }
+			  }
+		
+			  &:hover .changePhotoOverlay {
+				opacity: 1;
+			  }
 		}
 
-		> label {
-			@apply block mr-6;
-
-			.error {
-				@apply relative -bottom-3;
-			}
-
-			> span {
-				@apply text-xs uppercase text-gray-600 block mb-4;
-			}
-
-			> input {
-				@apply w-[127px] block  text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary opacity-70 file:text-white transition-opacity;
-			}
-
-			&:hover > input {
-				@apply opacity-100;
-			}
-		}
+		
 	}
