@@ -43,7 +43,6 @@ export const useProfile = (
       },
       onSuccess(){
       toast.success('Данные профиля обновлены')
-      window.location.reload()
     }
     }
   );

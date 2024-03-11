@@ -7,6 +7,8 @@ import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 import { FieldError } from "react-hook-form";
 import { useUpload } from "@/components/ui/Form-elements/upload-fields/useUpload";
 import baseAvatar from "@/app/assets/images/base-avatar.jpg";
+import { useAuth } from "@/hooks/useAuth";
+import { useUser } from "../../profile/useUser";
 export interface IUploadField {
   folder?: string;
   image?: any;
@@ -29,8 +31,8 @@ const UploadAvatar: FC<IUploadField> = ({
 }) => {
   console.log(image)
   const { uploadImage } = useUpload(onChange, folder);
-  
- 
+  const {user} = useAuth()
+  const { data } = useUser(user!._id);
   return (
     <div
       className={cn(styles.field, styles.uploadField)}
@@ -46,7 +48,7 @@ const UploadAvatar: FC<IUploadField> = ({
           </div>
         
         <Image
-        key={isNoImage ? 'noImage' : image}
+      
           width={72}
           height={72}
           src={isNoImage ? baseAvatar : image}
