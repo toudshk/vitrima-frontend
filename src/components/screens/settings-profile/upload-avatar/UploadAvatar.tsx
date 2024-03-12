@@ -1,3 +1,4 @@
+"use client"
 import cn from "clsx";
 import Image from "next/image";
 import { CSSProperties, FC, useEffect, useState } from "react";
@@ -29,33 +30,34 @@ const UploadAvatar: FC<IUploadField> = ({
   onChange,
   isNoImage = false,
 }) => {
-  console.log(image)
-  const { uploadImage } = useUpload(onChange, folder);
-  const {user} = useAuth()
+  console.log(image);
+
+  const [displayedImage, setDisplayedImage] = useState<string | null>(null); // Новое состояние
+
+  const { uploadImage } = useUpload((uploadedImage) => {
+    setDisplayedImage(uploadedImage); // Обновляем отображаемую фотографию при загрузке
+    onChange(uploadedImage);
+  }, folder);
+
+  const { user } = useAuth();
   const { data } = useUser(user!._id);
+
   return (
-    <div
-      className={cn(styles.field, styles.uploadField)}
-      style={style}
-      
-    >
+    <div className={cn(styles.field, styles.uploadField)} style={style}>
       <div className={styles.uploadImageContainer}>
-     
-          <div className={styles.changePhotoOverlay}>
-            <label>
-              <input type="file" onChange={uploadImage} /> <PhotoCameraOutlinedIcon />
-            </label>
-          </div>
-        
+        <div className={styles.changePhotoOverlay}>
+          <label>
+            <input type="file" onChange={uploadImage} /> <PhotoCameraOutlinedIcon />
+          </label>
+        </div>
+
         <Image
-      
           width={72}
           height={72}
-          src={isNoImage ? baseAvatar : image}
+          src={displayedImage || (isNoImage ? baseAvatar : image)}
           alt=""
           unoptimized
         />
-
       </div>
     </div>
   );
