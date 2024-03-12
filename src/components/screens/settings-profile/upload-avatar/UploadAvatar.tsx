@@ -20,8 +20,7 @@ export interface IUploadField {
   title: string;
   isNoImage?: boolean;
   images?: any;
-}
-const UploadAvatar: FC<IUploadField> = ({
+}const UploadAvatar: FC<IUploadField> = ({
   placeholder,
   error,
   style,
@@ -30,34 +29,33 @@ const UploadAvatar: FC<IUploadField> = ({
   onChange,
   isNoImage = false,
 }) => {
-  console.log(image);
-
-  const [displayedImage, setDisplayedImage] = useState<string | null>(null); // Новое состояние
-
-  const { uploadImage } = useUpload((uploadedImage) => {
-    setDisplayedImage(uploadedImage); // Обновляем отображаемую фотографию при загрузке
-    onChange(uploadedImage);
-  }, folder);
-
-  const { user } = useAuth();
-  const { data } = useUser(user!._id);
-
+  console.log(image)
+  const { uploadImage } = useUpload(onChange, folder);
+  
+ 
   return (
-    <div className={cn(styles.field, styles.uploadField)} style={style}>
+    <div
+      className={cn(styles.field, styles.uploadField)}
+      style={style}
+      
+    >
       <div className={styles.uploadImageContainer}>
-        <div className={styles.changePhotoOverlay}>
-          <label>
-            <input type="file" onChange={uploadImage} /> <PhotoCameraOutlinedIcon />
-          </label>
-        </div>
-
+     
+          <div className={styles.changePhotoOverlay}>
+            <label>
+              <input type="file" onChange={uploadImage} /> <PhotoCameraOutlinedIcon />
+            </label>
+          </div>
+        
         <Image
+        key={isNoImage ? 'noImage' : image}
           width={72}
           height={72}
-          src={displayedImage || (isNoImage ? baseAvatar : image)}
+          src={isNoImage ? baseAvatar : image}
           alt=""
           unoptimized
         />
+
       </div>
     </div>
   );
