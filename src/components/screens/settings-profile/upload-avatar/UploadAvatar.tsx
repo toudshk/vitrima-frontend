@@ -20,7 +20,8 @@ export interface IUploadField {
   title: string;
   isNoImage?: boolean;
   images?: any;
-}const UploadAvatar: FC<IUploadField> = ({
+}
+const UploadAvatar: FC<IUploadField> = ({
   placeholder,
   error,
   style,
@@ -31,8 +32,12 @@ export interface IUploadField {
 }) => {
   console.log(image)
   const { uploadImage } = useUpload(onChange, folder);
-  
- 
+  const [currentImage, setCurrentImage] = useState(image)
+  useEffect(() => {
+    setCurrentImage(image);
+  }, [image]);
+
+  console.log(currentImage);
   return (
     <div
       className={cn(styles.field, styles.uploadField)}

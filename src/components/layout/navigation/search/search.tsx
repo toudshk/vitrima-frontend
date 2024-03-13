@@ -13,7 +13,7 @@ const Search: FC = () => {
 	const debouncedSearch = useDebounce(searchTerm, 100);
 	const pathname = usePathname().substring(1);
 	const [showList, setShowList] = useState(false);
-
+  
 	const {
 	  isSuccess,
 	  data: popularWorks,
@@ -28,24 +28,29 @@ const Search: FC = () => {
 	);
   
 	useEffect(() => {
-		setShowList(isSuccess);
-	  }, [isSuccess]);
-	
-	  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-		setSearchTerm(e.target.value);
-	  };
-	
-	  return (
-		<div className={styles.searchContainer}>
-		  <SearchField searchTerm={searchTerm} handleSearch={handleSearch} />
-	
-		  <div
-			className={clsx(styles.searchListContainer, { [styles.fadeIn]: showList })}
-		  >
-			{showList && <SearchList works={popularWorks || []} setSearchTerm={setSearchTerm} />}
-		  </div>
+	  setShowList(isSuccess);
+	}, [isSuccess]);
+  
+	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+	  setSearchTerm(e.target.value);
+	};
+  
+	if (pathname !== 'interior' && pathname !== 'architecture') {
+	  // Если текущий путь не interior и не architecture, не рендерим компонент
+	  return null;
+	}
+  
+	return (
+	  <div className={styles.searchContainer}>
+		<SearchField searchTerm={searchTerm} handleSearch={handleSearch} />
+  
+		<div
+		  className={clsx(styles.searchListContainer, { [styles.fadeIn]: showList })}
+		>
+		  {showList && <SearchList works={popularWorks || []} setSearchTerm={setSearchTerm} />}
 		</div>
-	  );
+	  </div>
+	);
   };
   
   export default Search;

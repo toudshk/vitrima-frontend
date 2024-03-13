@@ -8,13 +8,9 @@ import { redirect } from "next/navigation";
 export default function Page({ params: { id } }: { params: { id: string } }) {
   const { data, isLoading } = useUser(id);
 
-
- const {user} = useAuth()
  
  if (isLoading) return <SkeletonLoader />;
 
-  if(!user){
-    redirect('/')
-  }
+  
   return <Profile data={data} />;
 }

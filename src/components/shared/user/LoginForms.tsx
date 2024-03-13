@@ -33,7 +33,7 @@ const LoginForms: FC<IAuthFields> = () => {
   });
 
   const [selectedButton, setSelectedButton] = useState("contractor");
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
   const onSubmit: SubmitHandler<IAuthInput> = async (data) => {
     // Отключаем кнопку перед отправкой данных
     setIsLoading(true);
@@ -42,8 +42,7 @@ const LoginForms: FC<IAuthFields> = () => {
       await login(data);
       reset();
     } catch (error) {
-      
-       setError('email', { message: 'Ошибка входа' });
+      setError("email", { message: "Ошибка входа" });
     } finally {
       setIsLoading(false);
     }
@@ -51,35 +50,41 @@ const LoginForms: FC<IAuthFields> = () => {
 
   return (
     <>
-     <SwitchButtons
+      <SwitchButtons
         selectedButton={selectedButton}
         setSelectedButton={setSelectedButton}
       />
-    <form onSubmit={handleSubmit(onSubmit)}  onKeyPress={(e) => {
-          if (e.key === 'Enter') {
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
             e.preventDefault();
             handleSubmit(onSubmit)();
           }
-        }}>
-     
-      <AuthFields
-        register={registerInput}
-        formState={formState}
-      />
+        }}
+      >
+        <AuthFields register={registerInput} formState={formState} />
 
-<div className={styles.authButtons}>
-        {/* Используем isLoading для отключения кнопки */}
-        <MainButton type="submit" onClick={() => onSubmit} disabled={isLoading}>
-          {isLoading ? 'Подождите' : 'Войти'}
-        </MainButton>
-        <div className="text-xl mt-[2vh]">
-          Нет аккаунта?
-          <Link href={"/signup"} className="ml-2  text-lg font-semibold text-blue-500 underline">
-            Зарегиструйся
-          </Link>
+        <div className={styles.authButtons}>
+          {/* Используем isLoading для отключения кнопки */}
+          <MainButton
+            type="submit"
+            onClick={() => onSubmit}
+            disabled={isLoading}
+          >
+            {isLoading ? "Подождите" : "Войти"}
+          </MainButton>
+          <div className="text-xl mt-[2vh]">
+            Нет аккаунта?
+            <Link
+              href={"/signup"}
+              className="ml-2  text-lg font-semibold text-blue-500 underline"
+            >
+              Зарегиструйся
+            </Link>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
     </>
   );
 };

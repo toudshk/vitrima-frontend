@@ -33,7 +33,7 @@ const Navigation = () => {
       >
         {" "}
         
-          <Link className={styles.logo} href="/">
+          <Link className={styles.logo} href="/select-feed">
           
             <MainLogo height={30} />
            

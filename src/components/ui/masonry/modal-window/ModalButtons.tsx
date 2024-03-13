@@ -17,8 +17,7 @@ const ModalButtons: FC<{ workData: IWork }> = ({ workData }) => {
 
   const userId = user?._id || "";
   const { data: userData } = useUser(userId);
-  
-  
+
   const { deleteAsync } = useWorks();
   const { onSubmit: addSavedWorkSubmit } = useAddSavedWork(
     userId,
@@ -41,12 +40,14 @@ const ModalButtons: FC<{ workData: IWork }> = ({ workData }) => {
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
-    const isSubscribed = userData?.subscriptions?.some((subscription: any) => subscription._id === workData?.contractorId._id);
-    
-    setIsSubscribed(
-     isSubscribed ||false
+    const isSubscribed = userData?.subscriptions?.some(
+      (subscription: any) => subscription._id === workData?.contractorId._id
     );
-    const isWorkSaved = userData?.saved?.some((savedWork:any) => savedWork._id === workData?._id);
+
+    setIsSubscribed(isSubscribed || false);
+    const isWorkSaved = userData?.saved?.some(
+      (savedWork: any) => savedWork._id === workData?._id
+    );
     setIsSaved(isWorkSaved || false);
   }, [userData, workData]);
 
@@ -71,52 +72,57 @@ const ModalButtons: FC<{ workData: IWork }> = ({ workData }) => {
   };
   return (
     <div className={styles.buttons}>
-      {user?._id !== workData?.contractorId._id ? (
-        <>
-          <div className={styles.leftButtons}>
-            {/* <button className={`${styles.secondButton} mr-[0.7vw]`}>
-              <div className={styles.icon}>
-                Отправить{" "}
-                <Image
-                  className="ml-1 w-[1vw] "
-                  src={ShareSvg}
-                  alt={""}
-                  height={16}
-                  width={16}
-                />
+      {user &&
+        (user?._id !== workData?.contractorId._id ? (
+          <>
+            {user?.isContractor === false && (
+              <div className={styles.leftButtons}>
+                {/* <button className={`${styles.secondButton} mr-[0.7vw]`}>
+            <div className={styles.icon}>
+              Отправить{" "}
+              <Image
+                className="ml-1 w-[1vw] "
+                src={ShareSvg}
+                alt={""}
+                height={16}
+                width={16}
+              />
+            </div>
+          </button> */}
+                <button
+                  className={styles.secondButton}
+                  onClick={isSaved ? handleRemoveSavedWork : handleAddSavedWork}
+                >
+                  {isSaved ? "Удалить из сохраненного" : "Сохранить"}
+                </button>
               </div>
-            </button> */}
-            <button
-              className={styles.secondButton}
-              onClick={isSaved ? handleRemoveSavedWork : handleAddSavedWork}
-            >
-              {isSaved ? "Удалить из сохраненного" : "Сохранить"}
-            </button>
-          </div>
+            )}
 
-          <button
-            className={styles.button}
-            onClick={isSubscribed ? handleUnsubscribe : handleSubscribe}
-          >
-            {isSubscribed ? "Отписаться" : "Подписаться"}
-          </button>
-        </>
-      ) : (
-        <>
-          <button
-            className={styles.button}
-            onClick={() => deleteAsync(workData?._id)}
-          >
-            удалить работу
-          </button>
-          <Link
-            href={`/update-work/${workData?._id}`}
-            className={styles.link}
-          >
-          редактировать работу
-          </Link>
-        </>
-      )}
+            {user.isContractor === false && (
+              <button
+                className={isSubscribed ? styles.secondButton : styles.button}
+                onClick={isSubscribed ? handleUnsubscribe : handleSubscribe}
+              >
+                {isSubscribed ? "Отписаться" : "Подписаться"}
+              </button>
+            )}
+          </>
+        ) : (
+          <>
+            <button
+              className={styles.button}
+              onClick={() => deleteAsync(workData?._id)}
+            >
+              удалить работу
+            </button>
+            <Link
+              href={`/update-work/${workData?._id}`}
+              className={styles.link}
+            >
+              редактировать работу
+            </Link>
+          </>
+        ))}
     </div>
   );
 };

@@ -7,8 +7,8 @@ export const useAuthRedirect = () => {
 	const {user} = useAuth()
 
 	const { push } = useRouter()
-    
-	const redirect = '/'
+
+	const redirect = '/select-feed'
 	useEffect(() => {
 		if (user) {push(redirect)}
 		

@@ -60,12 +60,14 @@ const Header: FC<{ data: IUser; id: string; setOpen?: any }> = ({
             Редактировать профиль
           </Link>
         </div>
-      ) : (
+      ) : user ? (
         <div>
           <SecondButton className="text-xs" onClick={onSubmit}>
             написать
           </SecondButton>
         </div>
+      ) : (
+        <div>рег</div>
       )}
     </div>
   );
