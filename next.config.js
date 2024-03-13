@@ -11,21 +11,13 @@ const nextConfig = {
     config.resolve.alias.encoding = false
     return config
   },
-  async rewrites() {
-
-		return [
-			{
-				source: '/api/:path*',
-				destination: `http://localhost:5000/api/:path*`,
-			},
-			{
-				source: '/uploads/:path*',
-				destination: `http://localhost:5000/uploads/:path*`,
-			},
-     
+  images: {
+    domains: [
+      "vitrima.su",
+      "vitrima.su/api"
       
-		]
-	},
+    ]
+  }
 
 };
 module.exports = nextConfig;
