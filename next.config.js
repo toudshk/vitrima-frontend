@@ -11,18 +11,21 @@ const nextConfig = {
     config.resolve.alias.encoding = false
     return config
   },
-  images: {
-    remotePatterns: [
-        {
-            protocol: "http",
-            hostname: "**",
-        },
-        {
-            protocol: "https",
-            hostname: "**",
-        },
-    ],
-},
+  async rewrites() {
+
+		return [
+			{
+				source: '/api/:path*',
+				destination: `http://localhost:5000/api/:path*`,
+			},
+			{
+				source: '/uploads/:path*',
+				destination: `http://localhost:5000/uploads/:path*`,
+			},
+     
+      
+		]
+	},
 
 };
 module.exports = nextConfig;
