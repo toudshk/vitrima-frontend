@@ -16,11 +16,11 @@ const nextConfig = {
 		return [
 			{
 				source: '/api/:path*',
-				destination: `https://vitrima/api/:path*`,
+				destination: `http://0.0.0.0:5000/api/:path*`,
 			},
 			{
 				source: '/uploads/:path*',
-				destination: `https://vitrima/uploads/:path*`,
+				destination: `http://0.0.0.0:5000/uploads/:path*`,
 			},
      
       
