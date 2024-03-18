@@ -8,6 +8,9 @@ import Header from "@/components/layout/header/Header";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import { motion } from "framer-motion";
+import { usePathname } from 'next/navigation'
+ 
+import { useActions } from "@/hooks/useActions";
 const animation = {
   hidden: {
   
@@ -23,16 +26,13 @@ const animation = {
 const queryClient = new QueryClient();
 
 const MainProvider: FC<{ children: any }> = ({ children }) => {
-  const [isRootPath, setIsRootPath] = useState(true);
-
-  useEffect(() => {
-    setIsRootPath(window.location.pathname !== '/');
-  }, []);
-
+  const pathname = usePathname()
+console.log(pathname)  // Определяем, является ли текущий путь главной страницей
+  
   return (
     <QueryClientProvider client={queryClient}>
       <ReduxProvider>
-        {isRootPath && <Header />} 
+      {pathname !== '/' &&  <Header />}
         <motion.div
           className="mt-[7vh]"
           variants={animation}
