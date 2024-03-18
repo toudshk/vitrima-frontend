@@ -23,7 +23,7 @@ const FirstPage: FC = () => {
   const { user } = useAuth();
   
   const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
-  console.log(hoverPosition);
+ 
 
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useGallery("interior", {});

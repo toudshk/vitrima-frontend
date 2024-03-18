@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
 import { ReduxProvider } from "../ReduxProvider";
@@ -23,12 +23,16 @@ const animation = {
 const queryClient = new QueryClient();
 
 const MainProvider: FC<{ children: any }> = ({ children }) => {
- 
+  const [isRootPath, setIsRootPath] = useState(true);
+
+  useEffect(() => {
+    setIsRootPath(window.location.pathname !== '/');
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
       <ReduxProvider>
-       {location.pathname !== '/' && <Header />} 
+        {isRootPath && <Header />} 
         <motion.div
           className="mt-[7vh]"
           variants={animation}
