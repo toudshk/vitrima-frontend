@@ -70,12 +70,11 @@ const FirstPage: FC = () => {
             <div className={styles.leftBlock}>
               <Image src={icon} alt={""} width={500} height={300} />
               <h1 className={styles.title}>Сервис возможностей</h1>
-              <div className={styles.itemLink}>
-                <Link href={"/select-feed"} className={styles.link}>Выбрать тип ленты</Link>
-              </div>
-              <div className={styles.authButtons}>
-                <Link href={'/signup'}>Зарегистрироваться</Link>
-                <Link href={'/login'}>Войти</Link>
+              <div className={styles.links}>
+                <Link href={"/select-feed"} className={styles.link}>Просмотр ленты</Link>
+             
+                <Link href={'/signup'} className={styles.secondLink}>Регистрация</Link>
+                <Link href={'/login'} className={styles.lastLink}>Авторизация</Link>
               </div>
               <div>
 
@@ -146,7 +145,7 @@ const FirstPage: FC = () => {
         <div id="onboardCardsSection">
           <OnboardCards />
         </div>
-        <RegisterBanner />
+        {/* <RegisterBanner /> */}
         <Footer />
       </div>
     </div>

@@ -1,5 +1,5 @@
 .content {
-  @apply flex mb-20 py-10  bg-gray-300  rounded-2xl  mt-10;
+  @apply flex mb-20 py-10    rounded-2xl  mt-10;
   justify-content: center;
  
   //   background: url("../../../../app/assets/images/blurryGradient2.png")
@@ -9,7 +9,7 @@
   // background-size: cover;
 
   .images {
-    @apply max-w-[50vw] border-2 rounded-2xl p-2  border-gray-400;
+    @apply max-w-[50vw]  rounded-2xl p-2  ;
     display: grid;
     grid-column-gap: 12px;
     
@@ -40,7 +40,7 @@
       @apply text-5xl mb-[3vw] font-bold;
     }
     p {
-      @apply text-[1.3vw];
+      @apply text-[1.3vw] text-gray-600;
     }
   }
 }
