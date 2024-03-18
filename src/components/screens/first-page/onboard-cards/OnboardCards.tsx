@@ -9,21 +9,22 @@ import smallImg3 from "../../../common/images/ui/mainPage/smallImage3.jpg";
 import smallImg4 from "../../../common/images/ui/mainPage/smallImage4.jpg";
 const OnboardCards = () => {
   return (
-    <div className="max-w-[1736px] mx-auto">
+    <div className=" mx-auto ">
       <div className={styles.content}>
         <div className={styles.images}>
           <div className={styles.smallImages}>
             <Image
+            className='mr-4'
               src={smallImg}
-              height={440}
-              width={440}
+              height={500}
+              width={500}
               alt={""}
               draggable={false}
             />
             <Image
               src={smallImg2}
-              height={440}
-              width={440}
+              height={500}
+              width={500}
               alt={""}
               draggable={false}
             />
@@ -31,13 +32,13 @@ const OnboardCards = () => {
           <Image
             src={bigImg}
             height={500}
-            width={1000}
+            width={1100}
             alt={""}
             draggable={false}
           />
         </div>
         <div className={styles.text}>
-          <h1>Подрядчики</h1>
+          <h1>Если вы подрядчик</h1>
           <p>
             Витрима – онлайн-платформа, где вы сможете продвигать свои услуги и
             расширить свою клиентскую базу. Мы создаем максимально короткий путь
@@ -49,7 +50,7 @@ const OnboardCards = () => {
       </div>
       <div className={styles.content}>
         <div className={styles.text}>
-          <h1>Соискатели</h1>
+          <h1>Если вы соискатель</h1>
           <p>
             Витрима – онлайн-платформа, которая максимально упростит процесс
             подбора подрядчика. Мы ценим ваше время, поэтому предлагаем только
@@ -61,6 +62,7 @@ const OnboardCards = () => {
         <div className={styles.images}>
           <div className={styles.smallImages}>
             <Image
+            className="mr-4"
               src={smallImg3}
               height={440}
               width={440}

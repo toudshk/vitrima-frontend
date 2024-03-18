@@ -28,7 +28,7 @@ const MainProvider: FC<{ children: any }> = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <ReduxProvider>
-        <Header />
+       {location.pathname !== '/' && <Header />} 
         <motion.div
           className="mt-[7vh]"
           variants={animation}

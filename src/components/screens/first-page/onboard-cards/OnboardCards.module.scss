@@ -1,25 +1,43 @@
 .content {
-  @apply flex mb-20;
+  @apply flex mb-20 py-10  bg-gray-300  rounded-2xl  mt-10;
   justify-content: center;
+ 
+  //   background: url("../../../../app/assets/images/blurryGradient2.png")
+  //   no-repeat center center;
+  // -moz-background-size: cover;
+  // -o-background-size: cover;
+  // background-size: cover;
 
   .images {
-    @apply max-w-[50%] ;
+    @apply max-w-[50vw] border-2 rounded-2xl p-2  border-gray-400;
     display: grid;
     grid-column-gap: 12px;
-   
+    
+    img {
+      @apply rounded-2xl w-full  ;
+      box-shadow: 2px 4px 12px #00000014;
+    }
+    .smallImages {
+      @apply flex mb-4 w-[50%] ;
+      img {
+        @apply rounded-2xl max-w-[97.5%];
+        box-shadow: 2px 4px 12px #00000014;
+      }
+    }
    
   }
-  .smallImages{
-    @apply flex mb-10 w-[50%];
+  .images:first-child{
+    @apply ml-10;
   }
-
+  .images:last-child{
+    @apply mr-10
+  }
+  
   .text {
-    @apply text-primary text-left mt-[1vw] mx-[4vw] max-w-[50%];
-
-    width: 960px;
+    @apply text-primary  text-left mt-[1vw] mx-[4vw] max-w-[45%];
 
     h1 {
-      @apply text-[3vw] mb-[3vw] font-bold;
+      @apply text-5xl mb-[3vw] font-bold;
     }
     p {
       @apply text-[1.3vw];
@@ -28,27 +46,23 @@
 }
 @media (max-width: 700px) {
   .content {
-    
     @apply block mb-10;
     .images {
       @apply max-w-full;
       grid-column-gap: 2vw;
-      .smallImages{
-        @apply  gap-[6px];
+      .smallImages {
+        @apply gap-[6px];
       }
     }
-    
-    .text {
 
+    .text {
       @apply max-w-[90%];
       h1 {
         @apply text-[6vw];
       }
       p {
         @apply text-[4vw] mb-8;
-
       }
-      
     }
   }
 }

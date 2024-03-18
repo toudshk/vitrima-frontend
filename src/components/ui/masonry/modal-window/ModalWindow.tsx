@@ -74,7 +74,7 @@ const ModalWindow: FC<IModalWindow> = ({
             <div className={styles.textBlock}>
               <div>
                 <ModalButtons workData={workData} />
-                <TimeUpload date={workData?.createdAt} />
+                <TimeUpload date={workData?.createdAt}  withIcon={true}/>
 
                 <div className={styles.title}>{workData?.title}</div>
                 <div className={styles.description}>

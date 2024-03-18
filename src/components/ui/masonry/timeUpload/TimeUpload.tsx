@@ -9,15 +9,20 @@ dayjs.extend(relativeTime);
 // Устанавливаем локаль
 dayjs.locale("ru");
 
-const TimeUpload: FC<{ date: string }> = ({ date }) => {
+const TimeUpload: FC<{ date: string; withIcon: boolean }> = ({
+  date,
+  withIcon,
+}) => {
   const formattedDate = dayjs(date).fromNow();
 
   return (
     <div className="flex items-center ">
-      <div className="w-[10px]">
-        <Calendar />
+      {withIcon && (
+        <div className="w-[10px] mr-2">
+          <Calendar />
         </div>
-      <p className="ml-2 text-xs">Опубликовано {formattedDate}</p>
+      )}
+      <p className=" text-xs">Опубликовано {formattedDate}</p>
     </div>
   );
 };
