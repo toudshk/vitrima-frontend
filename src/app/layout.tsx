@@ -12,20 +12,24 @@ const myFont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Vitrima",
+  title: "Витрима",
   description: "Сервис возможностей",
   icons: {
     icon: [
       {
-        media: "(preference-color-scheme: light)",
-        rel: "/images/Metadata/faviconBlack.ico",
-        url: "/images/Metadata/faviconBlack.ico",
+        rel: 'icon',
+        type: 'image/x-icon',
+        url: 'images/metadata/faviconBlack.ico',
+        media: '(prefers-color-scheme: light)',
       },
       {
-        media: "(preference-color-scheme: dark)",
-        rel: "/images/Metadata/faviconWhite.ico",
-        url: "/images/Metadata/faviconWhite.ico",
+        rel: 'icon',
+        type: 'image/x-icon',
+        url: 'images/metadata/faviconWhite.ico',
+        media: '(prefers-color-scheme: dark)',
       },
+
+
     ],
   },
 };

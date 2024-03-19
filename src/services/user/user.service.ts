@@ -27,6 +27,10 @@ export const UserService = {
 		return axiosClassic.get<IApplicant>(getUsersUrl(`/applicant/${applicantId}`))
 	},
 
+	async activate(activationLink: any){
+		return axiosClassic.get(getUsersUrl(`/activate/${activationLink}`))
+	},
+
 	async contractorById(contractorId: string) {
 		return axiosClassic.get<IContractor>(getUsersUrl(`/contractor/${contractorId}`))
 	},
