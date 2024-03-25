@@ -20,6 +20,7 @@ dayjs.locale('ru'); // Устанавливаем локаль
 
 
 const ChatItem: FC<IChatItem> = ({ chat, currentUser }) => {
+  
   const [lastMessage, setLastMessage] = useState<any>(undefined);
   const friendId = chat.members.find((m: any) => m !== currentUser);
 

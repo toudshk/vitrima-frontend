@@ -17,30 +17,33 @@ import SocketApi from "@/api/socket";
 
 const Chat: FC = () => {
   const [chats, setChats] = useState([]);
+
   const currentChat = useSelector(selectCurrentChat);
   const dispatch = useDispatch();
-  const [arrivalMessage, setArrivalMessage] = useState<any>(null)
- const [messages, setMessages] = useState<any>([]);
-
-
+  const [arrivalMessage, setArrivalMessage] = useState<any>(null);
+  const [messages, setMessages] = useState<any>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { user } = useAuth();
   const nonEmptyChats = useChats(user?._id);
+  const sortedChats = nonEmptyChats.sort(
+    (a: any, b: any) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+  console.log(sortedChats);
 
   useEffect(() => {
     SocketApi.createConnection();
 
     SocketApi.socket?.on("client-path", (data) => {
-      console.log(data)
+      console.log(data);
       setArrivalMessage({
         chatId: data.chatId,
         sender: data.sender,
         text: data.text,
         createdAt: Date.now(),
-      })
+      });
     });
   }, []);
-
 
   if (!user) {
     redirect("/");
@@ -53,22 +56,20 @@ const Chat: FC = () => {
 
   const { data: messageData } = useMessages(currentChat?._id);
   useEffect(() => {
-    if (messageData){
+    if (messageData) {
       setMessages(messageData);
     }
   }, [currentChat]);
-  
+
   useEffect(() => {
     arrivalMessage &&
       currentChat?.members.includes(arrivalMessage.sender) &&
       setMessages((prev: any) => [...prev, arrivalMessage]);
   }, [arrivalMessage, currentChat]);
 
-  
-
   useEffect(() => {
     const scrollElement = scrollRef.current as HTMLElement | undefined;
-  
+
     if (scrollElement) {
       scrollElement.scrollIntoView({ behavior: "smooth" });
     }
@@ -76,7 +77,7 @@ const Chat: FC = () => {
 
   const handleChatItemClick = (chat: any) => {
     // Set the current chat using Redux
- 
+
     dispatch(setCurrentChat(chat));
     setMenuOpen(!isMenuOpen);
   };
@@ -102,9 +103,7 @@ const Chat: FC = () => {
       </div>
       <div className={styles.chatBox}>
         <div className={styles.buttonBlock}>
-        <SecondButton  onClick={handleToggleMenu}>
-        {'< Чаты'}
-        </SecondButton>
+          <SecondButton onClick={handleToggleMenu}>{"< Чаты"}</SecondButton>
         </div>
         <div className={styles.chatBoxWrapper}>
           {currentChat ? (
@@ -120,13 +119,10 @@ const Chat: FC = () => {
                 ))}
               </div>
               <div className={styles.chatBoxBottomContainer}>
-              <div className={styles.chatBoxBottom}>
-                
-                <MessageField
-                    currentChat={currentChat}
-
-                    messages={messages}                />
-              </div></div>
+                <div className={styles.chatBoxBottom}>
+                  <MessageField currentChat={currentChat} messages={messages} />
+                </div>
+              </div>
             </>
           ) : (
             <div className={styles.noConversationText}>

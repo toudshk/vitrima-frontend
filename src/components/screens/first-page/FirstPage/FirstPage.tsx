@@ -7,21 +7,21 @@ import icon from "@/app/assets/images/MainLogoBlack.svg";
 import { MainLogo } from "@/components/common/icons/MainLogo";
 import OnboardCards from "../onboard-cards/OnboardCards";
 import clsx from "clsx";
-import RegisterBanner from "../register-banner/RegisterBanner";
 import Footer from "@/components/layout/footer/Footer";
 import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
-import Gallery from "../../main-page/Gallery";
 import { useGallery } from "../../main-page/UseGallery";
 import Masonry from "react-masonry-css";
 import { useInView } from "react-intersection-observer";
 import TimeUpload from "@/components/ui/masonry/timeUpload/TimeUpload";
-import MainButton from "@/components/ui/Button/MainButton";
-import SecondButton from "@/components/ui/Button/SecondButton";
 const FirstPage: FC = () => {
   const { ref, inView } = useInView();
   const { user } = useAuth();
-  
+  const breakpointColumnsObj = {
+    default: 4,
+    900: 3,
+   
+  };
   const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
  
 
@@ -82,7 +82,7 @@ const FirstPage: FC = () => {
             </div>
             <div className={styles.rightBlock}>
               <div className={styles.gallery}>
-                <Masonry breakpointCols={4} className="flex gap-3 mx-4 ">
+                <Masonry breakpointCols={breakpointColumnsObj} className={styles.masonryGallery}>
                   {objects?.map((item, index) => (
                     <div
                       key={item._id}
@@ -104,10 +104,10 @@ const FirstPage: FC = () => {
                             transition={{ duration: 0.3 }}
                           >
                             {/* Здесь ваше содержимое */}
-                            <p className="flex inline-block p-3">
+                            <p className={styles.hoverTitle}>
                               Работа {item.contractorId.nickname}
                             </p>
-                            <p className="flex first-line border-t-[1px] border-gray-400 p-3">
+                            <p className={styles.hoverTimeUpload}>
                               <TimeUpload
                                 date={item.createdAt}
                                 withIcon={false}

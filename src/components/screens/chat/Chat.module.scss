@@ -85,7 +85,7 @@
   .messenger {
     @apply h-[75vh] mt-16;
     .chatMenu {
-      @apply absolute h-full pr-0 pt-3 pl-2 bg-gray-300 z-20 w-[80%];
+      @apply absolute h-[110%]  pr-0 pt-3 pl-2 bg-gray-300 z-20 w-full;
       left: -600px;
       .title {
         @apply text-2xl;
