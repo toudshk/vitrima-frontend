@@ -56,3 +56,16 @@
     }
   }
 }
+
+
+
+
+.notAuthButton {
+  @apply  text-xl bg-primary border-2 text-center text-white px-[3vw] py-[1vw] rounded-2xl;
+  transition: background-color 0.2s ease-in-out; /* Добавляем плавность для изменения цвета фона */
+
+  &:hover{
+      @apply bg-gray-600;
+  }
+
+}

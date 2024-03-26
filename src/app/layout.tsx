@@ -15,23 +15,18 @@ const myFont = localFont({
 export const metadata: Metadata = {
   title: "Витрима",
   description: "Сервис возможностей",
-  
+
   icons: {
     icon: [
       {
-        rel: 'icon',
-        type: 'image/x-icon',
-        url: FaviconBlack.src,
-        media: '(prefers-color-scheme: light)',
+        url: "/public/images/Metadata/faviconBlack.ico",
+        media: "(prefers-color-scheme: light)",
       },
       {
-        rel: 'icon',
-        type: 'image/x-icon',
-        url: FaviconWhite.src,
-          media: '(prefers-color-scheme: dark)',
+       
+        url: "/public/images/Metadata/faviconWhite.ico",
+        media: "(prefers-color-scheme: dark)",
       },
-
-
     ],
   },
 };
@@ -41,9 +36,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
-
-
   return (
     <html lang="ru">
       <body className={myFont.className}>

@@ -21,7 +21,7 @@ const Header: FC<{ data: IUser; id: string; setOpen?: any }> = ({
   const { data: works } = useWork();
 
   let worksLength = works ? works.length : 0;
-
+ 
   return (
     <div className={styles.header}>
       <div className={styles.leftBlock}>
@@ -63,11 +63,16 @@ const Header: FC<{ data: IUser; id: string; setOpen?: any }> = ({
       ) : user ? (
         <div>
           <SecondButton className="text-xs" onClick={onSubmit}>
-            написать
+            Отправить сообщение
           </SecondButton>
         </div>
       ) : (
-        <div>рег</div>
+        <div>
+           <Link className={styles.notAuthButton} href={"/signup"}  >
+           Отправить сообщение
+           
+          </Link>
+        </div>
       )}
     </div>
   );
