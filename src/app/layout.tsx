@@ -2,7 +2,8 @@ import "./assets/styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
-import Favicon from "/public/images/Metadata/favicon.ico";
+import FaviconBlack from "/public/images/Metadata/faviconBlack.ico";
+import FaviconWhite from "/public/images/Metadata/faviconWhite.ico";
 
 import MainProvider from "@/components/providers/MainProvider/MainProvider";
 
@@ -14,19 +15,20 @@ const myFont = localFont({
 export const metadata: Metadata = {
   title: "Витрима",
   description: "Сервис возможностей",
+  
   icons: {
     icon: [
       {
         rel: 'icon',
         type: 'image/x-icon',
-        url: 'public/images/Metadata/faviconBlack.ico',
+        url: FaviconBlack.src,
         media: '(prefers-color-scheme: light)',
       },
       {
         rel: 'icon',
         type: 'image/x-icon',
-        url: 'public/images/Metadata/faviconWhite.ico',
-        media: '(prefers-color-scheme: dark)',
+        url: FaviconWhite.src,
+          media: '(prefers-color-scheme: dark)',
       },
 
 
