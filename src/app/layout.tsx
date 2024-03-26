@@ -19,13 +19,13 @@ export const metadata: Metadata = {
       {
         rel: 'icon',
         type: 'image/x-icon',
-        url: '/images/metadata/faviconBlack.ico',
+        url: 'public/images/Metadata/faviconBlack.ico',
         media: '(prefers-color-scheme: light)',
       },
       {
         rel: 'icon',
         type: 'image/x-icon',
-        url: '/images/metadata/faviconWhite.ico',
+        url: 'public/images/Metadata/faviconWhite.ico',
         media: '(prefers-color-scheme: dark)',
       },
 
