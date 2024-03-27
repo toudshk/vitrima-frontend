@@ -9,6 +9,9 @@ const ModalSubscription: FC<{ open: any; setOpen: any }> = ({
   open,
   setOpen,
 }) => {
+ 
+
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -16,8 +19,9 @@ const ModalSubscription: FC<{ open: any; setOpen: any }> = ({
   return (
     <Dialog
       fullWidth
-      maxWidth="sm"
+      maxWidth='sm'
       open={open}
+
       onClose={handleClose}
       disableScrollLock
     >
@@ -50,7 +54,7 @@ const ModalSubscription: FC<{ open: any; setOpen: any }> = ({
               </div>
             </div>
             <div className={styles.priceBlock}>
-              <MainButton className="border-none">
+              <MainButton className="border-none  ">
                 Оформить подписку за 299 руб/мес.
               </MainButton>
               <a onClick={() => handleClose()}>отказаться</a>

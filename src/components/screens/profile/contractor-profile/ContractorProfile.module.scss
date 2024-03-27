@@ -76,23 +76,19 @@
 
     .topBlock {
       @apply mt-14;
-      .titleBlock{
-       
-        @apply flex mb-5 ;
+      .titleBlock {
+        @apply flex mb-5;
         .title {
-          @apply text-xl font-semibold ;
-          
+          @apply text-xl font-semibold;
         }
-        .checkImg{
-          @apply mr-2 ;
-          svg{
-          font-size: 30px;
-
+        .checkImg {
+          @apply mr-2;
+          svg {
+            font-size: 30px;
           }
         }
-        
       }
-    
+
       .subtitle {
         @apply text-[20px];
       }
@@ -104,6 +100,35 @@
       }
       > a {
         @apply text-gray-500 text-xl mx-auto cursor-pointer;
+      }
+    }
+  }
+}
+@media (max-width: 700px) {
+  .container {
+    @apply h-full;
+    .mainTitle {
+      @apply mb-4 text-2xl;
+    }
+    .textBlock {
+      @apply p-3;
+      .topBlock {
+        @apply mt-6;
+        .titleBlock {
+          @apply  mb-4;
+          .title {
+            @apply text-base;
+          }
+        }
+      }
+      .priceBlock {
+       
+        > button {
+          @apply text-base;
+        }
+        > a {
+          @apply text-xl;
+        }
       }
     }
   }

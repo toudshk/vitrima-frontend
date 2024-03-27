@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Avatar from "../avatar/Avatar";
 import styles from "./DropdownMenu.module.scss";
 import { useAuth } from "@/hooks/useAuth";
@@ -16,6 +16,24 @@ const DropdownMenu = () => {
   const { logout } = useActions();
   const [menuOpen, setMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null); // Ref для ссылки на меню
+
+  useEffect(() => {
+    const handleClickOutside = (event: { target: any; }) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setMenuOpen(false); // Закрыть меню, если клик произошел вне его
+      }
+    };
+
+    // Добавить обработчик события клика при монтировании компонента
+    document.addEventListener('click', handleClickOutside);
+
+    // Удалить обработчик события клика при размонтировании компонента
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []); // Пустой массив зависимостей, чтобы обработчик события был добавлен только один раз при монтировании компонента
+
   const logoutHandler = (e: React.MouseEvent) => {
     e.preventDefault();
     logout();
@@ -23,6 +41,7 @@ const DropdownMenu = () => {
 
   return (
     <div
+      ref={dropdownRef} // Привязать ref к компоненту
       className={clsx(styles.dropdown, { [styles.open]: menuOpen })}
       onClick={() => setMenuOpen(!menuOpen)}
     >
