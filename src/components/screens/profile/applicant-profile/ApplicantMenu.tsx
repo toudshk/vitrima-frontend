@@ -5,14 +5,16 @@ import styles from "./ApplicantProfile.module.scss";
 import Subscription from "./Subscription";
 import { IApplicant } from "@/components/shared/types/user.types";
 import MasonryGallery from "@/components/ui/masonry/MasonryGallery";
+import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 
 interface IDataApplicant {
   data: any;
+  isLoading: boolean;
 }
 
 
 
-const ApplicantMenu: FC<IDataApplicant> = ({ data }) => {
+const ApplicantMenu: FC<IDataApplicant> = ({ data, isLoading }) => {
   const [showDownloading, setShowDownloading] = useState(true);
   const [activeTab, setActiveTab] = useState("downloading");
 
@@ -26,7 +28,8 @@ const ApplicantMenu: FC<IDataApplicant> = ({ data }) => {
     }
   };
   return (
-    <div>
+    <> 
+    {isLoading ? <SkeletonLoader /> :  <div>
       <div>
         <ul className={styles.navigation}>
           <li
@@ -54,7 +57,9 @@ const ApplicantMenu: FC<IDataApplicant> = ({ data }) => {
       ) : (
         <MasonryGallery data={data?.saved} isLoading={false}  />
       )}
-    </div>
+    </div>}
+   
+    </>
   );
 };
 

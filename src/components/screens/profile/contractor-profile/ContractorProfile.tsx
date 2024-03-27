@@ -5,9 +5,9 @@ import { ContractorProfileProps } from "../Profile.interface";
 import Header from "../header";
 import ProfileWorks from "./profile-works/ProfileWorks";
 import ModalSubscription from "./ModalSubscription";
+import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 
-const ContractorProfile: FC<ContractorProfileProps> = ({ userData, id }) => {
-
+const ContractorProfile: FC<ContractorProfileProps> = ({ userData, id,  isLoading }) => {
 
   const [open, setOpen] = useState(false);
 
@@ -23,29 +23,34 @@ const ContractorProfile: FC<ContractorProfileProps> = ({ userData, id }) => {
 
 
   return (
-    <div className={styles.wrapper}>
-      <Header data={userData} id={id}
-        setOpen={setOpen} />
-<ModalSubscription setOpen={setOpen} open={open}/>
-        <div className={styles.blockTitle}>
-          <div className={styles.leftBlock}>{userData.email}</div>
-          <div className={styles.rightBlock}>
-            <div className={styles.subscribers}>
-              <p>Подписчики</p>
-              <div>{userData.subscribers?.length}</div>
+    
+     
+        <div className={styles.wrapper}>
+          <Header data={userData} id={id} setOpen={setOpen} isLoading={isLoading}/>
+          <ModalSubscription setOpen={setOpen} open={open}/>
+          <div className={styles.blockTitle}>
+            {isLoading ? <SkeletonLoader  width={250} height={40}/> : 
+            <div className={styles.leftBlock}>{userData.email}</div>
+            
+            }
+            <div className={styles.rightBlock}>
+              <div className={styles.subscribers}>
+                <p>Подписчики</p>
+                {isLoading ? <SkeletonLoader width={10} height={10}/> : 
+                <div>{userData.subscribers?.length}</div>}
+              </div>
+              {/* <div className={styles.inn}>
+                <p>ИНН</p>
+                <div>{userData.inn}</div>
+              </div> */}
             </div>
-
-            {/* <div className={styles.inn}>
-            <p>ИНН</p>
-            <div>{userData.inn}</div>
-          </div> */}
+          </div>
+          <div className={styles.blockWorks}>
+            <ProfileWorks id={id} />
           </div>
         </div>
-        <div className={styles.blockWorks}>
-          <ProfileWorks id={id} />
-        </div>
-
-    </div>
+      
+   
   );
 };
 

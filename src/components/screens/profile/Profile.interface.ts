@@ -23,11 +23,12 @@ export interface IWorks {
 
 export interface ContractorProfileProps {
   userData: IUser;
-  
+  isLoading: boolean
   id: string;
 }
 
 export interface ApplicantProfileProps {
   data: any;
+  isLoading: boolean
   id: string
 }
