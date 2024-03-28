@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import ChatItem from "./chatItems/ChatItems";
 import styles from "./Chat.module.scss";
 import clsx from "clsx";
-// ... (previous imports)
+
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentChat, setCurrentChat } from "@/store/chat/chat.slice";
 import SecondButton from "@/components/ui/Button/SecondButton";
@@ -29,8 +29,7 @@ const Chat: FC = () => {
     (a: any, b: any) =>
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
-  console.log(sortedChats);
-
+ 
   useEffect(() => {
     SocketApi.createConnection();
 
@@ -94,10 +93,11 @@ const Chat: FC = () => {
           [styles.menuOpen]: isMenuOpen,
         })}
       >
-        <h2 className={styles.title}>Собеседники</h2>
+        {/* <h2 className={styles.title}>Собеседники</h2> */}
+
         {chats.map((chat: any) => (
           <div onClick={() => handleChatItemClick(chat)} key={chat._id}>
-            <ChatItem chat={chat} currentUser={user!._id} />
+            <ChatItem chat={chat} currentUser={user!._id} currentChat={currentChat} />
           </div>
         ))}
       </div>

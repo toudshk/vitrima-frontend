@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import DropdownMenu from "./dropdown-menu/DropdownMenu";
 import Filter from "@/components/screens/filter/Filter";
 import { usePathname } from "next/navigation";
+import { io } from "socket.io-client";
 const animation = {
   hidden: {
     y: -50,
@@ -21,6 +22,8 @@ const animation = {
   },
 };
 const Navigation = () => {
+  //  const socket = io(process.env.APP_URL)
+  //  console.log(socket)
   const { user } = useAuth();
   const pathname = usePathname().substring(1);
   return (
