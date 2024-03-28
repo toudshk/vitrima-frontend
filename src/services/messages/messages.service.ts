@@ -1,11 +1,11 @@
 
 import axios, { axiosClassic } from "@/api/interceptors";
 import SocketApi from "@/api/socket";
-import { API_URL } from "@/config/api.config";
+import { API_URL, getMessageUrl } from "@/config/api.config";
 
 export const MessagesService = {
   async getMessages(id: string) {
-    try {
+    try{
       const response = await axiosClassic.get(`${API_URL}/message/${id}`);
       
       return response.data;
@@ -36,5 +36,9 @@ export const MessagesService = {
       throw error;
     }
   },
+  async updateStatus(_id: string) {
+		return axios.put<string>(getMessageUrl(`/change-status/${_id}`))
+	},
+	
  
 };

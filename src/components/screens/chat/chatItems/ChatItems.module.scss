@@ -29,13 +29,13 @@
     .lastMessage {
       @apply text-lg text-gray-600 flex justify-between w-full -mt-1;
       .text {
-        @apply w-[60%];
+        @apply w-[60%] ;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
       .timestamp {
-        @apply absolute top-3 right-2;
+        @apply absolute top-2 right-0;
       }
     }
   }
