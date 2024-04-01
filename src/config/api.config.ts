@@ -1,6 +1,7 @@
 export const API_URL = `${process.env.APP_URL}/api`
 
 export const getAuthUrl = (string: string) => `/auth${string}`
+export const getPaymentUrl = (string: string) => `/payment${string}`
 export const getUsersUrl = (string: string) => `/users${string}`
 export const getTagsUrl = (string: string) => `/tag${string}`
 export const getWorkUrl = (string: string) => `/work${string}`
