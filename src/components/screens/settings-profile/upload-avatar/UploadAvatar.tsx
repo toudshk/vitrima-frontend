@@ -34,10 +34,9 @@ const UploadAvatar: FC<IUploadField> = ({
   const { uploadImage } = useUpload(onChange, folder);
   const [currentImage, setCurrentImage] = useState(image)
   useEffect(() => {
-    setCurrentImage(image);
-  }, [image]);
+    setCurrentImage(uploadImage);
+  }, [onChange]);
 
-  console.log(currentImage);
   return (
     <div
       className={cn(styles.field, styles.uploadField)}
@@ -48,18 +47,15 @@ const UploadAvatar: FC<IUploadField> = ({
      
           <div className={styles.changePhotoOverlay}>
             <label>
-              <input type="file" onChange={uploadImage} /> <PhotoCameraOutlinedIcon />
+              <input type="file" accept="image/png, image/jpeg, image/jpg" onChange={uploadImage} /> <PhotoCameraOutlinedIcon />
             </label>
           </div>
         
-        <Image
-        key={isNoImage ? 'noImage' : image}
-          width={72}
-          height={72}
-          src={isNoImage ? baseAvatar : image}
-          alt=""
-          unoptimized
-        />
+          {currentImage === "" ? (
+          <Image width={72} height={72} src={baseAvatar} alt="Аватар" />
+        ) : (
+          <Image width={72} height={72} src={image} alt="Аватар" />
+        )}
 
       </div>
     </div>
@@ -67,3 +63,43 @@ const UploadAvatar: FC<IUploadField> = ({
 };
 
 export default UploadAvatar;
+
+
+// // export default UploadAvatar;
+// const UploadField: FC<IUploadField> = ({
+//   placeholder,
+//   error,
+//   style,
+//   image,
+//   folder,
+//   onChange,
+//   isNoImage = false,
+// }) => {
+//   const { uploadImage, isLoading } = useUpload(onChange, folder);
+
+//   return (
+//     <div
+//           className={cn(styles.field, styles.uploadField)}
+//           style={style}
+    
+//         >
+//           <div className={styles.uploadImageContainer}>
+    
+//               <div className={styles.changePhotoOverlay}>
+//                 <label>
+//                   <input type="file" onChange={uploadImage} /> <PhotoCameraOutlinedIcon />
+//                 </label>
+//               </div>
+    
+//               {isLoading ? (
+// 							<SkeletonLoader count={1} className="w-full h-full" />
+// 						) : (
+// 							image ? <Image src={image} alt="" layout="fill" unoptimized /> :   <Image src={baseAvatar} alt="" layout="fill" unoptimized />
+// 						)}
+    
+//           </div>
+//         </div>
+//   );
+// };
+
+// export default UploadField;

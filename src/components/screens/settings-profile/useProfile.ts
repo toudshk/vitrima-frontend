@@ -10,11 +10,8 @@ import { IContractor } from "@/components/shared/types/user.types";
 export const useProfile = (
   setValue: any
 ) => {
-  const { user } = useAuth();
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const userId = String(searchParams.get("id"));
-  const { push } = router;
+
+
 
   const { isLoading } = useQuery("profile", () => UserService.getProfile(), {
     onSuccess: ({ data }) => {

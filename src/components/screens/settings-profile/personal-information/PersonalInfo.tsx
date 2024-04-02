@@ -60,7 +60,6 @@ const PersonalInfo: NextPageAuth = () => {
                   error={errors.nickname}
                   title=""
                 />
-               
               </div>
               <Field
                 {...register("email", {
@@ -80,11 +79,15 @@ const PersonalInfo: NextPageAuth = () => {
               <p className="text-xl mb-[1vw] text-primary">
                 Регион вашей деятельности
               </p>
+              
               <Controller
                 control={control}
                 name="location"
-                defaultValue=""
-                render={({ field }) => (
+                defaultValue="not choose"
+                render={({
+                  field: { value, onChange },
+                  fieldState: { error },
+                }) => (
                   <AddressSuggestions
                     count={4}
                     inputProps={{
@@ -94,24 +97,21 @@ const PersonalInfo: NextPageAuth = () => {
                     }}
                     token={DADATA_KEY}
                     onChange={(newValue) => {
-                      field.onChange(newValue?.data.fias_id);
+                      onChange(newValue?.data.fias_id);
                     }}
-                    value={field.value}
+                    value={value}
                     filterFromBound="region"
                     filterToBound="region"
                     filterLocations={[{ country: "россия" }]}
                   />
                 )}
-                rules={{
-                  required: "Выберите город",
-                }}
               />
             </>
           )}
-           <div className='flex items-center ml-3 mt-6'>
-                <input type="checkbox" className="h-6 w-6 mr-3"/>
-                Подписка
-                </div>
+          <div className="flex items-center ml-3 mt-6">
+            <input type="checkbox" className="h-6 w-6 mr-3" />
+            Подписка
+          </div>
           <button className={styles.button}>Сохранить</button>
         </form>
       </div>
