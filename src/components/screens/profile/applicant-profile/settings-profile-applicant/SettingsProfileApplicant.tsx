@@ -56,6 +56,7 @@ const SettingsProfileApplicant: NextPageAuth = () => {
                         image={value}
                         onChange={onChange}
                         title={""}
+                        isLoading={isLoading}
                       />
                     )}
                     rules={{
