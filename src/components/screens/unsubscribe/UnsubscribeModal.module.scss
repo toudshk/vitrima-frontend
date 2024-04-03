@@ -1,0 +1,18 @@
+.container {
+  @apply h-[93vh] bg-[#f1f2f3];
+  display: grid;
+  place-items: center; /* Центрирование по вертикали и горизонтали */
+
+  .block {
+    @apply  bg-white rounded-2xl  p-10;
+    .title {
+      @apply text-center text-3xl font-bold mb-6;
+    }
+    ul {
+      @apply flex justify-center gap-8;
+      li{
+        @apply py-10 px-6 text-lg bg-[#f1f2f3] rounded-2xl font-semibold;
+      }
+    }
+  }
+}

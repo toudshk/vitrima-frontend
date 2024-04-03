@@ -1,8 +1,8 @@
-"use client"
+"use client";
 import cn from "clsx";
 import Image from "next/image";
 import { CSSProperties, FC, useEffect, useState } from "react";
-import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined';
+import PhotoCameraOutlinedIcon from "@mui/icons-material/PhotoCameraOutlined";
 import styles from "./UploadAvatar.module.scss";
 import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 import { FieldError } from "react-hook-form";
@@ -20,6 +20,7 @@ export interface IUploadField {
   title: string;
   isNoImage?: boolean;
   images?: any;
+  isLoading: boolean;
 }
 const UploadAvatar: FC<IUploadField> = ({
   placeholder,
@@ -29,41 +30,47 @@ const UploadAvatar: FC<IUploadField> = ({
   folder,
   onChange,
   isNoImage = false,
+  isLoading,
 }) => {
-  console.log(image)
-  const { uploadImage } = useUpload(onChange, folder);
-  const [currentImage, setCurrentImage] = useState(image)
-  useEffect(() => {
-    setCurrentImage(uploadImage);
-  }, [onChange]);
+  const { uploadImage, isLoading: uploadLoading } = useUpload(onChange, folder);
 
   return (
-    <div
-      className={cn(styles.field, styles.uploadField)}
-      style={style}
-      
-    >
-      <div className={styles.uploadImageContainer}>
-     
-          <div className={styles.changePhotoOverlay}>
-            <label>
-              <input type="file" accept="image/png, image/jpeg, image/jpg" onChange={uploadImage} /> <PhotoCameraOutlinedIcon />
-            </label>
+    <>
+      {isLoading ? (
+        <SkeletonLoader
+          width={"100px"}
+          height={"100px"}
+          borderRadius={"100px"}
+        />
+      ) : (
+        <div className={cn(styles.field, styles.uploadField)} style={style}>
+          <div className={styles.uploadImageContainer}>
+            <div className={styles.changePhotoOverlay}>
+              <label>
+                <input
+                  type="file"
+                  accept="image/png, image/jpeg, image/jpg"
+                  onChange={uploadImage}
+                />{" "}<div className={styles.iconCamera}>
+                <PhotoCameraOutlinedIcon height={100}/>
+                </div>
+              </label>
+            </div>
+            <div className={styles.borderImage}>
+              {image === "" ? (
+                <Image width={200} height={200} src={baseAvatar} alt="Аватар" />
+              ) : (
+                <Image width={200} height={200} src={image} alt="Аватар" />
+              )}
+            </div>
           </div>
-        
-          {currentImage === "" ? (
-          <Image width={72} height={72} src={baseAvatar} alt="Аватар" />
-        ) : (
-          <Image width={72} height={72} src={image} alt="Аватар" />
-        )}
-
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 
 export default UploadAvatar;
-
 
 // // export default UploadAvatar;
 // const UploadField: FC<IUploadField> = ({
@@ -81,22 +88,22 @@ export default UploadAvatar;
 //     <div
 //           className={cn(styles.field, styles.uploadField)}
 //           style={style}
-    
+
 //         >
 //           <div className={styles.uploadImageContainer}>
-    
+
 //               <div className={styles.changePhotoOverlay}>
 //                 <label>
 //                   <input type="file" onChange={uploadImage} /> <PhotoCameraOutlinedIcon />
 //                 </label>
 //               </div>
-    
+
 //               {isLoading ? (
 // 							<SkeletonLoader count={1} className="w-full h-full" />
 // 						) : (
 // 							image ? <Image src={image} alt="" layout="fill" unoptimized /> :   <Image src={baseAvatar} alt="" layout="fill" unoptimized />
 // 						)}
-    
+
 //           </div>
 //         </div>
 //   );

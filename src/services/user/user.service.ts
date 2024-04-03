@@ -71,5 +71,8 @@ export const UserService = {
 	
 	async removeSavedWork(applicantId: string, workId:string) {
 		return await axios.post(getUsersUrl(`/remove-saved-work/${applicantId}/${workId}`))
+	},
+	async removeAutoPayment(_id:string ){
+		return await axios.post(getUsersUrl(`/remove-autopayment/${_id}`))
 	}
 }

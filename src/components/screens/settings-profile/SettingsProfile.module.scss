@@ -5,7 +5,7 @@
 
    
     > ul {
-      @apply flex pt-[13vh] pl-[5vw]  mx-auto relative;
+      @apply flex pt-[6vh] pl-[5vw]  mx-auto relative;
       &::after {
         content: "";
         position: absolute;
