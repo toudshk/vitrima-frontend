@@ -1,12 +1,12 @@
 .wrapper {
-  @apply mt-[13vh] max-w-[1736px] mx-auto px-[1vw];
+  @apply mt-[13vh] max-w-[1736px] mx-auto px-10;
   .blockTitle {
-    @apply flex justify-between mt-[2.3vw] items-center mb-10;
+    @apply flex justify-between mt-8 items-center mb-10;
     .leftBlock {
-      @apply text-[2vw] text-gray-600;
+      @apply text-2xl text-gray-600;
     }
     .rightBlock {
-      @apply flex  text-[1.15vw];
+      @apply flex  text-lg;
 
       .subscribers {
         @apply flex mr-[2vw];
@@ -44,9 +44,9 @@
 
 @media (max-width: 700px) {
   .wrapper {
-    @apply mt-[15vh];
+    @apply mt-[15vh] px-2;
     .blockTitle {
-      @apply mx-4;
+      @apply mx-4 mt-2 mb-20;
       .leftBlock {
         @apply text-sm;
       }

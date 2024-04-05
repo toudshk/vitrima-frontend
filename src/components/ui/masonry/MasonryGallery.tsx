@@ -13,8 +13,10 @@ const MasonryGallery: FC<{ data: any; isLoading: boolean }> = ({
     900: 3,
     400: 2,
   };
-
+  console.log(data.length);
   const [workData, setWorkData] = useState();
+  const numObjects = 12;
+  const fishArray = new Array(numObjects).fill({}); // Создаем массив из 6 пустых объектов
 
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState<DialogProps["scroll"]>("body");
@@ -51,14 +53,26 @@ const MasonryGallery: FC<{ data: any; isLoading: boolean }> = ({
       breakpointCols={breakpointColumnsObj}
       className="flex gap-3 mx-[1vw] "
     >
-      {data.map((item) => (
-        <GalleryItem
-          item={item}
-          key={item._id}
-          handleWorkData={handleWorkData}
-          handleClickOpen={handleClickOpen}
-        />
-      ))}
+      {data.length !== 0
+        ? data.map((item) => (
+            <GalleryItem
+              item={item}
+              key={item._id}
+              handleWorkData={handleWorkData}
+              handleClickOpen={handleClickOpen}
+            />
+          ))
+        : fishArray.map((object, index) => (
+            <div
+              key={index}
+              className=" h-64 rounded-2xl"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(0, 0, 0, 0.03) 0%, transparent 100%)",
+              }}
+            ></div>
+          ))}
+
       <ModalWindow
         open={open}
         scroll={scroll}

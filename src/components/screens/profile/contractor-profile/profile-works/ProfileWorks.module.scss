@@ -5,7 +5,7 @@
   }
   @media (max-width: 700px) {
     @apply block;
-    .skeletonLoader{
+    .skeletonLoader {
       @apply h-[300px];
     }
   }
@@ -98,20 +98,43 @@
         }
       }
     }
+    .emptyWorks {
+      @apply w-full -mt-16 h-[50vh] max-h-[600px] flex justify-center gap-10;
+      .firstBlock {
+        @apply w-[50%] h-full border-2 border-dashed  border-gray-300 rounded-2xl text-center py-10 px-5;
+        h1 {
+          @apply font-bold text-3xl mb-3;
+        }
+        p {
+          @apply text-lg w-[80%] mx-auto mb-5;
+        }
+        .addWorkButton {
+          @apply bg-primary text-white py-3 px-4 rounded-xl;
+        }
+      }
+      .secondBlock {
+        @apply w-[50%] h-full rounded-2xl;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.03) 0%,
+          transparent 100%
+        );
+      }
+    }
   }
   @media (max-width: 800px) {
     .works {
       @apply block mb-10;
-      .itemBlock{
+      .itemBlock {
         @apply mx-4;
         .imageLeftBlock {
           @apply mr-0 mb-4;
         }
         .textLeftBlock {
           @apply w-[90%];
-  
+
           transform: translate(-3%, -10%);
-          
+
           > h1 {
             @apply text-xl mb-[1vw];
           }
@@ -119,7 +142,7 @@
             @apply text-sm;
           }
         }
-        .textRightBlock{
+        .textRightBlock {
           @apply w-[90%];
           transform: translate(15%, -92%);
           > h1 {
@@ -130,7 +153,15 @@
           }
         }
       }
-      
+      .emptyWorks {
+        @apply flex-col max-h-[335px];
+        .firstBlock {
+          @apply w-full;
+        }
+        .secondBlock {
+          @apply w-full;
+        }
+      }
     }
   }
 }

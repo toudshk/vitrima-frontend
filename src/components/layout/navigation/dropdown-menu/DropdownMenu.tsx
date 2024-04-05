@@ -51,7 +51,7 @@ const DropdownMenu = () => {
           {" "}
           <PersonIcon /> Профиль
         </a>
-        {user?.isContractor === true && (
+        {/* {user?.isContractor === true && (
           <a
             onClick={(e) => {
               setOpen(true);
@@ -68,7 +68,7 @@ const DropdownMenu = () => {
               Подписка
             </div>
           </a>
-        )}
+        )} */}
 
         <ModalSubscription setOpen={setOpen} open={open} />
         <a onClick={logoutHandler}>

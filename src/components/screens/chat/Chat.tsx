@@ -29,7 +29,7 @@ const Chat: FC = () => {
     (a: any, b: any) =>
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
- 
+
   useEffect(() => {
     SocketApi.createConnection();
 
@@ -95,11 +95,19 @@ const Chat: FC = () => {
       >
         {/* <h2 className={styles.title}>Собеседники</h2> */}
 
-        {chats.map((chat: any) => (
-          <div onClick={() => handleChatItemClick(chat)} key={chat._id}>
-            <ChatItem chat={chat} currentUser={user!._id} currentChat={currentChat} />
-          </div>
-        ))}
+        {chats.length > 0 ? (
+          chats.map((chat: any) => (
+            <div onClick={() => handleChatItemClick(chat)} key={chat._id}>
+              <ChatItem
+                chat={chat}
+                currentUser={user!._id}
+                currentChat={currentChat}
+              />
+            </div>
+          ))
+        ) : (
+          <div className="text-center">Нет доступных чатов</div>
+        )}
       </div>
       <div className={styles.chatBox}>
         <div className={styles.buttonBlock}>

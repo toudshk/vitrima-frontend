@@ -5,7 +5,7 @@
     @apply flex h-full items-center;
 
     > img {
-      @apply image-like-bg rounded-full w-[3.3vw] h-[3.3vw] max-w-[72px] max-h-[72px];
+      @apply image-like-bg rounded-full w-[5.3vw] h-[5.3vw] max-w-[72px] max-h-[72px];
     }
 
     > p {
@@ -20,13 +20,13 @@
 
   .rightBlock {
     .firstLink {
-      @apply border border-blue-500 bg-blue-500 text-white px-[1.1vw]  py-[1vw] text-[1.1vw] rounded-[0.7vw] mr-[1.6vw]  transition-all ease-in-out duration-200;
+      @apply border border-blue-500 bg-blue-500 text-white px-4  py-3 text-lg rounded-xl mr-10  transition-all ease-in-out duration-200;
       &:hover {
         @apply border-blue-800 bg-blue-800;
       }
     }
     .secondLink {
-      @apply border-[0.1vw] border-primary px-[1.1vw] py-[1vw] text-[1.1vw] rounded-[0.7vw] transition-all ease-in-out duration-200;
+      @apply border-[0.1vw] border-primary px-4  py-3 text-lg rounded-xl transition-all ease-in-out duration-200;
       &:hover {
         @apply opacity-50;
       }
@@ -35,7 +35,7 @@
 }
 @media (max-width: 700px) {
   .header {
-    @apply  mb-10;
+    @apply  mb-[115px] block;
 
     .leftBlock {
       > img {
@@ -46,12 +46,12 @@
       }
     }
     .rightBlock {
-      @apply flex flex-col w-[40%] ;
+      @apply flex flex-row   mt-10 gap-2 items-center;
       .firstLink {
-        @apply text-[2.7vw] mr-0 mb-2 text-center;
+        @apply text-base mr-0  px-3 text-center;
       }
       .secondLink {
-        @apply text-[2.7vw] text-center;
+        @apply text-base px-3 text-center;
       }
     }
   }
