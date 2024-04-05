@@ -13,7 +13,7 @@ const MasonryGallery: FC<{ data: any; isLoading: boolean }> = ({
     900: 3,
     400: 2,
   };
-  console.log(data.length);
+  
   const [workData, setWorkData] = useState();
   const numObjects = 12;
   const fishArray = new Array(numObjects).fill({}); // Создаем массив из 6 пустых объектов
