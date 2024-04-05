@@ -156,7 +156,13 @@
       .emptyWorks {
         @apply flex-col max-h-[335px];
         .firstBlock {
-          @apply w-full;
+          @apply w-full  px-0;
+          h1{
+            @apply text-2xl
+          }
+          p{
+            @apply w-full
+          }
         }
         .secondBlock {
           @apply w-full;

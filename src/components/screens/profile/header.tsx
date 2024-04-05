@@ -81,7 +81,7 @@ const Header: FC<{
               user.isContractor ? "/contractor/settings" : "/applicant/settings"
             }
           >
-            Редактировать профиль
+            Изменить профиль
           </Link>
         </div>
       ) : user ? (
