@@ -8,17 +8,20 @@ import { useAuth } from "@/hooks/useAuth";
 import ChatItem from "./chatItems/ChatItems";
 import styles from "./Chat.module.scss";
 import clsx from "clsx";
-
+import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentChat, setCurrentChat } from "@/store/chat/chat.slice";
 import SecondButton from "@/components/ui/Button/SecondButton";
 import { redirect } from "next/navigation";
 import SocketApi from "@/api/socket";
-
+import { useUserInfo } from "./useUserInfo";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import baseImage from "@/app/assets/images/base-avatar.jpg";
 const Chat: FC = () => {
   const [chats, setChats] = useState([]);
 
   const currentChat = useSelector(selectCurrentChat);
+
   const dispatch = useDispatch();
   const [arrivalMessage, setArrivalMessage] = useState<any>(null);
   const [messages, setMessages] = useState<any>([]);
@@ -29,6 +32,11 @@ const Chat: FC = () => {
     (a: any, b: any) =>
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
+  let friendId = null;
+  if (currentChat && currentChat.members) {
+    friendId = currentChat.members.find((m: any) => m !== user?._id);
+  }
+  const { data: friendData } = useUserInfo(friendId);
 
   useEffect(() => {
     SocketApi.createConnection();
@@ -59,7 +67,6 @@ const Chat: FC = () => {
       setMessages(messageData);
     }
   }, [currentChat]);
-
   useEffect(() => {
     arrivalMessage &&
       currentChat?.members.includes(arrivalMessage.sender) &&
@@ -80,7 +87,7 @@ const Chat: FC = () => {
     dispatch(setCurrentChat(chat));
     setMenuOpen(!isMenuOpen);
   };
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useState(true);
 
   const handleToggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -110,10 +117,28 @@ const Chat: FC = () => {
         )}
       </div>
       <div className={styles.chatBox}>
-        <div className={styles.buttonBlock}>
-          <SecondButton onClick={handleToggleMenu}>{"< Чаты"}</SecondButton>
-        </div>
         <div className={styles.chatBoxWrapper}>
+          {friendData !== undefined && (
+            <div className={styles.chatBlockFriend}>
+              <div className={styles.buttonBlock}>
+                <button onClick={handleToggleMenu}>
+                  <ArrowBackIcon />
+                </button>
+              </div>
+              {friendData?.data.image === undefined ? (
+                <Image width={72} height={72} src={baseImage} alt="" />
+              ) : (
+                <Image
+                  width={72}
+                  height={72}
+                  src={friendData?.data.image}
+                  alt=""
+                />
+              )}
+              <p>{friendData?.data.nickname}</p>{" "}
+            </div>
+          )}
+
           {currentChat ? (
             <>
               <div className={styles.chatBoxTop}>

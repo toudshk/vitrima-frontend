@@ -34,7 +34,6 @@ export const useProfile = (
   const { mutateAsync } = useMutation(
     "update profile",
     (data: ISettingsProfileInput) => UserService.updateProfile(data),
-    
     {
       onError: () => {
       
@@ -42,6 +41,7 @@ export const useProfile = (
       },
      
       onSuccess(){
+   
        
       toast.success('Данные профиля обновлены')
       router.back();

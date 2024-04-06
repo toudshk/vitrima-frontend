@@ -85,7 +85,7 @@ const Header: FC<{
           </Link>
         </div>
       ) : user ? (
-        <div>
+        <div  className={styles.messageButton}>
           <SecondButton className="text-xs" onClick={onSubmit}>
             Отправить сообщение
           </SecondButton>

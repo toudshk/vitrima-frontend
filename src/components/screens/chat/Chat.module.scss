@@ -1,8 +1,7 @@
 .messenger {
-  @apply flex max-w-7xl mx-auto relative  h-[90vh];
-
+  @apply flex max-w-7xl mx-auto relative  h-[90vh] border-r border-gray-300;
   .chatMenu {
-    @apply mt-[1vw] pt-4 px-2 h-full mr-12 text-3xl border-x-[1px] border-gray-300;
+    @apply mt-[1vw] pt-4 px-2 h-full  text-3xl border-x-[1px] border-gray-300;
     width: 50%;
     transition: left 0.3s ease;
   }
@@ -23,16 +22,25 @@
     }
   }
   .chatBox {
-    @apply w-[80vw]  h-full;
+    @apply w-full   h-full;
 
     .chatBoxWrapper {
-      @apply mt-[1vw]  h-full;
+      @apply mt-[1vw]  h-full ;
 
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
 
+      .chatBlockFriend{
+        @apply flex py-3 border-b border-gray-300 pl-10 items-center;
+        img{
+          @apply w-12 h-12 rounded-full  image-like-bg mr-3;
+        }
+        p{
+          @apply text-lg font-bold ;
+        }
+      }
       .noConversationText {
         position: absolute;
         margin-left: 10%;
@@ -43,7 +51,7 @@
         user-select: none;
       }
       .chatBoxTop {
-        @apply overflow-y-scroll h-[120%] ;
+        @apply overflow-y-scroll h-[120%] w-[80%] mx-auto;
 
         overflow: auto;
         scrollbar-width: thin; /* для Firefox */
@@ -58,7 +66,7 @@
         }
       }
       .chatBoxBottomContainer {
-        @apply bg-white w-full;
+        @apply bg-white w-[80%] mx-auto;
         z-index: 10;
         .chatBoxBottom {
           display: flex;
@@ -77,7 +85,8 @@
       }
     }
     .buttonBlock {
-      @apply mt-2;
+      @apply h-auto w-auto my-auto mr-4 ;
+      
     }
   }
 }
@@ -96,8 +105,11 @@
         @apply h-full ;
       .chatBoxWrapper {
         @apply h-[73vh];
+        .chatBlockFriend{
+          @apply pl-2;
+        }
         .chatBoxTop{
-          @apply h-full;
+          @apply h-full  w-full;
         }
         .chatBoxBottom {
           @apply w-full;

@@ -23,7 +23,6 @@ dayjs.locale("ru"); // Устанавливаем локаль
 
 const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
   const [lastMessage, setLastMessage] = useState<any>(undefined);
- 
 
   const friendId = chat.members.find((m: any) => m !== currentUser);
 
@@ -32,27 +31,21 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
   const markAsRead = () => {
     setLastMessage((prevMessage: any) => ({
       ...prevMessage,
-      status: 'read',
+      status: "read",
     }));
   };
-  const mutation = useMutation(
-    "create message",
-    (_id:any) => MessagesService.updateStatus(_id),
-   
+  const mutation = useMutation("create message", (_id: any) =>
+    MessagesService.updateStatus(_id)
   );
-
 
   useEffect(() => {
     // Вызов markAsRead только при монтировании компонента
-    if (currentChat?._id === chat._id ) {
-      console.log(lastMessage);
-      
+    if (currentChat?._id === chat._id) {
       mutation.mutate(lastMessage._id);
- 
+
       markAsRead();
     }
   }, [currentChat]);
- 
 
   const { data: messageData, isLoading } = useMessages(chat._id);
   useEffect(() => {
@@ -62,8 +55,6 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
       console.log("Массив сообщений пуст или отсутствует");
     }
   }, [messageData]);
-
-  console.log(lastMessage)
 
   const formatTimestamp = (createdAt: any) => {
     const messageDate = dayjs(createdAt);
@@ -81,7 +72,6 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
       return messageDate.format("DD.MM");
     }
   };
-console.log(lastMessage?.sender, friendId)
   return (
     <div
       className={clsx(styles.item, {
@@ -91,8 +81,8 @@ console.log(lastMessage?.sender, friendId)
       <Image
         src={data?.data.image || baseImage}
         alt={""}
-        width={60}
-        height={60}
+        width={120}
+        height={120}
         className={styles.avatar}
       />
       <div className={styles.textBlock}>
@@ -104,11 +94,14 @@ console.log(lastMessage?.sender, friendId)
             <>
               {lastMessage ? (
                 <>
-                  <div className="flex  justify-between  w-full">
+                  <div className="flex  justify-between items-center  w-full">
                     <div>
                       <span className={styles.text}>{lastMessage.text}</span>
                     </div>
-                    <div>{lastMessage.status === "sent" && lastMessage?.sender === friendId && <div>new</div>}</div>
+                    <div>
+                      {lastMessage.status === "sent" &&
+                        lastMessage?.sender === friendId && <div className=" h-4 w-4 bg-blue-300 mr-3  rounded-full"></div>}
+                    </div>
                   </div>
                   <span className={styles.timestamp}>
                     {formatTimestamp(lastMessage.createdAt)}

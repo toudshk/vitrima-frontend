@@ -9,7 +9,7 @@ export const UserService = {
 		return axios.get<IContractor>(getUsersUrl('/profile/takeinfouser'))
 	},
 	async updateProfile(data: ISettingsProfileInput) {
-	
+		
 		return axios.put<string>(getUsersUrl('/profile'), data)
 	},
 

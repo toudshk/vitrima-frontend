@@ -1,7 +1,6 @@
 .activeChat {
-  background-color:  #0088cc !important;
+  background-color: #0088cc !important;
   .textBlock {
-
     .nickname {
       @apply text-white;
     }
@@ -11,7 +10,7 @@
   }
 }
 .item {
-  @apply flex p-3 h-[90px] mr-10 w-full items-center cursor-pointer rounded-2xl;
+  @apply flex p-3 h-[90px] rounded-2xl mr-10 w-full items-center cursor-pointer;
   &:hover {
     @apply bg-gray-300;
   }
@@ -29,7 +28,7 @@
     .lastMessage {
       @apply text-lg text-gray-600 flex justify-between w-full -mt-1;
       .text {
-        @apply w-[60%] ;
+        @apply w-[60%];
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -42,7 +41,7 @@
 }
 @media (max-width: 700px) {
   .item {
-    @apply h-[65px] w-full mb-2   border-b-[0.1vw] border-[#bfbfbf];
+    @apply h-[65px] w-full mb-2 rounded-none  border-b-[0.1vw] border-[#bfbfbf];
 
     .avatar {
       @apply w-10 h-10 mr-2;
@@ -63,6 +62,18 @@
         .timestamp {
           @apply absolute text-sm top-3 right-2;
         }
+      }
+    }
+  }
+  .activeChat {
+    background-color: transparent !important;
+
+    .nickname {
+      color: #000 !important;
+    }
+    .textBlock {
+      .lastMessage {
+        color: rgb(95 95 95) !important;
       }
     }
   }
