@@ -119,9 +119,9 @@ const PersonalInfo: NextPageAuth = () => {
           
           <button className={styles.button}>Сохранить</button>
         </form>
-        <Link href={`/unsubscribe`} className="flex items-center justify-center mt-3  text-xl font-bold">
+        {/* <Link href={`/unsubscribe`} className="flex items-center justify-center mt-3  text-xl font-bold">
       Отменить подписку
-        </Link>
+        </Link> */}
       </div>
     </Meta>
   );
