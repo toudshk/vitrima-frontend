@@ -104,15 +104,16 @@
 
         @apply h-full ;
       .chatBoxWrapper {
-        @apply h-[73vh];
+        @apply h-[80vh];
         .chatBlockFriend{
           @apply pl-2;
         }
         .chatBoxTop{
-          @apply h-full  w-full;
+          @apply h-[120%]  w-full;
         }
         .chatBoxBottom {
-          @apply w-full;
+          @apply w-full ;
+        
         }
       }
     }
