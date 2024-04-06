@@ -32,11 +32,9 @@
           @media (max-width: 700px) {
             @apply text-[3vw];
           }
-          
         }
-        .secondButton{
+        .secondButton {
           @apply border-[0.1vw]    border-primary bg-primary text-white px-2 ml-1 py-1 text-lg rounded  transition-all ease-in-out duration-200;
-        
         }
         .link {
           @apply px-2 py-1  w-[50%] text-lg  border-[0.1vw] border-gray-700 rounded;
@@ -53,7 +51,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-          
+
             &:hover {
               @apply border-gray-600 bg-gray-600;
             }
@@ -74,7 +72,7 @@
       }
     }
     .link {
-      @apply block w-full border-[0.1vw] rounded-[1vw]  text-xl text-center;
+      @apply block w-full border-[0.1vw] rounded-2xl px-3  text-xl text-center;
     }
 
     @media (max-width: 1200px) {
@@ -86,10 +84,10 @@
   }
 }
 
-@media (max-width: 700px){
-  .content{
-    .selectedWork{
-      .title{
+@media (max-width: 700px) {
+  .content {
+    .selectedWork {
+      .title {
         @apply text-2xl mb-2;
       }
     }
