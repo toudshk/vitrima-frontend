@@ -10,6 +10,7 @@ import iconLogo from "@/app/assets/images/BlackIconLogo.svg";
 import { redirect } from "next/navigation";
 import ModalSubscription from "@/components/screens/profile/contractor-profile/ModalSubscription";
 import Image from "next/image";
+import Link from "next/link";
 
 const DropdownMenu = () => {
   const { user } = useAuth();
@@ -47,10 +48,10 @@ const DropdownMenu = () => {
     >
       <Avatar id={user!._id} />
       <div className={clsx(styles.dropdownItems, { [styles.open]: menuOpen })}>
-        <a href={`/profile/${user?._id}`}>
+        <Link href={`/profile/${user?._id}`}>
           {" "}
           <PersonIcon /> Профиль
-        </a>
+        </Link>
         {/* {user?.isContractor === true && (
           <a
             onClick={(e) => {

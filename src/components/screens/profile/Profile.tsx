@@ -3,14 +3,17 @@ import ContractorProfile from "./contractor-profile/ContractorProfile";
 
 import ApplicantProfile from "./applicant-profile/ApplicantProfile";
 import { useAuth } from "@/hooks/useAuth";
+import { useParams } from "next/navigation";
+import { useUser } from "./useUser";
 
-interface ProfileProps {
-  data: any;
-  isLoading: boolean;
-}
 
-const Profile: React.FC<ProfileProps> = ({ data, isLoading }) => {
+
+const Profile: React.FC = () => {
+  const params = useParams()
   
+  let userId = params.id
+  const { data, isLoading } = useUser(userId);
+
     return (
       <>
       {data?.isContractor ? (

@@ -30,5 +30,5 @@ export interface ContractorProfileProps {
 export interface ApplicantProfileProps {
   data: any;
   isLoading: boolean
-  id: string
+  id: any
 }
