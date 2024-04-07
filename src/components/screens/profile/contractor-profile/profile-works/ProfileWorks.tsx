@@ -12,7 +12,7 @@ import Link from "next/link";
 const ProfileWorks: FC<{ id: string }> = ({ id }) => {
   const { user } = useAuth();
   const { data, isLoading } = useWork();
-  let isOwner = id === user!._id;
+  let isOwner = id === user?._id;
 
   if (isLoading)
     return (
