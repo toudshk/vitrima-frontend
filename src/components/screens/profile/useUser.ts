@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { UseFormSetValue } from "react-hook-form";
 import { useQuery, useQueryClient } from "react-query";
 
-export const useUser = (id: string ) => {
+export const useUser = (id: any ) => {
   const queryClient = useQueryClient();
 
   const { data, isLoading } = useQuery({
