@@ -75,7 +75,12 @@ const DropdownMenu = () => {
         <a onClick={logoutHandler}>
           <LogoutIcon /> Выход
         </a>
+        <div className="border-t border-gray-300 text-xs py-[0.4vw] text-gray-450 px-[0.5vw]">
+        Обратная связь: vitrima.pro@gmail.com
       </div>
+      </div>
+
+      
     </div>
   );
 };
