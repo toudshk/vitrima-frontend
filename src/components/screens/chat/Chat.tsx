@@ -18,7 +18,7 @@ import { useUserInfo } from "./useUserInfo";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import baseImage from "@/app/assets/images/base-avatar.jpg";
 const Chat: FC = () => {
-  const [chats, setChats] = useState([]);
+  const [chats, setChats] = useState([]); 
 
   const currentChat = useSelector(selectCurrentChat);
 
@@ -28,6 +28,7 @@ const Chat: FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { user } = useAuth();
   const nonEmptyChats = useChats(user?._id);
+  console.log(nonEmptyChats.length)
   const sortedChats = nonEmptyChats.sort(
     (a: any, b: any) =>
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -87,7 +88,7 @@ const Chat: FC = () => {
     dispatch(setCurrentChat(chat));
     setMenuOpen(!isMenuOpen);
   };
-  const [isMenuOpen, setMenuOpen] = useState(true);
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
   const handleToggleMenu = () => {
     setMenuOpen(!isMenuOpen);
@@ -118,7 +119,7 @@ const Chat: FC = () => {
       </div>
       <div className={styles.chatBox}>
         <div className={styles.chatBoxWrapper}>
-          {friendData !== undefined && (
+        
             <div className={styles.chatBlockFriend}>
               <div className={styles.buttonBlock}>
                 <button onClick={handleToggleMenu}>
@@ -137,7 +138,7 @@ const Chat: FC = () => {
               )}
               <p>{friendData?.data.nickname}</p>{" "}
             </div>
-          )}
+         
 
           {currentChat ? (
             <>

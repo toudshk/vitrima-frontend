@@ -1,5 +1,5 @@
 .header {
-  @apply flex justify-between items-center h-[5vw] mx-auto px-4 max-w-[1736px] ;
+  @apply flex justify-between items-center h-[5vw] mx-auto px-4 max-w-[1736px];
 
   .leftBlock {
     @apply flex h-full items-center;
@@ -19,7 +19,6 @@
   }
 
   .rightBlock {
-   
     .firstLink {
       @apply border border-blue-500 bg-blue-500 text-white px-4 mr-2 py-3 text-lg rounded-xl  transition-all ease-in-out duration-200;
       &:hover {
@@ -36,7 +35,7 @@
 }
 @media (max-width: 700px) {
   .header {
-    @apply  mb-[115px] block px-2;
+    @apply mb-[115px] block px-2;
 
     .leftBlock {
       > img {
@@ -55,19 +54,24 @@
         @apply text-base w-[50%] px-[6px] text-center;
       }
     }
-    .messageButton{@apply mt-10}
+    .messageButton {
+      @apply mt-10;
+    }
   }
 }
 
-
-
-
 .notAuthButton {
-  @apply  text-xl bg-primary border-2 text-center text-white px-[3vw] py-[1vw] rounded-2xl;
+  @apply text-xl bg-primary border-2 text-center text-white px-[3vw] py-3 rounded-2xl;
   transition: background-color 0.2s ease-in-out; /* Добавляем плавность для изменения цвета фона */
 
-  &:hover{
-      @apply bg-gray-600;
+  &:hover {
+    @apply bg-gray-600;
   }
+}
 
+@media (max-width: 700px) {
+  .blockNotAuthButton {
+    @apply mt-10;
+    
+  }
 }

@@ -91,7 +91,7 @@ const Header: FC<{
           </SecondButton>
         </div>
       ) : (
-        <div>
+        <div className={styles.blockNotAuthButton}>
           <Link className={styles.notAuthButton} href={"/signup"}>
             Отправить сообщение
           </Link>
