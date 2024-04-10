@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { usePathname } from 'next/navigation'
  
 import { useActions } from "@/hooks/useActions";
+import { Metrika } from "@/utils/metrika";
 const animation = {
   hidden: {
   
@@ -27,8 +28,7 @@ const queryClient = new QueryClient();
 
 const MainProvider: FC<{ children: any }> = ({ children }) => {
   const pathname = usePathname()
-console.log(pathname)  // Определяем, является ли текущий путь главной страницей
-  
+
   return (
     <QueryClientProvider client={queryClient}>
       <ReduxProvider>
@@ -40,6 +40,7 @@ console.log(pathname)  // Определяем, является ли текущ
           animate="visible"
           exit="hidden"
         >
+          <Metrika />
           {children}
         </motion.div>
       </ReduxProvider>

@@ -24,7 +24,6 @@ const FirstPage: FC = () => {
   };
   const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
  
-
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useGallery("interior", {});
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -72,10 +71,13 @@ const FirstPage: FC = () => {
               <h1 className={styles.title}>Сервис возможностей</h1>
               <div className={styles.links}>
                 <Link href={"/select-feed"} className={styles.link}>Просмотр ленты</Link>
-             
-                <Link href={'/signup'} className={styles.secondLink}>Регистрация</Link>
-                <Link href={'/login'} className={styles.lastLink}>Авторизация</Link>
-              </div>
+                {!user && (
+                  <>
+    <Link href={'/signup'} className={styles.secondLink}>Регистрация</Link>
+    <Link href={'/login'} className={styles.lastLink}>Авторизация</Link>
+    </>
+)}
+                </div>
               <div>
 
               </div>

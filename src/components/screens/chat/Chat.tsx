@@ -17,8 +17,9 @@ import SocketApi from "@/api/socket";
 import { useUserInfo } from "./useUserInfo";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import baseImage from "@/app/assets/images/base-avatar.jpg";
+import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 const Chat: FC = () => {
-  const [chats, setChats] = useState([]); 
+  const [chats, setChats] = useState([]);
 
   const currentChat = useSelector(selectCurrentChat);
 
@@ -27,8 +28,8 @@ const Chat: FC = () => {
   const [messages, setMessages] = useState<any>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { user } = useAuth();
-  const nonEmptyChats = useChats(user?._id);
-  console.log(nonEmptyChats.length)
+  const {nonEmptyChats, isLoading: isLoadingChats} = useChats(user?._id);
+
   const sortedChats = nonEmptyChats.sort(
     (a: any, b: any) =>
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -101,44 +102,43 @@ const Chat: FC = () => {
           [styles.menuOpen]: isMenuOpen,
         })}
       >
-        {/* <h2 className={styles.title}>Собеседники</h2> */}
-
-        {chats.length > 0 ? (
-          chats.map((chat: any) => (
-            <div onClick={() => handleChatItemClick(chat)} key={chat._id}>
-              <ChatItem
-                chat={chat}
-                currentUser={user!._id}
-                currentChat={currentChat}
-              />
-            </div>
-          ))
-        ) : (
-          <div className="text-center">Нет доступных чатов</div>
-        )}
+      
+{isLoadingChats ? (<SkeletonLoader count={4} width={'100%'} height={80} borderRadius={16}/>):
+(chats.length > 0 ? (
+  chats.map((chat: any) => (
+    <div onClick={() => handleChatItemClick(chat)} key={chat._id}>
+      <ChatItem
+        chat={chat}
+        currentUser={user!._id}
+        currentChat={currentChat}
+      />
+    </div>
+  ))
+) : (
+  <div className="text-center">Нет доступных чатов</div>
+))}
+        
       </div>
       <div className={styles.chatBox}>
         <div className={styles.chatBoxWrapper}>
-        
-            <div className={styles.chatBlockFriend}>
-              <div className={styles.buttonBlock}>
-                <button onClick={handleToggleMenu}>
-                  <ArrowBackIcon />
-                </button>
-              </div>
-              {friendData?.data.image === undefined ? (
-                <Image width={72} height={72} src={baseImage} alt="" />
-              ) : (
-                <Image
-                  width={72}
-                  height={72}
-                  src={friendData?.data.image}
-                  alt=""
-                />
-              )}
-              <p>{friendData?.data.nickname}</p>{" "}
+          <div className={styles.chatBlockFriend}>
+            <div className={styles.buttonBlock}>
+              <button onClick={handleToggleMenu}>
+                <ArrowBackIcon />
+              </button>
             </div>
-         
+            {friendData?.data.image === undefined ? (
+              <Image width={72} height={72} src={baseImage} alt="" />
+            ) : (
+              <Image
+                width={72}
+                height={72}
+                src={friendData?.data.image}
+                alt=""
+              />
+            )}
+            <p>{friendData?.data.nickname}</p>{" "}
+          </div>
 
           {currentChat ? (
             <>

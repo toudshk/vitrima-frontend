@@ -35,6 +35,8 @@ const SignUpForms: FC<IAuthFields> = () => {
   const onSubmit: SubmitHandler<IAuthInput> = (data) => {
     if (selectedButton === "contractor") registerContractor(data);
     else if (selectedButton === "applicant") registerApplicant(data);
+    // @ts-ignore
+    ym(96978493,'reachGoal','SIGN_UP')
     reset();
   };
 

@@ -10,7 +10,7 @@ import { useMutation, useQuery } from 'react-query'
 export const useChats = (id: any) => {
 	const [nonEmptyChats, setNonEmptyChats] = useState<any>([]);
   
-	useQuery(
+	const {  isLoading } = useQuery(
 	  ['chat list', id],
 	  async () => {
 		const chats = await ChatsService.getChats(id);
@@ -35,5 +35,5 @@ export const useChats = (id: any) => {
 	  }
 	);
   
-	return nonEmptyChats;
+	return {nonEmptyChats, isLoading};
   };
