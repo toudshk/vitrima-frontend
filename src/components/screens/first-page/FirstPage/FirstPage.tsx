@@ -68,7 +68,7 @@ const FirstPage: FC = () => {
           <div className={styles.mainBlock}>
             <div className={styles.leftBlock}>
               <Image src={icon} alt={""} width={500} height={300} />
-              <h1 className={styles.title}>Сервис возможностей</h1>
+              <h1 className={styles.title}>Все дороги ведут в нам</h1>
               <div className={styles.links}>
                 <Link href={"/select-feed"} className={styles.link}>Просмотр ленты</Link>
                 {!user && (
