@@ -40,38 +40,28 @@ const MessageField: FC<{
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
-   
-
+      
+      if (!newMessage.trim()) {
+        return; // Exit early if the message is empty or contains only whitespace
+      }
+  
       // Your existing logic for creating and sending a message using mutation
       const messageData = {
         text: newMessage,
-
         chatId: currentChat._id,
         sender: user!._id,
-
         createdAt: Date.now(),
       };
       mutation.mutate(messageData);
-
+  
       if (inputRef.current) {
         inputRef.current.style.height = "40px";
       }
-
+  
       // Clear the input value after submitting the form
       setNewMessage("");
-
-      // // Your additional logic for sending a message using socket
-      // if (socket && currentChat.members.length > 1) {
-      //   const receiverId = currentChat.members.find(
-      //     (member: any) => member !== user!._id
-      //   );
-
-      //   socket.emit("sendMessage", {
-      //     senderId: user!._id,
-      //     chatId,
-      //     text: newMessage,
-      //   });
-      // }
+  
+      
     },
     [newMessage, user, currentChat, mutation, messages, socket]
   );

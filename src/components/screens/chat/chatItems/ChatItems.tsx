@@ -12,6 +12,7 @@ import dayjs from "dayjs";
 import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 import { useMutation } from "react-query";
 import { MessagesService } from "@/services/messages/messages.service";
+import { useAuth } from "@/hooks/useAuth";
 
 interface IChatItem {
   chat: any;
@@ -23,31 +24,33 @@ dayjs.locale("ru"); // Устанавливаем локаль
 
 const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
   const [lastMessage, setLastMessage] = useState<any>(undefined);
-
+  const { user } = useAuth();
   const friendId = chat.members.find((m: any) => m !== currentUser);
-
   const { data } = useUserInfo(friendId);
+  const { data: messageData, isLoading } = useMessages(chat._id);
 
   const markAsRead = () => {
-    setLastMessage((prevMessage: any) => ({
-      ...prevMessage,
-      status: "read",
-    }));
+    messageData.forEach((message: any) => {
+      if (user!._id !== message.sender) {
+        mutation.mutate(message._id);
+      }
+    });
   };
+
   const mutation = useMutation("create message", (_id: any) =>
     MessagesService.updateStatus(_id)
   );
 
   useEffect(() => {
-    // Вызов markAsRead только при монтировании компонента
     if (currentChat?._id === chat._id) {
-      mutation.mutate(lastMessage._id);
-
-      markAsRead();
+      // Проверяем, что user._id не равен sender из messageData
+      if (user!._id !== lastMessage.sender) {
+        mutation.mutate(lastMessage._id);
+        markAsRead();
+      }
     }
   }, [currentChat]);
 
-  const { data: messageData, isLoading } = useMessages(chat._id);
   useEffect(() => {
     if (messageData && messageData.length > 0) {
       setLastMessage(messageData[messageData.length - 1]);
@@ -100,7 +103,9 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
                     </div>
                     <div>
                       {lastMessage.status === "sent" &&
-                        lastMessage?.sender === friendId && <div className=" h-4 w-4 bg-blue-300 mr-3  rounded-full"></div>}
+                        lastMessage?.sender === friendId && (
+                          <div className=" h-4 w-4 bg-blue-300 mr-3  rounded-full"></div>
+                        )}
                     </div>
                   </div>
                   <span className={styles.timestamp}>
