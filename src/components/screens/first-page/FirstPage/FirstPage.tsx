@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import styles from "./FirstPage.module.scss";
 import icon from "@/app/assets/images/MainLogoBlack.svg";
-import { MainLogo } from "@/components/common/icons/MainLogo";
 import OnboardCards from "../onboard-cards/OnboardCards";
 import clsx from "clsx";
 import Footer from "@/components/layout/footer/Footer";
@@ -20,10 +19,9 @@ const FirstPage: FC = () => {
   const breakpointColumnsObj = {
     default: 4,
     900: 3,
-   
   };
   const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
- 
+
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useGallery("interior", {});
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -42,49 +40,43 @@ const FirstPage: FC = () => {
 
   const objects = data?.pages.flatMap((page) => page.data);
   return (
-    // <div>
-    //   <div className={styles.container}>
-    //     <div className={styles.iconContent}>
-    //       <div className={styles.imageContainer}>
-    //         <Image src={icon} width={1200} draggable={false} alt="Vitrima" />
-    //       </div>
-    //       <h4>Сервис возможностей </h4>
-    //       <Link href={"/select-feed"}>Выбор ленты</Link>
-    //     </div>
-    //     <div className={styles.detailed} onClick={scrollToOnboardCards}>
-    //       Подробнее
-    //     </div>
-    //     <div id="onboardCardsSection">
-    //       <OnboardCards />
-    //     </div>
-    //     <RegisterBanner />
-    //     <Footer />
-    //   </div>
-    // </div>
-
     <div>
       <div className={styles.container}>
         <div>
           <div className={styles.mainBlock}>
-            <div className={styles.leftBlock}>
-              <Image src={icon} alt={""} width={500} height={300} />
-              <h1 className={styles.title}>Все дороги ведут в нам</h1>
+            <div   className={styles.leftBlock}>
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className={styles.logoBlock}
+              >
+                <Image src={icon} alt={""} width={500} height={300} />
+                <h1 className={styles.title}>Все дороги ведут к нам</h1>
+              </motion.div>
               <div className={styles.links}>
-                <Link href={"/select-feed"} className={styles.link}>Просмотр ленты</Link>
+                <Link href={"/select-feed"} className={styles.link}>
+                  Просмотр ленты
+                </Link>
                 {!user && (
                   <>
-    <Link href={'/signup'} className={styles.secondLink}>Регистрация</Link>
-    <Link href={'/login'} className={styles.lastLink}>Авторизация</Link>
-    </>
-)}
-                </div>
-              <div>
-
+                    <Link href={"/signup"} className={styles.secondLink}>
+                      Регистрация
+                    </Link>
+                    <Link href={"/login"} className={styles.lastLink}>
+                      Авторизация
+                    </Link>
+                  </>
+                )}
               </div>
+           
             </div>
             <div className={styles.rightBlock}>
               <div className={styles.gallery}>
-                <Masonry breakpointCols={breakpointColumnsObj} className={styles.masonryGallery}>
+                <Masonry
+                  breakpointCols={breakpointColumnsObj}
+                  className={styles.masonryGallery}
+                >
                   {objects?.map((item, index) => (
                     <div
                       key={item._id}
@@ -143,7 +135,6 @@ const FirstPage: FC = () => {
           </div>
         </div>
 
-      
         <div id="onboardCardsSection">
           <OnboardCards />
         </div>

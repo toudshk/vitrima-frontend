@@ -7,14 +7,25 @@ import bigImg2 from "../../../common/images/ui/mainPage/bigImage2.jpg";
 import styles from "./OnboardCards.module.scss";
 import smallImg3 from "../../../common/images/ui/mainPage/smallImage3.jpg";
 import smallImg4 from "../../../common/images/ui/mainPage/smallImage4.jpg";
+import { motion } from "framer-motion";
+
+
 const OnboardCards = () => {
+
+
   return (
     <div className=" mx-auto ">
-      <div className={styles.content}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1}}
+        transition={{ duration: 1}}
+        viewport={{ once: true }}
+        className={styles.content}
+      >
         <div className={styles.images}>
           <div className={styles.smallImages}>
             <Image
-            className='mr-4'
+              className="mr-4"
               src={smallImg}
               height={500}
               width={500}
@@ -47,8 +58,14 @@ const OnboardCards = () => {
             начать привлекать внимание клиентов и увеличивать свою популярность.
           </p>
         </div>
-      </div>
-      <div className={styles.content}>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1}}
+        transition={{ duration: 1}}
+        viewport={{ once: true }}
+        className={styles.content}
+      >
         <div className={styles.text}>
           <h1>Если вы соискатель</h1>
           <p>
@@ -62,7 +79,7 @@ const OnboardCards = () => {
         <div className={styles.images}>
           <div className={styles.smallImages}>
             <Image
-            className="mr-4"
+              className="mr-4"
               src={smallImg3}
               height={440}
               width={440}
@@ -85,8 +102,9 @@ const OnboardCards = () => {
             draggable={false}
           />
         </div>
+        </motion.div>
       </div>
-    </div>
+    
   );
 };
 

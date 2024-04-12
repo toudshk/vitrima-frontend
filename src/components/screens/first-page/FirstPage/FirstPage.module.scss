@@ -1,60 +1,6 @@
-// .container {
-//   @apply text-center text-white;
-
-//   .iconContent {
-//     @apply h-[75vh] relative;
-
-//     background: url("../../../../components/common/images/ui/mainPage/MainPageCover.jpg")
-//       no-repeat center center;
-//     -moz-background-size: cover;
-//     -o-background-size: cover;
-//     background-size: cover;
-//     padding-top: 30vh;
-//     padding-bottom: 30vh;
-//     &::before {
-//       @apply absolute inset-0 bg-primary opacity-50;
-//       content: "";
-//       z-index: -1;
-//     }
-
-//     img {
-//       @apply w-[30vw];
-//       margin: 0 auto;
-//       z-index: 1;
-//     }
-
-//     h4 {
-//       @apply mt-[3vw] text-[1.5vw] z-10;
-//     }
-//   }
-//   .detailed {
-//     padding: 3vw 0px;
-//     @apply bg-primary text-[2.6vw];
-
-//   }
-//   @media (max-width: 700px) {
-//     .iconContent {
-//       @apply h-[80vh];
-//       img {
-//         @apply w-[60vw];
-//       }
-//       h4 {
-//         @apply text-[5vw];
-//       }
-
-//     }
-//     .detailed{
-//       @apply text-[5vw] py-[6vw];
-//     }
-//   }
-// // }
 .container {
-  @apply -mt-[7vh] ;
-  //   background: url("../../../../app/assets/images/bg.jpg")
-  //   no-repeat center center;
-  // -moz-background-size: cover;
-  // -o-background-size: cover;
-  // background-size: cover;
+  @apply -mt-[7vh];
+
   .mainBlock {
     @apply h-[100vh]   flex overflow-hidden;
     position: relative;
@@ -68,12 +14,13 @@
       left: 0;
       // background-color: rgba(255, 255, 255, 0.2);
       // backdrop-filter: blur(10px);
-
-      > img {
-        @apply mx-auto mt-[15vh];
-      }
-      .title {
-        @apply text-center text-2xl font-semibold mb-32;
+      .logoBlock {
+        > img {
+          @apply mx-auto mt-[15vh];
+        }
+        .title {
+          @apply text-center text-2xl font-semibold mb-32;
+        }
       }
       .links {
         @apply text-center mb-6;
@@ -141,10 +88,10 @@
             backdrop-filter: blur(10px);
             z-index: 10;
             pointer-events: none;
-            .hoverTitle{
+            .hoverTitle {
               @apply flex  p-3;
             }
-            .hoverTimeUpload{
+            .hoverTimeUpload {
               @apply flex  border-t-[1px] border-gray-400 p-3;
             }
           }
@@ -203,12 +150,11 @@
             backdrop-filter: blur(10px);
             z-index: 10;
             pointer-events: none;
-            .hoverTitle{
-              @apply h-0 ;
+            .hoverTitle {
+              @apply h-0;
               display: none !important;
-           
             }
-            .hoverTimeUpload{
+            .hoverTimeUpload {
               font-size: 0.4vw !important;
               padding-top: 5px !important;
               padding-left: 5px !important;
