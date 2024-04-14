@@ -129,11 +129,13 @@
         @apply w-full h-[55%] rounded-r-none rounded-t-3xl;
         position: absolute;
         bottom: 0;
-        > img {
-          @apply mx-auto mt-[1vh];
-        }
-        .title {
-          @apply mb-10;
+        .logoBlock {
+          > img {
+            @apply mx-auto mt-[1vh];
+          }
+          .title {
+            @apply mb-6;
+          }
         }
       }
       .rightBlock {
