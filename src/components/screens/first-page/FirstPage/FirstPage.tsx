@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import styles from "./FirstPage.module.scss";
@@ -13,6 +13,9 @@ import { useGallery } from "../../main-page/UseGallery";
 import Masonry from "react-masonry-css";
 import { useInView } from "react-intersection-observer";
 import TimeUpload from "@/components/ui/masonry/timeUpload/TimeUpload";
+
+import { Bounce, toast } from "react-toastify";
+
 const FirstPage: FC = () => {
   const { ref, inView } = useInView();
   const { user } = useAuth();
@@ -37,6 +40,31 @@ const FirstPage: FC = () => {
 
     loadInitialPage();
   }, [inView, data, fetchNextPage]);
+  
+  const notificationShownRef = useRef(false);
+
+  useEffect(() => {
+      // Проверяем, было ли уведомление уже показано
+      if (!notificationShownRef.current) {
+          // Если уведомление еще не было показано, то показываем его
+          toast(
+              "Дорогие посетители ВИТРИМЫ, наша платформа сейчас находится в тестовом режиме, поэтому, если вы наткнётесь на функции, которые работают некорректно, то напишите нам на почту, с уважением команда ВИТРИМЫ.",
+              {
+                  position: "top-right",
+                  autoClose: 7000,
+                  hideProgressBar: true,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  theme: "light",
+                  transition: Bounce,
+                  bodyClassName: "",
+              }
+          );
+          // Помечаем, что уведомление было показано
+          notificationShownRef.current = true;
+      }
+  }, []);
+
 
   const objects = data?.pages.flatMap((page) => page.data);
   return (
@@ -44,7 +72,7 @@ const FirstPage: FC = () => {
       <div className={styles.container}>
         <div>
           <div className={styles.mainBlock}>
-            <div   className={styles.leftBlock}>
+            <div className={styles.leftBlock}>
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -69,7 +97,6 @@ const FirstPage: FC = () => {
                   </>
                 )}
               </div>
-           
             </div>
             <div className={styles.rightBlock}>
               <div className={styles.gallery}>

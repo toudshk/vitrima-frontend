@@ -7,3 +7,4 @@ export const getTagsUrl = (string: string) => `/tag${string}`
 export const getWorkUrl = (string: string) => `/work${string}`
 export const getServicePrice = (string: string) => `/service-price${string}`
 export const getMessageUrl = (string: string) => `/message${string}`
+export const getFeedBackUrl = (string: string) => `/feedback${string}`
