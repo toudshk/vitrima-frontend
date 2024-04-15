@@ -44,8 +44,8 @@ export const useTags = () => {
       };
       try {
         await TagService.create(updatedData);
-		queryData.refetch();
-		toast.success("Тег опубликован")
+        queryData.refetch();
+        toast.success("Тег опубликован");
       } catch (error) {
         toast.error("Ошибка");
       }
@@ -61,9 +61,8 @@ export const useTags = () => {
         //toastError(error, 'Delete tag')
       },
       onSuccess() {
-        toast.success("Тег удален")
+        toast.success("Тег удален");
 
-    
         queryData.refetch();
       },
     }

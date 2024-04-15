@@ -7,10 +7,12 @@ import clsx from "clsx";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import iconLogo from "@/app/assets/images/BlackIconLogo.svg";
-import { redirect } from "next/navigation";
 import ModalSubscription from "@/components/screens/profile/contractor-profile/ModalSubscription";
 import Image from "next/image";
 import Link from "next/link";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import EmailIcon from '@mui/icons-material/Email';
 
 const DropdownMenu = () => {
   const { user } = useAuth();
@@ -18,23 +20,20 @@ const DropdownMenu = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null); // Ref для ссылки на меню
+  
 
   useEffect(() => {
-    const handleClickOutside = (event: { target: any; }) => {
+    const handleClickOutside = (event: { target: any }) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setMenuOpen(false); // Закрыть меню, если клик произошел вне его
+        setMenuOpen(false);
       }
     };
+    document.addEventListener("click", handleClickOutside);
 
-    // Добавить обработчик события клика при монтировании компонента
-    document.addEventListener('click', handleClickOutside);
-
-    // Удалить обработчик события клика при размонтировании компонента
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
-  }, []); // Пустой массив зависимостей, чтобы обработчик события был добавлен только один раз при монтировании компонента
-
+  }, []);
   const logoutHandler = (e: React.MouseEvent) => {
     e.preventDefault();
     logout();
@@ -75,9 +74,10 @@ const DropdownMenu = () => {
         <a onClick={logoutHandler}>
           <LogoutIcon /> Выход
         </a>
-        <div className="border-t border-gray-300 text-xs py-[0.4vw] text-gray-450 px-[0.5vw]">
-        Обратная связь: vitrima.pro@gmail.com
-      </div>
+        <Link href={'/feedback'}>
+          <EmailIcon className="max-w-[15%] mr-1" />
+          Обратная связь
+        </Link>
       </div>
 
       

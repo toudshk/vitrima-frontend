@@ -18,7 +18,6 @@ export const WorkService = {
 
 	
 	async create(data: IWorkEditInput) {
-		console.log(data)
 		const response = await axiosClassic.post<IAddWork>(
 			`${API_URL}${getWorkUrl('/create')}`, data
 		)
