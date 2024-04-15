@@ -48,13 +48,13 @@ const ServicePriceEdit: FC = () => {
                     message: "Цена должна быть числом",
                   },
                 })}
-                placeholder="Цена"
+                placeholder="Цена/м.кв"
                 style={{ width: "31%" }}
-                title="Цена"
+                title="Цена/м.кв"
               />
             </div>
 
-            <button>Update</button>
+            <button>Обновить</button>
           </>
         )}
       </form>

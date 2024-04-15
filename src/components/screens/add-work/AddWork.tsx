@@ -166,7 +166,7 @@ const AddWork: FC = () => {
                   required: "Цена обязательна",
                 })}
                 placeholder="Ваша цена"
-                title="Цена"
+                title="Цена/м.кв"
                 error={errors.price}
               />
 

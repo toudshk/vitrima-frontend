@@ -74,7 +74,7 @@ const ServiceAndPrice: FC = () => {
                         message: "Цена должна быть числом",
                       },
                     })}
-                    placeholder="Цена"
+                    placeholder="Цена/м.кв"
                    
                     style={{
                       width: "100%",
