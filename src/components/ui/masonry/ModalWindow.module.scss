@@ -5,7 +5,7 @@
     @apply flex mb-16;
 
     .image {
-      @apply h-auto mr-[3vw] w-[45vw];
+      @apply h-full mr-[3vw] w-[45vw];
       @media (max-width: 1200px) {
         @apply w-[90vw];
       }
