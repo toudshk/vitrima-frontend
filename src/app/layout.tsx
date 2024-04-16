@@ -2,9 +2,8 @@ import "./assets/styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
-import FaviconBlack from "/public/images/Metadata/faviconBlack.ico";
 
-import Favicon from "/public/images/Metadata/favicon.ico";
+import Favicon from "/public/icon.png";
 import MainProvider from "@/components/providers/MainProvider/MainProvider";
 
 const myFont = localFont({
@@ -15,24 +14,8 @@ const myFont = localFont({
 export const metadata: Metadata = {
   title: "Витрима",
   description: "Сервис возможностей",
+  icons: [{ rel: 'icon', url: Favicon.src }],
 
-  icons: {
-    icon: "/icon.png",
-  },
-
-  // icons: {
-  //   icon: [
-  //     {
-  //       url: "/public/images/Metadata/faviconBlack.ico",
-  //       media: "(prefers-color-scheme: light)",
-  //     },
-  //     {
-
-  //       url: "/public/images/Metadata/faviconWhite.ico",
-  //       media: "(prefers-color-scheme: dark)",
-  //     },
-  //   ],
-  // },
 };
 
 export default function RootLayout({
