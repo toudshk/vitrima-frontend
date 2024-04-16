@@ -14,6 +14,10 @@ const myFont = localFont({
 export const metadata: Metadata = {
   title: "Витрима",
   description: "Сервис возможностей",
+  icons: {  icon: [
+    { url: '/icon.ico' },
+    
+  ],}
 };
 
 export default function RootLayout({
