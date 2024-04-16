@@ -15,7 +15,11 @@ const myFont = localFont({
 export const metadata: Metadata = {
   title: "Витрима",
   description: "Сервис возможностей",
-  icons: [{ rel: 'icon', url: Favicon.src }],
+
+  icons: {
+    icon: "/favicon.ico",
+  },
+
   // icons: {
   //   icon: [
   //     {
@@ -23,7 +27,7 @@ export const metadata: Metadata = {
   //       media: "(prefers-color-scheme: light)",
   //     },
   //     {
-       
+
   //       url: "/public/images/Metadata/faviconWhite.ico",
   //       media: "(prefers-color-scheme: dark)",
   //     },

@@ -1,8 +1,5 @@
 "use client"
-import { IWork } from '@/components/shared/types/work.types'
-import { ITableItem } from '@/components/ui/Admin-table/AdminTable/table.interface'
 import { useAuth } from '@/hooks/useAuth'
-import { useDebounce } from '@/hooks/useDebounce'
 import { WorkService } from '@/services/work/work.service'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useMemo} from 'react'
@@ -43,8 +40,8 @@ export const useWorks = () => {
 			console.log(error, 'Delete work');
 		  },
 		  onSuccess() {
-			console.log('Delete work', 'delete was successful');
-			
+			toast.success('Работа удалена')
+			window.location.reload()
 		  },
 		}
 	  );
