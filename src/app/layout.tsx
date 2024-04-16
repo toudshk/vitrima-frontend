@@ -2,7 +2,7 @@ import "./assets/styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
-import Favicon from '/public/Metadata/favicon.ico';
+import Favicon from '/favicon.ico';
 
 import MainProvider from "@/components/providers/MainProvider/MainProvider";
 
