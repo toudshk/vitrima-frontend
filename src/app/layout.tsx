@@ -2,8 +2,8 @@ import "./assets/styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
+import Favicon from '/public/Metadata/testr.png';
 
-import Favicon from "/public/icon.png";
 import MainProvider from "@/components/providers/MainProvider/MainProvider";
 
 const myFont = localFont({
@@ -14,7 +14,7 @@ const myFont = localFont({
 export const metadata: Metadata = {
   title: "Витрима",
   description: "Сервис возможностей",
-  icons: { icon: [{ url: "/public/icon.png" }] },
+  icons: [{ rel: 'icon', url: Favicon.src }],
 };
 
 export default function RootLayout({
