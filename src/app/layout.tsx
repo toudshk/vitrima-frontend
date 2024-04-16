@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: "Сервис возможностей",
 
   icons: {
-    icon: "/favicon.ico",
+    icon: "/icon.png",
   },
 
   // icons: {
