@@ -204,6 +204,3 @@ const AddWork: FC = () => {
 };
 
 export default AddWork;
-function useSelectTag(): { data: any; isLoading: any } {
-  throw new Error("Function not implemented.");
-}

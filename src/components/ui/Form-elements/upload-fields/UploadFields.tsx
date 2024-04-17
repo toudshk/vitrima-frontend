@@ -14,7 +14,6 @@ const UploadField: FC<IUploadField> = ({
   folder,
   onChange,
 }) => {
- 
   const { uploadImage, isLoading } = useUpload(onChange, folder);
 
   const [tempImage, setTempImage] = useState<string | ArrayBuffer | null>(null);
@@ -23,15 +22,15 @@ const UploadField: FC<IUploadField> = ({
     const fileInput = e.target;
     if (fileInput.files && fileInput.files.length > 0) {
       const file = fileInput.files[0];
-      
+
       const reader = new FileReader();
-  
+
       reader.onloadend = () => {
         setTempImage(reader.result);
       };
-  
+
       reader.readAsDataURL(file);
-  
+
       uploadImage(e);
     }
   };
@@ -39,11 +38,27 @@ const UploadField: FC<IUploadField> = ({
   return (
     <div className={cn(styles.field, styles.uploadField)} style={style}>
       <div className={styles.uploadImageContainer}>
+        <label>
+          <input
+            type="file"
+            accept="image/png, image/jpeg, image/jpg"
+            onChange={handleFileChange}
+            className=""
+          />
+
+          {error && <div className={styles.error}>{error.message}</div>}
+        </label>
         {tempImage !== null ? (
           isLoading ? (
-            <SkeletonLoader className="h-full absolute -top-1" />
+            <SkeletonLoader className={styles.loader} />
           ) : (
-            <Image src={tempImage as string} alt="" layout="fill" unoptimized />
+            <Image
+              src={tempImage as string}
+              alt=""
+              layout="fill"
+              className={styles.imageWork}
+              unoptimized
+            />
           )
         ) : (
           <Image
@@ -53,14 +68,6 @@ const UploadField: FC<IUploadField> = ({
           />
         )}
       </div>
-      <label>
-        <span>{placeholder}</span>
-
-        <input   type="file"
-                  accept="image/png, image/jpeg, image/jpg" onChange={handleFileChange} className="" />
-
-        {error && <div className={styles.error}>{error.message}</div>}
-      </label>
     </div>
   );
 };

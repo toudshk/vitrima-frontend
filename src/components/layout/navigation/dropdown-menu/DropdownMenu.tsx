@@ -10,17 +10,17 @@ import iconLogo from "@/app/assets/images/BlackIconLogo.svg";
 import ModalSubscription from "@/components/screens/profile/contractor-profile/ModalSubscription";
 import Image from "next/image";
 import Link from "next/link";
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import EmailIcon from '@mui/icons-material/Email';
+import EmailIcon from "@mui/icons-material/Email";
+import { useUser } from "@/components/screens/profile/useUser";
 
+import baseImage from "@/app/assets/images/base-avatar.jpg";
 const DropdownMenu = () => {
   const { user } = useAuth();
   const { logout } = useActions();
   const [menuOpen, setMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null); // Ref для ссылки на меню
-  
+  const { data: userData } = useUser(user!._id);
 
   useEffect(() => {
     const handleClickOutside = (event: { target: any }) => {
@@ -47,9 +47,22 @@ const DropdownMenu = () => {
     >
       <Avatar id={user!._id} />
       <div className={clsx(styles.dropdownItems, { [styles.open]: menuOpen })}>
+        <div className={styles.topBlock}>
+          <Image src={userData && userData.image ? userData.image : baseImage} alt={""} className={styles.avatar}/>
+          <h2>{userData?.nickname}</h2>
+        </div>
+        <Link href={"/add-work"}>
+         
+          Добавить новую работу
+        </Link>
+        <Link href={"/feedback"}>
+          {/* <EmailIcon className="max-w-[15%] mr-1" /> */}
+          Обратная связь
+        </Link>
         <Link href={`/profile/${user?._id}`}>
-          {" "}
-          <PersonIcon /> Профиль
+          
+          {/* <PersonIcon /> */}
+           Профиль
         </Link>
         {/* {user?.isContractor === true && (
           <a
@@ -72,15 +85,11 @@ const DropdownMenu = () => {
 
         <ModalSubscription setOpen={setOpen} open={open} />
         <a onClick={logoutHandler}>
-          <LogoutIcon /> Выход
+          {/* <LogoutIcon /> */}
+           Выход
         </a>
-        <Link href={'/feedback'}>
-          <EmailIcon className="max-w-[15%] mr-1" />
-          Обратная связь
-        </Link>
+     
       </div>
-
-      
     </div>
   );
 };

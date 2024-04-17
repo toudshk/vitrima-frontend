@@ -17,11 +17,10 @@
   @apply text-xl mb-2;
 }
 .field {
-  @apply  mb-[1.5vh]; ;
+  @apply mb-[1.5vh];
 
   input {
     @apply outline-border-none focus:ring-0 bg-transparent text-gray-700 w-full  h-10 px-[1vw]  text-base;
-   
   }
 }
 
@@ -30,10 +29,13 @@
 
   > .uploadImageContainer {
     @apply shrink-0 relative h-[20vw] border border-gray-400;
-
-    img {
-      @apply rounded-md;
-      object-fit: contain; /* или другое значение, например, cover */
+    .loader {
+      @apply h-full bottom-0;
+      position: absolute !important;
+    }
+    .imageWork {
+      @apply rounded-md -z-10;
+      object-fit: contain;
       object-position: center center;
     }
 
@@ -41,6 +43,7 @@
       @apply animate-fade;
     }
     .uploadContainerSvg {
+      @apply -z-10;
       position: absolute;
       margin: auto;
       left: 0;
@@ -48,29 +51,19 @@
       bottom: 0;
       right: 0;
     }
-  }
+    > label {
+      @apply w-full relative h-full;
 
-  > label {
-    @apply block mr-6;
-
-    .error {
-      @apply relative -bottom-3;
-    }
-
-    > span {
-      @apply text-xs uppercase text-gray-600 block mb-4;
-    }
-
-    > input {
-      @apply block w-[25%]   mx-0 text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary opacity-70 file:text-white transition-opacity;
-      @media (max-width: 700px) {
-      @apply w-[45%]
+      .error {
+        @apply relative -bottom-3;
       }
-  
-    }
-    
-    &:hover > input {
-      @apply opacity-100;
+
+      > input {
+        @apply block  w-full h-full  cursor-pointer opacity-0 z-50;
+        @media (max-width: 700px) {
+          @apply w-[45%];
+        }
+      }
     }
   }
 }
@@ -85,6 +78,6 @@
     }
   }
   .common {
-	@apply  rounded-xl mb-6;
+    @apply rounded-xl mb-6;
   }
 }
