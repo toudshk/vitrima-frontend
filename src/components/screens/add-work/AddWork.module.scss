@@ -1,28 +1,21 @@
 .form {
   @apply mt-[12vh] max-w-[1734px] mx-auto px-5;
   .fields {
-    @apply items-center flex-wrap  mt-20;
-    .topBlock {
-      @apply flex justify-between gap-10;
-
-      .rightTopBlock {
-        @apply flex w-[60%];
-        .buildingTechniqueBlock {
-          @apply mr-3 w-full;
-        }
-        .subTypeBlock {
-          @apply w-full;
-        }
-      }
-    }
+    @apply items-center flex-wrap  -mt-[3vh];
+   
     .mainBlock {
       @apply flex;
       .leftBlock {
-        @apply pr-10;
-        width: 70%;
+        @apply pr-10 mx-auto mt-10;
+        width: 100% ;
       }
+      
       .rightBlock {
-        width: 30%;
+        @apply p-10 h-[91vh] ;
+        box-shadow: -8px 0 16px rgba(0, 0, 0, 0.2); 
+        opacity: 0; /* Начальное значение непрозрачности */
+        transition: opacity 0.3s ease-in-out; /* Плавная анимация изменения непрозрачности */
+        
         .titleTextArea {
           @apply text-xl mb-[1vw];
         }
@@ -32,6 +25,11 @@
 
           resize: none;
         }
+      }
+      
+      .rightBlock.show {
+        opacity: 1; 
+        width: 40%;/* Установка полностью непрозрачного состояния */
       }
     }
   }

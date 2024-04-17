@@ -61,11 +61,12 @@ const UploadField: FC<IUploadField> = ({
             />
           )
         ) : (
-          <Image
-            className={styles.uploadContainerSvg}
-            src={imgChoosePhoto}
-            alt=""
-          />
+          <div className={styles.uploadContainerSvg}>
+            <Image src={imgChoosePhoto} alt="" />
+
+            <p>Загружайте только те файлы, на которые у вас есть права.</p>
+            <p>Не более 5МБ. </p>
+          </div>
         )}
       </div>
     </div>

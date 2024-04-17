@@ -12,12 +12,12 @@ import { IWorkEditInput } from "@/app/add-work/edit-work.interface";
 import { useWorks } from "./useWorks";
 import { useSelectTags } from "./useSelectTags";
 import { useTypeWorks } from "./useTypeWork";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { useSubTypes } from "./useSubTypes";
 import { IWorkType } from "@/components/shared/types/work.types";
 import SecondButton from "@/components/ui/Button/SecondButton";
 import { useBuildingTechnique } from "@/hooks/buildingTechnique/useBuildingTechnique";
-
+import WorkTypeBlock from "./work-type-block/WorkTypeBlock";
+import clsx from 'clsx';
 const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
 });
@@ -33,7 +33,8 @@ const AddWork: FC = () => {
   } = useForm<IWorkEditInput>({
     mode: "onChange",
   });
-
+  const formValues = getValues();
+console.log(formValues.images?.length);
   const { onSubmit } = useWorks();
 
   const { data: tags, isLoading: isTagsLoading } = useSelectTags();
@@ -58,146 +59,119 @@ const AddWork: FC = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <div className={styles.fields}>
-          <div className={styles.topBlock}>
-            <Controller
-              name="workType"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <ToggleButtonGroup
-                  sx={{ height: "60px", marginTop: "20px" }}
-                  color="primary"
-                  value={selectedItem?._id || field.value}
-                  exclusive
-                  onChange={(event, value: string) => {
-                    const selectedWorkType =
-                      workTypes?.find((item) => item._id === value) ?? null;
-
-                    field.onChange(selectedWorkType);
-                    setSelectedItem(selectedWorkType);
-                  }}
-                  aria-label="Platform"
-                >
-                  {workTypes?.map((item) => (
-                    <ToggleButton
-                      value={item._id}
-                      key={item._id}
-                      sx={{ borderRadius: "12px" }}
-                    >
-                      {item.title}
-                    </ToggleButton>
-                  ))}
-                </ToggleButtonGroup>
-              )}
-            />
-            <div className={styles.rightTopBlock}>
-              {selectedItem &&
-                selectedItem._id === "656c0a67fad5c309cd6a9853" && (
-                  <div className={styles.buildingTechniqueBlock}>
-                    <Controller
-                      name="buildingTechnique"
-                      control={control}
-                      render={({ field, fieldState: { error } }) => (
-                        <DynamicSelect
-                          error={error}
-                          field={field}
-                          placeholder="Технология строительства"
-                          options={buildingTechniques || []}
-                          isMulti={false}
+        {selectedItem === null ? (
+          <WorkTypeBlock setSelectedItem={setSelectedItem} control={control} />
+        ) : (
+          <>
+            <div className={styles.fields}>
+              <div className={styles.mainBlock}>
+                <div className={styles.leftBlock}>
+                  <Controller
+                    name="images"
+                    control={control}
+                    defaultValue={[]}
+                    render={({
+                      field: { value, onChange },
+                      fieldState: { error },
+                    }) => (
+                      <UploadField
+                        placeholder="Фотография"
+                        error={error}
+                        folder="images"
+                        image={value}
+                        onChange={onChange}
+                        title={""}
+                      />
+                    )}
+                    rules={{
+                      required: "Фотография обязательна",
+                    }}
+                  />
+                </div>
+                <div className={clsx(styles.rightBlock, formValues.images?.length > 0 && styles.show)}>
+                  <Controller
+                    name="subTypes"
+                    control={control}
+                    render={({ field, fieldState: { error } }) => (
+                      <DynamicSelect
+                        error={error}
+                        field={field}
+                        placeholder="Стили"
+                        options={subTypes || []}
+                        isLoading={isSubTypeLoading}
+                        isMulti
+                      />
+                    )}
+                  />
+                  {selectedItem &&
+                    selectedItem._id === "656c0a67fad5c309cd6a9853" && (
+                      <div className={styles.buildingTechniqueBlock}>
+                        <Controller
+                          name="buildingTechnique"
+                          control={control}
+                          render={({ field, fieldState: { error } }) => (
+                            <DynamicSelect
+                              error={error}
+                              field={field}
+                              placeholder="Технология строительства"
+                              options={buildingTechniques || []}
+                              isMulti={false}
+                            />
+                          )}
                         />
-                      )}
+                      </div>
+                    )}
+                  <Field
+                    {...register("title", {
+                      required: "Название обязательно",
+                    })}
+                    placeholder="Фигурка из дерева"
+                    error={errors.title}
+                    title="Название работы"
+                  />
+
+                  <Field
+                    {...register("price", {
+                      required: "Цена обязательна",
+                    })}
+                    placeholder="Ваша цена"
+                    title="Цена/м.кв"
+                    error={errors.price}
+                  />
+
+                  <Controller
+                    name="tags"
+                    control={control}
+                    render={({ field, fieldState: { error } }) => (
+                      <DynamicSelect
+                        error={error}
+                        field={field}
+                        placeholder="Теги"
+                        options={tags || []}
+                        isLoading={isTagsLoading}
+                        isMulti
+                      />
+                    )}
+                  />
+                  <div>
+                    <p className={styles.titleTextArea}>Описание работы</p>
+                    <textarea
+                      className={styles.textArea}
+                      {...register("description")}
+                      placeholder="Расскажите о чём ваша работа"
+                      title="Описание работы"
                     />
                   </div>
-                )}
-              <div className={styles.subTypeBlock}>
-                <Controller
-                  name="subTypes"
-                  control={control}
-                  render={({ field, fieldState: { error } }) => (
-                    <DynamicSelect
-                      error={error}
-                      field={field}
-                      placeholder="Стили"
-                      options={subTypes || []}
-                      isLoading={isSubTypeLoading}
-                      isMulti
-                    />
-                  )}
-                />
+                  <SecondButton>Добавить работу</SecondButton>
+                </div>
+                
+                
               </div>
             </div>
-          </div>
-          <div className={styles.mainBlock}>
-            <div className={styles.leftBlock}>
-              <Controller
-                name="images"
-                control={control}
-                defaultValue={[]}
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
-                  <UploadField
-                    placeholder="Фотография"
-                    error={error}
-                    folder="images"
-                    image={value}
-                    onChange={onChange}
-                    title={""}
-                  />
-                )}
-                rules={{
-                  required: "Фотография обязательна",
-                }}
-              />
-            </div>
-            <div className={styles.rightBlock}>
-              <Field
-                {...register("title", {
-                  required: "Название обязательно",
-                })}
-                placeholder="Фигурка из дерева"
-                error={errors.title}
-                title="Название работы"
-              />
 
-              <Field
-                {...register("price", {
-                  required: "Цена обязательна",
-                })}
-                placeholder="Ваша цена"
-                title="Цена/м.кв"
-                error={errors.price}
-              />
-
-              <Controller
-                name="tags"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <DynamicSelect
-                    error={error}
-                    field={field}
-                    placeholder="Теги"
-                    options={tags || []}
-                    isLoading={isTagsLoading}
-                    isMulti
-                  />
-                )}
-              />
-              <div>
-                <p className={styles.titleTextArea}>Описание работы</p>
-                <textarea
-                  className={styles.textArea}
-                  {...register("description")}
-                  placeholder="Расскажите о чём ваша работа"
-                  title="Описание работы"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <SecondButton>Добавить работу</SecondButton>
+          
+          </>
+        )}
       </form>
     </>
   );

@@ -4,7 +4,7 @@ import React, { FC } from "react";
 import { Controller } from "react-hook-form";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { useTypeWorks } from "../useTypeWork";
-
+import styles from "./WorkTypeBlock.module.scss";
 interface IWorkTypeBlock {
   setSelectedItem: any;
   control: any;
@@ -13,38 +13,33 @@ interface IWorkTypeBlock {
 const WorkTypeBlock: FC<IWorkTypeBlock> = ({ setSelectedItem, control }) => {
   const { data: workTypes, isLoading: isWorkTypeLoading } = useTypeWorks();
   return (
-    <>
-      <Controller
-        name="workType"
-        control={control}
-        render={({ field, fieldState: { error } }) => (
-          <ToggleButtonGroup
-            sx={{ height: "60px", marginTop: "20px" }}
-            color="primary"
-            value={field.value}
-            exclusive
-            onChange={(event, value: string) => {
-              const selectedWorkType =
-                workTypes?.find((item) => item._id === value) ?? null;
-
-              field.onChange(selectedWorkType);
-              setSelectedItem(selectedWorkType);
-            }}
-            aria-label="Platform"
-          >
-            {workTypes?.map((item) => (
-              <ToggleButton
-                value={item._id}
-                key={item._id}
-                sx={{ borderRadius: "12px" }}
-              >
-                {item.title}
-              </ToggleButton>
-            ))}
-          </ToggleButtonGroup>
-        )}
-      />
-    </>
+    <div className={styles.container}>
+        <div className={styles.itemsBlock}>
+      <h1>Какую работу вы хотите опубликовать?</h1>
+      <div className={styles.toggleButton}>
+        <Controller
+          name="workType"
+          control={control}
+          render={({ field, fieldState: { error } }) => (
+            <div>
+              {workTypes?.map((item) => (
+                <button
+                  key={item._id}
+                  onClick={() => {
+                    field.onChange(item);
+                    setSelectedItem(item);
+                  }}
+                  className={styles.button}
+                >
+                  {item.title}
+                </button>
+              ))}
+            </div>
+          )}
+        />
+      </div>
+      </div>
+    </div>
   );
 };
 

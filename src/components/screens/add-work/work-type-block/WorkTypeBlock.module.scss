@@ -1,0 +1,33 @@
+.container {
+    position: relative;
+    height: 80vh;
+    .itemsBlock {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      h1 {
+        @apply text-4xl text-center mb-10 font-semibold;
+      }
+      .toggleButton {
+        @apply mt-auto;
+        > div {
+          @apply mx-auto flex justify-between;
+          .button {
+            @apply text-4xl text-center py-16 border-2 border border-gray-300 min-w-[50%] rounded-xl;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s; /* Плавный переход цвета */
+          }
+          .button:hover {
+            background-color: #f0f0f0; /* Цвет при наведении */
+          }
+          .button:active {
+            background-color: #d9d9d9; /* Цвет при нажатии */
+          }
+          .button:first-child {
+            @apply mr-10;
+          }
+        }
+      }
+    }
+  }
