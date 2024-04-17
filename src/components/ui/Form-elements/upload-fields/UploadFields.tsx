@@ -13,8 +13,9 @@ const UploadField: FC<IUploadField> = ({
   style,
   folder,
   onChange,
+  imageIsUpload
 }) => {
-  const { uploadImage, isLoading } = useUpload(onChange, folder);
+  const { uploadImage, isLoading } = useUpload(onChange, imageIsUpload, folder);
 
   const [tempImage, setTempImage] = useState<string | ArrayBuffer | null>(null);
 

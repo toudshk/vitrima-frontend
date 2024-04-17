@@ -40,7 +40,7 @@ console.log(formValues.images?.length);
   const { data: tags, isLoading: isTagsLoading } = useSelectTags();
   const { data: workTypes, isLoading: isWorkTypeLoading } = useTypeWorks();
   const { data: buildingTechniques } = useBuildingTechnique();
-
+const [imageUpload, imageIsUpload] = useState(false)
   const [selectedItem, setSelectedItem] = useState<IWorkType | null>(null);
 
   const {
@@ -75,6 +75,7 @@ console.log(formValues.images?.length);
                       fieldState: { error },
                     }) => (
                       <UploadField
+                      imageIsUpload={imageIsUpload}
                         placeholder="Фотография"
                         error={error}
                         folder="images"
@@ -88,7 +89,7 @@ console.log(formValues.images?.length);
                     }}
                   />
                 </div>
-                <div className={clsx(styles.rightBlock, formValues.images?.length > 0 && styles.show)}>
+                <div className={clsx(styles.rightBlock, imageUpload === true && styles.show)}>
                   <Controller
                     name="subTypes"
                     control={control}
