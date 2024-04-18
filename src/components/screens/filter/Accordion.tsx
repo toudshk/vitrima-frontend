@@ -83,18 +83,7 @@ export default function ControlledAccordions({
   subTypes,
 }: ControlledAccordionsProps) {
  
-  subTypes.sort(function(a: { label: string; }, b: { label: string; }) {
-    var labelA = a.label.toUpperCase(); // Преобразование к верхнему регистру для учёта регистра
-    var labelB = b.label.toUpperCase();
-    if (labelA < labelB) {
-      return -1;
-    }
-    if (labelA > labelB) {
-      return 1;
-    }
-    // Если labelA и labelB равны
-    return 0;
-  });
+ 
   
   const pathname = usePathname().substring(1);
   const classes = useStyles();
