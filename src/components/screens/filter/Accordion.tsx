@@ -83,7 +83,22 @@ export default function ControlledAccordions({
   subTypes,
 }: ControlledAccordionsProps) {
  
- 
+  if (subTypes && subTypes.length > 0) {
+    subTypes.sort(function(a, b) {
+      var labelA = a.label.toUpperCase(); // Преобразование к верхнему регистру для учёта регистра
+      var labelB = b.label.toUpperCase();
+      if (labelA < labelB) {
+        return -1;
+      }
+      if (labelA > labelB) {
+        return 1;
+      }
+      // Если labelA и labelB равны
+      return 0;
+    });
+  } else {
+    console.log("Ошибка: subTypes не определён или пуст.");
+  }
   
   const pathname = usePathname().substring(1);
   const classes = useStyles();
