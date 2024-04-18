@@ -14,7 +14,7 @@
       }
 
       .rightBlock {
-        @apply p-10 h-[91vh] mt-[9vh];
+        @apply p-10 h-[91vh] mt-[9vh] bg-white;
         position: fixed;
         top: 0;
         right: -100%;
