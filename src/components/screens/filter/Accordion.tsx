@@ -84,7 +84,7 @@ export default function ControlledAccordions({
 }: ControlledAccordionsProps) {
  
   if (subTypes && subTypes.length > 0) {
-    subTypes.sort(function(a, b) {
+    subTypes.sort(function(a: { label: string; }, b: { label: string; }) {
       var labelA = a.label.toUpperCase(); // Преобразование к верхнему регистру для учёта регистра
       var labelB = b.label.toUpperCase();
       if (labelA < labelB) {
