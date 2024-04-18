@@ -84,6 +84,7 @@ const DropdownMenu = () => {
         )} */}
 
         <ModalSubscription setOpen={setOpen} open={open} />
+        <div className={styles.line}></div>
         <a onClick={logoutHandler}>
           {/* <LogoutIcon /> */}
            Выход
