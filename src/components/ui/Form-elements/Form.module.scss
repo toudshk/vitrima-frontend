@@ -25,18 +25,22 @@
 }
 
 .uploadField {
-  @apply relative;
+  @apply h-full   w-full ;
 
   > .uploadImageContainer {
-    @apply shrink-0 relative h-[35vw] border-dashed border border-gray-300 rounded-xl ;
+    @apply shrink-0 relative mb-10 h-full border-dashed border border-gray-300 rounded-xl ;
+   
+    img {
+        @apply image-like-bg rounded-full w-[72px] h-[72px] ;
+      } 
+    
     .loader {
       @apply h-full bottom-0;
       position: absolute !important;
     }
     .imageWork {
-      @apply rounded-md -z-10 h-full;
-      object-fit: contain;
-      object-position: center center;
+      @apply rounded-md -z-10   w-full  h-full;
+      object-fit: cover;
     }
 
     > span {

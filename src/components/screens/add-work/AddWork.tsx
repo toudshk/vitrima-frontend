@@ -33,8 +33,6 @@ const AddWork: FC = () => {
   } = useForm<IWorkEditInput>({
     mode: "onChange",
   });
-  const formValues = getValues();
-console.log(formValues.images?.length);
   const { onSubmit } = useWorks();
 
   const { data: tags, isLoading: isTagsLoading } = useSelectTags();
@@ -42,7 +40,7 @@ console.log(formValues.images?.length);
   const { data: buildingTechniques } = useBuildingTechnique();
 const [imageUpload, imageIsUpload] = useState(false)
   const [selectedItem, setSelectedItem] = useState<IWorkType | null>(null);
-
+console.log(imageUpload)
   const {
     data: subTypes,
     isLoading: isSubTypeLoading,
@@ -65,7 +63,7 @@ const [imageUpload, imageIsUpload] = useState(false)
           <>
             <div className={styles.fields}>
               <div className={styles.mainBlock}>
-                <div className={styles.leftBlock}>
+                <div className={clsx(styles.leftBlock, imageUpload === true && styles.smallLeftBlock)}>
                   <Controller
                     name="images"
                     control={control}

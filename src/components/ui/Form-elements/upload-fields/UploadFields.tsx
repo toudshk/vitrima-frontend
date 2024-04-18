@@ -7,17 +7,20 @@ import SkeletonLoader from "../../skeleton-loader/skeletonLoader";
 import { IUploadField } from "../form.interface";
 import styles from "../Form.module.scss";
 
+
 const UploadField: FC<IUploadField> = ({
   placeholder,
   error,
   style,
   folder,
   onChange,
-  imageIsUpload
+  imageIsUpload,
 }) => {
   const { uploadImage, isLoading } = useUpload(onChange, imageIsUpload, folder);
+  const container = document.querySelector('.uploadImageContainer');
 
   const [tempImage, setTempImage] = useState<string | ArrayBuffer | null>(null);
+  const [imageDimensions, setImageDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileInput = e.target;
@@ -35,10 +38,21 @@ const UploadField: FC<IUploadField> = ({
       uploadImage(e);
     }
   };
+  const aspectRatioStyle = {
+    aspectRatio: `${imageDimensions.width / imageDimensions.height}`,
+  };
+  
 
+ 
+  
+  const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = event.target as HTMLImageElement;
+    setImageDimensions({ width: img.naturalWidth, height: img.naturalHeight });
+  };
+console.log(imageDimensions)
   return (
     <div className={cn(styles.field, styles.uploadField)} style={style}>
-      <div className={styles.uploadImageContainer}>
+      <div className={styles.uploadImageContainer}  style={aspectRatioStyle}>
         <label>
           <input
             type="file"
@@ -59,6 +73,7 @@ const UploadField: FC<IUploadField> = ({
               layout="fill"
               className={styles.imageWork}
               unoptimized
+              onLoad={handleImageLoad}
             />
           )
         ) : (
@@ -70,6 +85,7 @@ const UploadField: FC<IUploadField> = ({
           </div>
         )}
       </div>
+      
     </div>
   );
 };

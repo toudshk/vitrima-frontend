@@ -1,35 +1,57 @@
 .form {
-  @apply mt-[12vh] max-w-[1734px] mx-auto px-5;
+  @apply mt-[12vh] max-w-[1734px] mx-auto px-5 ;
   .fields {
-    @apply items-center flex-wrap  -mt-[3vh];
+    @apply items-center flex-wrap  -mt-[3vh] ;
    
     .mainBlock {
-      @apply flex;
+      @apply flex ;
       .leftBlock {
-        @apply pr-10 mx-auto mt-10;
-        width: 100% ;
+        @apply pr-10 mx-auto mt-10 min-h-[80vh]   w-full;
+        
+        
+      }
+      .smallLeftBlock{
+        @apply mx-0 mr-auto relative ;
+        width: 70% !important ; 
+       
       }
       
       .rightBlock {
-        @apply p-10 h-[91vh] ;
-        box-shadow: -8px 0 16px rgba(0, 0, 0, 0.2); 
+        @apply p-10 h-[91vh] mt-[9vh];
+        position: fixed;
+        top: 0;
+        right: 0;
+        overflow-y: auto;
+        box-shadow: -8px 0 16px rgba(0, 0, 0, 0.2);
         opacity: 0; /* Начальное значение непрозрачности */
-        transition: opacity 0.3s ease-in-out; /* Плавная анимация изменения непрозрачности */
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Плавная анимация изменения положения и непрозрачности */
         
         .titleTextArea {
           @apply text-xl mb-[1vw];
         }
         .textArea {
-          @apply border border-gray-400 bg-transparent rounded-2xl text-gray-700 w-full pt-2  px-[1vw]  text-base;
+          @apply border border-gray-400 bg-transparent rounded-2xl text-gray-700 w-full pt-2 px-[1vw] text-base;
           height: 150px;
-
           resize: none;
         }
       }
+      .rightBlock::-webkit-scrollbar {
+        width: 0;  /* Установка ширины полосы прокрутки на 0 */
+      }
+      
+      /* Установка цвета фона для полосы прокрутки */
+      .rightBlock::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+      
+      /* Установка цвета для полосы прокрутки */
+      .rightBlock::-webkit-scrollbar-thumb {
+        background-color: transparent;
+      }
       
       .rightBlock.show {
-        opacity: 1; 
-        width: 40%;/* Установка полностью непрозрачного состояния */
+        opacity: 1;
+      
       }
     }
   }
