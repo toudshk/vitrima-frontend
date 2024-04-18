@@ -22,7 +22,9 @@ export const useUpload: TypeUpload = (onChange, imageIsUpload, folder) => {
     (data: FormData) => FileService.upload(data, folder),
     {
       onSuccess({ data }) {
-        imageIsUpload(true);
+        if (typeof imageIsUpload === 'function') {
+          imageIsUpload(true);
+        }
         onChange(data[0].url);
       },
       onError(error) {},

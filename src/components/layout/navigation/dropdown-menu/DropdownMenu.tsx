@@ -48,7 +48,7 @@ const DropdownMenu = () => {
       <Avatar id={user!._id} />
       <div className={clsx(styles.dropdownItems, { [styles.open]: menuOpen })}>
         <div className={styles.topBlock}>
-          <Image src={userData && userData.image ? userData.image : baseImage} alt={""} className={styles.avatar}/>
+          <Image src={userData && userData.image ? userData.image : baseImage} alt={""} className={styles.avatar} width={250} height={250}/>
           <h2>{userData?.nickname}</h2>
         </div>
         <Link href={"/add-work"}>

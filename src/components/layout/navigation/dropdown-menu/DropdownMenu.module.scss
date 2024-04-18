@@ -19,7 +19,7 @@
     .topBlock{
       @apply mb-10;
       .avatar{
-        @apply rounded-full w-20 h-20 mx-auto mb-4;
+        @apply rounded-full w-20 h-20 mx-auto mb-4 image-like-bg;
       }
       h2{
         @apply text-xl text-center;
