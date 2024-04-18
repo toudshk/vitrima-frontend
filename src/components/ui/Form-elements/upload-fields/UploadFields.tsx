@@ -49,7 +49,6 @@ const UploadField: FC<IUploadField> = ({
     const img = event.target as HTMLImageElement;
     setImageDimensions({ width: img.naturalWidth, height: img.naturalHeight });
   };
-console.log(imageDimensions)
   return (
     <div className={cn(styles.field, styles.uploadField)} style={style}>
       <div className={styles.uploadImageContainer}  style={aspectRatioStyle}>

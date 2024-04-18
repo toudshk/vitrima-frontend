@@ -64,6 +64,7 @@ console.log(imageUpload)
             <div className={styles.fields}>
               <div className={styles.mainBlock}>
                 <div className={clsx(styles.leftBlock, imageUpload === true && styles.smallLeftBlock)}>
+
                   <Controller
                     name="images"
                     control={control}
@@ -88,6 +89,24 @@ console.log(imageUpload)
                   />
                 </div>
                 <div className={clsx(styles.rightBlock, imageUpload === true && styles.show)}>
+                <Field
+                    {...register("title", {
+                      required: "Название обязательно",
+                    })}
+                    placeholder="Фигурка из дерева"
+                    error={errors.title}
+                    title="Название работы"
+                  />
+
+                  <Field
+                    {...register("price", {
+                      required: "Цена обязательна",
+                    })}
+                    placeholder="Ваша цена"
+                    title="Цена/м.кв"
+                    error={errors.price}
+                  />
+
                   <Controller
                     name="subTypes"
                     control={control}
@@ -99,6 +118,7 @@ console.log(imageUpload)
                         options={subTypes || []}
                         isLoading={isSubTypeLoading}
                         isMulti
+                        
                       />
                     )}
                   />
@@ -120,23 +140,7 @@ console.log(imageUpload)
                         />
                       </div>
                     )}
-                  <Field
-                    {...register("title", {
-                      required: "Название обязательно",
-                    })}
-                    placeholder="Фигурка из дерева"
-                    error={errors.title}
-                    title="Название работы"
-                  />
-
-                  <Field
-                    {...register("price", {
-                      required: "Цена обязательна",
-                    })}
-                    placeholder="Ваша цена"
-                    title="Цена/м.кв"
-                    error={errors.price}
-                  />
+                  
 
                   <Controller
                     name="tags"

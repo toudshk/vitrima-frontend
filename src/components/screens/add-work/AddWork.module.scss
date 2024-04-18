@@ -1,31 +1,28 @@
 .form {
-  @apply mt-[12vh] max-w-[1734px] mx-auto px-5 ;
+  @apply mt-[12vh] max-w-[1734px] mx-auto px-5;
   .fields {
-    @apply items-center flex-wrap  -mt-[3vh] ;
-   
+    @apply items-center flex-wrap  -mt-[3vh];
+
     .mainBlock {
-      @apply flex ;
+      @apply flex;
       .leftBlock {
         @apply pr-10 mx-auto mt-10 min-h-[80vh]   w-full;
-        
-        
       }
-      .smallLeftBlock{
-        @apply mx-0 mr-auto relative ;
-        width: 70% !important ; 
-       
+      .smallLeftBlock {
+        @apply mx-0 mr-auto relative;
+        width: 70% !important ;
       }
-      
+
       .rightBlock {
         @apply p-10 h-[91vh] mt-[9vh];
         position: fixed;
         top: 0;
-        right: 0;
+        right: -100%;
         overflow-y: auto;
         box-shadow: -8px 0 16px rgba(0, 0, 0, 0.2);
         opacity: 0; /* Начальное значение непрозрачности */
         transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Плавная анимация изменения положения и непрозрачности */
-        
+
         .titleTextArea {
           @apply text-xl mb-[1vw];
         }
@@ -36,22 +33,22 @@
         }
       }
       .rightBlock::-webkit-scrollbar {
-        width: 0;  /* Установка ширины полосы прокрутки на 0 */
+        width: 0; /* Установка ширины полосы прокрутки на 0 */
       }
-      
+
       /* Установка цвета фона для полосы прокрутки */
       .rightBlock::-webkit-scrollbar-track {
         background-color: transparent;
       }
-      
+
       /* Установка цвета для полосы прокрутки */
       .rightBlock::-webkit-scrollbar-thumb {
         background-color: transparent;
       }
-      
+
       .rightBlock.show {
         opacity: 1;
-      
+        right: 0%;
       }
     }
   }
@@ -61,21 +58,19 @@
   .form {
     @apply my-16;
     .fields {
-     
       .mainBlock {
         @apply block mt-[15vh];
         .leftBlock {
-          @apply  pr-0 items-center  mt-10   ;
+          @apply pr-0 items-center  mt-10;
         }
-        .smallLeftBlock{
-           width: 100% !important ; 
-         
+        .smallLeftBlock {
+          @apply h-full;
+          width: 100% !important ;
         }
         .rightBlock {
-          @apply relative shadow-none p-0 h-full;
-        overflow-y: hidden;
-
-       
+          @apply relative shadow-none p-0 h-full mt-0;
+          overflow-y: hidden;
+          right: 0;
         }
       }
     }

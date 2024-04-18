@@ -27,11 +27,11 @@
 .uploadField {
   @apply h-full   w-full;
 
-  > .uploadImageContainer {
+  .uploadImageContainer {
     @apply shrink-0 relative mb-10 h-full border-dashed border border-gray-300 rounded-xl;
 
     img {
-      @apply image-like-bg rounded-full w-[72px] h-[72px];
+      @apply image-like-bg  w-[72px] h-[72px];
     }
 
     .loader {
@@ -55,7 +55,7 @@
       bottom: 0;
       right: 0;
       img {
-        @apply w-32 mx-auto;
+        @apply w-32 h-[88px] mx-auto;
       }
     }
     > label {
@@ -67,9 +67,6 @@
 
       > input {
         @apply block  w-full h-full  cursor-pointer opacity-0 z-50;
-        @media (max-width: 700px) {
-          @apply w-[100vw] h-[50vh];
-        }
       }
     }
   }
@@ -80,11 +77,12 @@
 }
 @media (max-width: 700px) {
   .uploadField {
-    @apply w-full ;
-    .uploadImageContainer{
-      >label{
-        >input{
-          @apply w-full h-full
+    @apply w-full;
+    .uploadImageContainer {
+      @apply min-h-[50vh]  mb-0;
+      > label {
+        > input {
+          @apply w-full h-[50vh];
         }
       }
     }

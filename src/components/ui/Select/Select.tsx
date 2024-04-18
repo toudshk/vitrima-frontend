@@ -8,7 +8,20 @@ import styles from './Select.module.scss'
 import { IOption, ISelect } from './Select.interface'
 
 const animatedComponents = makeAnimated()
+const customStyles = {
+    control: (provided:any ,state: any) => ({
+      ...provided,
+	  borderColor:'#999',
+      background: 'transparent',
+		borderRadius: "12px",
+     
+    }),
+    menu: (provided:any) => ({
+      ...provided,
+      
+    }),
 
+};
 
 
 const Select: FC<ISelect> = ({
@@ -19,6 +32,8 @@ const Select: FC<ISelect> = ({
 	field,
 	isLoading,
 }) => {
+
+
 	const onChange = (newValue: any) => {
 		field.onChange(
 			isMulti
@@ -42,6 +57,7 @@ const Select: FC<ISelect> = ({
 			<label>
 				<span>{placeholder}</span>
 				<ReactSelect
+                       styles={customStyles}
 				
 					placeholder={''}
 					options={options}
