@@ -61,26 +61,21 @@
   .form {
     @apply my-16;
     .fields {
-      .topBlock {
-        @apply block;
-        .rightTopBlock {
-          @apply w-full;
-          .subTypeBlock {
-            @apply w-[45%];
-          }
-          .buildingTechniqueBlock{
-            @apply w-[60%];
-           
-          }
-        }
-      }
+     
       .mainBlock {
-        @apply block;
+        @apply block mt-[15vh];
         .leftBlock {
-          @apply w-full pr-0;
+          @apply  pr-0 items-center  mt-10   ;
+        }
+        .smallLeftBlock{
+           width: 100% !important ; 
+         
         }
         .rightBlock {
-          @apply w-full;
+          @apply relative shadow-none p-0 h-full;
+        overflow-y: hidden;
+
+       
         }
       }
     }
