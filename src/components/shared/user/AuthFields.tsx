@@ -3,6 +3,7 @@ import { FormState, UseFormRegister } from "react-hook-form";
 
 import { validEmail } from "../regex";
 import Field from "@/components/ui/Form-elements/Field";
+import Link from "next/link";
 
 interface IAuthFields {
   register: UseFormRegister<any>;
@@ -30,6 +31,10 @@ const AuthFields: FC<IAuthFields> = ({
        
        // error={errors.email}
       />
+      <div className="w-full text-right -mb-2">
+          
+            <Link href={"/reset-password"} className=" text-base underline">   Забыли пароль?</Link>
+          </div>
       <Field
         {...register(
         	'password',

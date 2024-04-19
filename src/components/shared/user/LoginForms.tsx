@@ -83,6 +83,7 @@ const LoginForms: FC<IAuthFields> = () => {
               Зарегиструйся
             </Link>
           </div>
+          
         </div>
       </form>
     </>

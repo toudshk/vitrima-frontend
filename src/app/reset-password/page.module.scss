@@ -1,0 +1,60 @@
+.container {
+    @apply mt-[9vh];
+    @apply flex;
+    .leftBlock {
+      background: url("../../components/common/images/ui/authPage/AuthBg.png")
+        no-repeat center center;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      min-width: 50%;
+      height: 91vh;
+  
+      @media (max-width: 1336px) {
+        display: none;
+      }
+    }
+    .rightBlock {
+      @apply mx-[5vw] items-center my-auto w-full;
+  
+      .logotype {
+        @apply mx-[4vh] mb-[3.1vh];
+      }
+      @media (max-width: 1336px) {
+        @apply px-3;
+        margin-top: 20vh;
+      }
+  
+      .authButtons {
+        button {
+          @apply w-full rounded-2xl;
+          transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        button:first-child {
+          &:hover {
+            @apply bg-white text-primary border-2;
+          }
+        }
+        button:last-child {
+          @apply border-2;
+          &:hover {
+            @apply bg-gray-400 text-primary border-gray-400;
+          }
+        }
+      }
+      .docLink {
+        @apply my-2;
+        > a {
+          @apply inline underline ;
+        }
+        > p {
+          @apply inline;
+        }
+      }
+  
+      form {
+        @apply my-5;
+      }
+    }
+  }
+  

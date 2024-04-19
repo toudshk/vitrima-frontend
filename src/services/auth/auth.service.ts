@@ -47,8 +47,7 @@ export const AuthService = {
 
     if (response.data.accessToken) {
       saveToStorage(response.data);
-      window.location.reload()
-     
+      window.location.reload();
     }
     return response;
   },
@@ -86,6 +85,23 @@ export const AuthService = {
     if (response.data.accessToken) {
       saveToStorage(response.data);
     }
+
+    return response;
+  },
+
+  async resetPassword(email: string) {
+    const response = await axiosClassic.post(
+      getAuthUrl("/send-reset-email"),
+      email
+    );
+
+    return response;
+  },
+  async newPassword(newPassword:string, token:string) {
+    const response = await axiosClassic.post(
+      getAuthUrl("/reset-password"),
+       {newPassword, token  }
+    );
 
     return response;
   },
