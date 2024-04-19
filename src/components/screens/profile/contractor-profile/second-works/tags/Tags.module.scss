@@ -2,7 +2,8 @@
   @apply text-[1.6vw] mb-[2vw];
 }
 .tags {
-  @apply flex;
+  @apply flex ;
+  flex-wrap: wrap;
   .tag {
     @apply text-[1vw] py-[0.5vw] px-[0.7vw] border-gray-300 bg-gray-300 rounded-lg mr-[1vw] mb-3 text-gray-600;
   }

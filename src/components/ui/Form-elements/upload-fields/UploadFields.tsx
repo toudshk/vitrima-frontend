@@ -55,6 +55,7 @@ const UploadField: FC<IUploadField> = ({
         <label>
           <input
             type="file"
+            name="image"
             accept="image/png, image/jpeg, image/jpg"
             onChange={handleFileChange}
             className=""

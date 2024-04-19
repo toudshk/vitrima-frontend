@@ -139,7 +139,9 @@
             @apply text-xl mb-[1vw];
           }
           > p {
-            @apply text-sm;
+            @apply text-sm relative;
+            /* Создаем маску с градиентом, который исчезает */
+            mask-image: linear-gradient(to top, transparent, black 40%);
           }
         }
         .textRightBlock {
@@ -157,11 +159,11 @@
         @apply flex-col max-h-[335px];
         .firstBlock {
           @apply w-full  px-0;
-          h1{
-            @apply text-2xl
+          h1 {
+            @apply text-2xl;
           }
-          p{
-            @apply w-full
+          p {
+            @apply w-full;
           }
         }
         .secondBlock {
