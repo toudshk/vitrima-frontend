@@ -31,10 +31,7 @@ const AuthFields: FC<IAuthFields> = ({
        
        // error={errors.email}
       />
-      <div className="w-full text-right -mb-2">
-          
-            <Link href={"/reset-password"} className=" text-base underline">   Забыли пароль?</Link>
-          </div>
+    
       <Field
         {...register(
         	'password',
@@ -52,6 +49,10 @@ const AuthFields: FC<IAuthFields> = ({
         type="password"
        // error={errors.password}
       />
+        <div className="w-full text-right -mt-2 -mb-4">
+          
+          <Link href={"/reset-password"} className=" text-base underline">   Забыли пароль?</Link>
+        </div>
   </form>;
 };
 

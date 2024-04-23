@@ -5,7 +5,14 @@
       @apply text-white;
     }
     .lastMessage {
+      @apply w-full;
       color: white !important;
+      .text{
+        @apply w-full;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 }

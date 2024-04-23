@@ -6,25 +6,26 @@ import DynamicInput from "@/components/ui/Dynamic-input/DynamicInput";
 import SendIcon from "@mui/icons-material/Send";
 import { useAuth } from "@/hooks/useAuth";
 import { MessagesService } from "@/services/messages/messages.service";
+import socket from "@/api/socket";
+import SocketApi from "@/api/socket";
 
 interface IMessage {
   chatId: string;
   text: string;
   sender: string;
+  receiver: string
 }
 
 const MessageField: FC<{
   currentChat: any;
-  
+
   messages: any;
 }> = ({ currentChat, messages }) => {
+  
+  SocketApi.createConnection();
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [newMessage, setNewMessage] = useState("");
   const { user } = useAuth();
-
-  // Assuming that `socket` is a state variable obtained from the socket connection setup.
-  // Adjust the type if needed.
-  const [socket] = useState<any>(null);
 
   const mutation = useMutation(
     "create message",
@@ -32,38 +33,43 @@ const MessageField: FC<{
     {
       onError(error) {},
       onSuccess(createdMessage) {
-       
         setNewMessage("");
       },
     }
   );
 
+  const filteredMembers = currentChat.members.filter(
+    (memberId: string) => memberId !== user!._id
+  );
+
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
-      
       if (!newMessage.trim()) {
         return; // Exit early if the message is empty or contains only whitespace
       }
-  
+      SocketApi.socket?.emit("sendNotification", {
+        receiverId: filteredMembers[0],
+        
+      });
+
       // Your existing logic for creating and sending a message using mutation
       const messageData = {
         text: newMessage,
         chatId: currentChat._id,
         sender: user!._id,
+        receiver: filteredMembers[0],
         createdAt: Date.now(),
       };
       mutation.mutate(messageData);
-  
+
       if (inputRef.current) {
         inputRef.current.style.height = "40px";
       }
-  
+
       // Clear the input value after submitting the form
       setNewMessage("");
-  
-      
     },
-    [newMessage, user, currentChat, mutation, messages, socket]
+    [newMessage, user, currentChat, mutation, messages]
   );
 
   return (

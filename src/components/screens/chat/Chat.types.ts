@@ -6,6 +6,8 @@ export interface IMessage {
 	text: string
 	createdAt: string
 	sender: IUser
+    receiver: string
+
 status: string
 }
 

@@ -43,8 +43,8 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
 
   useEffect(() => {
     if (currentChat?._id === chat._id) {
-      // Проверяем, что user._id не равен sender из messageData
-      if (user!._id !== lastMessage.sender) {
+      // Проверяем, что lastMessage определено и не равно null
+      if (lastMessage && user && user._id !== lastMessage.sender) {
         mutation.mutate(lastMessage._id);
         markAsRead();
       }
@@ -97,14 +97,14 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
             <>
               {lastMessage ? (
                 <>
-                  <div className="flex  justify-between items-center  w-full">
-                    <div>
+                  <div className="flex  justify-between items-center w-[120%]">
+                  
                       <span className={styles.text}>{lastMessage.text}</span>
-                    </div>
+                   
                     <div>
                       {lastMessage.status === "sent" &&
                         lastMessage?.sender === friendId && (
-                          <div className=" h-4 w-4 bg-blue-300 mr-3  rounded-full"></div>
+                          <div className=" h-4 w-4 bg-blue-500 mr-3  rounded-full"></div>
                         )}
                     </div>
                   </div>
