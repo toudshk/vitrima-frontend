@@ -66,10 +66,7 @@ export const AuthService = {
 
     return response;
   },
-  logout() {
-    removeTokensStorage();
-    localStorage.removeItem("user");
-  },
+  
   async getNewTokens() {
     const refreshToken = Cookies.get("refreshToken");
     const response = await axios.post<IAuthResponse>(
@@ -85,6 +82,18 @@ export const AuthService = {
     if (response.data.accessToken) {
       saveToStorage(response.data);
     }
+
+    return response;
+  },
+
+  async logout(userId:string){
+    const refreshToken = Cookies.get("refreshToken");
+    removeTokensStorage();
+    localStorage.removeItem("user");
+    const response = await axiosClassic.post(
+      getAuthUrl("/logout"),
+      {userId, refreshToken}
+    );
 
     return response;
   },

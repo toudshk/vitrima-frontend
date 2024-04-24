@@ -28,7 +28,7 @@ const Chat: FC = () => {
   const [messages, setMessages] = useState<any>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { user } = useAuth();
-  const {nonEmptyChats, isLoading: isLoadingChats} = useChats(user?._id);
+  const { nonEmptyChats, isLoading: isLoadingChats } = useChats(user?._id);
 
   const sortedChats = nonEmptyChats.sort(
     (a: any, b: any) =>
@@ -44,7 +44,6 @@ const Chat: FC = () => {
     SocketApi.createConnection();
 
     SocketApi.socket?.on("client-path", (data) => {
-      console.log(data);
       setArrivalMessage({
         chatId: data.chatId,
         sender: data.sender,
@@ -102,22 +101,26 @@ const Chat: FC = () => {
           [styles.menuOpen]: isMenuOpen,
         })}
       >
-      
-{isLoadingChats ? (<SkeletonLoader count={4} width={'100%'} height={80} borderRadius={16}/>):
-(chats.length > 0 ? (
-  chats.map((chat: any) => (
-    <div onClick={() => handleChatItemClick(chat)} key={chat._id}>
-      <ChatItem
-        chat={chat}
-        currentUser={user!._id}
-        currentChat={currentChat}
-      />
-    </div>
-  ))
-) : (
-  <div className="text-center">Нет доступных чатов</div>
-))}
-        
+        {isLoadingChats ? (
+          <SkeletonLoader
+            count={4}
+            width={"100%"}
+            height={80}
+            borderRadius={16}
+          />
+        ) : chats.length > 0 ? (
+          chats.map((chat: any) => (
+            <div onClick={() => handleChatItemClick(chat)} key={chat._id}>
+              <ChatItem
+                chat={chat}
+                currentUser={user!._id}
+                currentChat={currentChat}
+              />
+            </div>
+          ))
+        ) : (
+          <div className="text-center">Нет доступных чатов</div>
+        )}
       </div>
       <div className={styles.chatBox}>
         <div className={styles.chatBoxWrapper}>

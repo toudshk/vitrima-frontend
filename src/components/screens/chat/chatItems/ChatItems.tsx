@@ -36,10 +36,11 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
       }
     });
   };
-
+  
+  
   const mutation = useMutation("create message", (_id: any) =>
     MessagesService.updateStatus(_id)
-  );
+  );  
 
   useEffect(() => {
     if (currentChat?._id === chat._id) {

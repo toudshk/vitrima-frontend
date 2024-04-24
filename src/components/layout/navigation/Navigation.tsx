@@ -35,6 +35,8 @@ const Navigation = () => {
  
   const [arrivalMessage, setArrivalMessage] = useState(false);
 
+  
+
   useEffect(() => {
     SocketApi.createConnection();
 
