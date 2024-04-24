@@ -13,7 +13,7 @@ const ServiceAndPriceInProfile:FC = () => {
           <div key={item._id} className={styles.item}>
             <p className={styles.title}>{item.title}</p>
             <div className={styles.rightBlock}>
-              <p className={styles.price}>{item.price} Р</p>
+              <p className={styles.price}>{item.price} р/м²</p>
               
             </div>
           </div>

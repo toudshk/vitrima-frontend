@@ -76,7 +76,7 @@ const Navigation = () => {
           [styles.navigationNotAuth]: user === null,
         })}
       >
-        <Link className={styles.logo} href="/select-feed">
+        <Link className={styles.logo} href="/">
           <MainLogo height={30} />
         </Link>
         {user ? (

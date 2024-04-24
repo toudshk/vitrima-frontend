@@ -105,7 +105,7 @@ const ServiceAndPrice: FC = () => {
           >
             <p className={styles.title}>{item.title}</p>
             <div className={styles.rightBlock}>
-              <p className={styles.price}>{item.price} Р</p>
+              <p className={styles.price}>{item.price} р/м²</p>
            
           
               <button onClick={() => deleteAsync(item._id)}>
