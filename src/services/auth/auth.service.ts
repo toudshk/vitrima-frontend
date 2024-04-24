@@ -86,13 +86,13 @@ export const AuthService = {
     return response;
   },
 
-  async logout(userId:string){
+  async logout(){
     const refreshToken = Cookies.get("refreshToken");
     removeTokensStorage();
     localStorage.removeItem("user");
     const response = await axiosClassic.post(
       getAuthUrl("/logout"),
-      {userId, refreshToken}
+       refreshToken
     );
 
     return response;
