@@ -27,22 +27,20 @@ const animation = {
   },
 };
 const Navigation = () => {
-  const {data} = useUnreadMessages()
-  const countUnreadMessages = data?.length  ?? 0
+  SocketApi.createConnection();
+
+  const { data } = useUnreadMessages();
+  const countUnreadMessages = data?.length ?? 0;
   // console.log(data.length)
   const { user } = useAuth();
   const pathname = usePathname().substring(1);
- 
+
   const [arrivalMessage, setArrivalMessage] = useState(false);
-
-  
-
+  console.log(arrivalMessage);
   useEffect(() => {
-    SocketApi.createConnection();
 
-    SocketApi.socket?.on("sendNotification", (senderId) => {
-      
-      if (user && user._id !== senderId) {
+    SocketApi.socket?.on("client-path", (data) => {
+      if (user && user._id === data.receiver) {
         setArrivalMessage(true);
       }
     });
@@ -55,8 +53,7 @@ const Navigation = () => {
     return () => {
       localStorage.removeItem("arrivalMessage");
     };
-  }, [user]);
-
+  }, []);
   // Обработчик события для ссылки "чат", который сбрасывает уведомление
   const handleChatLinkClick = () => {
     setArrivalMessage(false);
@@ -91,7 +88,7 @@ const Navigation = () => {
                 onClick={handleChatLinkClick} // Добавим обработчик события
               >
                 ЧАТ
-                {countUnreadMessages > 0 && (
+                {(countUnreadMessages > 0 || arrivalMessage) && (
                   <div className={styles.notification} />
                 )}
               </Link>

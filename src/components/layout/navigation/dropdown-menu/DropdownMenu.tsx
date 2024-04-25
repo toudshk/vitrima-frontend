@@ -51,10 +51,10 @@ const DropdownMenu = () => {
           <Image src={userData && userData.image ? userData.image : baseImage} alt={""} className={styles.avatar} width={250} height={250}/>
           <h2>{userData?.nickname}</h2>
         </div>
-        <Link href={"/add-work"}>
+        {user?.isContractor === true && (  <Link href={"/add-work"}>
          
           Добавить новую работу
-        </Link>
+        </Link>)}
         <Link href={"/feedback"}>
           {/* <EmailIcon className="max-w-[15%] mr-1" /> */}
           Обратная связь

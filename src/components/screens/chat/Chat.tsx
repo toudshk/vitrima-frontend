@@ -47,6 +47,7 @@ const Chat: FC = () => {
       setArrivalMessage({
         chatId: data.chatId,
         sender: data.sender,
+        receiverId: friendId,
         text: data.text,
         createdAt: Date.now(),
       });

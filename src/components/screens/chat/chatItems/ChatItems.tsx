@@ -32,15 +32,19 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
   const markAsRead = () => {
     messageData.forEach((message: any) => {
       if (user!._id !== message.sender) {
-        mutation.mutate(message._id);
+        mutation.mutate(message._id, {
+        
+         
+        });
       }
     });
   };
   
   
   const mutation = useMutation("create message", (_id: any) =>
-    MessagesService.updateStatus(_id)
-  );  
+    MessagesService.updateStatus(_id),
+  
+  );
 
   useEffect(() => {
     if (currentChat?._id === chat._id) {
@@ -103,7 +107,7 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
                       <span className={styles.text}>{lastMessage.text}</span>
                    
                     <div>
-                      {lastMessage.status === "sent" &&
+                      {  lastMessage.status === "sent" &&
                         lastMessage?.sender === friendId && (
                           <div className=" h-4 w-4 bg-blue-500 mr-3  rounded-full"></div>
                         )}

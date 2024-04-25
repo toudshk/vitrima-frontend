@@ -3,8 +3,10 @@ import { getFeedBackUrl } from "@/config/api.config";
 
 export const FeedbackService = {
   async createFeedback(data: any) {
-
     const response = await axios.post(getFeedBackUrl("/create-feedback"), data);
     return response;
+  },
+  async getAll() {
+    return  axios.get(getFeedBackUrl("/get-all"));
   },
 };
