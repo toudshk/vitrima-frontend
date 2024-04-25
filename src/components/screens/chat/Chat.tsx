@@ -34,7 +34,7 @@ const Chat: FC = () => {
     (a: any, b: any) =>
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
-  let friendId: string | null = null;
+ let friendId: any
   if (currentChat && currentChat.members) {
     friendId = currentChat.members.find((m: any) => m !== user?._id);
   }
