@@ -13,6 +13,7 @@ import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 import { useMutation } from "react-query";
 import { MessagesService } from "@/services/messages/messages.service";
 import { useAuth } from "@/hooks/useAuth";
+import SocketApi from "@/api/socket";
 
 interface IChatItem {
   chat: any;
@@ -24,6 +25,7 @@ dayjs.locale("ru"); // Устанавливаем локаль
 
 const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
   const [lastMessage, setLastMessage] = useState<any>(undefined);
+  const [isNotRead, setIsNotRead] = useState(true);
   const { user } = useAuth();
   const friendId = chat.members.find((m: any) => m !== currentUser);
   const { data } = useUserInfo(friendId);
@@ -32,19 +34,30 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
   const markAsRead = () => {
     messageData.forEach((message: any) => {
       if (user!._id !== message.sender) {
-        mutation.mutate(message._id, {
-        
-         
-        });
+        setIsNotRead(false);
+
+        mutation.mutate(message._id, {});
       }
     });
   };
-  
-  
+
   const mutation = useMutation("create message", (_id: any) =>
-    MessagesService.updateStatus(_id),
-  
+    MessagesService.updateStatus(_id)
   );
+  SocketApi.createConnection();
+  SocketApi.socket?.on("client-path", (data) => {
+    {
+      chat._id === data.chatId &&
+        setLastMessage({
+          chatId: data.chatId,
+          sender: data.sender,
+          receiverId: friendId,
+          text: data.text,
+          createdAt: Date.now(),
+          status: "sent",
+        });
+    }
+  });
 
   useEffect(() => {
     if (currentChat?._id === chat._id) {
@@ -103,11 +116,11 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
               {lastMessage ? (
                 <>
                   <div className="flex  justify-between items-center w-[120%]">
-                  
-                      <span className={styles.text}>{lastMessage.text}</span>
-                   
+                    <span className={styles.text}>{lastMessage.text}</span>
+
                     <div>
-                      {  lastMessage.status === "sent" &&
+                      {isNotRead &&
+                        lastMessage.status === "sent" &&
                         lastMessage?.sender === friendId && (
                           <div className=" h-4 w-4 bg-blue-500 mr-3  rounded-full"></div>
                         )}

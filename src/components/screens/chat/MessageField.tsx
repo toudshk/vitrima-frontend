@@ -47,10 +47,7 @@ const MessageField: FC<{
       if (!newMessage.trim()) {
         return; // Exit early if the message is empty or contains only whitespace
       }
-      SocketApi.socket?.emit("sendNotification", {
-        receiverId: filteredMembers[0],
-        
-      });
+     
 
       // Your existing logic for creating and sending a message using mutation
       const messageData = {

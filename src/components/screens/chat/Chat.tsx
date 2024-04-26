@@ -50,6 +50,7 @@ const Chat: FC = () => {
         receiverId: friendId,
         text: data.text,
         createdAt: Date.now(),
+        status: "sent"
       });
     });
   }, []);
