@@ -17,5 +17,5 @@ export interface IContractor extends IApplicant {
 	description: string
   subscribers?: string[]
   location?: any
-  isSubscribe: boolean
+  isSubscribe?: boolean
  }

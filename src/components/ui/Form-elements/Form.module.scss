@@ -39,7 +39,7 @@
       position: absolute !important;
     }
     .imageWork {
-      @apply rounded-md -z-10   w-full  h-full;
+      @apply rounded-md -z-10   w-[90vw]  h-full;
       object-fit: cover;
     }
 
@@ -79,10 +79,23 @@
   .uploadField {
     @apply w-full;
     .uploadImageContainer {
-      @apply min-h-[50vh]  mb-0;
+      @apply mb-0 max-w-[90vw];
+
+      .imageWork{
+        @apply h-auto;
+      }
+      .uploadContainerSvg {
+        @apply absolute;
+      }
+      .dynamicContainerWithImage{
+      @apply h-auto;
+      }
       > label {
+        height: 50vh; 
+        display: flex;
         > input {
-          @apply w-full h-[50vh];
+          flex: 1; /* Растягиваем input на всю доступную ширину внутри label */
+          height: 100%;
         }
       }
     }

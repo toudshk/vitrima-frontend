@@ -20,7 +20,7 @@ export interface IUploadField {
 	title: string
 	isNoImage?: boolean
 	images?: string[]
-	imageIsUpload?: any
+	setImageIsUpload?: any
 }
 
 

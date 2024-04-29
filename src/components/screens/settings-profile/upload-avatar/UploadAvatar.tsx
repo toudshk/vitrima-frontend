@@ -33,7 +33,6 @@ const UploadAvatar: FC<IUploadField> = ({
   isLoading,
 }) => {
   const { uploadImage, isLoading: uploadLoading } = useUpload(onChange, folder);
-
   return (
     <>
       {isLoading ? (

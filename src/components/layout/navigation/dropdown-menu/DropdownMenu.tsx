@@ -64,24 +64,7 @@ const DropdownMenu = () => {
           {/* <PersonIcon /> */}
            Профиль
         </Link>
-        {/* {user?.isContractor === true && (
-          <a
-            onClick={(e) => {
-              setOpen(true);
-            }}
-          >
-            <div className="flex">
-              <Image
-                src={iconLogo}
-                width={12}
-                height={12}
-                alt={""}
-                className="max-w-[15%] mr-2"
-              />
-              Подписка
-            </div>
-          </a>
-        )} */}
+       
 
         <ModalSubscription setOpen={setOpen} open={open} />
         <div className={styles.line}></div>
@@ -94,5 +77,25 @@ const DropdownMenu = () => {
     </div>
   );
 };
+
+
+// {user?.isContractor === true && (
+//   <a
+//     onClick={(e) => {
+//       setOpen(true);
+//     }}
+//   >
+//     <div className="flex">
+//       {/* <Image
+//         src={iconLogo}
+//         width={12}
+//         height={12}
+//         alt={""}
+//         className="max-w-[15%] mr-2"
+//       /> */}
+//       Подписка
+//     </div>
+//   </a>
+// )}
 
 export default DropdownMenu;

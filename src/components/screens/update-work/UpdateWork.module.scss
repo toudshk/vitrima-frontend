@@ -22,7 +22,11 @@
         width: 70%;
       }
       .rightBlock {
-        width: 30%;
+        @apply p-10   bg-white ;
+        z-index: 10;
+        box-shadow: -8px 0 16px rgba(0, 0, 0, 0.2);
+      
+       
         .titleTextArea {
           @apply text-xl mb-[1vw];
         }

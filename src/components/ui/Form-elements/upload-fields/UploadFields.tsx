@@ -14,11 +14,12 @@ const UploadField: FC<IUploadField> = ({
   style,
   folder,
   onChange,
-  imageIsUpload,
+  setImageIsUpload,
+    image
 }) => {
-  const { uploadImage, isLoading } = useUpload(onChange, imageIsUpload, folder);
+  const { uploadImage, isLoading } = useUpload(onChange,  folder);
   const container = document.querySelector('.uploadImageContainer');
-
+console.log(image.length)
   const [tempImage, setTempImage] = useState<string | ArrayBuffer | null>(null);
   const [imageDimensions, setImageDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
 
@@ -26,7 +27,7 @@ const UploadField: FC<IUploadField> = ({
     const fileInput = e.target;
     if (fileInput.files && fileInput.files.length > 0) {
       const file = fileInput.files[0];
-
+      setImageIsUpload(true)
       const reader = new FileReader();
 
       reader.onloadend = () => {
@@ -42,8 +43,6 @@ const UploadField: FC<IUploadField> = ({
     aspectRatio: `${imageDimensions.width / imageDimensions.height}`,
   };
   
-
- 
   
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
     const img = event.target as HTMLImageElement;
@@ -52,7 +51,7 @@ const UploadField: FC<IUploadField> = ({
   return (
     <div className={cn(styles.field, styles.uploadField)} style={style}>
       <div className={styles.uploadImageContainer}  style={aspectRatioStyle}>
-        <label>
+      <label className={image.length !== 0 ? styles.dynamicContainerWithImage : ''}>
           <input
             type="file"
             name="image"
@@ -63,12 +62,12 @@ const UploadField: FC<IUploadField> = ({
 
           {error && <div className={styles.error}>{error.message}</div>}
         </label>
-        {tempImage !== null ? (
+        {image.length !== 0 ? (
           isLoading ? (
             <SkeletonLoader className={styles.loader} />
           ) : (
             <Image
-              src={tempImage as string}
+              src={image.length > 1 ? image : image[0]}
               alt=""
               layout="fill"
               className={styles.imageWork}

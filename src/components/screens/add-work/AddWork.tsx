@@ -17,7 +17,7 @@ import { IWorkType } from "@/components/shared/types/work.types";
 import SecondButton from "@/components/ui/Button/SecondButton";
 import { useBuildingTechnique } from "@/hooks/buildingTechnique/useBuildingTechnique";
 import WorkTypeBlock from "./work-type-block/WorkTypeBlock";
-import clsx from 'clsx';
+import clsx from "clsx";
 const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
 });
@@ -34,13 +34,14 @@ const AddWork: FC = () => {
     mode: "onChange",
   });
   const { onSubmit } = useWorks();
+  const getValue = getValues()
+  console.log(getValue)
 
   const { data: tags, isLoading: isTagsLoading } = useSelectTags();
-  const { data: workTypes, isLoading: isWorkTypeLoading } = useTypeWorks();
   const { data: buildingTechniques } = useBuildingTechnique();
-const [imageUpload, imageIsUpload] = useState(false)
   const [selectedItem, setSelectedItem] = useState<IWorkType | null>(null);
-console.log(imageUpload)
+  const [imageIsUpload, setImageIsUpload] = useState(false)
+  console.log(imageIsUpload)
   const {
     data: subTypes,
     isLoading: isSubTypeLoading,
@@ -63,8 +64,12 @@ console.log(imageUpload)
           <>
             <div className={styles.fields}>
               <div className={styles.mainBlock}>
-                <div className={clsx(styles.leftBlock, imageUpload === true && styles.smallLeftBlock)}>
-
+                <div
+                  className={clsx(
+                    styles.leftBlock,
+                    imageIsUpload === true && styles.smallLeftBlock
+                  )}
+                >
                   <Controller
                     name="images"
                     control={control}
@@ -74,13 +79,13 @@ console.log(imageUpload)
                       fieldState: { error },
                     }) => (
                       <UploadField
-                      imageIsUpload={imageIsUpload}
-                        placeholder="Фотография"
-                        error={error}
-                        folder="images"
-                        image={value}
-                        onChange={onChange}
-                        title={""}
+                      setImageIsUpload={setImageIsUpload}
+                      placeholder="Фотография"
+                      error={error}
+                      folder="images"
+                      image={value}
+                      onChange={onChange}
+                      title={""}
                       />
                     )}
                     rules={{
@@ -88,8 +93,13 @@ console.log(imageUpload)
                     }}
                   />
                 </div>
-                <div className={clsx(styles.rightBlock, imageUpload === true && styles.show)}>
-                <Field
+                <div
+                  className={clsx(
+                    styles.rightBlock,
+                    imageIsUpload === true  && styles.show
+                  )}
+                >
+                  <Field
                     {...register("title", {
                       required: "Название обязательно",
                     })}
@@ -118,7 +128,6 @@ console.log(imageUpload)
                         options={subTypes || []}
                         isLoading={isSubTypeLoading}
                         isMulti
-                        
                       />
                     )}
                   />
@@ -140,7 +149,6 @@ console.log(imageUpload)
                         />
                       </div>
                     )}
-                  
 
                   <Controller
                     name="tags"
@@ -167,12 +175,8 @@ console.log(imageUpload)
                   </div>
                   <SecondButton>Добавить работу</SecondButton>
                 </div>
-                
-                
               </div>
             </div>
-
-          
           </>
         )}
       </form>

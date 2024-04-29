@@ -4,6 +4,7 @@ export interface IContractorState {
   email: string;
   isContractor: boolean
   isAdmin: boolean
+  isSubscribe: boolean
 _id: string
 }
 export interface IApplicantState {
