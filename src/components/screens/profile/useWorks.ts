@@ -37,10 +37,10 @@ export const useWorks = () => {
 		},
 		{
 		  onError(error) {
-			console.log(error, 'Delete work');
+			toast.error('Произошла ошибка. Пожалуйста, войдите в свой профиль снова или повторите попытку позже.')
 		  },
 		  onSuccess() {
-			toast.success('Работа удалена')
+			toast.success('Работа успешно удалена')
 			window.location.reload()
 		  },
 		}

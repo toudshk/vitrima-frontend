@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { UseFormSetValue } from "react-hook-form";
 import { useQuery } from "react-query";
 
-export const useUserInfo = (id: string) => {
+export const useUserInfo = (id: any ) => {
   const queryData = useQuery(
     ["user info for chat", id],
     () => UserService.getUserById(id),
