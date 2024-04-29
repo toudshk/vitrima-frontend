@@ -17,7 +17,7 @@ const ModalSubscription: FC<{ open: any; setOpen: any }> = ({
   setOpen,
 }) => {
   const { user } = useAuth();
-  const {data} = useUserInfo(user?._id)
+  const {data} = useUserInfo(user!._id)
   const isSubscribe = data?.data.isSubscribe
   
   const router = useRouter();
