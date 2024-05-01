@@ -72,12 +72,12 @@
   .wrapper {
     @apply mt-[15vh] px-2;
     .blockTitle {
-      @apply mx-4 mt-2 mb-20;
+      @apply mx-4 mt-2 mb-3;
       .leftBlock {
         @apply text-sm;
       }
       .description{
-        @apply mx-3;
+        @apply mx-3 z-50;
       }
       .rightBlock {
         @apply text-sm;

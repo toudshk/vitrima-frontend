@@ -22,7 +22,7 @@
 
     .itemBlock {
       .imageLeftBlock {
-        @apply mr-[2vw] relative  ;
+        @apply mr-[2vw] relative;
         transition: transform 0.3s ease; /* Add a smooth transition effect for scaling */
 
         object-fit: cover; /* Preserve aspect ratio while covering */
@@ -124,7 +124,8 @@
   }
   @media (max-width: 800px) {
     .works {
-      @apply block mb-10;
+      // @apply block mb-10;
+      display: none;
       .itemBlock {
         @apply mx-4;
         .imageLeftBlock {
