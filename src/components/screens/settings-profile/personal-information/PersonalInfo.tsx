@@ -42,15 +42,17 @@ const PersonalInfo: NextPageAuth = () => {
                   field: { value, onChange },
                   fieldState: { error },
                 }) => (
-                  <UploadAvatar
-                    placeholder="Фотография"
-                    error={error}
-                    folder="image"
-                    image={value}
-                    onChange={onChange}
-                    title={""}
-                    isLoading={isLoading}
-                  />
+                  <div className={styles.avatar}>
+                    <UploadAvatar
+                      placeholder="Фотография"
+                      error={error}
+                      folder="image"
+                      image={value}
+                      onChange={onChange}
+                      title={""}
+                      isLoading={isLoading}
+                    />
+                  </div>
                 )}
               />
               <div className={styles.nicknameEmailBlock}>
@@ -83,9 +85,9 @@ const PersonalInfo: NextPageAuth = () => {
               error={errors.description}
               title="Описание услуг"
             />
- {errors.description && errors.description.type === "maxLength" && (
-        <p>Описание не должно превышать 200 символов</p>
-      )}
+            {errors.description && errors.description.type === "maxLength" && (
+              <p>Описание не должно превышать 200 символов</p>
+            )}
             <p className="text-xl mb-[1vw] text-primary">
               Регион вашей деятельности
             </p>
@@ -118,7 +120,6 @@ const PersonalInfo: NextPageAuth = () => {
             />
           </>
 
-          
           <button className={styles.button}>Сохранить</button>
         </form>
         {/* <Link href={`/unsubscribe`} className="flex items-center justify-center mt-3  text-xl font-bold">

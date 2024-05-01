@@ -35,7 +35,7 @@ const AddWork: FC = () => {
   });
   const { onSubmit } = useWorks();
   const getValue = getValues()
-  console.log(getValue)
+ 
 
   const { data: tags, isLoading: isTagsLoading } = useSelectTags();
   const { data: buildingTechniques } = useBuildingTechnique();

@@ -89,7 +89,7 @@ const UpdateWork: FC = () => {
                   control={control}
                   render={({ field, fieldState: { error } }) => (
                     <ToggleButtonGroup
-                      sx={{ height: "50px", marginTop: "20px" }}
+                      sx={{ height: "50px"}}
                       color="primary"
                       value={selectedItem?._id || field.value}
                       exclusive

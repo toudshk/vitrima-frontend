@@ -22,10 +22,14 @@
         width: 70%;
       }
       .rightBlock {
-        @apply p-10   bg-white ;
-        z-index: 10;
+        @apply p-10 h-[91vh] mt-[9vh] bg-white;
+        position: fixed;
+        top: 0;
+        right: 0%;
+        overflow-y: auto;
         box-shadow: -8px 0 16px rgba(0, 0, 0, 0.2);
-      
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Плавная анимация изменения положения и непрозрачности */
+
        
         .titleTextArea {
           @apply text-xl mb-[1vw];
@@ -36,6 +40,19 @@
 
           resize: none;
         }
+      }
+      .rightBlock::-webkit-scrollbar {
+        width: 0; /* Установка ширины полосы прокрутки на 0 */
+      }
+
+      /* Установка цвета фона для полосы прокрутки */
+      .rightBlock::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      /* Установка цвета для полосы прокрутки */
+      .rightBlock::-webkit-scrollbar-thumb {
+        background-color: transparent;
       }
     }
   }

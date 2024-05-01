@@ -8,7 +8,6 @@
         @apply w-full;
       }
     }
-   
   }
   .button {
     @apply bg-primary w-full text-white text-xl h-16 rounded-2xl mt-[2vw];
@@ -19,13 +18,17 @@
 }
 @media (max-width: 800px) {
   .fields {
+    @apply w-[90vw];
+
     .topBlock {
       @apply block;
-      .nicknameEmailBlock{
+      .avatar {
+        @apply mb-4 flex justify-center;
+      }
+      .nicknameEmailBlock {
         @apply ml-0;
       }
     }
-  
   }
 }
 
