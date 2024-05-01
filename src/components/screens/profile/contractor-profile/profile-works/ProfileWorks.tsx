@@ -41,6 +41,7 @@ const ProfileWorks: FC<{ id: string }> = ({ id }) => {
                         <p>{work.description}</p>
                       </div>
                       <Image
+                      className="rounded-xl"
                         src={work.images[0]}
                         width={860}
                         height={348}
@@ -52,6 +53,7 @@ const ProfileWorks: FC<{ id: string }> = ({ id }) => {
                   <>
                     <div className={styles.imageRightBlock}>
                       <Image
+                       className="rounded-xl"
                         src={work.images[0]}
                         width={860}
                         height={348}

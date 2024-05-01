@@ -84,15 +84,12 @@
       .imageWork{
         @apply h-auto;
       }
+      
       .uploadContainerSvg {
         @apply absolute;
       }
-      .dynamicContainerWithImage{
-      @apply h-auto;
-      }
       > label {
-        height: 50vh; 
-        display: flex;
+        @apply h-full flex; 
         > input {
           flex: 1; /* Растягиваем input на всю доступную ширину внутри label */
           height: 100%;

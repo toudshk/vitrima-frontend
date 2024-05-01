@@ -6,7 +6,7 @@
     .mainBlock {
       @apply flex;
       .leftBlock {
-        @apply pr-10 mx-auto mt-10 min-h-[80vh]   w-full;
+        @apply pr-10 mx-auto mt-10   w-full;
       }
       .smallLeftBlock {
         @apply mx-0 mr-auto relative;
@@ -62,9 +62,10 @@
         @apply block mt-[15vh];
         .leftBlock {
           @apply pr-0 items-center  mt-10;
+
         }
         .smallLeftBlock {
-          @apply h-full;
+          
           width: 100% !important ;
         }
         .rightBlock {
