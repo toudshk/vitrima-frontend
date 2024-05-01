@@ -7,7 +7,8 @@ export interface IUser {
     subscribers?: string[];
     image: string
     // Другие свойства пользователя
-    subscriptions?: string[]
+    subscriptions?: string[];
+    description?: string
 }
 
 export interface IWorks {

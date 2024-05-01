@@ -78,12 +78,14 @@ const PersonalInfo: NextPageAuth = () => {
             </div>
 
             <Field
-              {...register("description")}
+              {...register("description", { maxLength: 200 })}
               placeholder="Напишите ваши услуги, которые вы предоставляете"
               error={errors.description}
               title="Описание услуг"
             />
-
+ {errors.description && errors.description.type === "maxLength" && (
+        <p>Описание не должно превышать 200 символов</p>
+      )}
             <p className="text-xl mb-[1vw] text-primary">
               Регион вашей деятельности
             </p>

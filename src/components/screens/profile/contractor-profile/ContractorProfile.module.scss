@@ -3,7 +3,30 @@
   .blockTitle {
     @apply flex justify-between mt-8 items-center mb-10;
     .leftBlock {
-      @apply text-2xl text-gray-600;
+      @apply text-2xl relative text-gray-600 cursor-pointer select-none;
+     
+      
+    }
+    .description {
+      @apply max-w-[450px] mt-4 ml-[2%] left-0;
+      position: absolute;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      transform-origin: top center;
+      opacity: 0;
+      display: block;
+      transform: scale(0);
+      z-index: 20;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+
+    }
+    
+    .description.open {
+      transform: scale(1);
+      opacity: 1;
     }
     .rightBlock {
       @apply flex  text-lg;
@@ -42,17 +65,24 @@
   }
 }
 
+
+
+
 @media (max-width: 700px) {
   .wrapper {
     @apply mt-[15vh] px-2;
     .blockTitle {
       @apply mx-4 mt-2 mb-20;
       .leftBlock {
-        @apply text-sm ;
+        @apply text-sm;
+      }
+      .description{
+        @apply mx-3;
       }
       .rightBlock {
-        @apply text-sm ;
+        @apply text-sm;
       }
+
     }
   }
 }
@@ -115,14 +145,13 @@
       .topBlock {
         @apply mt-6;
         .titleBlock {
-          @apply  mb-4;
+          @apply mb-4;
           .title {
             @apply text-base;
           }
         }
       }
       .priceBlock {
-       
         > button {
           @apply text-base;
         }
