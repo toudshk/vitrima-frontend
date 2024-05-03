@@ -26,7 +26,7 @@
       justify-content: space-between;
 
       .buttons {
-        @apply flex justify-between items-center mb-6;
+        @apply flex justify-between items-center my-6 mr-3;
         .button {
           @apply border-[0.1vw]    border-blue-500 bg-blue-500 text-white px-2 ml-1 py-1 text-lg rounded  transition-all ease-in-out duration-200;
           &:hover {

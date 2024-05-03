@@ -17,7 +17,7 @@ const customStyles = {
 
     backgroundColor: "#EAEAEA",
     border: "1px solid #ABABAB",
-    borderRadius: "0.8vw",
+    borderRadius: "12px",
   }),
   option: (provided: any, state: any) => ({
     ...provided,
