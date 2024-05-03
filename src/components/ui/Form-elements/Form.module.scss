@@ -20,7 +20,7 @@
   @apply mb-[1.5vh];
 
   input {
-    @apply outline-border-none focus:ring-0 bg-transparent text-gray-700 w-full  h-full px-[1vw]  text-base;
+    @apply outline-border-none focus:ring-0 bg-transparent h-10 text-gray-700 w-full  px-[1vw]  text-base;
   }
 }
 
