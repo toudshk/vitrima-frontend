@@ -18,6 +18,7 @@ import SecondButton from "@/components/ui/Button/SecondButton";
 import { useBuildingTechnique } from "@/hooks/buildingTechnique/useBuildingTechnique";
 import WorkTypeBlock from "./work-type-block/WorkTypeBlock";
 import clsx from "clsx";
+import { useTypePurpose } from "./usePurposeTypes";
 const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
 });
@@ -37,11 +38,11 @@ const AddWork: FC = () => {
   const getValue = getValues()
  
 
+  const { data: purposeTypes, isLoading: isWorkTypeLoading } = useTypePurpose();
   const { data: tags, isLoading: isTagsLoading } = useSelectTags();
   const { data: buildingTechniques } = useBuildingTechnique();
   const [selectedItem, setSelectedItem] = useState<IWorkType | null>(null);
   const [imageIsUpload, setImageIsUpload] = useState(false)
-  console.log(imageIsUpload)
   const {
     data: subTypes,
     isLoading: isSubTypeLoading,
@@ -54,6 +55,8 @@ const AddWork: FC = () => {
       refetch();
     }
   }, [selectedItem]);
+
+  console.log('subtypes :' ,subTypes, 'purposeTypes : ', purposeTypes)
 
   return (
     <>
@@ -126,6 +129,20 @@ const AddWork: FC = () => {
                         field={field}
                         placeholder="Стили"
                         options={subTypes || []}
+                        isLoading={isSubTypeLoading}
+                        isMulti
+                      />
+                    )}
+                  />
+                   <Controller
+                    name="purposeType"
+                    control={control}
+                    render={({ field, fieldState: { error } }) => (
+                      <DynamicSelect
+                        error={error}
+                        field={field}
+                        placeholder="Назначение"
+                        options={purposeTypes || []}
                         isLoading={isSubTypeLoading}
                         isMulti
                       />

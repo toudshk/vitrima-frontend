@@ -32,6 +32,7 @@ export interface IWork{
     _id: string
     price: number 
     workType: string
+    purposeType: string
     subTypes: ISubType[] 
     title: string
     description: string

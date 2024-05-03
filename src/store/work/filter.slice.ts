@@ -6,6 +6,7 @@ const filterSlice = createSlice({
     minPrice: 0,
     maxPrice: 1000000,
     subTypes: [],
+    purposeTypes: [],
     contractorType: null,
     buildingTechnique: [],
     workingArea: null,

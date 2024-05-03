@@ -60,6 +60,10 @@ export const WorkService = {
 		return axiosClassic.get<IWorkType[]>(getWorkUrl('/work-types'))
 	
 	},
+	async getPurposeTypes() {
+		return axiosClassic.get<IWorkType[]>(getWorkUrl('/purpose-types'))
+	
+	},
 	async getWorkTypeById(_id: string) {
 		return axiosClassic.get<IWorkType>(getWorkUrl(`/work-type/${_id}`))
 	},

@@ -26,6 +26,7 @@ import {
 import SecondButton from "@/components/ui/Button/SecondButton";
 import { usePathname } from "next/navigation";
 import { useBuildingTechnique } from "@/hooks/buildingTechnique/useBuildingTechnique";
+import { useTypePurpose } from "../add-work/usePurposeTypes";
 
 const DynamicSelect = dynamic(() => import("./select-filter/SelectForFilter"), {
   ssr: false,
@@ -54,8 +55,6 @@ const useStyles = makeStyles({
   },
   horizontalToggleButtonGroup: {
     display: "flex",
-    
-  
   },
   horizontalToggleButton: {
     position: "relative",
@@ -82,9 +81,8 @@ export default function ControlledAccordions({
   setCurrentSubType,
   subTypes,
 }: ControlledAccordionsProps) {
- 
   if (subTypes && subTypes.length > 0) {
-    subTypes.sort(function(a: { label: string; }, b: { label: string; }) {
+    subTypes.sort(function (a: { label: string }, b: { label: string }) {
       var labelA = a.label.toUpperCase(); // Преобразование к верхнему регистру для учёта регистра
       var labelB = b.label.toUpperCase();
       if (labelA < labelB) {
@@ -99,7 +97,7 @@ export default function ControlledAccordions({
   } else {
     console.log("Ошибка: subTypes не определён или пуст.");
   }
-  
+
   const pathname = usePathname().substring(1);
   const classes = useStyles();
   const [expanded, setExpanded] = useState<string[]>([]);
@@ -109,13 +107,10 @@ export default function ControlledAccordions({
     mode: "onChange",
   });
 
-  const [localMinPrice, setLocalMinPrice] = useState<any>(
-    undefined
-  );
-  const [localMaxPrice, setLocalMaxPrice] = useState<any>(
-    undefined
-  );
+  const [localMinPrice, setLocalMinPrice] = useState<any>(undefined);
+  const [localMaxPrice, setLocalMaxPrice] = useState<any>(undefined);
   const [selectedSubTypes, setSelectedSubTypes] = useState<string>("");
+  const [selectedPurposeTypes, setSelectedPurposeTypes] = useState<string>("");
 
   const [selectedBuildingTechnique, setSelectedBuildingTechnique] = useState<
     string[]
@@ -128,12 +123,18 @@ export default function ControlledAccordions({
     );
     setSelectedBuildingTechnique(selectedIds);
   };
+  const handleTypePurposeChange = (selectedValues: any[]) => {
+    const selectedIds = selectedValues.map((option: { value: any; }) => option.value);
+    setSelectedPurposeTypes(selectedIds.join(","));
+  };
 
   const [contractorType, setContractorType] = useState<string | null>(null);
 
   const dispatch = useDispatch();
   const { minPrice, maxPrice } = useSelector(selectFilter);
   const { data: buildingTechnique } = useBuildingTechnique();
+  const { data: purposeTypes } = useTypePurpose();
+
   const handleSubTypesChange = (selectedValues: any[]) => {
     const selectedIds = selectedValues.map((option) => option.value);
     setSelectedSubTypes(selectedIds.join(","));
@@ -148,6 +149,7 @@ export default function ControlledAccordions({
         minPrice: localMinPrice,
         maxPrice: localMaxPrice,
         subTypes: selectedSubTypes,
+        purposeTypes: selectedPurposeTypes,
         contractorType: contractorType,
         buildingTechnique: selectedBuildingTechnique,
         location: selectedLocation,
@@ -158,6 +160,7 @@ export default function ControlledAccordions({
   const { data } = useGallery(pathname, {
     minPrice,
     maxPrice,
+    purposeTypes: selectedPurposeTypes,
     subTypes: selectedSubTypes,
     contractorType,
     location,
@@ -172,22 +175,23 @@ export default function ControlledAccordions({
   };
   const filterReset = () => {
     dispatch(
-       updateFilter({
-         minPrice: 0,
-          maxPrice: 1000000000,
-          subTypes: [],
-          contractorType: undefined,
-          buildingTechnique: undefined,
-          location: undefined,
-        })
-      )
-    setLocalMinPrice(0)
-    setLocalMaxPrice(1000000000)
-    setContractorType(null)
-    setSelectedSubTypes('')
-    setSelectedBuildingTechnique([])
-    setSelectedLocation(undefined)
-   
+      updateFilter({
+        minPrice: 0,
+        maxPrice: 1000000000,
+        subTypes: [],
+        purposeTypes: [],
+        contractorType: undefined,
+        buildingTechnique: undefined,
+        location: undefined,
+      })
+    );
+    setLocalMinPrice(0);
+    setLocalMaxPrice(1000000000);
+    setContractorType(null);
+    setSelectedSubTypes("");
+    setSelectedPurposeTypes("");
+    setSelectedBuildingTechnique([]);
+    setSelectedLocation(undefined);
   };
 
   const handleChange =
@@ -234,7 +238,7 @@ export default function ControlledAccordions({
             />
           </AccordionDetails>
         </Accordion>
-        <Accordion
+        {/* <Accordion
           expanded={expanded.includes("panel2")}
           onChange={handleChange("panel2")}
           className={classes.accordion}
@@ -278,7 +282,7 @@ export default function ControlledAccordions({
               </ToggleButton>
             </ToggleButtonGroup>
           </AccordionDetails>
-        </Accordion>
+        </Accordion> */}
         <Accordion
           expanded={expanded.includes("panel3")}
           onChange={handleChange("panel3")}
@@ -324,6 +328,39 @@ export default function ControlledAccordions({
             id="panel4bh-header"
             className={classes.titleAccordion}
           >
+            <p className={styles.title}>Назначение</p>
+          </AccordionSummary>
+          <AccordionDetails
+            onKeyDown={(e) => e.stopPropagation()}
+            className={classes.contentAccordion}
+          >
+            <Controller
+              name="purposeTypes"
+              control={control}
+              render={({ field, fieldState: { error } }) => (
+                <DynamicSelect
+                error={error}
+                field={field}
+                options={purposeTypes || []}
+                isMulti
+                onSelectChange={handleTypePurposeChange}
+                setCurrentSubType={setCurrentSubType}
+              />
+              )}
+            />
+          </AccordionDetails>
+        </Accordion>
+        <Accordion
+          expanded={expanded.includes("panel5")}
+          onChange={handleChange("panel5")}
+          className={classes.accordion}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel5bh-content"
+            id="panel5bh-header"
+            className={classes.titleAccordion}
+          >
             <p className={styles.title}>Расположение</p>
           </AccordionSummary>
           <AccordionDetails
@@ -362,14 +399,14 @@ export default function ControlledAccordions({
 
         {pathname === "architecture" && (
           <Accordion
-            expanded={expanded.includes("panel5")}
-            onChange={handleChange("panel5")}
+            expanded={expanded.includes("panel6")}
+            onChange={handleChange("panel6")}
             className={classes.accordion}
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel5bh-content"
-              id="panel5bh-header"
+              aria-controls="panel6bh-content"
+              id="panel6bh-header"
               className={classes.titleAccordion}
             >
               <p className={styles.title}>Технологии строительства</p>
@@ -387,8 +424,7 @@ export default function ControlledAccordions({
                     field={field}
                     options={buildingTechnique || []}
                     isMulti
-                    onSelectChange={handleBuildingTechniqueChange}
-                    setCurrentSubType={setCurrentSubType}
+                    onSelectChange={handleBuildingTechniqueChange} setCurrentSubType={undefined}                   
                   />
                 )}
               />

@@ -48,54 +48,54 @@ const DropdownMenu = () => {
       <Avatar id={user!._id} />
       <div className={clsx(styles.dropdownItems, { [styles.open]: menuOpen })}>
         <div className={styles.topBlock}>
-          <Image src={userData && userData.image ? userData.image : baseImage} alt={""} className={styles.avatar} width={250} height={250}/>
+          <Image
+            src={userData && userData.image ? userData.image : baseImage}
+            alt={""}
+            className={styles.avatar}
+            width={250}
+            height={250}
+          />
           <h2>{userData?.nickname}</h2>
         </div>
-        {user?.isContractor === true && (  <Link href={"/add-work"}>
-         
-          Добавить новую работу
-        </Link>)}
+        {user?.isContractor === true && (
+          <Link href={"/add-work"}>Добавить новую работу</Link>
+        )}
+        {user?.isContractor === true && (
+          <a
+            onClick={(e) => {
+              setOpen(true);
+            }}
+          >
+            <div className="flex">
+              {/* <Image
+        src={iconLogo}
+        width={12}
+        height={12}
+        alt={""}
+        className="max-w-[15%] mr-2"
+      /> */}
+              Подписка
+            </div>
+          </a>
+        )}
         <Link href={"/feedback"}>
           {/* <EmailIcon className="max-w-[15%] mr-1" /> */}
           Обратная связь
         </Link>
         <Link href={`/profile/${user?._id}`}>
-          
           {/* <PersonIcon /> */}
-           Профиль
+          Профиль
         </Link>
-       
 
         <ModalSubscription setOpen={setOpen} open={open} />
         <div className={styles.line}></div>
         <a onClick={logoutHandler}>
           {/* <LogoutIcon /> */}
-           Выход
+          Выход
         </a>
-     
       </div>
     </div>
   );
 };
-
-
-// {user?.isContractor === true && (
-//   <a
-//     onClick={(e) => {
-//       setOpen(true);
-//     }}
-//   >
-//     <div className="flex">
-//       {/* <Image
-//         src={iconLogo}
-//         width={12}
-//         height={12}
-//         alt={""}
-//         className="max-w-[15%] mr-2"
-//       /> */}
-//       Подписка
-//     </div>
-//   </a>
-// )}
 
 export default DropdownMenu;

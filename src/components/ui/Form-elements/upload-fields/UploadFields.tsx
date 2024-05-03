@@ -50,8 +50,8 @@ console.log(image.length)
   };
   return (
     <div className={cn(styles.field, styles.uploadField)} style={style}>
-      <div className={styles.uploadImageContainer}  style={aspectRatioStyle}>
-      <label className={image.length !== 0 ? styles.dynamicContainerWithImage : ''}>
+      <div className={cn(styles.uploadImageContainer, image.length === 0 &&  styles.uploadImageContainerWithoutImage)}  style={aspectRatioStyle}>
+      <label >
           <input
             type="file"
             name="image"

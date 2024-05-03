@@ -9,9 +9,15 @@ import { PaymentService } from "@/services/payment/payment.service";
 import { useMutation } from "react-query";
 import { useAuth } from "@/hooks/useAuth";
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import { useUserInfo } from "../../chat/useUserInfo";
- 
+
+import advancedFormat from "dayjs/plugin/advancedFormat";
+import dayjs from "dayjs";
+
+dayjs.extend(advancedFormat);
+dayjs.locale("ru"); // Устанавливаем локаль
+
 const ModalSubscription: FC<{ open: any; setOpen: any }> = ({
   open,
   setOpen,
@@ -19,10 +25,9 @@ const ModalSubscription: FC<{ open: any; setOpen: any }> = ({
   const { user } = useAuth();
   const userId = user ? user._id : null;
 
-  const {data} = useUserInfo(userId)
-
-  
-  const isSubscribe = data?.data.isSubscribe
+  const { data } = useUserInfo(userId);
+  const userData = data?.data;
+  const isSubscribe = data?.data.isSubscribe;
   
   const router = useRouter();
 
@@ -39,6 +44,12 @@ const ModalSubscription: FC<{ open: any; setOpen: any }> = ({
     setOpen(false);
   };
 
+  
+  const messageDate = dayjs(userData?.dayOfPayment).add(1, 'month');
+  const currentDate = messageDate.format("DD MMMM")
+
+  
+  
   return (
     <Dialog
       fullWidth
@@ -46,49 +57,56 @@ const ModalSubscription: FC<{ open: any; setOpen: any }> = ({
       open={open}
       onClose={handleClose}
       disableScrollLock
+      PaperProps={{
+        sx: {
+          borderRadius: "16px", // Пример радиуса скругления краев
+        },
+      }}
     >
       <DialogContent sx={{ padding: "25px" }}>
         <div className={styles.container}>
           <div className={styles.mainTitle}>ежемесячная подписка</div>
           {isSubscribe ? (
-        <div>Вы подписаны</div>
-      ) : (
-        <div className={styles.textBlock}>
-          <div className={styles.topBlock}>
-            <div className={styles.titleBlock}>
-              <div className={styles.checkImg}>
-                <CheckBoxOutlinedIcon />
-              </div>
-              <p className={styles.title}>Неограниченное количество работ</p>
+            <div className=''>
+              <div className="text-2xl font-semibold">690 ₽</div>
+              <div>спишется {currentDate}</div>
             </div>
-            <div className={styles.titleBlock}>
-              <div className={styles.checkImg}>
-                <CheckBoxOutlinedIcon />
+          ) : (
+            <div className={styles.textBlock}>
+              <div className={styles.topBlock}>
+                <div className={styles.titleBlock}>
+                  <div className={styles.checkImg}>
+                    <CheckBoxOutlinedIcon />
+                  </div>
+                  <p className={styles.title}>
+                    Неограниченное количество работ
+                  </p>
+                </div>
+                <div className={styles.titleBlock}>
+                  <div className={styles.checkImg}>
+                    <CheckBoxOutlinedIcon />
+                  </div>
+                  <p className={styles.title}>
+                    Работы будут чаще попадаться в ленте
+                  </p>
+                </div>
+                <div className={styles.titleBlock}>
+                  <div className={styles.checkImg}>
+                    <CheckBoxOutlinedIcon />
+                  </div>
+                  <p className={styles.title}>
+                    Преимущество перед подрядчиками без подписки
+                  </p>
+                </div>
               </div>
-              <p className={styles.title}>
-                Работы будут чаще попадаться в ленте
-              </p>
-            </div>
-            <div className={styles.titleBlock}>
-              <div className={styles.checkImg}>
-                <CheckBoxOutlinedIcon />
+              <div className={styles.priceBlock}>
+                <MainButton className="border-none" onClick={() => mutate()}>
+                  Оформить подписку за 299 руб/мес.
+                </MainButton>
+                <a onClick={() => handleClose()}>отказаться</a>
               </div>
-              <p className={styles.title}>
-                Преимущество перед подрядчиками без подписки
-              </p>
             </div>
-          </div>
-          <div className={styles.priceBlock}>
-            <MainButton className="border-none" onClick={() => mutate()}>
-              Оформить подписку за 299 руб/мес.
-            </MainButton>
-            <a onClick={() => handleClose()}>отказаться</a>
-          </div>
-        </div>
-      )}
-           
-        
-          
+          )}
         </div>
       </DialogContent>
     </Dialog>

@@ -18,4 +18,6 @@ export interface IContractor extends IApplicant {
   subscribers?: string[]
   location?: any
   isSubscribe?: boolean
+  dayOfPayment?: any
+  
  }
