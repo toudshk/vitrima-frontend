@@ -97,7 +97,7 @@ const ModalWindow: FC<IModalWindow> = ({
                 </div>
               </div>
               {["interior", "architecture"].includes(pathname) && (
-                <div className="w-full">
+                <div className={styles.userInfoBlock}>
                   <div className="flex h-14  items-center my-6 ">
                     <Image
                       src={

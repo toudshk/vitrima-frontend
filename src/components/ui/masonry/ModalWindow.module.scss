@@ -98,13 +98,18 @@
         @apply m-0 w-full;
       }
       .textBlock {
-        @apply mx-3;
+        @apply mx-3 max-w-[97vw];
+        
         .title {
           @apply text-2xl mb-2;
         }
-        .link {
-          @apply w-[95%];
+        .userInfoBlock{
+          @apply mr-3;
+          .link {
+            @apply mx-auto;
+          }
         }
+        
       }
    
     }
