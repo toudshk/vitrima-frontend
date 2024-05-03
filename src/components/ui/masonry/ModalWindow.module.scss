@@ -1,11 +1,13 @@
 .content {
   @apply my-[2.2vw] mx-[2.3vw];
-
+  .closeButton {
+    display: none;
+  }
   .selectedWork {
     @apply flex mb-16;
 
     .image {
-      @apply h-full mr-[3vw] w-[45vw];
+      @apply h-full mr-[3vw] w-[45vw] rounded-xl;
       @media (max-width: 1200px) {
         @apply w-[90vw];
       }
@@ -87,10 +89,27 @@
 
 @media (max-width: 700px) {
   .content {
+    @apply mx-0;
+    .closeButton {
+      @apply flex justify-end mb-4 mr-3;
+    }
     .selectedWork {
-      .title {
-        @apply text-2xl mb-2;
+      .image {
+        @apply m-0 w-full;
       }
+      .textBlock {
+        @apply mx-3;
+        .title {
+          @apply text-2xl mb-2;
+        }
+        .link {
+          @apply w-[95%];
+        }
+      }
+   
+    }
+    .bottomBlock{
+      @apply mx-3
     }
   }
 }

@@ -1,5 +1,10 @@
 import { FC, useEffect } from "react";
-import { Dialog, DialogContent } from "@mui/material";
+import {
+  Dialog,
+  DialogContent,
+  createTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { IWork } from "@/components/shared/types/work.types";
 import Image from "next/image";
 import styles from "../ModalWindow.module.scss";
@@ -9,7 +14,7 @@ import { makeStyles } from "@mui/styles";
 import Tags from "@/components/screens/profile/contractor-profile/second-works/tags/Tags";
 import { useSimilarWorks } from "../useSimilarWorks";
 import MasonryGallery from "../MasonryGallery";
-
+import CloseIcon from "@mui/icons-material/Close";
 import baseImage from "@/app/assets/images/base-avatar.jpg";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -26,13 +31,19 @@ interface IModalWindow {
   scroll: any;
 }
 
-const useStyles = makeStyles((theme) => ({
-  customDialogContent: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+const theme = createTheme({
+  components: {
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          maxWidth: "100%",
+          width: "100%",
+          margin: 0,
+        },
+      },
+    },
   },
-}));
+});
 
 const ModalWindow: FC<IModalWindow> = ({
   open,
@@ -43,6 +54,7 @@ const ModalWindow: FC<IModalWindow> = ({
 }) => {
   const { user } = useAuth();
   const subTypes = workData?.subTypes || [];
+  const fullScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
   const pathname = usePathname().substring(1);
 
@@ -51,8 +63,8 @@ const ModalWindow: FC<IModalWindow> = ({
 
   return (
     <Dialog
-      fullWidth
       maxWidth="lg"
+      fullScreen={fullScreen}
       open={open}
       onClose={handleClose}
       scroll={scroll}
@@ -60,21 +72,24 @@ const ModalWindow: FC<IModalWindow> = ({
     >
       <DialogContent dividers={scroll === "body"} sx={{ padding: "0px" }}>
         <div className={styles.content}>
+          <div className={styles.closeButton}>
+            <button onClick={handleClose}>
+              <CloseIcon />
+            </button>
+          </div>
           <div className={styles.selectedWork}>
-         
-              <Image
-                className={styles.image}
-                width={600}
-                height={600}
-                src={workData?.images[0]}
-                alt={""}
-              />
-           
+            <Image
+              className={styles.image}
+              width={600}
+              height={600}
+              src={workData?.images[0]}
+              alt={""}
+            />
 
             <div className={styles.textBlock}>
               <div>
                 <ModalButtons workData={workData} />
-                <TimeUpload date={workData?.createdAt}  withIcon={true}/>
+                <TimeUpload date={workData?.createdAt} withIcon={true} />
 
                 <div className={styles.title}>{workData?.title}</div>
                 <div className={styles.description}>
@@ -83,7 +98,7 @@ const ModalWindow: FC<IModalWindow> = ({
               </div>
               {["interior", "architecture"].includes(pathname) && (
                 <div className="w-full">
-                  <div className="flex h-14 items-center my-6">
+                  <div className="flex h-14  items-center my-6 ">
                     <Image
                       src={
                         workData?.contractorId.image
@@ -121,17 +136,22 @@ const ModalWindow: FC<IModalWindow> = ({
               )}
             </div>
           </div>
-
-          <Tags title={"Теги"} tagData={workData?.tags} isLoading={isLoading} />
-          {similarWorksData?.length > 0 && (
-            <div>
-              <h1 className="text-3xl mb-6">Похожее</h1>
-              <MasonryGallery
-                data={similarWorksData}
-                isLoading={similarWorkLoading}
-              />
-            </div>
-          )}
+          <div  className={styles.bottomBlock}>
+            <Tags
+              title={"Теги"}
+              tagData={workData?.tags}
+              isLoading={isLoading}
+            />
+            {similarWorksData?.length > 0 && (
+              <div>
+                <h1 className="text-3xl mb-6">Похожее</h1>
+                <MasonryGallery
+                  data={similarWorksData}
+                  isLoading={similarWorkLoading}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </DialogContent>
     </Dialog>
