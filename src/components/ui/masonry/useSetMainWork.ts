@@ -15,13 +15,13 @@ export const useSetMainWork = (id: any, item: any) => {
   const mainWorksCount = data?.filter((work) => work.isMainWork).length;
   console.log(mainWorksCount)
   const { mutateAsync } = useMutation("work", async () => {
-    if ((mainWorksCount && mainWorksCount < 2) || item.isMainWork === true) {
+    // if ((mainWorksCount && mainWorksCount < 2) || item.isMainWork === true) {
       await WorkService.setMainWork(id, item._id);
       window.location.reload();
-    }
-    else{
-      toast.error("Не более 2-ух работ могут быть основными")
-    }
+    // }
+    // else{
+    //   toast.error("Не более 2-ух работ могут быть основными")
+    // }
   });
 
   const onSubmit = async () => {
