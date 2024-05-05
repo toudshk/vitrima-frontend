@@ -8,14 +8,14 @@ import { SubmitHandler, UseFormSetValue } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "react-toastify";
 
-export const useSetMainWork = (id: any, workId: string) => {
+export const useSetMainWork = (id: any, item: any) => {
+  
   const { data, isLoading } = useWork();
   const mainWorksCount = data?.filter((work) => work.isMainWork).length;
   console.log(mainWorksCount);
   const { mutateAsync } = useMutation("work", async () => {
-    if (mainWorksCount && mainWorksCount < 2) {
-      await WorkService.setMainWork(id, workId);
-      toast.success("Работа обновлена");
+    if ((mainWorksCount && mainWorksCount < 2) || ( item.isMainWork === true)) {
+      await WorkService.setMainWork(id, item._id);
       window.location.reload();
     }
     else{

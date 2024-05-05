@@ -82,7 +82,7 @@ const ProfileWorks: FC<{ id: string }> = ({ id }) => {
             <div className={styles.secondBlock}></div>
           </div>
         ) : (
-          <div> notisowner</div>
+          <div> </div>
         )}
       </div>
 

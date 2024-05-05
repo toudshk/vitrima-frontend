@@ -12,10 +12,12 @@ const GalleryItem: FC<{
   handleClickOpen: any;
 }> = ({ item, handleWorkData, handleClickOpen }) => {
   const { user } = useAuth();
-  const { onSubmit } = useSetMainWork(user?._id, item._id);
+  
+  const { onSubmit } = useSetMainWork(user?._id, item);
   const [isHovered, setIsHovered] = useState(false);
 
-  
+  const mainWorksCount = item;
+  console.log(mainWorksCount);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
