@@ -11,10 +11,11 @@ import { toast } from "react-toastify";
 export const useSetMainWork = (id: any, item: any) => {
   
   const { data, isLoading } = useWork();
+  
   const mainWorksCount = data?.filter((work) => work.isMainWork).length;
-  console.log(mainWorksCount);
+  console.log(mainWorksCount)
   const { mutateAsync } = useMutation("work", async () => {
-    if ((mainWorksCount && mainWorksCount < 2) || ( item.isMainWork === true)) {
+    if ((mainWorksCount && mainWorksCount < 2) || item.isMainWork === true) {
       await WorkService.setMainWork(id, item._id);
       window.location.reload();
     }

@@ -69,7 +69,8 @@ const ProfileWorks: FC<{ id: string }> = ({ id }) => {
               </div>
             );
           })
-        ) : isOwner ? (
+        ) : (isOwner && data.length === 0) ? (
+        
           <div className={styles.emptyWorks}>
             <div className={styles.firstBlock}>
               <h1>Загрузите свою первую работу</h1>
