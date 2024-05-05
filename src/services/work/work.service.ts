@@ -24,7 +24,10 @@ export const WorkService = {
 		return response
 	},
 
-	
+	async setMainWork(_id: any, workId: string){
+		return axios.put<string>(getWorkUrl(`/set-main-work`),{_id, workId} )
+
+	},
 
 	async update(_id: string, data: IWorkEditInput) {
 		return axios.put<string>(getWorkUrl(`/${_id}`), data)
@@ -95,6 +98,7 @@ export const WorkService = {
 			throw error;
 		}
 	},
+
 	
 	
 	async getWorkByWorkType(slug: string, filters: IFilterInput = {}) {

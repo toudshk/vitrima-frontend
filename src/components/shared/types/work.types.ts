@@ -43,5 +43,6 @@ export interface IWork{
     buildingTechnique: string
    
     createdAt: string
+    isMainWork?: boolean
  }
 

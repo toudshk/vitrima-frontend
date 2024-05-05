@@ -24,13 +24,13 @@ const ProfileWorks: FC<{ id: string }> = ({ id }) => {
     );
 
   if (!data) return <div>Работы не найдены</div>;
-  const firstTwoWorks = data.slice(0, 2);
+  const mainWorks = data.filter(work => work.isMainWork);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.works}>
-        {firstTwoWorks.length > 0 ? (
-          firstTwoWorks.map((work: any, index: number) => {
+        {mainWorks.length > 0 ? (
+          mainWorks.map((work: any, index: number) => {
             return (
               <div className={styles.itemBlock} key={index}>
                 {index % 2 === 0 ? (
@@ -43,8 +43,8 @@ const ProfileWorks: FC<{ id: string }> = ({ id }) => {
                       <Image
                       className="rounded-xl"
                         src={work.images[0]}
-                        width={860}
-                        height={348}
+                        width={2000}
+                        height={2000}
                         alt={"фотография"}
                       />
                     </div>
@@ -55,8 +55,8 @@ const ProfileWorks: FC<{ id: string }> = ({ id }) => {
                       <Image
                        className="rounded-xl"
                         src={work.images[0]}
-                        width={860}
-                        height={348}
+                        width={2000}
+                        height={2000}
                         alt={"фотография"}
                       />
                       <div className={styles.textRightBlock}>

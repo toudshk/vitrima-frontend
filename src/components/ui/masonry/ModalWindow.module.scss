@@ -87,6 +87,10 @@
   }
 }
 
+.setMainWorkButton{
+  @apply absolute z-20 text-white text-base border-gray-700 mt-2 ml-2 bg-white/30 px-2 rounded-lg h-8 backdrop-blur-[10px] hover:bg-gray-500/30;
+}
+
 @media (max-width: 700px) {
   .content {
     @apply mx-0;
@@ -116,5 +120,9 @@
     .bottomBlock{
       @apply mx-3
     }
+  }
+
+  .setMainWorkButton{
+    @apply text-xs;
   }
 }

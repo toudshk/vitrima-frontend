@@ -19,7 +19,7 @@ export const useWorks = () => {
 				toast.error(error)
 			},
 			onSuccess() {
-				console.log('Create work', 'create was successful')
+				
 				router.push(`profile/${user?._id}`)
 			},
 		}

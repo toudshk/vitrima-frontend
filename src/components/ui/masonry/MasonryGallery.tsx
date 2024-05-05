@@ -20,7 +20,7 @@ const MasonryGallery: FC<{ data: any; isLoading: boolean }> = ({
 
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState<DialogProps["scroll"]>("body");
-console.log(open)
+
   const handleClickOpen = (scrollType: DialogProps["scroll"]) => () => {
     setOpen(true);
     setScroll(scrollType);
