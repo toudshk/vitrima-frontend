@@ -13,6 +13,7 @@ import Field from "@/components/ui/Form-elements/Field";
 const TagList: FC = () => {
   const { handleSearch, isLoading, searchTerm, data, deleteAsync, onSubmit } =
     useTags();
+    
   const {
     handleSubmit,
     register,
@@ -21,6 +22,7 @@ const TagList: FC = () => {
   } = useForm<ITagEditInput>({
     mode: "onChange",
   });
+
 
   const [creating, setCreating] = useState(false);
 

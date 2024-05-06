@@ -10,6 +10,7 @@ const FeedbackList: FC = () => {
 
   return (
     <div className="max-w-[1736px] mx-10">
+
       <AdminTable
         tableItems={data || []}
         headerItems={["Feedback"]}

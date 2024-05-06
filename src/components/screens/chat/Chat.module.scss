@@ -3,9 +3,18 @@
   .chatMenu {
     @apply mt-[1vw] pt-4 px-2 h-full  text-3xl border-x-[1px] border-gray-300;
     width: 50%;
-    transition: left 0.3s ease;
-  }
+    overflow-y: hidden; /* Изначально скрываем скроллбар */
+    overflow-x: hidden;
+}
 
+.chatMenu:hover {
+  overflow-y: auto; /* Показываем скроллбар при наведении */
+}
+
+.chatMenu::-webkit-scrollbar {
+  width: 0px;
+  background-color: transparent; /* Делаем скроллбар прозрачным */
+}
   .buttonBlock {
     @apply w-[24%]   h-[35px] mt-[50%];
     display: none;

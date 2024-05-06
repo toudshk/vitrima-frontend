@@ -5,6 +5,7 @@ import { FC } from 'react'
 import styles from './AdminTable.module.scss'
 
 const AdminTableItem: FC<any> = ({ tableItem, removeHandler }) => {
+	
 	return (
 		<div className={styles.item}>
 			{tableItem.items.map((value: any) => (
