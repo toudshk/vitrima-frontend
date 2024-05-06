@@ -22,7 +22,7 @@ const AdminTable: FC<IAdminTable> = ({
 	removeHandler,
 }) => {
 	return (
-		<div >
+		<div  >
 			<AdminTableHeader headerItems={headerItems} />
 
 			{isLoading ? (

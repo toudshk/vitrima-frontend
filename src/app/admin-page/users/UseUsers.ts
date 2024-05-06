@@ -21,10 +21,11 @@ export const useUsers = () => {
 		{
 			select: ({ data }) =>
 				data.map(
-					(user: { _id: any; email: string;  createdAt: string }) => ({
+					(user: { _id: any; email: string;  createdAt: string , isContractor: boolean}) => ({
 						_id: user._id,
 						editUrl: getAdminUrl(`user/edit/${user._id}`),
 						items: [user.email, convertMongoDate(user.createdAt)],
+						isContractor: user.isContractor
 					}) 
 				),
 			onError(error) {
