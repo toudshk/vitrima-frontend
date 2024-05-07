@@ -10,7 +10,9 @@ import { removeTokensStorage, saveToStorage } from "./auth.helper";
 import { API_URL, getAuthUrl } from "@/config/api.config";
 import { getContentType } from "@/api/api.helpers";
 import { axiosClassic } from "@/api/interceptors";
-import { redirect } from "next/navigation";
+
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export const AuthService = {
   async registerApplicant(email: string, password: string, nickname: string) {
@@ -66,37 +68,48 @@ export const AuthService = {
 
     return response;
   },
-  
-  async getNewTokens() {
-    const refreshToken = Cookies.get("refreshToken");
-    const response = await axios.post<IAuthResponse>(
-      `${API_URL}${getAuthUrl("/login/access-token")}`,
-      {
-        refreshToken,
-      },
-      {
-        headers: getContentType(),
-      }
-    );
-
-    if (response.data.accessToken) {
-      saveToStorage(response.data);
-    }
-
-    return response;
-  },
-
   async logout(){
     const refreshToken = Cookies.get("refreshToken");
     removeTokensStorage();
     localStorage.removeItem("user");
     const response = await axiosClassic.post(
       getAuthUrl("/logout"),
-       refreshToken
+       {refreshToken}
     );
 
     return response;
   },
+  async getNewTokens() {
+ 
+   
+      const refreshToken = Cookies.get("refreshToken");
+
+      console.log(refreshToken)
+      if (!refreshToken) {
+        toast.error("Пожалуйста, перезайдите в аккаунт")
+        await this.logout()
+        window.location.reload()
+        // Здесь можно добавить другую логику, которая должна выполняться, если refreshToken не определен
+      } else {
+        const response = await axios.post<IAuthResponse>(
+          `${API_URL}${getAuthUrl("/login/access-token")}`,
+          {
+            refreshToken,
+          },
+          {
+            headers: getContentType(),
+          }
+        );
+      
+        if (response.data.accessToken) {
+          saveToStorage(response.data);
+        }
+      
+        return response;
+      }
+    },
+
+ 
 
   async resetPassword(email: string) {
     const response = await axiosClassic.post(

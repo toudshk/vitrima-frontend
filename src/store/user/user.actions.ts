@@ -1,5 +1,5 @@
 import { AuthService } from "@/services/auth/auth.service";
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify";
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
@@ -22,16 +22,15 @@ export const registerApplicant = createAsyncThunk<
       const response = await AuthService.registerApplicant(
         email,
         password,
-        nickname,
-        
+        nickname
       );
       // toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее уже отправлено письмо")
-      toast.success("Вы успешно зарегистрировались!")
-     
+      toast.success("Вы успешно зарегистрировались!");
+
       return response.data;
-    } catch (error:any) {
+    } catch (error: any) {
       toast.error(error.response.data.message);
-     
+
       return thunkApi.rejectWithValue(error);
     }
   }
@@ -43,7 +42,6 @@ export const registerContractor = createAsyncThunk<
 >(
   "auth/register/contractor",
   async ({ email, password, nickname, inn }, thunkApi) => {
- 
     try {
       const response = await AuthService.registerContractor(
         email,
@@ -51,15 +49,13 @@ export const registerContractor = createAsyncThunk<
         nickname,
         inn
       );
-      
-       
-     // toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее отправлено уже письмо")
-      toast.success("Вы успешно зарегистрировались!")
+
+      // toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее отправлено уже письмо")
+      toast.success("Вы успешно зарегистрировались!");
       return response.data;
-      
     } catch (error: any) {
-     toast.error(error.response.data.message);
-        return thunkApi.rejectWithValue(error);
+      toast.error(error.response.data.message);
+      return thunkApi.rejectWithValue(error);
     }
   }
 );
@@ -69,11 +65,11 @@ export const login = createAsyncThunk<IAuthResponse, InterfaceEmailPassword>(
   async ({ email, password }, thunkApi) => {
     try {
       const response = await AuthService.login(email, password);
-     
+
       return response.data;
-    }catch (error) {
+    } catch (error) {
       toast.error("Неправильный логин или пароль");
-      
+
       return thunkApi.rejectWithValue(error);
     }
   }
@@ -83,16 +79,20 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   await AuthService.logout();
 });
 
-export const checkAuth = createAsyncThunk<
-  IAuthResponse
->("auth/check-auth", async (_, thunkApi) => {
-  try {
-    const response = await AuthService.getNewTokens();
-    return response.data;
-  } catch (error) {
-    if (errorCatch(error) === "токен не является строкой") {
-      thunkApi.dispatch(logout());
+export const checkAuth = createAsyncThunk<IAuthResponse>(
+  "auth/check-auth",
+  async (_, thunkApi) => {
+    try {
+      const response = await AuthService.getNewTokens();
+   
+      return response!.data;
+    } catch (error) {
+      if (errorCatch(error) === 'токен не является строкой') {
+				thunkApi.dispatch(logout()) 
+			}
+      console.log('test')
+
+      return thunkApi.rejectWithValue(error);
     }
-    return thunkApi.rejectWithValue(error);
   }
-});
+);

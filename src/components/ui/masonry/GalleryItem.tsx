@@ -17,7 +17,6 @@ const GalleryItem: FC<{
   const [isHovered, setIsHovered] = useState(false);
 
   const mainWorksCount = item;
-  console.log(mainWorksCount);
 
   const handleMouseEnter = () => {
     setIsHovered(true);

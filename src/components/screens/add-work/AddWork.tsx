@@ -56,8 +56,6 @@ const AddWork: FC = () => {
     }
   }, [selectedItem]);
 
-  console.log('subtypes :' ,subTypes, 'purposeTypes : ', purposeTypes)
-
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
