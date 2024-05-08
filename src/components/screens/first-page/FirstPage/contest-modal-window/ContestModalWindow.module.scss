@@ -1,0 +1,76 @@
+.container {
+    @apply h-[50vh];
+    display: flex;
+    flex-direction: column;
+   
+    .mainTitle {
+      @apply mb-8 text-3xl text-center uppercase font-bold;
+    }
+    .textBlock {
+      @apply rounded-2xl border-gray-300 border-2 h-full p-6 flex flex-col justify-between;
+    //   background: url("../../../../../components/common/images/ui/subscriptionModal/background.png");
+     
+    //   -moz-background-size: cover;
+    //   -o-background-size: cover;
+    //   background-size: cover;
+      min-width: 50%;
+  
+      .topBlock {
+        @apply mt-14;
+        .titleBlock {
+          @apply flex mb-5  items-center;
+          .title {
+            @apply text-xl font-semibold;
+          }
+          .checkImg {
+            @apply mr-2;
+            svg {
+              font-size: 30px;
+            }
+          }
+        }
+  
+        .subtitle {
+          @apply text-[20px];
+        }
+      }
+      .priceBlock {
+        @apply flex flex-col w-full;
+        > button {
+          @apply w-full mb-3;
+        }
+        > a {
+          @apply text-gray-500 text-xl mx-auto cursor-pointer;
+        }
+      }
+    }
+  }
+  @media (max-width: 700px) {
+    .container {
+      @apply h-full;
+      .mainTitle {
+        @apply mb-4 text-2xl;
+      }
+      .textBlock {
+        @apply p-3;
+        .topBlock {
+          @apply mt-6;
+          .titleBlock {
+            @apply mb-4;
+            .title {
+              @apply text-base;
+            }
+          }
+        }
+        .priceBlock {
+          > button {
+            @apply text-base;
+          }
+          > a {
+            @apply text-xl;
+          }
+        }
+      }
+    }
+  }
+  

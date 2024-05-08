@@ -23,34 +23,47 @@
         }
       }
       .links {
-        @apply text-center mb-6;
+        @apply h-auto text-center ;
         display: flex; /* Устанавливаем контейнеру свойство flex */
         flex-direction: column;
-        a {
-          @apply text-2xl py-2  px-8 border rounded-2xl mb-3;
+        justify-content: space-between;
+        .topLinks {
+          display: flex; /* Устанавливаем контейнеру свойство flex */
+          flex-direction: column;
+          a {
+            @apply text-2xl py-2  px-8 border rounded-2xl mb-3;
+          }
+          a:first-child {
+            @apply bg-blue-500 border-blue-500 text-gray-300;
+            transition: all 0.3s ease-in-out; /* Добавляем плавность для изменения цвета фона */
+
+            &:hover {
+              @apply bg-white text-primary border-primary;
+            }
+          }
+          .secondLink {
+            @apply bg-primary text-white;
+            transition: all 0.3s ease-in-out; /* Добавляем плавность для изменения цвета фона */
+
+            &:hover {
+              @apply bg-gray-600;
+            }
+          }
+          .lastLink {
+            @apply text-2xl py-2  px-8 border rounded-2xl mb-3;
+            transition: all 0.3s ease-in-out; /* Добавляем плавность для изменения цвета фона */
+
+            &:hover {
+              @apply bg-gray-500  text-white;
+            }
+          }
         }
-        a:first-child {
-          @apply bg-blue-500 border-blue-500 text-gray-300;
+        .contestButton {
+          @apply bg-blue-500 border-blue-500 text-gray-300  text-2xl py-2  px-8 border rounded-2xl ;
           transition: all 0.3s ease-in-out; /* Добавляем плавность для изменения цвета фона */
 
           &:hover {
             @apply bg-white text-primary border-primary;
-          }
-        }
-        .secondLink {
-          @apply bg-primary text-white;
-          transition: all 0.3s ease-in-out; /* Добавляем плавность для изменения цвета фона */
-
-          &:hover {
-            @apply bg-gray-600;
-          }
-        }
-        .lastLink {
-          @apply text-2xl py-2  px-8 border rounded-2xl mb-3;
-          transition: all 0.3s ease-in-out; /* Добавляем плавность для изменения цвета фона */
-
-          &:hover {
-            @apply bg-gray-500  text-white;
           }
         }
       }

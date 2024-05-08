@@ -88,7 +88,7 @@ export const AuthService = {
       if (!refreshToken) {
         toast.error("Пожалуйста, перезайдите в аккаунт")
         await this.logout()
-        window.location.reload()
+       window.location.reload()
         // Здесь можно добавить другую логику, которая должна выполняться, если refreshToken не определен
       } else {
         const response = await axios.post<IAuthResponse>(

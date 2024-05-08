@@ -15,6 +15,7 @@ import { useInView } from "react-intersection-observer";
 import TimeUpload from "@/components/ui/masonry/timeUpload/TimeUpload";
 
 import { Bounce, toast } from "react-toastify";
+import ContestModalWindow from "./contest-modal-window/ContestModalWindow";
 
 const FirstPage: FC = () => {
   const { ref, inView } = useInView();
@@ -25,6 +26,7 @@ const FirstPage: FC = () => {
   };
   const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
 
+  const [open, setOpen] = useState(false);
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useGallery("interior", {});
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -40,31 +42,30 @@ const FirstPage: FC = () => {
 
     loadInitialPage();
   }, [inView, data, fetchNextPage]);
-  
+
   const notificationShownRef = useRef(false);
 
   useEffect(() => {
-      // Проверяем, было ли уведомление уже показано
-      if (!notificationShownRef.current) {
-          // Если уведомление еще не было показано, то показываем его
-          toast(
-              "Дорогие посетители ВИТРИМЫ, наша платформа сейчас находится в тестовом режиме, поэтому, если вы наткнётесь на функции, которые работают некорректно, то напишите нам на почту, с уважением команда ВИТРИМЫ.",
-              {
-                  position: "top-right",
-                  autoClose: 7000,
-                  hideProgressBar: true,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  theme: "light",
-                  transition: Bounce,
-                  bodyClassName: "",
-              }
-          );
-          // Помечаем, что уведомление было показано
-          notificationShownRef.current = true;
-      }
+    // Проверяем, было ли уведомление уже показано
+    if (!notificationShownRef.current) {
+      // Если уведомление еще не было показано, то показываем его
+      toast(
+        "Дорогие посетители ВИТРИМЫ, наша платформа сейчас находится в тестовом режиме, поэтому, если вы наткнётесь на функции, которые работают некорректно, то напишите нам на почту, с уважением команда ВИТРИМЫ.",
+        {
+          position: "top-right",
+          autoClose: 7000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          theme: "light",
+          transition: Bounce,
+          bodyClassName: "",
+        }
+      );
+      // Помечаем, что уведомление было показано
+      notificationShownRef.current = true;
+    }
   }, []);
-
 
   const objects = data?.pages.flatMap((page) => page.data);
   return (
@@ -83,20 +84,31 @@ const FirstPage: FC = () => {
                 <h1 className={styles.title}>Все дороги ведут к нам</h1>
               </motion.div>
               <div className={styles.links}>
-                <Link href={"/select-feed"} className={styles.link}>
-                  Просмотр ленты
-                </Link>
-                {!user && (
-                  <>
-                    <Link href={"/signup"} className={styles.secondLink}>
-                      Регистрация
-                    </Link>
-                    <Link href={"/login"} className={styles.lastLink}>
-                      Авторизация
-                    </Link>
-                  </>
-                )}
+                <div className={styles.topLinks}>
+                  <Link href={"/select-feed"} className={styles.link}>
+                    Просмотр ленты
+                  </Link>
+                  {!user && (
+                    <>
+                      <Link href={"/signup"} className={styles.secondLink}>
+                        Регистрация
+                      </Link>
+                      <Link href={"/login"} className={styles.lastLink}>
+                        Авторизация
+                      </Link>
+                    </>
+                  )}
+                </div>
+                <button
+                  onClick={(e) => {
+                    setOpen(true);
+                  }}
+                  className={styles.contestButton}
+                >
+                  Участие в конкурсе
+                </button>
               </div>
+              <ContestModalWindow open={open} setOpen={setOpen} />
             </div>
             <div className={styles.rightBlock}>
               <div className={styles.gallery}>

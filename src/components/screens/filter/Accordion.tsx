@@ -306,6 +306,7 @@ export default function ControlledAccordions({
               render={({ field, fieldState: { error } }) => (
                 <DynamicSelect
                   error={error}
+                  title={'стиль'}
                   field={field}
                   options={subTypes}
                   isMulti
@@ -339,6 +340,7 @@ export default function ControlledAccordions({
               control={control}
               render={({ field, fieldState: { error } }) => (
                 <DynamicSelect
+                   title={'назначение'}
                 error={error}
                 field={field}
                 options={purposeTypes || []}
@@ -421,6 +423,7 @@ export default function ControlledAccordions({
                 render={({ field, fieldState: { error } }) => (
                   <DynamicSelect
                     error={error}
+                       title={'технику'}
                     field={field}
                     options={buildingTechnique || []}
                     isMulti

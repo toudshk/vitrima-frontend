@@ -52,6 +52,7 @@ const DynamicSelect: FC<ISelect> = ({
   field,
   onSelectChange,
   setCurrentSubType,
+  title
 }) => {
   const onChange = (
     newValue: IOption | IOption[],
@@ -106,7 +107,7 @@ const DynamicSelect: FC<ISelect> = ({
         <span>{placeholder}</span>
         <ReactSelect
           classNamePrefix="custom-select"
-          placeholder={"Выберите стиль"}
+          placeholder={`Выберите ${title}`}
           formatOptionLabel={formatOptionLabel}
           options={options}
           value={getValue()}

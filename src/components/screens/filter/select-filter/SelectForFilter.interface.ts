@@ -15,4 +15,5 @@ export interface ISelect extends IFieldProps {
 	isLoading?: boolean
 	onSelectChange?: any
 	setCurrentSubType:any
+	title?: string
 }
