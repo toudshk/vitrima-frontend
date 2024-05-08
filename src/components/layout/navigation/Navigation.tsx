@@ -32,8 +32,6 @@ const Navigation = () => {
   const { data } = useUnreadMessages();
   let countUnreadMessages = data?.length ?? 0;
   
-  console.log(countUnreadMessages)
-  // console.log(data.length)
   const { user } = useAuth();
   const pathname = usePathname().substring(1);
   const [arrivalMessage, setArrivalMessage] = useState(false);

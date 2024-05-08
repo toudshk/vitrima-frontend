@@ -10,7 +10,7 @@ import { useUser } from "@/components/screens/profile/useUser";
 const Avatar: FC<{ id: string }> = ({ id }) => {
   const { data } = useUser(id);
   return (
-    <div className="flex items-center  w-[120%] h-full    px-[1.5vh] py-[1.6vh] hover:bg-gray-700">
+    <div className="flex items-center  w-[120%] h-full  cursor-pointer  px-[1.5vh] py-[1.6vh] hover:bg-gray-700">
       <Image
         width={100}
         height={100}

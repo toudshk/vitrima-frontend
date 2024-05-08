@@ -1,22 +1,23 @@
 .container {
-    @apply h-[50vh];
-    display: flex;
-    flex-direction: column;
-   
-    .mainTitle {
-      @apply mb-8 text-3xl text-center uppercase font-bold;
-    }
-    .textBlock {
-      @apply rounded-2xl border-gray-300 border-2 h-full p-6 flex flex-col justify-between;
+  @apply h-[50vh];
+  display: flex;
+  flex-direction: column;
+
+  .mainTitle {
+    @apply mb-8 text-3xl text-center uppercase font-bold;
+  }
+  .textBlock {
+    @apply rounded-2xl border-gray-300 border-2 h-full p-6 flex flex-col justify-between;
     //   background: url("../../../../../components/common/images/ui/subscriptionModal/background.png");
-     
+
     //   -moz-background-size: cover;
     //   -o-background-size: cover;
     //   background-size: cover;
-      min-width: 50%;
-  
-      .topBlock {
-        @apply mt-14;
+    min-width: 50%;
+
+    .topBlock {
+      @apply flex gap-12;
+      .leftBlock {
         .titleBlock {
           @apply flex mb-5  items-center;
           .title {
@@ -29,32 +30,33 @@
             }
           }
         }
-  
-        .subtitle {
-          @apply text-[20px];
-        }
       }
-      .priceBlock {
-        @apply flex flex-col w-full;
-        > button {
-          @apply w-full mb-3;
-        }
-        > a {
-          @apply text-gray-500 text-xl mx-auto cursor-pointer;
-        }
+      .rightBlock {
+        @apply text-lg w-[50%] font-semibold border-l border-gray-300 pl-10;
+      }
+    }
+    .priceBlock {
+      @apply flex flex-col w-full;
+      > button {
+        @apply w-full mb-3;
+      }
+      > a {
+        @apply text-gray-500 text-xl mx-auto cursor-pointer;
       }
     }
   }
-  @media (max-width: 700px) {
-    .container {
-      @apply h-full;
-      .mainTitle {
-        @apply mb-4 text-2xl;
-      }
-      .textBlock {
-        @apply p-3;
-        .topBlock {
-          @apply mt-6;
+}
+@media (max-width: 700px) {
+  .container {
+    @apply h-full;
+    .mainTitle {
+      @apply mb-4 text-2xl;
+    }
+    .textBlock {
+      @apply p-3;
+      .topBlock {
+        @apply mt-6 flex-col;
+        .leftBlock {
           .titleBlock {
             @apply mb-4;
             .title {
@@ -62,15 +64,18 @@
             }
           }
         }
-        .priceBlock {
-          > button {
-            @apply text-base;
-          }
-          > a {
-            @apply text-xl;
-          }
+        .rightBlock{
+            @apply pl-0 border-l-0 border-t pt-10 mb-3 w-full;
+        }
+      }
+      .priceBlock {
+        > button {
+          @apply text-base;
+        }
+        > a {
+          @apply text-xl;
         }
       }
     }
   }
-  
+}
