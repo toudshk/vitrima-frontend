@@ -8,7 +8,7 @@ export const FeedbackService = {
   },
   async getAll() {
     const response = await axios.get(getFeedBackUrl("/get-all"));
-    console.log(response)
+   
     return response
   },
 };

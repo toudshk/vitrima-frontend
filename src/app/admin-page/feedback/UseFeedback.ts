@@ -11,9 +11,13 @@ export const useFeedback = () => {
     () => FeedbackService.getAll(),
     {
       select: ({ data }) =>
+        
+
+
         data.map((feedback: any) => ({
           _id: feedback._id,
-          items: [feedback.description,  convertMongoDate(feedback.createdAt)]
+      
+          items: [feedback.description,  convertMongoDate(feedback.createdAt), feedback.userEmail]
         })),
       onError(error) {
         console.log(error, "tag list");

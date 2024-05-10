@@ -6,7 +6,7 @@ import { FeedbackService } from "@/services/feedback/feedback.service";
 
 export const useFeedback = () => {
   const { user } = useAuth();
-
+console.log(user)
   const { mutateAsync: createAsync } = useMutation(
     "create Feedback",
     async (description: any) => {
@@ -14,8 +14,8 @@ export const useFeedback = () => {
       const updatedData = {
         description: description.feedback,
         userId: user?._id,
+        userEmail: user?.email
       };
-      console.log(updatedData);
       try {
         await FeedbackService.createFeedback(updatedData);
         toast.success("Спасибо за сообщение, мы обязательно прислушаемся!");
