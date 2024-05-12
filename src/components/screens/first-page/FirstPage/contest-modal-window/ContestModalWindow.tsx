@@ -44,6 +44,9 @@ const ContestModalWindow: FC<{ open: any; setOpen: any }> = ({
       <DialogContent sx={{ padding: "25px" }}>
         <div className={styles.container}>
           <div className={styles.mainTitle}>условия для участия</div>
+            <div className={styles.subTitle}> 
+              на 20000 рублей
+            </div>
 
           <div className={styles.textBlock}>
             <div className={styles.topBlock}>

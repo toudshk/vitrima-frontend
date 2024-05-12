@@ -4,7 +4,10 @@
   flex-direction: column;
 
   .mainTitle {
-    @apply mb-8 text-3xl text-center uppercase font-bold;
+    @apply  text-3xl text-center uppercase font-bold;
+  }
+  .subTitle{
+    @apply  mb-4 text-2xl text-center font-semibold;
   }
   .textBlock {
     @apply rounded-2xl border-gray-300 border-2 h-full p-6 flex flex-col justify-between;
@@ -50,8 +53,9 @@
   .container {
     @apply h-full;
     .mainTitle {
-      @apply mb-4 text-2xl;
+      @apply text-2xl;
     }
+    
     .textBlock {
       @apply p-3;
       .topBlock {
