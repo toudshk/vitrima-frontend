@@ -45,7 +45,7 @@ const ContestModalWindow: FC<{ open: any; setOpen: any }> = ({
         <div className={styles.container}>
           <div className={styles.mainTitle}>условия для участия</div>
             <div className={styles.subTitle}> 
-              на 20000 рублей
+             конкурс на 20000 рублей
             </div>
 
           <div className={styles.textBlock}>
