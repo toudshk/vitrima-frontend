@@ -30,6 +30,7 @@ const Navigation = () => {
   SocketApi.createConnection();
 
   const { data } = useUnreadMessages();
+  console.log(data?.length )
   let countUnreadMessages = data?.length ?? 0;
   
   const { user } = useAuth();
@@ -78,7 +79,7 @@ const Navigation = () => {
                 onClick={handleChatLinkClick} // Добавим обработчик события
               >
                 ЧАТ
-                {(countUnreadMessages > 0  && arrivalMessage) && (
+                {(countUnreadMessages > 0  || arrivalMessage) && (
                   <div className={styles.notification} />
                 )}
               </Link>
