@@ -73,7 +73,9 @@ const Navigation = () => {
               <Search />
             </div>
             <div className={styles.buttons}>
-              <Link
+            
+            {(pathname !== "chat") && (
+                <Link
                 className={styles.chatButton}
                 href={"/chat"}
                 onClick={handleChatLinkClick} // Добавим обработчик события
@@ -83,6 +85,8 @@ const Navigation = () => {
                   <div className={styles.notification} />
                 )}
               </Link>
+              )}
+             
               {(pathname === "architecture" || pathname === "interior") && (
                 <Filter />
               )}
