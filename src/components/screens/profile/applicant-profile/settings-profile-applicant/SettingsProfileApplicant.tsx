@@ -49,7 +49,9 @@ const SettingsProfileApplicant: NextPageAuth = () => {
                       field: { value, onChange },
                       fieldState: { error },
                     }) => (
+                      <div className="flex justify-center">
                       <UploadAvatar
+                      
                         placeholder="Фотография"
                         error={error}
                         folder="image"
@@ -58,6 +60,7 @@ const SettingsProfileApplicant: NextPageAuth = () => {
                         title={""}
                         isLoading={isLoading}
                       />
+                      </div>
                     )}
                     rules={{
                       required: "Фотография обязательна",
@@ -67,11 +70,13 @@ const SettingsProfileApplicant: NextPageAuth = () => {
                   <Field
                   className={styles.nickname}
                     {...register("nickname", {
+                      
                       required: "Никнейм обязательно",
                     })}
+                    title="Никнейм"
                     placeholder="Никнейм"
                     error={errors.nickname}
-                    title=""
+                    
                   />
                
                 <Field
