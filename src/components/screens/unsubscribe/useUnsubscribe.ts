@@ -3,9 +3,12 @@ import { useMutation, useQuery } from "react-query";
 import { toast } from "react-toastify";
 import { useAuth } from "@/hooks/useAuth";
 import { FeedbackService } from "@/services/feedback/feedback.service";
+import { PaymentService } from "@/services/payment/payment.service";
+import {  useRouter } from "next/navigation";
 
-export const useFeedback = () => {
-  const { user } = useAuth();
+export const useUnsubscribe = () => {
+  const { user } = useAuth()
+  const router = useRouter();
   const { mutateAsync: createAsync } = useMutation(
     "create Feedback",
     async (description: any) => {
@@ -17,7 +20,9 @@ export const useFeedback = () => {
       };
       try {
         await FeedbackService.createFeedback(updatedData);
-        toast.success("Спасибо за сообщение, мы обязательно прислушаемся!");
+        await PaymentService.deletePayment(user?._id)
+        toast.success("Подписка отменена!");
+        router.push(`/profile/${user?._id}`)
       } catch (error) {}
     }
   );

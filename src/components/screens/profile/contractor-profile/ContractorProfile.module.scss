@@ -89,7 +89,7 @@
 
 // Модальное окно с подпиской
 .container {
-  @apply h-[80vh];
+  @apply h-auto;
   display: flex;
   flex-direction: column;
  

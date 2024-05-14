@@ -7,6 +7,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { useAuth } from "@/hooks/useAuth";
 import { MessagesService } from "@/services/messages/messages.service";
 import socket from "@/api/socket";
+import clsx from 'clsx'
 import SocketApi from "@/api/socket";
 
 interface IMessage {
@@ -80,9 +81,10 @@ const MessageField: FC<{
           onEnterPress={handleSubmit}
         />
       </div>
-      <IconButton onClick={handleSubmit} disabled={!newMessage.trim()}>
-        <SendIcon className={styles.chatSubmitButton} />
+      <IconButton  onClick={handleSubmit} disabled={!newMessage.trim()} className={styles.submitButton}>
+        <SendIcon className={clsx(newMessage.length === 0 && styles.disabledChatSubmitButton, styles.chatSubmitButton)} />
       </IconButton>
+  
     </>
   );
 };

@@ -7,6 +7,8 @@
       @apply flex;
       .leftBlock {
         @apply pr-10 mx-auto mt-10   w-full;
+        transition: all 0.2s ease; /* Плавная анимация изменения положения и непрозрачности */
+
       }
       .smallLeftBlock {
         @apply mx-0 mr-auto relative;
@@ -19,9 +21,9 @@
         top: 0;
         right: -100%;
         overflow-y: auto;
-        box-shadow: -8px 0 16px rgba(0, 0, 0, 0.2);
+        box-shadow: -10px 0 48px rgba(0, 0, 0, .06);
         opacity: 0; /* Начальное значение непрозрачности */
-        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Плавная анимация изменения положения и непрозрачности */
+        transition: all 0.2s ease; /* Плавная анимация изменения положения и непрозрачности */
 
         .titleTextArea {
           @apply text-xl mb-[1vw];
@@ -49,6 +51,7 @@
       .rightBlock.show {
         opacity: 1;
         right: 0%;
+       
       }
     }
   }

@@ -15,6 +15,8 @@ import { useUserInfo } from "../../chat/useUserInfo";
 import advancedFormat from "dayjs/plugin/advancedFormat";
 import dayjs from "dayjs";
 
+import "dayjs/locale/ru";
+import Link from "next/link";
 dayjs.extend(advancedFormat);
 dayjs.locale("ru"); // Устанавливаем локаль
 
@@ -24,7 +26,6 @@ const ModalSubscription: FC<{ open: any; setOpen: any }> = ({
 }) => {
   const { user } = useAuth();
   const userId = user ? user._id : null;
-
   const { data } = useUserInfo(userId);
   const userData = data?.data;
   const isSubscribe = data?.data.isSubscribe;
@@ -40,13 +41,14 @@ const ModalSubscription: FC<{ open: any; setOpen: any }> = ({
       },
     }
   );
+  
   const handleClose = () => {
     setOpen(false);
   };
 
   
   const messageDate = dayjs(userData?.dayOfPayment).add(1, 'month');
-  const currentDate = messageDate.format("DD MMMM")
+  const currentDate = messageDate.format("D MMMM")
 
   
   
@@ -68,8 +70,11 @@ const ModalSubscription: FC<{ open: any; setOpen: any }> = ({
           <div className={styles.mainTitle}>ежемесячная подписка</div>
           {isSubscribe ? (
             <div className=''>
-              <div className="text-2xl font-semibold">690 ₽</div>
-              <div>спишется {currentDate}</div>
+              <div className="text-2xl font-bold">690 ₽</div>
+              <div>Спишется {currentDate}</div>
+              <Link className="border-none" href={"/unsubscribe"} onClick={handleClose} >
+                Отменить подписку
+              </Link>
             </div>
           ) : (
             <div className={styles.textBlock}>
@@ -101,7 +106,7 @@ const ModalSubscription: FC<{ open: any; setOpen: any }> = ({
               </div>
               <div className={styles.priceBlock}>
                 <MainButton className="border-none" onClick={() => mutate()}>
-                  Оформить подписку за 299 руб/мес.
+                  Оформить подписку за 690 руб/мес.
                 </MainButton>
                 <a onClick={() => handleClose()}>отказаться</a>
               </div>

@@ -1,13 +1,14 @@
 import { useAuth } from "@/hooks/useAuth";
-import { UserService } from "@/services/user/user.service";
+import { PaymentService } from "@/services/payment/payment.service";
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
-
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 export const useSubscribe = () => {
     const {user} = useAuth()
+      const router = useRouter();
   const { mutateAsync } = useMutation(
     "remove autoPayment",
-    (userId: any) => UserService.removeAutoPayment(userId),
+    (userId: any) => PaymentService.deletePayment(userId),
 
     {
       onError: () => {
@@ -16,6 +17,7 @@ export const useSubscribe = () => {
 
       onSuccess() {
         toast.success("Автоплатеж отключен");
+        router.push(`/profile/${user!._id}`);
       },
     }
   );

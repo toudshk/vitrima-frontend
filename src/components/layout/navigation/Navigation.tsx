@@ -30,7 +30,6 @@ const Navigation = () => {
   SocketApi.createConnection();
 
   const { data } = useUnreadMessages();
-  console.log(data?.length )
   let countUnreadMessages = data?.length ?? 0;
   
   const { user } = useAuth();

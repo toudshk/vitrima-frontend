@@ -98,6 +98,7 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
       className={clsx(styles.item, {
         [styles.activeChat]: chat._id === currentChat?._id,
       })}
+    
     >
       <Image
         src={data?.data.image || baseImage}

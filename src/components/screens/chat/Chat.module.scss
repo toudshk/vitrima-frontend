@@ -5,16 +5,16 @@
     width: 50%;
     overflow-y: hidden; /* Изначально скрываем скроллбар */
     overflow-x: hidden;
-}
+  }
 
-.chatMenu:hover {
-  overflow-y: auto; /* Показываем скроллбар при наведении */
-}
+  .chatMenu:hover {
+    overflow-y: auto; /* Показываем скроллбар при наведении */
+  }
 
-.chatMenu::-webkit-scrollbar {
-  width: 0px;
-  background-color: transparent; /* Делаем скроллбар прозрачным */
-}
+  .chatMenu::-webkit-scrollbar {
+    width: 0px;
+    background-color: transparent; /* Делаем скроллбар прозрачным */
+  }
   .buttonBlock {
     @apply w-[24%]   h-[35px] mt-[50%];
     display: none;
@@ -34,20 +34,20 @@
     @apply w-full   h-full;
 
     .chatBoxWrapper {
-      @apply mt-[1vw]  h-full ;
+      @apply mt-[1vw]  h-full;
 
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
 
-      .chatBlockFriend{
+      .chatBlockFriend {
         @apply flex py-3 border-b border-gray-300 pl-10 items-center;
-        img{
+        img {
           @apply w-12 h-12 rounded-full  image-like-bg mr-3;
         }
-        p{
-          @apply text-lg font-bold ;
+        p {
+          @apply text-lg font-bold;
         }
       }
       .noConversationText {
@@ -82,20 +82,33 @@
           align-items: center;
           justify-content: space-between;
           .chatMessageInput {
-            width: 90%;
+            width: 100%;
           }
-          .chatSubmitButton {
-            @apply w-10 h-10 -mt-2;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+
+          .submitButton {
+            @apply ml-4;
+
+            .chatSubmitButton {
+              @apply w-12 h-12 -mt-2 bg-gray-300 rounded-full p-3;
+              border: none;
+              cursor: pointer;
+              color: #0088cc;
+              transition: all 0.3s, color 0.3s;
+            }
+            .disabledChatSubmitButton {
+              color: #000;
+            }
+
+            .chatSubmitButton:hover {
+              @apply bg-[#0088cc];
+              color: #fff;
+            }
           }
         }
       }
     }
     .buttonBlock {
-      @apply h-auto w-auto my-auto mr-4 ;
-      
+      @apply h-auto w-auto my-auto mr-4;
     }
   }
 }
@@ -110,21 +123,21 @@
       }
     }
     .chatBox {
-
-        @apply h-full ;
+      @apply h-full;
       .chatBoxWrapper {
-        @apply h-[80vh];
-        .chatBlockFriend{
+        @apply h-[78vh];
+        .chatBlockFriend {
           @apply pl-2;
         }
-        .chatBoxTop{
+        .chatBoxTop {
           @apply h-[120%]  w-full;
         }
+        .chatBoxBottomContainer {
+          @apply w-full;
         .chatBoxBottom {
-          @apply w-full ;
-        
+          @apply w-full;
         }
-      }
+      }}
     }
 
     .menuOpen {
