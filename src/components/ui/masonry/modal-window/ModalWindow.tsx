@@ -127,7 +127,7 @@ const ModalWindow: FC<IModalWindow> = ({
                         className="rounded-full mr-3 h-14 w-14 image-like-bg"
                       />
                     </Link>
-                    <div className="block w-[75%]">
+                    <div className="block w-[75%] ml-2">
                       <Link
                         className={styles.nickname}
                         href={`/profile/${workData?.contractorId._id}`}
