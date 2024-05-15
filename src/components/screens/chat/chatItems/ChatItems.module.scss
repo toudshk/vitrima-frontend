@@ -51,10 +51,10 @@
 }
 @media (max-width: 700px) {
   .item {
-    @apply h-[65px] w-full mb-2 rounded-none  border-b-[0.1vw] border-[#bfbfbf];
+    @apply h-[65px] w-full mb-2 rounded-none ;
 
     .avatar {
-      @apply w-10 h-10 mr-2;
+      @apply w-14 h-14 mr-2;
     }
     .textBlock {
       @apply -mt-3;

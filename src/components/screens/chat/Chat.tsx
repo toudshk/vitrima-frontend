@@ -30,10 +30,7 @@ const Chat: FC = () => {
   const { user } = useAuth();
   const { nonEmptyChats, isLoading: isLoadingChats } = useChats(user?._id);
 
-  const sortedChats = nonEmptyChats.sort(
-    (a: any, b: any) =>
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  );
+  
  let friendId: any
   if (currentChat && currentChat.members) {
     friendId = currentChat.members.find((m: any) => m !== user?._id);
@@ -96,6 +93,18 @@ const Chat: FC = () => {
     setMenuOpen(!isMenuOpen);
   };
 
+
+  const sortedChats = chats.slice().sort((a:any, b:any) => {
+    const lastMessageA = messages.find((message: any) => message?.chatId === a?._id);
+    const lastMessageB = messages.find((message: any) => message?.chatId === b?._id);
+  
+    if (!lastMessageA) return 1;
+    if (!lastMessageB) return -1;
+  
+    return new Date(lastMessageB.createdAt).getTime() - new Date(lastMessageA.createdAt).getTime();
+  });
+  console.log(sortedChats)
+
   return (
     <div className={styles.messenger}>
       <div
@@ -111,7 +120,7 @@ const Chat: FC = () => {
             borderRadius={16}
           />
         ) : chats.length > 0 ? (
-          chats.map((chat: any) => (
+          sortedChats.map((chat: any) => (
             <div onClick={() => handleChatItemClick(chat)} key={chat._id}>
               <ChatItem
                 chat={chat}
