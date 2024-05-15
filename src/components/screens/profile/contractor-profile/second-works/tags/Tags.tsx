@@ -10,9 +10,7 @@ interface ITag {
 }
 
 const Tags: FC<ITag> = ({ tagData, isLoading, title }) => {
-  if (isLoading) {
-    return <SkeletonLoader />;
-  }
+  
   const uniqueTags = Array.from(
     new Set(tagData.map((tag: { _id: any }) => tag._id))
   );
@@ -21,15 +19,22 @@ const Tags: FC<ITag> = ({ tagData, isLoading, title }) => {
     <div className="my-16">
       <h1 className={styles.header}>{title}</h1>
       <div className={styles.tags}>
-        {uniqueTags.map((tagId) => {
-          const tag = tagData.find((tag: { _id: any }) => tag._id === tagId);
+      {isLoading ? (
 
-          return (
-            <div key={tag._id} className={styles.tag}>
-              {tag.title}
-            </div>
-          );
-        })}
+  <SkeletonLoader borderRadius={12} height={25} width={300} />
+
+) : (
+  uniqueTags.map((tagId) => {
+    const tag = tagData.find((tag: { _id: any; }) => tag._id === tagId);
+
+    return (
+      <div key={tag._id} className={styles.tag}>
+        {tag.title}
+      </div>
+    );
+  })
+)}
+        
       </div>
     </div>
   );

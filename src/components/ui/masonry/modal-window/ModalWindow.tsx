@@ -17,7 +17,7 @@ import MasonryGallery from "../MasonryGallery";
 import CloseIcon from "@mui/icons-material/Close";
 import baseImage from "@/app/assets/images/base-avatar.jpg";
 import { useAuth } from "@/hooks/useAuth";
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import { useUser } from "@/components/screens/profile/useUser";
 import TimeUpload from "../timeUpload/TimeUpload";
 
@@ -70,12 +70,12 @@ const ModalWindow: FC<IModalWindow> = ({
   open,
   workData,
   handleClose,
-  isLoading,
+isLoading,
   scroll,
 }) => {
+  console.log(workData)
   const classes = useStyles();
   const [workSlug, setWorkSlug] = useState(null);
-
   useEffect(() => {
     if (workData?.slug) {
       setWorkSlug(workData.slug);
@@ -109,39 +109,69 @@ const ModalWindow: FC<IModalWindow> = ({
           </div>
 
           <div>
-            <div className={styles.title}>{workData?.title}</div>
-            {["interior", "architecture"].includes(pathname) && (
+            {isLoading ? (
+              <SkeletonLoader
+                count={1}
+                width={250}
+                height={50}
+                borderRadius={12}
+              />
+            ) : (
+              <div className={styles.title}>{workData?.title}</div>
+            )}
+
+           
               <div className={styles.userInfoBlock}>
                 <div className="flex items-center justify-between">
                   <div className="flex h-14  items-center my-6 w-[60%]">
                     <Link href={`/profile/${workData?.contractorId._id}`}>
-                      <Image
-                        src={
-                          workData?.contractorId.image
-                            ? workData.contractorId.image
-                            : baseImage
-                        }
-                        width={120}
-                        height={120}
-                        alt={""}
-                        className="rounded-full mr-3 h-14 w-14 image-like-bg"
-                      />
+                      {isLoading ? (
+                        <SkeletonLoader
+                          borderRadius={99}
+                          height={56}
+                          width={56}
+                        />
+                      ) : (
+                        <Image
+                          src={
+                            workData?.contractorId.image
+                              ? workData.contractorId.image
+                              : baseImage
+                          }
+                          width={120}
+                          height={120}
+                          alt={""}
+                          className="rounded-full mr-3 h-14 w-14 image-like-bg"
+                        />
+                      )}
                     </Link>
                     <div className="block w-[75%] ml-2">
-                      <Link
-                        className={styles.nickname}
-                        href={`/profile/${workData?.contractorId._id}`}
-                      >
-                        
-                        {workData?.contractorId.nickname}
-                      </Link>
+                      {isLoading ? (
+                        <SkeletonLoader
+                          width={250}
+                          height={20}
+                          borderRadius={12}
+                        />
+                      ) : (
+                        <Link
+                          className={styles.nickname}
+                          href={`/profile/${workData?.contractorId._id}`}
+                        >
+                          {workData?.contractorId.nickname}
+                        </Link>
+                      )}
+
                       <div className="flex">
                         <p className="text-gray-450 text-base mr-2">
                           Подписчики{" "}
                         </p>
-                        <p className="text-base">
-                          {workData?.contractorId?.subscribers?.length}
-                        </p>
+                        {isLoading ? (
+                          <SkeletonLoader width={15} />
+                        ) : (
+                          <p className="text-base">
+                            {workData?.contractorId?.subscribers?.length}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -149,29 +179,53 @@ const ModalWindow: FC<IModalWindow> = ({
                   <ModalButtons workData={workData} />
                 </div>
               </div>
-            )}
+            
           </div>
 
           <div className={styles.selectedWork}>
-            <Image
-              className={styles.image}
-              width={2500}
-              height={2500}
-              src={workData?.images[0]}
-              alt={""}
-            />
+            {isLoading ? (
+              <SkeletonLoader width={"86vw"} borderRadius={12} height={700} />
+            ) : (
+              <Image
+                className={styles.image}
+                width={2500}
+                height={2500}
+                src={workData?.images[0]}
+                alt={""}
+              />
+            )}
           </div>
           <div className={styles.bottomBlock}>
             <div className={styles.textBlock}>
               <div>
                 <div className="flex justify-between">
-                <TimeUpload date={workData?.createdAt} withIcon={true} />
-                <div><RemoveRedEyeOutlinedIcon style={{ color: '#ABABAB', height: "18px" }}/>
-              {workData?.countViews || 0}</div>
-              </div>
-                <p className={styles.description}>
-                  {workData?.description}
-                </p>
+                  {isLoading ? (
+                    <SkeletonLoader width={250} height={15} />
+                  ) : (
+                    <TimeUpload date={workData?.createdAt} withIcon={true} />
+                  )}
+
+                  {isLoading ? (
+                    <SkeletonLoader width={100} height={18} />
+                  ) : (
+                    <div>
+                      {" "}
+                      <RemoveRedEyeOutlinedIcon
+                        style={{
+                          color: "#ABABAB",
+                          height: "18px",
+                          marginBottom: "2px",
+                        }}
+                      />
+                      {workData?.countViews || 0}
+                    </div>
+                  )}
+                </div>
+                {isLoading ? (
+                  <SkeletonLoader count={3} width={"full"} height={15} />
+                ) : (
+                  <p className={styles.description}>{workData?.description}</p>
+                )}
               </div>
             </div>
             <Tags
@@ -179,7 +233,7 @@ const ModalWindow: FC<IModalWindow> = ({
               tagData={workData?.tags}
               isLoading={isLoading}
             />
-           
+
             {similarWorksData?.length > 0 && (
               <div>
                 <h1 className="text-3xl mb-6">Похожее</h1>
