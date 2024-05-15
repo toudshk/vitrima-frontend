@@ -98,7 +98,7 @@
       @apply mx-2;
       .nickname {
         @apply text-base font-semibold inline-block ;
-        width:100% ;
+        width:90% ;
         overflow: hidden;
         white-space: nowrap; /* Предотвращает перенос текста */
         text-overflow: ellipsis;

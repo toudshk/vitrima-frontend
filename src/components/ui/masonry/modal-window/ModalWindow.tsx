@@ -113,7 +113,7 @@ const ModalWindow: FC<IModalWindow> = ({
             {["interior", "architecture"].includes(pathname) && (
               <div className={styles.userInfoBlock}>
                 <div className="flex items-center justify-between">
-                  <div className="flex h-14  items-center my-6 w-3/4">
+                  <div className="flex h-14  items-center my-6 w-[60%]">
                     <Link href={`/profile/${workData?.contractorId._id}`}>
                       <Image
                         src={
