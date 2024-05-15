@@ -1,128 +1,120 @@
 .content {
-  @apply my-[2.2vw] mx-[2.3vw];
+  @apply my-[2.2vw] mx-auto max-w-[1172px] relative;
+
   .closeButton {
-    display: none;
+    @apply fixed w-10   top-[10px] right-0;
+    z-index: 100;
+    color: white;
   }
+  .title {
+    @apply text-4xl mb-6 font-bold;
+  }
+  .link {
+    @apply p-2 w-20 h-20   rounded-full  border-[0.1vw] border-gray-300;
+  }
+  
   .selectedWork {
-    @apply flex mb-16;
+    @apply flex  mb-16;
 
     .image {
-      @apply h-full mr-[3vw] w-[45vw] rounded-xl;
-      @media (max-width: 1200px) {
-        @apply w-[90vw];
-      }
-    }
-    .title {
-      @apply text-4xl mb-6 font-bold;
-    }
-    .description {
-      @apply text-base text-gray-700;
+      @apply h-full rounded-xl w-full;
+      
     }
 
+    
+  }
+  .bottomBlock {
     .textBlock {
       @apply w-full;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      .description {
+        @apply text-xl text-gray-700 font-bold;
+      }
+      
+        
+      
+    }
+  }
+  .secondButton {
+    @apply border-[0.1vw]  border-primary bg-primary text-white px-2 py-1 rounded-full text-lg  transition-all ease-in-out duration-200 max-w-[35vw];
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
-      .buttons {
-        @apply flex justify-between items-center my-6 mr-3;
-        .button {
-          @apply border-[0.1vw]    border-blue-500 bg-blue-500 text-white px-2 ml-1 py-1 text-lg rounded  transition-all ease-in-out duration-200;
-          &:hover {
-            @apply border-blue-800 bg-blue-800;
-          }
-          @media (max-width: 700px) {
-            @apply text-[3vw];
-          }
-        }
-        .secondButton {
-          @apply border-[0.1vw]    border-primary bg-primary text-white px-2 ml-1 py-1 text-lg rounded  transition-all ease-in-out duration-200;
-        }
-        .link {
-          @apply px-2 py-1  w-[50%] text-lg  border-[0.1vw] border-gray-700 rounded;
-
-          @media (max-width: 700px) {
-            @apply text-[3vw];
-          }
-        }
-
-        .leftButtons {
-          @apply flex items-center;
-          .secondButton {
-            @apply border-[0.1vw]  border-primary bg-primary text-white px-2 py-1 rounded text-lg  transition-all ease-in-out duration-200 max-w-[35vw];
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-
-            &:hover {
-              @apply border-gray-600 bg-gray-600;
-            }
-            @media (max-width: 700px) {
-              @apply text-[3vw];
-            }
-            .icon {
-              @apply flex;
-              > img {
-                @apply w-[1vw];
-                @media (max-width: 700px) {
-                  @apply w-[2.5vw];
-                }
-              }
-            }
-          }
+    &:hover {
+      @apply border-gray-600 bg-gray-600;
+    }
+    @media (max-width: 700px) {
+      @apply text-[3vw];
+    }
+    .icon {
+      @apply flex;
+      > img {
+        @apply w-[1vw];
+        @media (max-width: 700px) {
+          @apply w-[2.5vw];
         }
       }
     }
-    .link {
-      @apply block w-full border-[0.1vw] rounded-2xl px-3  text-xl text-center;
-    }
+  }
 
-    @media (max-width: 1200px) {
-      display: block;
-      .image {
-        @apply mb-6;
-      }
+  .button {
+    @apply h-10 border-[0.1vw] border-gray-300 rounded-full px-2 mr-2 py-1 text-lg   transition-all ease-in-out duration-200;
+    &:hover {
+      @apply bg-gray-300;
+    }
+    @media (max-width: 700px) {
+      @apply text-[3vw];
+    }
+  }
+  .link {
+    @apply h-10  w-full border-[0.1vw] rounded-full  px-2 mr-2 py-1;
+    &:hover {
+      @apply bg-gray-300;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    display: block;
+    .image {
+      @apply mb-6;
     }
   }
 }
 
-.setMainWorkButton{
+.setMainWorkButton {
   @apply absolute z-20 text-white text-base border-gray-700 mt-2 ml-2 bg-white/30 px-2 rounded-lg h-8 backdrop-blur-[10px] hover:bg-gray-500/30;
 }
 
 @media (max-width: 700px) {
   .content {
-    @apply mx-0;
+    @apply mx-0 max-w-full;
     .closeButton {
-      @apply flex justify-end mb-4 mr-3;
+      @apply justify-end mb-4  block text-primary absolute bottom-0 right-0 -top-7; 
+    
+      
+    }
+   
+    .title {
+      @apply text-2xl mb-2 mx-2 mt-10;
+    }
+    .userInfoBlock {
+      @apply mx-2;
+      
     }
     .selectedWork {
       .image {
         @apply m-0 w-full;
       }
-      .textBlock {
-        @apply mx-3 max-w-[97vw];
-        
-        .title {
-          @apply text-2xl mb-2;
-        }
-        .userInfoBlock{
-          @apply mr-3;
-          .link {
-            @apply mx-auto;
-          }
-        }
-        
-      }
-   
     }
-    .bottomBlock{
-      @apply mx-3
+    .bottomBlock {
+      @apply mx-3;
+      .textBlock {
+        @apply mx-0 max-w-[97vw];
+      }
     }
   }
 
-  .setMainWorkButton{
+  .setMainWorkButton {
     @apply text-xs;
   }
 }

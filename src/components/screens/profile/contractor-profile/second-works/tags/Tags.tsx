@@ -18,7 +18,7 @@ const Tags: FC<ITag> = ({ tagData, isLoading, title }) => {
   );
 
   return (
-    <div className="mb-16">
+    <div className="my-16">
       <h1 className={styles.header}>{title}</h1>
       <div className={styles.tags}>
         {uniqueTags.map((tagId) => {

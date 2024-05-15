@@ -15,6 +15,7 @@ const MasonryGallery: FC<{ data: any; isLoading: boolean }> = ({
   };
   
   const [workData, setWorkData] = useState();
+
   const numObjects = 12;
   const fishArray = new Array(numObjects).fill({}); // Создаем массив из 6 пустых объектов
 
@@ -24,6 +25,8 @@ const MasonryGallery: FC<{ data: any; isLoading: boolean }> = ({
   const handleClickOpen = (scrollType: DialogProps["scroll"]) => () => {
     setOpen(true);
     setScroll(scrollType);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+   
   };
   const handleClose = () => {
     setOpen(false);
@@ -40,8 +43,11 @@ const MasonryGallery: FC<{ data: any; isLoading: boolean }> = ({
   }, [open]);
 
   const handleWorkData = (value: any) => {
+    console.log(value.slug)
+  
     setWorkData(value);
     setOpen(true);
+   
   };
 
   if (!Array.isArray(data)) {

@@ -32,6 +32,11 @@ export const WorkService = {
 	async update(_id: string, data: IWorkEditInput) {
 		return axios.put<string>(getWorkUrl(`/${_id}`), data)
 	},
+	async updateCountViews(slug: string) {
+		return axiosClassic.post(getWorkUrl('/update-count-opened'), {
+			slug,
+		})
+	},
 	
 
 	async delete(_id: string, contractorId: string) {

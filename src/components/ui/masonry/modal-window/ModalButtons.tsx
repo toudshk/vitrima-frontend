@@ -12,6 +12,10 @@ import { useAddSavedWork } from "@/hooks/saved-work/useAddSavedWork";
 import { useRemoveSavedWork } from "@/hooks/saved-work/useRemoveSavedWork";
 import ShareSvg from "@/app/assets/images/share.svg";
 import Link from "next/link";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import BookmarkAddOutlinedIcon from "@mui/icons-material/BookmarkAddOutlined";
+import BookmarkAddedOutlinedIcon from "@mui/icons-material/BookmarkAddedOutlined";
 const ModalButtons: FC<{ workData: IWork }> = ({ workData }) => {
   const { user } = useAuth();
 
@@ -76,52 +80,44 @@ const ModalButtons: FC<{ workData: IWork }> = ({ workData }) => {
         (user?._id !== workData?.contractorId._id ? (
           <>
             {user?.isContractor === false && (
-              <div className={styles.leftButtons}>
-                {/* <button className={`${styles.secondButton} mr-[0.7vw]`}>
-            <div className={styles.icon}>
-              Отправить{" "}
-              <Image
-                className="ml-1 w-[1vw] "
-                src={ShareSvg}
-                alt={""}
-                height={16}
-                width={16}
-              />
-            </div>
-          </button> */}
+              <div className="flex">
                 <button
-                  className={styles.secondButton}
+                  className={styles.button}
                   onClick={isSaved ? handleRemoveSavedWork : handleAddSavedWork}
                 >
-                  {isSaved ? "Удалить из сохраненного" : "Сохранить"}
+                  {isSaved ? (
+                    <BookmarkAddedOutlinedIcon />
+                  ) : (
+                    <BookmarkAddOutlinedIcon />
+                  )}
                 </button>
-              </div>
-            )}
-
-            {user.isContractor === false && (
-              <button
+                <button
                 className={isSubscribed ? styles.secondButton : styles.button}
                 onClick={isSubscribed ? handleUnsubscribe : handleSubscribe}
               >
                 {isSubscribed ? "Отписаться" : "Подписаться"}
               </button>
+              </div>
+              
             )}
+
+           
           </>
         ) : (
-          <>
+          <div className="flex ">
             <button
               className={styles.button}
               onClick={() => deleteAsync(workData?._id)}
             >
-              удалить работу
+              <DeleteOutlineOutlinedIcon />
             </button>
             <Link
               href={`/update-work/${workData?._id}`}
               className={styles.link}
             >
-              редактировать работу
+              <EditOutlinedIcon />
             </Link>
-          </>
+          </div>
         ))}
     </div>
   );

@@ -16,7 +16,7 @@
       z-index: -50;
     }
     >p {
-        @apply border-b-[1px] border-gray-600 text-xl pt-20 w-[206px] z-20 mb-10 ml-[10%];
+        @apply border-b-[1px] border-gray-600 text-xl pt-10 w-[206px] z-20 mb-10 ml-[10%];
       
     }
    
@@ -32,5 +32,20 @@
         @apply bg-gray-600;
       }
     }
+  }
+}
+
+
+@media (max-width: 800px) {
+  .wrapper{
+    .header{
+      >p{
+        @apply text-base w-[156px];
+      }
+    }
+  }
+  .fields {
+    width: 90% !important; 
+
   }
 }

@@ -18,11 +18,11 @@ const TimeUpload: FC<{ date: string; withIcon: boolean }> = ({
   return (
     <div className="flex items-center ">
       {withIcon && (
-        <div className="w-[10px] mr-2">
+        <div className="w-[13px] mr-2">
           <Calendar />
         </div>
       )}
-      <p className=" text-xs">Опубликовано {formattedDate}</p>
+      <p className=" text-base">Опубликовано {formattedDate}</p>
     </div>
   );
 };

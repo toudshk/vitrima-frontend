@@ -32,7 +32,7 @@ const GalleryItem: FC<{
       onMouseLeave={handleMouseLeave}
     >
       
-      {user?._id === item.contractorId._id && isHovered && (
+      {user?._id === item.contractorId?._id && isHovered && (
   <button
     onClick={onSubmit}
     className={styles.setMainWorkButton}
