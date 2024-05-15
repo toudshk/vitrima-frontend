@@ -94,16 +94,7 @@ const Chat: FC = () => {
   };
 
 
-  const sortedChats = chats.slice().sort((a:any, b:any) => {
-    const lastMessageA = messages.find((message: any) => message?.chatId === a?._id);
-    const lastMessageB = messages.find((message: any) => message?.chatId === b?._id);
   
-    if (!lastMessageA) return 1;
-    if (!lastMessageB) return -1;
-  
-    return new Date(lastMessageB.createdAt).getTime() - new Date(lastMessageA.createdAt).getTime();
-  });
-  console.log(sortedChats)
 
   return (
     <div className={styles.messenger}>
@@ -120,7 +111,7 @@ const Chat: FC = () => {
             borderRadius={16}
           />
         ) : chats.length > 0 ? (
-          sortedChats.map((chat: any) => (
+          chats.map((chat: any) => (
             <div onClick={() => handleChatItemClick(chat)} key={chat._id}>
               <ChatItem
                 chat={chat}
