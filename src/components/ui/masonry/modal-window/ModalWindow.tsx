@@ -113,7 +113,7 @@ const ModalWindow: FC<IModalWindow> = ({
             {["interior", "architecture"].includes(pathname) && (
               <div className={styles.userInfoBlock}>
                 <div className="flex items-center justify-between">
-                  <div className="flex h-14  items-center my-6 ">
+                  <div className="flex h-14  items-center my-6 w-3/4">
                     <Link href={`/profile/${workData?.contractorId._id}`}>
                       <Image
                         src={
@@ -127,11 +127,12 @@ const ModalWindow: FC<IModalWindow> = ({
                         className="rounded-full mr-3 h-14 w-14 image-like-bg"
                       />
                     </Link>
-                    <div>
+                    <div className="block w-[75%]">
                       <Link
-                        className="text-xl font-semibold"
+                        className={styles.nickname}
                         href={`/profile/${workData?.contractorId._id}`}
                       >
+                        
                         {workData?.contractorId.nickname}
                       </Link>
                       <div className="flex">

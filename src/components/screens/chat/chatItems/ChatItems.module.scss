@@ -30,7 +30,10 @@
   .textBlock {
     @apply w-[80%] relative -mt-4;
     .nickname {
-      @apply text-2xl font-semibold;
+      @apply text-2xl font-semibold w-[80%] inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .lastMessage {
       @apply text-lg text-gray-600 flex justify-between w-full -mt-1;

@@ -6,22 +6,24 @@
     z-index: 100;
     color: white;
   }
+  .userInfoBlock {
+    .nickName {
+      @apply text-xl font-semibold;
+    }
+  }
   .title {
     @apply text-4xl mb-6 font-bold;
   }
   .link {
     @apply p-2 w-20 h-20   rounded-full  border-[0.1vw] border-gray-300;
   }
-  
+
   .selectedWork {
     @apply flex  mb-16;
 
     .image {
       @apply h-full rounded-xl w-full;
-      
     }
-
-    
   }
   .bottomBlock {
     .textBlock {
@@ -29,9 +31,6 @@
       .description {
         @apply text-xl text-gray-700 font-bold;
       }
-      
-        
-      
     }
   }
   .secondButton {
@@ -89,17 +88,21 @@
   .content {
     @apply mx-0 max-w-full;
     .closeButton {
-      @apply justify-end mb-4  block text-primary absolute bottom-0 right-0 -top-7; 
-    
-      
+      @apply justify-end mb-4  block text-primary absolute bottom-0 right-0 -top-7;
     }
-   
+
     .title {
       @apply text-2xl mb-2 mx-2 mt-10;
     }
     .userInfoBlock {
       @apply mx-2;
-      
+      .nickname {
+        @apply text-base font-semibold inline-block ;
+        width:100% ;
+        overflow: hidden;
+        white-space: nowrap; /* Предотвращает перенос текста */
+        text-overflow: ellipsis;
+      }
     }
     .selectedWork {
       .image {
