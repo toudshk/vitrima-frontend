@@ -25,11 +25,11 @@ const ModalButtons: FC<{ workData: IWork }> = ({ workData }) => {
   const { deleteAsync } = useWorks();
   const { onSubmit: addSavedWorkSubmit } = useAddSavedWork(
     userId,
-    workData._id
+    workData?._id
   );
   const { onSubmit: removeSavedWorkSubmit } = useRemoveSavedWork(
     userId,
-    workData._id
+    workData?._id
   );
   const { onSubmit: unSubscribeSubmit } = useUnSubscribe(
     userId,

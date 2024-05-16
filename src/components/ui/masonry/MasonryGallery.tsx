@@ -85,7 +85,7 @@ const MasonryGallery: FC<{ data: any; isLoading: boolean }> = ({
         scroll={scroll}
         workData={workData}
         handleClose={handleClose}
-        isLoading={isLoading}
+      
       />
     </Masonry>
   );

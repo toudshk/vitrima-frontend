@@ -12,7 +12,7 @@ interface ITag {
 const Tags: FC<ITag> = ({ tagData, isLoading, title }) => {
   
   const uniqueTags = Array.from(
-    new Set(tagData.map((tag: { _id: any }) => tag._id))
+    new Set(tagData?.map((tag: { _id: any }) => tag._id))
   );
 
   return (

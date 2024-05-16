@@ -28,7 +28,6 @@ interface IModalWindow {
   open: any;
   workData: any;
   handleClose: any;
-  isLoading: any;
   scroll: any;
 }
 
@@ -70,10 +69,20 @@ const ModalWindow: FC<IModalWindow> = ({
   open,
   workData,
   handleClose,
-isLoading,
   scroll,
 }) => {
-  console.log(workData)
+ 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+      const timer = setTimeout(() => {
+          setIsLoading(false);
+      }, 700); // 700 миллисекунд
+
+      // Очистка таймера при размонтировании компонента
+      return () => clearTimeout(timer);
+  }, []);
+
   const classes = useStyles();
   const [workSlug, setWorkSlug] = useState(null);
   useEffect(() => {
@@ -83,6 +92,7 @@ isLoading,
   }, [workData]);
 
   useUpdateCountViews(workSlug);
+
 
   const { user } = useAuth();
   const subTypes = workData?.subTypes || [];
