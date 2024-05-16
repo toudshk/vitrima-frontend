@@ -1,14 +1,19 @@
 .wrapper {
-  @apply w-[90%] max-w-[1736px]  mx-auto   h-[9vh] ;
+  @apply w-[90%] max-w-[1736px]  mx-auto   h-[9vh];
 
   .navigationAuth {
     @apply h-[9.5vh];
     align-items: center;
 
     display: flex;
-
+    .searchBlock {
+      @apply w-full mx-[2.5vw];
+      @media (max-width: 700px) {
+        @apply w-1/2;
+      }
+    }
     .buttons {
-      @apply relative text-[2.3vh] text-white flex items-center h-full;
+      @apply relative text-[2.3vh] w-[30%] text-white flex items-center h-full justify-end; 
 
       .chatButton {
         @apply mr-[2vw] relative;
@@ -19,11 +24,16 @@
           right: -8px; /* Вы можете настроить положение индикатора по горизонтали */
           width: 12px;
           height: 12px;
-         
+
           border-radius: 50%; /* Делает круглый индикатор */
         }
+        &:last-child {
+          @apply w-full;
+        }
       }
-      
+      @media (max-width: 700px) {
+        @apply w-[39%];
+      }
     }
   }
   .navigationNotAuth {

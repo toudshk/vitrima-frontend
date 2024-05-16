@@ -1,0 +1,25 @@
+/* MainLogo.module.css */
+.logoWrapper {
+    position: relative;
+  }
+  
+  .desktopIcon {
+    display: block;
+  }
+  
+  .mobileIcon {
+    display: none;
+  }
+  
+  @media (max-width: 600px) {
+    .desktopIcon {
+      display: none;
+    }
+  
+    .mobileIcon {
+      @apply h-4;
+      display: block;
+      
+    }
+  }
+  

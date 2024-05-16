@@ -68,7 +68,7 @@ const Navigation = () => {
         </Link>
         {user ? (
           <>
-            <div className="w-[65vw] mx-[2.5vw]">
+            <div className={styles.searchBlock}>
               <Search />
             </div>
             <div className={styles.buttons}>
