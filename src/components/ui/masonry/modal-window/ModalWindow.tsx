@@ -75,13 +75,19 @@ const ModalWindow: FC<IModalWindow> = ({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-      const timer = setTimeout(() => {
-          setIsLoading(false);
-      }, 700); // 700 миллисекунд
+      let timer: any;
+      if (open) {
+          setIsLoading(true);
+          timer = setTimeout(() => {
+              setIsLoading(false);
+          }, 700); 
+      } else {
+          setIsLoading(true);
+      }
 
-      // Очистка таймера при размонтировании компонента
       return () => clearTimeout(timer);
-  }, []);
+  }, [open]);
+
 
   const classes = useStyles();
   const [workSlug, setWorkSlug] = useState(null);

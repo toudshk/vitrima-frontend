@@ -1,18 +1,19 @@
 "use client";
 
 import { FC, useState } from "react";
-import styles from './ModalWindow.module.scss'
+import styles from "./ModalWindow.module.scss";
 import Image from "next/image";
 import { IWork } from "@/components/shared/types/work.types";
 import { useSetMainWork } from "./useSetMainWork";
 import { useAuth } from "@/hooks/useAuth";
+import { usePathname } from "next/navigation";
 const GalleryItem: FC<{
   item: IWork;
   handleWorkData: any;
   handleClickOpen: any;
 }> = ({ item, handleWorkData, handleClickOpen }) => {
   const { user } = useAuth();
-  
+  const pathname = usePathname();
   const { onSubmit } = useSetMainWork(user?._id, item);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -31,17 +32,14 @@ const GalleryItem: FC<{
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      
-      {user?._id === item.contractorId?._id && isHovered && (
-  <button
-    onClick={onSubmit}
-    className={styles.setMainWorkButton}
-  >
-    {item.isMainWork ? "Открепить работу" : "Закрепить работу"}
-  </button>
-)}
+      {pathname === `/profile/${user?._id}` &&
+        user?._id === item.contractorId?._id &&
+        isHovered && (
+          <button onClick={onSubmit} className={styles.setMainWorkButton}>
+            {item.isMainWork ? "Открепить работу" : "Закрепить работу"}
+          </button>
+        )}
 
-      
       <Image
         loading="lazy"
         width={600}
