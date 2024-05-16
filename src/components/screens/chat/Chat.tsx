@@ -30,7 +30,11 @@ const Chat: FC = () => {
   const { user } = useAuth();
   const { nonEmptyChats, isLoading: isLoadingChats } = useChats(user?._id);
 
-  
+  const sortedChats = nonEmptyChats.sort(
+    (a: any, b: any) =>
+      new Date(b.lastMessageTime).getTime() - new Date(a.lastMessageTime).getTime()
+  );
+
  let friendId: any
   if (currentChat && currentChat.members) {
     friendId = currentChat.members.find((m: any) => m !== user?._id);
@@ -111,7 +115,7 @@ const Chat: FC = () => {
             borderRadius={16}
           />
         ) : chats.length > 0 ? (
-          chats.map((chat: any) => (
+          sortedChats.map((chat: any) => (
             <div onClick={() => handleChatItemClick(chat)} key={chat._id}>
               <ChatItem
                 chat={chat}
