@@ -80,7 +80,7 @@ export default function Filter() {
       {(["right"] as const).map((anchor) => (
         <Fragment key={anchor}>
           <button
-            className={"text-[2.3vh] text-gray-300 uppercase mr-[1vw]"}
+            className={"text-gray-300 uppercase"}
             onClick={toggleDrawer(anchor, true)}
           >
             Фильтр

@@ -1,7 +1,9 @@
 .dropdown {
+  @apply ml-[1.1vw];
   position: relative;
   display: flex;
   justify-content: space-between;
+
 
   .dropdownItems {
     @apply border border-gray-300 py-8 px-6 right-6 top-12 rounded-2xl w-[300px] bg-white;
@@ -65,8 +67,9 @@
 
 @media (max-width: 600px) {
   .dropdown {
+    
     .dropdownItems {
-      @apply w-[100vw] right-[-1.7rem] border-t-0;
+      @apply w-[100vw] right-[-1.1rem] top-[4.5rem] border-t-0;
     }
   }
 }

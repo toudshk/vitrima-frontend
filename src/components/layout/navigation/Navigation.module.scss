@@ -2,21 +2,21 @@
   @apply w-[90%] max-w-[1736px]  mx-auto   h-[9vh];
 
   .navigationAuth {
-    @apply h-[9.5vh];
+    @apply h-[9.5vh] gap-3;
     align-items: center;
 
     display: flex;
     .searchBlock {
-      @apply w-full mx-[2.5vw];
+      @apply w-[62%];
       @media (max-width: 700px) {
-        @apply w-1/2;
+        @apply w-[34%];
       }
-    }
+    } 
     .buttons {
-      @apply relative text-[2.3vh] w-[30%] text-white flex items-center h-full justify-end; 
+      @apply relative text-[2.3vh] text-white flex items-center h-full;
 
       .chatButton {
-        @apply mr-[2vw] relative;
+        @apply mr-[1.1vw] relative;
         .notification {
           @apply bg-blue-500;
           position: absolute;
@@ -27,12 +27,6 @@
 
           border-radius: 50%; /* Делает круглый индикатор */
         }
-        &:last-child {
-          @apply w-full;
-        }
-      }
-      @media (max-width: 700px) {
-        @apply w-[39%];
       }
     }
   }
