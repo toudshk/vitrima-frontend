@@ -27,6 +27,7 @@ import SecondButton from "@/components/ui/Button/SecondButton";
 import { usePathname } from "next/navigation";
 import { useBuildingTechnique } from "@/hooks/buildingTechnique/useBuildingTechnique";
 import { useTypePurpose } from "../add-work/usePurposeTypes";
+import CloseIcon from "@mui/icons-material/Close";
 
 const DynamicSelect = dynamic(() => import("./select-filter/SelectForFilter"), {
   ssr: false,
@@ -75,11 +76,15 @@ const useStyles = makeStyles({
 interface ControlledAccordionsProps {
   setCurrentSubType: any; // Adjust the type based on your actual implementation
   subTypes: any; // Adjust the type based on your actual implementation
+  toggleDrawer: any;
+  anchor: any;
 }
 
 export default function ControlledAccordions({
   setCurrentSubType,
   subTypes,
+  toggleDrawer,
+  anchor,
 }: ControlledAccordionsProps) {
   if (subTypes && subTypes.length > 0) {
     subTypes.sort(function (a: { label: string }, b: { label: string }) {
@@ -124,7 +129,9 @@ export default function ControlledAccordions({
     setSelectedBuildingTechnique(selectedIds);
   };
   const handleTypePurposeChange = (selectedValues: any[]) => {
-    const selectedIds = selectedValues.map((option: { value: any; }) => option.value);
+    const selectedIds = selectedValues.map(
+      (option: { value: any }) => option.value
+    );
     setSelectedPurposeTypes(selectedIds.join(","));
   };
 
@@ -207,38 +214,48 @@ export default function ControlledAccordions({
 
   return (
     <div className={styles.accordionBlock}>
+      <div className={styles.closeButtonBlock}>
+        <button
+          onClick={toggleDrawer(anchor, false)}
+          className={styles.closeButton}
+        >
+          <CloseIcon />
+        </button>
+      </div>
       <form
+        className={styles.accordionForm}
         onSubmit={(e) => {
           e.preventDefault();
           handleUpdateButtonClick();
         }}
       >
-        <Accordion
-          expanded={expanded.includes("panel1")}
-          onChange={handleChange("panel1")}
-          className={classes.accordion}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1bh-content"
-            id="panel1bh-header"
-            className={classes.titleAccordion}
+        <div>
+          <Accordion
+            expanded={expanded.includes("panel1")}
+            onChange={handleChange("panel1")}
+            className={classes.accordion}
           >
-            <p className={styles.title}>Цена</p>
-          </AccordionSummary>
-          <AccordionDetails
-            onKeyDown={(e) => e.stopPropagation()}
-            className={classes.contentAccordion}
-          >
-            <PriceFilter
-              minPrice={localMinPrice}
-              maxPrice={localMaxPrice}
-              setMinPrice={setLocalMinPrice}
-              setMaxPrice={setLocalMaxPrice}
-            />
-          </AccordionDetails>
-        </Accordion>
-        {/* <Accordion
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
+              className={classes.titleAccordion}
+            >
+              <p className={styles.title}>Цена</p>
+            </AccordionSummary>
+            <AccordionDetails
+              onKeyDown={(e) => e.stopPropagation()}
+              className={classes.contentAccordion}
+            >
+              <PriceFilter
+                minPrice={localMinPrice}
+                maxPrice={localMaxPrice}
+                setMinPrice={setLocalMinPrice}
+                setMaxPrice={setLocalMaxPrice}
+              />
+            </AccordionDetails>
+          </Accordion>
+          {/* <Accordion
           expanded={expanded.includes("panel2")}
           onChange={handleChange("panel2")}
           className={classes.accordion}
@@ -283,162 +300,164 @@ export default function ControlledAccordions({
             </ToggleButtonGroup>
           </AccordionDetails>
         </Accordion> */}
-        <Accordion
-          expanded={expanded.includes("panel3")}
-          onChange={handleChange("panel3")}
-          className={classes.accordion}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3bh-content"
-            id="panel3bh-header"
-            className={classes.titleAccordion}
-          >
-            <p className={styles.title}>Стили</p>
-          </AccordionSummary>
-          <AccordionDetails
-            onKeyDown={(e) => e.stopPropagation()}
-            className={classes.contentAccordion}
-          >
-            <Controller
-              name="subTypes"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <DynamicSelect
-                  error={error}
-                  title={'стиль'}
-                  field={field}
-                  options={subTypes}
-                  isMulti
-                  onSelectChange={handleSubTypesChange}
-                  setCurrentSubType={setCurrentSubType}
-                />
-              )}
-            />
-          </AccordionDetails>
-        </Accordion>
-
-        <Accordion
-          expanded={expanded.includes("panel4")}
-          onChange={handleChange("panel4")}
-          className={classes.accordion}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel4bh-content"
-            id="panel4bh-header"
-            className={classes.titleAccordion}
-          >
-            <p className={styles.title}>Назначение</p>
-          </AccordionSummary>
-          <AccordionDetails
-            onKeyDown={(e) => e.stopPropagation()}
-            className={classes.contentAccordion}
-          >
-            <Controller
-              name="purposeTypes"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <DynamicSelect
-                   title={'назначение'}
-                error={error}
-                field={field}
-                options={purposeTypes || []}
-                isMulti
-                onSelectChange={handleTypePurposeChange}
-                setCurrentSubType={setCurrentSubType}
-              />
-              )}
-            />
-          </AccordionDetails>
-        </Accordion>
-        <Accordion
-          expanded={expanded.includes("panel5")}
-          onChange={handleChange("panel5")}
-          className={classes.accordion}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel5bh-content"
-            id="panel5bh-header"
-            className={classes.titleAccordion}
-          >
-            <p className={styles.title}>Расположение</p>
-          </AccordionSummary>
-          <AccordionDetails
-            className={classes.contentAccordion}
-            onKeyDown={(e) => e.stopPropagation()}
-          >
-            <Controller
-              name="location"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <AddressSuggestions
-                  count={4}
-                  inputProps={{
-                    placeholder: "Начните вводить область",
-                    tabIndex: 0,
-                    className:
-                      "border  border-gray-400 w-full px-3 text-xl py-3 rounded-2xl bg-gray-300 transition-colors focus-within:border-primary  ",
-                  }}
-                  token={DADATA_KEY}
-                  onChange={(newValue) => {
-                    // Проверьте данные в консоли
-                    handleLocationChange(newValue);
-                  }}
-                  value={field.value}
-                  filterFromBound="region"
-                  filterToBound="region"
-                  filterLocations={[{ country: "россия" }]}
-                />
-              )}
-              rules={{
-                required: "Выбор",
-              }}
-            />
-          </AccordionDetails>
-        </Accordion>
-
-        {pathname === "architecture" && (
           <Accordion
-            expanded={expanded.includes("panel6")}
-            onChange={handleChange("panel6")}
+            expanded={expanded.includes("panel3")}
+            onChange={handleChange("panel3")}
             className={classes.accordion}
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel6bh-content"
-              id="panel6bh-header"
+              aria-controls="panel3bh-content"
+              id="panel3bh-header"
               className={classes.titleAccordion}
             >
-              <p className={styles.title}>Технологии строительства</p>
+              <p className={styles.title}>Стили</p>
             </AccordionSummary>
             <AccordionDetails
               onKeyDown={(e) => e.stopPropagation()}
               className={classes.contentAccordion}
             >
               <Controller
-                name="buildingTechnique"
+                name="subTypes"
                 control={control}
                 render={({ field, fieldState: { error } }) => (
                   <DynamicSelect
                     error={error}
-                       title={'технику'}
+                    title={"стиль"}
                     field={field}
-                    options={buildingTechnique || []}
+                    options={subTypes}
                     isMulti
-                    onSelectChange={handleBuildingTechniqueChange} setCurrentSubType={undefined}                   
+                    onSelectChange={handleSubTypesChange}
+                    setCurrentSubType={setCurrentSubType}
                   />
                 )}
               />
             </AccordionDetails>
           </Accordion>
-        )}
+
+          <Accordion
+            expanded={expanded.includes("panel4")}
+            onChange={handleChange("panel4")}
+            className={classes.accordion}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel4bh-content"
+              id="panel4bh-header"
+              className={classes.titleAccordion}
+            >
+              <p className={styles.title}>Назначение</p>
+            </AccordionSummary>
+            <AccordionDetails
+              onKeyDown={(e) => e.stopPropagation()}
+              className={classes.contentAccordion}
+            >
+              <Controller
+                name="purposeTypes"
+                control={control}
+                render={({ field, fieldState: { error } }) => (
+                  <DynamicSelect
+                    title={"назначение"}
+                    error={error}
+                    field={field}
+                    options={purposeTypes || []}
+                    isMulti
+                    onSelectChange={handleTypePurposeChange}
+                    setCurrentSubType={setCurrentSubType}
+                  />
+                )}
+              />
+            </AccordionDetails>
+          </Accordion>
+          <Accordion
+            expanded={expanded.includes("panel5")}
+            onChange={handleChange("panel5")}
+            className={classes.accordion}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel5bh-content"
+              id="panel5bh-header"
+              className={classes.titleAccordion}
+            >
+              <p className={styles.title}>Расположение</p>
+            </AccordionSummary>
+            <AccordionDetails
+              className={classes.contentAccordion}
+              onKeyDown={(e) => e.stopPropagation()}
+            >
+              <Controller
+                name="location"
+                control={control}
+                render={({ field, fieldState: { error } }) => (
+                  <AddressSuggestions
+                    count={4}
+                    inputProps={{
+                      placeholder: "Начните вводить область",
+                      tabIndex: 0,
+                      className:
+                        "border  border-gray-400 w-full px-3 text-xl py-3 rounded-2xl bg-gray-300 transition-colors focus-within:border-primary  ",
+                    }}
+                    token={DADATA_KEY}
+                    onChange={(newValue) => {
+                      // Проверьте данные в консоли
+                      handleLocationChange(newValue);
+                    }}
+                    value={field.value}
+                    filterFromBound="region"
+                    filterToBound="region"
+                    filterLocations={[{ country: "россия" }]}
+                  />
+                )}
+                rules={{
+                  required: "Выбор",
+                }}
+              />
+            </AccordionDetails>
+          </Accordion>
+
+          {pathname === "architecture" && (
+            <Accordion
+              expanded={expanded.includes("panel6")}
+              onChange={handleChange("panel6")}
+              className={classes.accordion}
+            >
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel6bh-content"
+                id="panel6bh-header"
+                className={classes.titleAccordion}
+              >
+                <p className={styles.title}>Технологии строительства</p>
+              </AccordionSummary>
+              <AccordionDetails
+                onKeyDown={(e) => e.stopPropagation()}
+                className={classes.contentAccordion}
+              >
+                <Controller
+                  name="buildingTechnique"
+                  control={control}
+                  render={({ field, fieldState: { error } }) => (
+                    <DynamicSelect
+                      error={error}
+                      title={"технику"}
+                      field={field}
+                      options={buildingTechnique || []}
+                      isMulti
+                      onSelectChange={handleBuildingTechniqueChange}
+                      setCurrentSubType={undefined}
+                    />
+                  )}
+                />
+              </AccordionDetails>
+            </Accordion>
+          )}
+        </div>
 
         <div className={styles.buttons}>
-          <SecondButton type="submit">Применть</SecondButton>
+          <button className="bg-primary w-1/2 text-white rounded-2xl h-full text-xl px-[3vw] border border-primary" type="submit">Применть</button>
           <button
-            className="text-primary border border-primary px-[3vw] rounded-2xl text-xl"
+            className="text-primary border border-primary px-[3vw] rounded-2xl text-xl w-1/2 h-full"
             type="reset"
             onClick={() => filterReset()}
           >

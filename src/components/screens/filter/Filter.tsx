@@ -45,12 +45,14 @@ export default function Filter() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <div className={styles.container}>
-        <div className="mr-[4.1vw]" >
+       
           <ControlledAccordions
             setCurrentSubType={setCurrentSubType}
             subTypes={subTypes}
+            toggleDrawer={toggleDrawer}
+            anchor={anchor}
           />
-        </div>
+       
         <div className={styles.imageBlock}>
           {isSubTypeLoading ? (
             <SkeletonLoader count={1} />

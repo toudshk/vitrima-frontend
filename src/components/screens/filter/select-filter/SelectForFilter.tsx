@@ -91,13 +91,15 @@ const DynamicSelect: FC<ISelect> = ({
   const formatOptionLabel = ({ label, description, image }: ISubType) => (
     <div className={styles.itemBlock}>
       <div className="mr-auto ">{label}</div>
-      <button
-      className={styles.infoButton}
-        onMouseEnter={() => handleMouseEnter(label, description, image)}
-        onMouseLeave={handleMouseLeave}
-      >
-        <Image src={infoIconSvg} width={20} height={20} alt="" />
-      </button>
+      {title === 'стиль'  && (
+        <button
+          className={styles.infoButton}
+          onMouseEnter={() => handleMouseEnter(label, description, image)}
+          onMouseLeave={handleMouseLeave}
+        >
+          <Image src={infoIconSvg} width={20} height={20} alt="" />
+        </button>
+      )}
     </div>
   );
 
