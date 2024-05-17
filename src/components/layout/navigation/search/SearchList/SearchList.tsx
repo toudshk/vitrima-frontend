@@ -7,38 +7,61 @@ import { IWidgetWork } from "../work.types";
 import Masonry from "react-masonry-css";
 import GalleryItem from "@/components/ui/masonry/GalleryItem";
 
+import CloseIcon from "@mui/icons-material/Close";
 const SearchList: FC<{ works: IWidgetWork[]; setSearchTerm: any }> = ({
   works,
   setSearchTerm,
 }) => {
+  console.log(works);
   const clearSearchTerm = () => {
     return setSearchTerm("");
   };
   return (
     <div className={styles.wrapper} onClick={clearSearchTerm}>
       <div className={styles.list}>
+        <div className="container flex justify-end">
+        <button onClick={clearSearchTerm} className="object">
+          <CloseIcon />
+        </button>
+        </div>
         {works.length ? (
-          <Masonry breakpointCols={4} className="flex gap-3 mx-[1vw] ">
-            {works.map((item) => (
-              <Link key={item._id} href={`/profile/${item.contractorId._id}`} className=' cursor-pointer '>
+          works.map((item, index) => (
+            <div key={item._id}>
+              <Link
+                href={`/profile/${item.contractorId?._id}`}
+                className="cursor-pointer flex"
+              >
                 <Image
                   loading="lazy"
-                  key={item._id}
-                  width={200}
-                  height={300}
+                  width={130}
+                  height={150}
                   src={item.images[0]}
-                  className=" rounded-t-lg opacity-0 "
+                  className="rounded-lg opacity-0 image-like-bg"
                   onLoadingComplete={(image) =>
                     image.classList.remove("opacity-0")
                   }
                   alt={`Фотография работы ${item.title}`}
                 />
-                <div className="text-base bg-gray-300 border-b-gray-400 border-r-gray-400 border-l-gray-400  rounded-b-lg pl-2 mb-2 text-gray-600"  style={{ width: 'calc(100% - 2px)' }}>
-                {item.title}
+                <div className=" w-full pl-2">
+                  <h4 className="text-gray-400 text-xs font-semibold">
+                    {item.workType.title}
+                  </h4>
+                  <h3
+                    className="text-base  rounded-b-lg mb-1 text-gray-700 font-semibold"
+                    style={{ width: "calc(100% - 2px)" }}
+                  >
+                    {item.title}
+                  </h3>
+                  <h4 className="text-gray-400 text-xs font-semibold">
+                    {item.contractorId.nickname}
+                  </h4>
                 </div>
               </Link>
-            ))}
-          </Masonry>
+              {index < works.length - 1 && (
+                <hr className="border-gray-300 my-4 border-1" />
+              )}
+            </div>
+          ))
         ) : (
           <div className="text-gray-500 text-3xl text-center my-[23%]">
             Таких работ нет

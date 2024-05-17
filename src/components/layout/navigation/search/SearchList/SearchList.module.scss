@@ -1,16 +1,17 @@
 .wrapper {
-  @apply absolute  animate-fade z-10 bg-primary bg-opacity-70  w-full  py-[6vh] px-[3vw] mt-[1vw] cursor-pointer;
-  backdrop-filter: blur(10px);
+  @apply absolute  animate-fade z-10 bg-transparent bg-opacity-70  w-full  py-[1vh] px-[0.5vw] mt-[1vw] cursor-pointer;
+  backdrop-filter: blur(1px);
   max-height: 92vh;
   left: 0;
   top: calc(78%);
   overflow-y: auto;
   z-index: 10;
-  .list {
-    @apply bg-white w-[70vw] min-h-[80vh] p-10 rounded-xl;
 
+  .list {
+    @apply bg-white w-[40vw]  p-6 rounded-xl mx-auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     > a {
-      @apply flex items-center mb-4 max-w-[1000px] relative border-2 border-gray-300 rounded-2xl transition-all duration-300 ease-in-out;
+      @apply flex items-center mb-4 max-w-[1000px] relative rounded-2xl transition-all duration-300 ease-in-out;
 
       &:hover {
         -webkit-box-shadow: -1px 16px 40px -25px rgba(0, 0, 0, 0.75);
@@ -51,14 +52,12 @@
 }
 @media (max-width: 700px) {
   .wrapper {
-    @apply  min-h-[90vh]  ;
+    @apply mt-[0.7rem];
     .list {
-      @apply w-[80vw] p-6 mx-auto;
+      @apply w-full mx-auto py-2 min-h-[91vh] rounded-none p-3;
       > a {
         @apply mb-2;
-        > img {
-          @apply w-[150px];
-        }
+        
 
         .textBlock {
           @apply ml-2  text-sm h-full my-[1vh];
