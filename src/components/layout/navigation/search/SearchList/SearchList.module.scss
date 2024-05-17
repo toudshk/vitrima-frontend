@@ -52,9 +52,9 @@
 }
 @media (max-width: 700px) {
   .wrapper {
-    @apply mt-[0.7rem];
+    @apply mt-3 ;
     .list {
-      @apply w-full mx-auto py-2 min-h-[91vh] rounded-none p-3;
+      @apply w-full mx-auto pt-2  pb-3 h-full rounded-none p-3;
       > a {
         @apply mb-2;
         
