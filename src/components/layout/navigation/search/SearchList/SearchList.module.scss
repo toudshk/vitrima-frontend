@@ -1,7 +1,7 @@
 .wrapper {
-  @apply absolute  animate-fade z-10 bg-transparent bg-opacity-70  w-full  py-[1vh] px-[0.5vw] mt-[1vw] cursor-pointer;
+  @apply absolute  animate-fade z-10 bg-transparent bg-opacity-70 h-[93vh]  w-full  py-[1vh] px-[0.5vw] mt-[1vw] cursor-pointer;
   backdrop-filter: blur(1px);
-  max-height: 92vh;
+  
   left: 0;
   top: calc(78%);
   overflow-y: auto;
@@ -52,9 +52,9 @@
 }
 @media (max-width: 700px) {
   .wrapper {
-    @apply mt-3 ;
+    @apply  h-[91vh] mt-[2vh] bg-white;
     .list {
-      @apply w-full mx-auto pt-2  pb-3 h-full rounded-none p-3;
+      @apply w-full   mx-auto pt-2  pb-3 h-full rounded-none p-3 overflow-y-auto;
       > a {
         @apply mb-2;
         

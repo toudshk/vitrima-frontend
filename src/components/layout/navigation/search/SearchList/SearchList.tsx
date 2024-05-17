@@ -53,7 +53,7 @@ const SearchList: FC<{ works: IWidgetWork[]; setSearchTerm: any }> = ({
                     {item.title}
                   </h3>
                   <h4 className="text-gray-400 text-xs font-semibold">
-                    {item.contractorId.nickname}
+                    {item.contractorId?.nickname}
                   </h4>
                 </div>
               </Link>
