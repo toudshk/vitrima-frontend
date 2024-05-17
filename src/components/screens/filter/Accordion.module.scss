@@ -2,10 +2,16 @@
   @apply w-[24vw] mr-[4.1vw];
  
   .closeButtonBlock {
-    .closeButton {
-      @apply hidden;
-    }
+    @apply  hidden;
+  
   }
+  .addressInput{
+    @apply border  border-gray-400 w-full px-3 text-xl py-3 rounded-2xl bg-gray-300 transition-colors focus-within:border-primary;
+  @media (max-width:  700px) {
+    @apply text-xs bg-white;
+  }
+  }
+
   .buttons {
     @apply flex gap-5 h-14 w-[29vw];
   }
@@ -14,11 +20,17 @@
   .accordionBlock {
     @apply container flex flex-col h-full ;
     .accordionForm{
-      @apply mx-[2vw]   flex flex-col justify-between h-full;
+      @apply mx-[3vw]   flex flex-col justify-between h-full;
+      .accordionTopBlock{
+        @apply mx-4;
+      }
     }
     @apply w-full ;
     .closeButtonBlock {
-      @apply border-b border-gray-500 w-full flex  justify-end; 
+      @apply border-b border-gray-500 w-full flex  justify-between; 
+      >h1{
+        @apply text-2xl ml-3 font-semibold;
+      }
       .closeButton {
         @apply block mb-3 mr-3 ;
       }
@@ -31,10 +43,8 @@
     }
   }
   .title {
-    @apply text-lg w-[30vw];
-    white-space: nowrap;
-    overflow: hidden; /* или overflow: auto; */
-    text-overflow: ellipsis;
+    @apply text-lg w-full;
+   
   }
   .checkBoxTitle {
     @apply text-sm pl-6;

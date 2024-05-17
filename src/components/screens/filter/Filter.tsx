@@ -8,9 +8,13 @@ import { useSubTypes } from "../add-work/useSubTypes";
 import { usePathname } from 'next/navigation'
  import styles from './Filter.module.scss'
 import { ISubType } from "@/components/shared/types/work.types";
+import { useMediaQuery } from '@mui/material';
+
 type Anchor = "right";
 
 export default function Filter() {
+  const isMobile = useMediaQuery('(max-width:700px)');
+
   const pathname = usePathname()
   const interiorId =  '656c0a3cfad5c309cd6a9433'
   const architectureId = '656c0a67fad5c309cd6a9853' 
@@ -90,8 +94,8 @@ export default function Filter() {
           <SwipeableDrawer
           PaperProps={{
             style: {
-              backgroundColor: 'rgb(234 234 234)'
-            }
+              backgroundColor: isMobile ? '#ffffff' : 'rgb(234, 234, 234)',
+            },
           }}
             anchor={anchor}
             open={state[anchor]}

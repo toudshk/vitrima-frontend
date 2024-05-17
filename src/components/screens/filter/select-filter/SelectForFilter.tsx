@@ -10,12 +10,13 @@ import { IOption, ISelect } from "./SelectForFilter.interface";
 import Image from "next/image";
 import { ISubType } from "@/components/shared/types/work.types";
 
+import { useMediaQuery } from '@mui/material';
+  
 const animatedComponents = makeAnimated();
 const customStyles = {
   control: (provided: any, state: any) => ({
     ...provided,
-
-    backgroundColor: "#EAEAEA",
+    backgroundColor: isMobile ? "#FFFFFF" : "#EAEAEA",
     border: "1px solid #ABABAB",
     borderRadius: "12px",
   }),
@@ -91,7 +92,8 @@ const DynamicSelect: FC<ISelect> = ({
   const formatOptionLabel = ({ label, description, image }: ISubType) => (
     <div className={styles.itemBlock}>
       <div className="mr-auto ">{label}</div>
-      {title === 'стиль'  && (
+      
+      {(title === 'стиль' && !isMobile) && (
         <button
           className={styles.infoButton}
           onMouseEnter={() => handleMouseEnter(label, description, image)}

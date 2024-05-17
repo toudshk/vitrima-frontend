@@ -44,6 +44,10 @@ const useStyles = makeStyles({
     "&::before": {
       content: "none",
     },
+    "@media (max-width: 600px)": {
+      backgroundColor: "#ffffff", // Белый цвет для мобильных устройств
+    },
+
   },
   titleAccordion: {
     borderBottom: "1px solid #ABABAB",
@@ -215,6 +219,7 @@ export default function ControlledAccordions({
   return (
     <div className={styles.accordionBlock}>
       <div className={styles.closeButtonBlock}>
+        <h1>Фильтры</h1>
         <button
           onClick={toggleDrawer(anchor, false)}
           className={styles.closeButton}
@@ -229,7 +234,7 @@ export default function ControlledAccordions({
           handleUpdateButtonClick();
         }}
       >
-        <div>
+        <div className={styles.accordionTopBlock}>
           <Accordion
             expanded={expanded.includes("panel1")}
             onChange={handleChange("panel1")}
@@ -395,8 +400,8 @@ export default function ControlledAccordions({
                     inputProps={{
                       placeholder: "Начните вводить область",
                       tabIndex: 0,
-                      className:
-                        "border  border-gray-400 w-full px-3 text-xl py-3 rounded-2xl bg-gray-300 transition-colors focus-within:border-primary  ",
+                      className: styles.addressInput
+                       ,
                     }}
                     token={DADATA_KEY}
                     onChange={(newValue) => {
