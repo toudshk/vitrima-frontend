@@ -154,7 +154,7 @@ const FirstPage: FC = () => {
                         width={500}
                         height={10}
                         alt={""}
-                        className="transition-all mb-2 rounded-lg opacity-0 duration-300"
+                        className="transition-all mb-[1vw] rounded-lg opacity-0 duration-300"
                         onLoadingComplete={(image) =>
                           image.classList.remove("opacity-0")
                         }
