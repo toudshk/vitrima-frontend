@@ -73,19 +73,19 @@ const ModalWindow: FC<IModalWindow> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //     let timer: any;
-  //     if (open) {
-  //         setIsLoading(true);
-  //         timer = setTimeout(() => {
-  //             setIsLoading(false);
-  //         }, 700);
-  //     } else {
-  //         setIsLoading(true);
-  //     }
+  useEffect(() => {
+      let timer: any;
+      if (open) {
+          setIsLoading(true);
+          timer = setTimeout(() => {
+              setIsLoading(false);
+          }, 700);
+      } else {
+          setIsLoading(true);
+      }
 
-  //     return () => clearTimeout(timer);
-  // }, [open]);
+      return () => clearTimeout(timer);
+  }, [open]);
 
   const classes = useStyles();
   const [workSlug, setWorkSlug] = useState(null);
@@ -125,9 +125,10 @@ const ModalWindow: FC<IModalWindow> = ({
             {isLoading ? (
               <SkeletonLoader
                 count={1}
-                width={250}
-                height={50}
+                width={200}
+                height={30}
                 borderRadius={12}
+                className="mt-10"
               />
             ) : (
               <div className={styles.title}>{workData?.title}</div>
