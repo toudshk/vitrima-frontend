@@ -161,7 +161,7 @@ const ModalWindow: FC<IModalWindow> = ({
                   <div className="block w-[75%] ml-2">
                     {isLoading ? (
                       <SkeletonLoader
-                        width={250}
+                        width={130}
                         height={20}
                         borderRadius={12}
                       />
