@@ -71,23 +71,21 @@ const ModalWindow: FC<IModalWindow> = ({
   handleClose,
   scroll,
 }) => {
- 
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-      let timer: any;
-      if (open) {
-          setIsLoading(true);
-          timer = setTimeout(() => {
-              setIsLoading(false);
-          }, 700); 
-      } else {
-          setIsLoading(true);
-      }
+  // useEffect(() => {
+  //     let timer: any;
+  //     if (open) {
+  //         setIsLoading(true);
+  //         timer = setTimeout(() => {
+  //             setIsLoading(false);
+  //         }, 700);
+  //     } else {
+  //         setIsLoading(true);
+  //     }
 
-      return () => clearTimeout(timer);
-  }, [open]);
-
+  //     return () => clearTimeout(timer);
+  // }, [open]);
 
   const classes = useStyles();
   const [workSlug, setWorkSlug] = useState(null);
@@ -98,7 +96,6 @@ const ModalWindow: FC<IModalWindow> = ({
   }, [workData]);
 
   useUpdateCountViews(workSlug);
-
 
   const { user } = useAuth();
   const subTypes = workData?.subTypes || [];
@@ -136,71 +133,69 @@ const ModalWindow: FC<IModalWindow> = ({
               <div className={styles.title}>{workData?.title}</div>
             )}
 
-           
-              <div className={styles.userInfoBlock}>
-                <div className="flex items-center justify-between">
-                  <div className="flex h-14  items-center my-6 w-[60%]">
-                    <Link href={`/profile/${workData?.contractorId._id}`}>
-                      {isLoading ? (
-                        <SkeletonLoader
-                          borderRadius={99}
-                          height={56}
-                          width={56}
-                        />
-                      ) : (
-                        <Image
-                          src={
-                            workData?.contractorId.image
-                              ? workData.contractorId.image
-                              : baseImage
-                          }
-                          width={120}
-                          height={120}
-                          alt={""}
-                          className="rounded-full mr-3 h-14 w-14 image-like-bg"
-                        />
-                      )}
-                    </Link>
-                    <div className="block w-[75%] ml-2">
-                      {isLoading ? (
-                        <SkeletonLoader
-                          width={250}
-                          height={20}
-                          borderRadius={12}
-                        />
-                      ) : (
-                        <Link
-                          className={styles.nickname}
-                          href={`/profile/${workData?.contractorId._id}`}
-                        >
-                          {workData?.contractorId.nickname}
-                        </Link>
-                      )}
+            <div className={styles.userInfoBlock}>
+              <div className="flex items-center justify-between">
+                <div className="flex h-14  items-center my-6 w-[60%]">
+                  <Link href={`/profile/${workData?.contractorId._id}`}>
+                    {isLoading ? (
+                      <SkeletonLoader
+                        borderRadius={99}
+                        height={56}
+                        width={56}
+                      />
+                    ) : (
+                      <Image
+                        src={
+                          workData?.contractorId.image
+                            ? workData.contractorId.image
+                            : baseImage
+                        }
+                        width={120}
+                        height={120}
+                        alt={""}
+                        className="rounded-full mr-3 h-14 w-14 image-like-bg"
+                      />
+                    )}
+                  </Link>
+                  <div className="block w-[75%] ml-2">
+                    {isLoading ? (
+                      <SkeletonLoader
+                        width={250}
+                        height={20}
+                        borderRadius={12}
+                      />
+                    ) : (
+                      <Link
+                        className={styles.nickname}
+                        href={`/profile/${workData?.contractorId._id}`}
+                      >
+                        {workData?.contractorId.nickname}
+                      </Link>
+                    )}
 
-                      <div className="flex">
-                        <p className="text-gray-450 text-base mr-2">
-                          Подписчики{" "}
+                    <div className="flex">
+                      <p className="text-gray-450 text-base mr-2">
+                        Подписчики{" "}
+                      </p>
+                      {isLoading ? (
+                        <SkeletonLoader width={15} />
+                      ) : (
+                        <p className="text-base">
+                          {workData?.contractorId?.subscribers?.length}
                         </p>
-                        {isLoading ? (
-                          <SkeletonLoader width={15} />
-                        ) : (
-                          <p className="text-base">
-                            {workData?.contractorId?.subscribers?.length}
-                          </p>
-                        )}
-                      </div>
+                      )}
                     </div>
                   </div>
-
-                  <ModalButtons workData={workData} />
                 </div>
+
+                <ModalButtons workData={workData} />
               </div>
-            
+            </div>
           </div>
 
           <div className={styles.selectedWork}>
             {isLoading ? (
-              <SkeletonLoader width={"86vw"} borderRadius={12} height={700} />
+              <SkeletonLoader borderRadius={12} height={700} width={"100vw"}  className="max-w-[1172px]"/>
             ) : (
               <Image
                 className={styles.image}

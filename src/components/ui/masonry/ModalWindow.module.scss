@@ -19,7 +19,7 @@
   }
 
   .selectedWork {
-    @apply flex  mb-16;
+    @apply flex  mb-16 w-full ;
 
     .image {
       @apply h-full rounded-xl w-full;
@@ -88,7 +88,7 @@
   .content {
     @apply mx-0 max-w-full;
     .closeButton {
-      @apply justify-end mb-4  block text-primary absolute bottom-0 right-0 -top-7;
+      @apply justify-end mb-4  block text-primary absolute bottom-0 right-0 h-10 -top-7;
     }
 
     .title {
@@ -105,6 +105,7 @@
       }
     }
     .selectedWork {
+      @apply max-w-[1172px];
       .image {
         @apply m-0 w-full;
       }
