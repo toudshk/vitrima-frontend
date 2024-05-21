@@ -240,11 +240,14 @@ const ModalWindow: FC<IModalWindow> = ({
                 )}
               </div>
             </div>
-            <Tags
-              title={"Теги"}
-              tagData={workData?.tags}
-              isLoading={isLoading}
-            />
+{workData?.tags.length !== 0 && (
+      <Tags
+      title={"Теги"}
+      tagData={workData?.tags}
+      isLoading={isLoading}
+    />
+) }
+        
 
             {similarWorksData?.length > 0 && (
               <div>

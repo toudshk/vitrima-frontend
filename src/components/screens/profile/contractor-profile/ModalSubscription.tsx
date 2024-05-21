@@ -72,9 +72,10 @@ const ModalSubscription: FC<{ open: any; setOpen: any }> = ({
             <div className=''>
               <div className="text-2xl font-bold">690 ₽</div>
               <div>Спишется {currentDate}</div>
-              <Link className="border-none" href={"/unsubscribe"} onClick={handleClose} >
+              <div className='mt-6 w-full flex content-end'>
+              <Link className="border-none bg-primary text-white p-3 rounded-xl ml-auto" href={"/unsubscribe"} onClick={handleClose} >
                 Отменить подписку
-              </Link>
+              </Link></div>
             </div>
           ) : (
             <div className={styles.textBlock}>

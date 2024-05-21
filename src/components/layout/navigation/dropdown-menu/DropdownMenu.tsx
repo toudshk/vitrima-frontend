@@ -62,7 +62,24 @@ const DropdownMenu = () => {
         )}
 
         
-
+{user?.isContractor === true && (
+  <a
+    onClick={(e) => {
+      setOpen(true);
+    }}
+  >
+    <div className="flex">
+      {/* <Image
+src={iconLogo}
+width={12}
+height={12}
+alt={""}
+className="max-w-[15%] mr-2"
+/> */}
+      Подписка
+    </div>
+  </a>
+)}
         <Link href={"/feedback"}>
           {/* <EmailIcon className="max-w-[15%] mr-1" /> */}
           Обратная связь
@@ -84,21 +101,3 @@ const DropdownMenu = () => {
 };
 
 export default DropdownMenu;
-// {user?.isContractor === true && (
-//   <a
-//     onClick={(e) => {
-//       setOpen(true);
-//     }}
-//   >
-//     <div className="flex">
-//       {/* <Image
-// src={iconLogo}
-// width={12}
-// height={12}
-// alt={""}
-// className="max-w-[15%] mr-2"
-// /> */}
-//       Подписка
-//     </div>
-//   </a>
-// )}
