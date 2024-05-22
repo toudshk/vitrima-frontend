@@ -3,22 +3,22 @@
 import { FC, useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
+import Cookies from "js-cookie";
 import { ReduxProvider } from "../ReduxProvider";
 import Header from "@/components/layout/header/Header";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { motion } from "framer-motion";
-import { usePathname } from 'next/navigation'
- 
+import { usePathname } from "next/navigation";
+
 import { useActions } from "@/hooks/useActions";
 import { Metrika } from "@/utils/metrika";
+import AuthProvider from "../AuthProvider/AuthProvider";
 const animation = {
   hidden: {
-  
     opacity: 0,
   },
   visible: {
-  
     opacity: 1,
   },
 };
@@ -27,12 +27,12 @@ const animation = {
 const queryClient = new QueryClient();
 
 const MainProvider: FC<{ children: any }> = ({ children }) => {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ReduxProvider> 
-      {pathname !== '/' &&  <Header />}
+      <ReduxProvider>
+        {pathname !== "/" && <Header />}
         <motion.div
           className="mt-[7vh]"
           variants={animation}
@@ -41,7 +41,7 @@ const MainProvider: FC<{ children: any }> = ({ children }) => {
           exit="hidden"
         >
           <Metrika />
-          {children}
+          <AuthProvider>{children}</AuthProvider>
         </motion.div>
       </ReduxProvider>
       <ToastContainer />

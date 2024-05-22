@@ -84,7 +84,6 @@ export const AuthService = {
    
       const refreshToken = Cookies.get("refreshToken");
 
-      console.log(refreshToken)
       if (!refreshToken) {
         toast.error("Пожалуйста, перезайдите в аккаунт")
         await this.logout()
