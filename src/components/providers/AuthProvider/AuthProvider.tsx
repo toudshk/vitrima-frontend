@@ -23,6 +23,9 @@ const AuthProvider: FC<{children: React.ReactNode}> = ({children}) => {
 		const refreshToken = Cookies.get('refreshToken')
 		console.log(refreshToken, user)
 		if (!refreshToken && user) logout()
+		if(user === undefined) {
+			localStorage.removeItem("user");
+		}
 	}, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	return <>{children}</> 
