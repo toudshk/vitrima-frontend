@@ -2,7 +2,7 @@
 
 import Cookies from 'js-cookie'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { FC, useEffect } from 'react'
 
 import { useActions } from '@/hooks/useActions'
@@ -12,16 +12,18 @@ const AuthProvider: FC<{children: React.ReactNode}> = ({children}) => {
 
 	const { user } = useAuth()
 	const { checkAuth, logout } = useActions()
-	
-	useEffect(() => {
-		const accessToken = Cookies.get('accessToken')
-		if (accessToken) checkAuth()
-	}, []) // eslint-disable-line react-hooks/exhaustive-deps
+	const pathname = usePathname()
+	console.log(pathname)
+	// useEffect(() => {
+	// 	const accessToken = Cookies.get('accessToken')
+	// 	if (accessToken) checkAuth()
+	// }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
 	useEffect(() => {
 		const refreshToken = Cookies.get('refreshToken')
+		console.log(refreshToken, user)
 		if (!refreshToken && user) logout()
-	}, []) // eslint-disable-line react-hooks/exhaustive-deps
+	}, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	return <>{children}</> 
 	

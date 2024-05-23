@@ -68,47 +68,34 @@ export const AuthService = {
 
     return response;
   },
-  async logout(){
+  async logout() {
     const refreshToken = Cookies.get("refreshToken");
     removeTokensStorage();
     localStorage.removeItem("user");
-    const response = await axiosClassic.post(
-      getAuthUrl("/logout"),
-       {refreshToken}
-    );
+    const response = await axiosClassic.post(getAuthUrl("/logout"), {
+      refreshToken,
+    });
 
     return response;
   },
   async getNewTokens() {
- 
-   
-      const refreshToken = Cookies.get("refreshToken");
+		const refreshToken = Cookies.get('refreshToken')
+		const response = await axios.post<IAuthResponse>(
+			`${API_URL}${getAuthUrl('/login/access-token')}`,
+			{
+				refreshToken,
+			},
+			{
+				headers: getContentType(),
+			}
+		)
 
-      if (!refreshToken) {
-        toast.error("Пожалуйста, перезайдите в аккаунт")
-        await this.logout()
-       window.location.reload()
-        // Здесь можно добавить другую логику, которая должна выполняться, если refreshToken не определен
-      } else {
-        const response = await axios.post<IAuthResponse>(
-          `${API_URL}${getAuthUrl("/login/access-token")}`,
-          {
-            refreshToken,
-          },
-          {
-            headers: getContentType(),
-          }
-        );
-      
-        if (response.data.accessToken) {
-          saveToStorage(response.data);
-        }
-      
-        return response;
-      }
-    },
+		if (response.data.accessToken) {
+			saveToStorage(response.data)
+		}
 
- 
+		return response
+	},
 
   async resetPassword(email: string) {
     const response = await axiosClassic.post(
@@ -118,11 +105,11 @@ export const AuthService = {
 
     return response;
   },
-  async newPassword(newPassword:string, token:string) {
-    const response = await axiosClassic.post(
-      getAuthUrl("/reset-password"),
-       {newPassword, token  }
-    );
+  async newPassword(newPassword: string, token: string) {
+    const response = await axiosClassic.post(getAuthUrl("/reset-password"), {
+      newPassword,
+      token,
+    });
 
     return response;
   },

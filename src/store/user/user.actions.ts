@@ -85,7 +85,7 @@ export const checkAuth = createAsyncThunk<IAuthResponse>(
     try {
       const response = await AuthService.getNewTokens();
    
-      return response!.data;
+      return response.data;
     } catch (error) {
       if (errorCatch(error) === 'токен не является строкой') {
 				thunkApi.dispatch(logout()) 
