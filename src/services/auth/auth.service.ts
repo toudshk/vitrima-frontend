@@ -63,6 +63,7 @@ export const AuthService = {
       }
     );
     if (response.data.accessToken) {
+      console.log(response.data)
       saveToStorage(response.data);
     }
 

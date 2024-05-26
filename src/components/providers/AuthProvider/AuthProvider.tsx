@@ -14,18 +14,21 @@ const AuthProvider: FC<{children: React.ReactNode}> = ({children}) => {
 	const { checkAuth, logout } = useActions()
 	const pathname = usePathname()
 	console.log(pathname)
-	// useEffect(() => {
-	// 	const accessToken = Cookies.get('accessToken')
-	// 	if (accessToken) checkAuth()
-	// }, []) // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		const accessToken = Cookies.get('accessToken')
+		console.log('accessToken :', accessToken)
+		//if (accessToken) checkAuth()
+	}, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	useEffect(() => {
 		const refreshToken = Cookies.get('refreshToken')
-		console.log(refreshToken, user)
-		if (!refreshToken && user) logout()
-		if(user === undefined) {
-			localStorage.removeItem("user");
+		console.log('refreshToken :', refreshToken,"user :", user)
+		if (!refreshToken && user) {
+			console.log("произошел логаут")
+
+			// logout()
 		}
+		
 	}, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	return <>{children}</> 
