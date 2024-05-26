@@ -8,11 +8,11 @@ import AdminNavigation from '@/components/ui/Admin-navigation/AdminNavigation';
 import { useAuth } from '@/hooks/useAuth';
 
 const Page: NextPageAuth = () => {
-  // const { user } = useAuth();
-  // if (!user || !user.isAdmin) {
-  //   redirect("/");
-  // }
 
+  const { user } = useAuth();
+  if (!user || user?.isAdmin === false) {
+    redirect("/");
+  }
   return (
     <>
       <Meta title="Админ панель">

@@ -16,15 +16,12 @@ const AuthProvider: FC<{children: React.ReactNode}> = ({children}) => {
 	console.log(pathname)
 	useEffect(() => {
 		const accessToken = Cookies.get('accessToken')
-		console.log('accessToken :', accessToken)
 		// if (accessToken) checkAuth()
 	}, [pathname]) // eslint-disable-line react-hooks/exhaustive-deps
 
 	useEffect(() => {
 		const refreshToken = Cookies.get('refreshToken')
-		console.log('refreshToken :', refreshToken,"user :", user)
 		if (!refreshToken && user) {
-			console.log("произошел логаут")
 
 			logout()
 		}
