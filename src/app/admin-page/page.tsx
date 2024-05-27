@@ -9,10 +9,13 @@ import { useAuth } from '@/hooks/useAuth';
 
 const Page: NextPageAuth = () => {
 
-  const { user } = useAuth();
-  if (!user || user?.isAdmin === false) {
-    redirect("/");
-  }
+
+  const router = useRouter()
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const {user} = useAuth() 
+if (!user || user.isAdmin === false ) {
+  router.push('/')
+}
   return (
     <>
       <Meta title="Админ панель">
