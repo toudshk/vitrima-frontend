@@ -99,14 +99,14 @@ const FirstPage: FC = () => {
                     </>
                   )}
                 </div>
-                <button
+                {/* <button
                   onClick={(e) => {
                     setOpen(true);
                   }}
                   className={styles.contestButton}
                 >
                   Участие в конкурсе
-                </button>
+                </button> */}
               </div>
               <ContestModalWindow open={open} setOpen={setOpen} />
             </div>
