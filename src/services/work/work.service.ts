@@ -30,6 +30,7 @@ export const WorkService = {
 	},
 
 	async update(_id: string, data: IWorkEditInput) {
+		
 		return axios.put<string>(getWorkUrl(`/${_id}`), data)
 	},
 	async updateCountViews(slug: string) {

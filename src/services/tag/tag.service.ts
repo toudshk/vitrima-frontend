@@ -11,7 +11,7 @@ export const TagService = {
 
 
 	async create(data: ITagEditInput) {
-		
+	
 		const response = await axios.post(getTagsUrl(''), data
 		)
 		return response
@@ -24,6 +24,10 @@ export const TagService = {
 
 	async deleteTag(_id: string) {
 		return axios.delete<string>(getTagsUrl(`/${_id}`))
+	},
+
+	async getTagsByWorkType(id: string) {
+		return await axiosClassic.get<ITag[]>(getTagsUrl(`/by-work-type/${id}`))
 	},
 
 	async getAll(searchTerm?: string) {

@@ -1,6 +1,7 @@
 export interface ITag{
     _id: string
     title: string
+    workType: string
    
 }
 
@@ -38,6 +39,7 @@ export interface IWork{
     description: string
     tags: ITag[]
     images: string[]
+    drawings:string[]
     contractorId: any
     slug: string
     buildingTechnique: string

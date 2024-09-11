@@ -6,7 +6,7 @@ import PhotoCameraOutlinedIcon from "@mui/icons-material/PhotoCameraOutlined";
 import styles from "./UploadAvatar.module.scss";
 import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 import { FieldError } from "react-hook-form";
-import { useUpload } from "@/components/ui/Form-elements/upload-fields/useUpload";
+import { useUpload } from "./useUploadAvatar";
 import baseAvatar from "@/app/assets/images/base-avatar.jpg";
 import { useAuth } from "@/hooks/useAuth";
 import { useUser } from "../../profile/useUser";

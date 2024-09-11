@@ -17,6 +17,7 @@ import { IWorkType } from "@/components/shared/types/work.types";
 import { useTypeWorks } from "../add-work/useTypeWork";
 import { useBuildingTechnique } from "@/hooks/buildingTechnique/useBuildingTechnique";
 import { useSubTypes } from "../add-work/useSubTypes";
+import UploadPdf from "@/components/ui/Form-elements/upload-fields/UploadPdf";
 const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
 });
@@ -32,13 +33,14 @@ const UpdateWork: FC = () => {
   } = useForm<IWorkEditInput>({
     mode: "onChange",
   });
+ 
 
   const { onSubmit, isLoading } = useWorkEdit(setValue);
   const { data: tags, isLoading: isTagsLoading } = useSelectTags();
   const { data: workTypes, isLoading: isWorkTypeLoading } = useTypeWorks();
   const { data: buildingTechniques } = useBuildingTechnique();
   const [selectedItem, setSelectedItem] = useState<any>(null);
-
+  const [imageIsUpload, setImageIsUpload] = useState(true)
   const {
     data: subTypes,
     isLoading: isSubTypeLoading,
@@ -70,6 +72,8 @@ const UpdateWork: FC = () => {
                     fieldState: { error },
                   }) => (
                     <UploadField
+                    
+                    setImageIsUpload={setImageIsUpload}
                       placeholder="Фотография"
                       error={error}
                       folder="images"
@@ -186,6 +190,31 @@ const UpdateWork: FC = () => {
                     title="Описание работы"
                   />
                 </div>
+                <div>
+                  
+                  <Controller
+                    name="drawings"
+                    control={control}
+                    defaultValue={[]}
+                    render={({
+                      field: { value, onChange },
+                      fieldState: { error },
+                    }) => (
+                      <UploadPdf  
+                     
+                      placeholder="Чертежи"
+                      error={error}
+                      folder="drawings"
+                      image={value}
+                      onChange={onChange}
+                      title={""}
+                      />
+                    )}
+                    rules={{
+                      required: "Фотография обязательна",
+                    }}
+                  />
+                  </div>
           <SecondButton>Редактировать работу</SecondButton>
 
               </div>

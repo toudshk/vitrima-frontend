@@ -6,7 +6,7 @@
     .mainBlock {
       @apply flex;
       .leftBlock {
-        @apply pr-10 mx-auto mt-10   w-full;
+        @apply  mx-auto mt-10   w-full;
         transition: all 0.2s ease; /* Плавная анимация изменения положения и непрозрачности */
 
       }

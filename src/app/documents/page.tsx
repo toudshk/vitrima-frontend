@@ -13,7 +13,7 @@ interface IModalWindow {
 
   scroll: any;
 }
-const SimpleDialog: FC<IModalWindow> = ({
+export const SimpleDialog: FC<IModalWindow> = ({
   open,
   pdfUrl,
   handleClose,
@@ -65,7 +65,7 @@ export default function DocumentPage() {
   const [workData, setWorkData] = useState<
     { title: string; url: string } | undefined
   >();
-  console.log(workData);
+  console.log(workData)
   const handleClickOpen = () => {
     setOpen(true);
   };

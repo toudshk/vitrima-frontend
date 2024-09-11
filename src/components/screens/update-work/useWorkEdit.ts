@@ -11,16 +11,22 @@ export const useWorkEdit = (setValue: UseFormSetValue<IWorkEditInput>) => {
   const router = useRouter();
   const { user } = useAuth();
   const id = user?._id;
-  const params = useParams()
+  const params = useParams();
 
-  const workId = String(params.id)
-  
+  const workId = String(params.id);
+
   const { isLoading } = useQuery(
     ["work", workId],
     () => WorkService.getById(workId),
     {
       onSuccess({ data }) {
-       
+        // Проверяем, есть ли в данных поле contractorId
+        if (data.contractorId) {
+          // Устанавливаем значение _id в поле contractorId
+          data.contractorId =   data.contractorId._id 
+        }
+
+        // Перебираем ключи объекта data и устанавливаем значения
         getKeys(data).forEach((key) => {
           setValue(key, data[key]);
         });
@@ -37,10 +43,10 @@ export const useWorkEdit = (setValue: UseFormSetValue<IWorkEditInput>) => {
     (data: IWorkEditInput) => WorkService.update(workId, data),
     {
       onError() {
-                toast.error('Ошибка, повторите позже')
-
+        toast.error("Ошибка, повторите позже");
       },
-      onSuccess() {        toast.success("Работа обновлена")
+      onSuccess() {
+        toast.success("Работа обновлена");
 
         router.push(`/profile/${id}`);
       },

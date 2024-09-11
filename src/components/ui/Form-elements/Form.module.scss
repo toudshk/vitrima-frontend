@@ -26,12 +26,13 @@
 
 .uploadField {
   @apply h-full   w-full;
-  .uploadImageContainerWithoutImage{
-    height: 80vh !important;
+  .uploadImageContainerWithImage {
+    height: 50vh !important;
   }
   .uploadImageContainer {
-    @apply shrink-0 relative mb-10  border-dashed border border-gray-300 rounded-xl;
+    @apply shrink-0 relative mb-10  border-dashed border w-full border-gray-300 rounded-xl;
 
+    height: 80vh;
     img {
       @apply image-like-bg  w-[72px] h-[72px];
     }
@@ -72,6 +73,68 @@
       }
     }
   }
+
+  .imageList {
+    @apply flex gap-4;
+    .uploadedImageContainer {
+      @apply relative;
+      .uploadedImage {
+        @apply rounded-2xl h-auto image-like-bg cursor-pointer;
+      }
+      .removeImageButton {
+        @apply absolute  rounded-full  cursor-pointer w-8 h-8;
+        top: 5px;
+        right: 5px;
+        background-color: rgba(234, 234, 234, 0.5 );
+backdrop-filter: blur(10px);
+    
+       
+        display: none; /* Скрыть кнопку по умолчанию */
+        opacity: 0; /* Начальная непрозрачность */
+        transition: opacity 0.3s ease, display 0.3s ease; /* Переход для opacity и display */
+      }
+
+      &:hover .removeImageButton {
+        display: block; /* Показывать кнопку при наведении на контейнер изображения */
+        opacity: 1; /* Полная непрозрачность */
+      }
+    }
+  }
+
+ 
+
+  .zoomedImageOverlay {
+    /* Стили для оверлея увеличенного изображения */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+
+  .zoomedImageContainer {
+    /* Стили для контейнера увеличенного изображения */
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: hidden;
+  }
+
+  .closeZoom {
+    /* Стили для кнопки закрытия увеличенного изображения */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
 }
 
 .error {
@@ -80,19 +143,19 @@
 @media (max-width: 700px) {
   .uploadField {
     @apply w-full h-full;
-  
+
     .uploadImageContainer {
       @apply mb-0 max-w-[90vw] h-full;
 
-      .imageWork{
+      .imageWork {
         @apply h-auto;
       }
-      
+
       .uploadContainerSvg {
         @apply absolute;
       }
       > label {
-        @apply h-full flex; 
+        @apply h-full flex;
         > input {
           flex: 1; /* Растягиваем input на всю доступную ширину внутри label */
           height: 100%;

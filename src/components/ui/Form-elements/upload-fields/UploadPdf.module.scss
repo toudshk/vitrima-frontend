@@ -1,0 +1,13 @@
+.field {
+  .topBlock {
+    @apply block;
+    .title {
+      @apply text-2xl mb-4;
+    }
+    .button{
+        @apply rounded-xl;
+    }
+  }
+  .pdfList {
+  }
+}

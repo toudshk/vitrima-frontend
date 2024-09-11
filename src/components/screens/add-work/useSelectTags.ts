@@ -3,12 +3,13 @@ import { TagService } from '@/services/tag/tag.service'
 import { useQuery } from 'react-query'
 
 
-export const useSelectTags = () => {
-	const queryData = useQuery('list of tag', () => TagService.getAll(), {
+export const useSelectTags = (_id: any) => {
+	const queryData = useQuery('list of tag', () => TagService.getTagsByWorkType(_id), {
 		select: ({ data }) =>
 			data.map(
-				(tag): IOption => ({
+				(tag) => ({
 					label: tag.title,
+					workType: tag.workType,
 					value: tag._id,
 				})
 			),

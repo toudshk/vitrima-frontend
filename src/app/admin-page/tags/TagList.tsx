@@ -7,18 +7,24 @@ import AdminTable from "@/components/ui/Admin-table/AdminTable/AdminTable";
 import SecondButton from "@/components/ui/Button/SecondButton";
 import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 import { ITagEditInput } from "./edit-tage.interface";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import Field from "@/components/ui/Form-elements/Field";
+import WorkTypeBlock from "@/components/screens/add-work/work-type-block/WorkTypeBlock";
+import { IWorkType } from "@/components/shared/types/work.types";
+import { useTypeWorks } from "@/components/screens/add-work/useTypeWork";
 
 const TagList: FC = () => {
   const { handleSearch, isLoading, searchTerm, data, deleteAsync, onSubmit } =
     useTags();
-    
+
+  const { data: workTypes, isLoading: isWorkTypeLoading } = useTypeWorks();
   const {
     handleSubmit,
     register,
     formState: { errors },
     setValue,
+    getValues,
+    control,
   } = useForm<ITagEditInput>({
     mode: "onChange",
   });
@@ -31,15 +37,18 @@ const TagList: FC = () => {
   };
 
   return (
-    
-      <div className='max-w-[1736px] mx-10'>
+    <div className="max-w-[1736px] mx-10">
       <AdminHeader handleSearch={handleSearch} searchTerm={searchTerm} />
-      <button onClick={handleCreateClick} className=" mt-6 text-3xl border border-gray-600 p-2 rounded-xl hover:border-gray-400 hover:text-gray-400 transition  duration-300 ease-in-out">Добавить тег</button>
+      <button
+        onClick={handleCreateClick}
+        className=" mt-6 text-3xl border border-gray-600 p-2 rounded-xl hover:border-gray-400 hover:text-gray-400 transition  duration-300 ease-in-out"
+      >
+        Добавить тег
+      </button>
 
       {creating && (
-        <div >
-          {/* Ваша форма для создания новой услуги */}
-          <form onSubmit={handleSubmit(onSubmit)} >
+        <div>
+          <form onSubmit={handleSubmit(onSubmit)}>
             {isLoading ? (
               <SkeletonLoader count={3} />
             ) : (
@@ -59,11 +68,28 @@ const TagList: FC = () => {
                       marginRight: "60px",
                     }}
                   />
-
+                  <Controller
+                    name="workType"
+                    control={control}
+                    render={({ field, fieldState: { error } }) => (
+                      <div className="flex">
+                        {workTypes?.map((item) => (
+                          <SecondButton
+                            key={item._id}
+                            onClick={() => {
+                              field.onChange(item._id);
+                            
+                            }}
+                            className="border-2 p-2 "
+                          >
+                            {item.title}
+                          </SecondButton>
+                        ))}
+                      </div>
+                    )}
+                  />
                 </div>
-                <div className="w-[50%]">
-                  <SecondButton>Сохранить</SecondButton>
-                </div>
+             
               </div>
             )}
           </form>
@@ -75,7 +101,7 @@ const TagList: FC = () => {
         isLoading={isLoading}
         removeHandler={deleteAsync}
       />
-</div>
+    </div>
   );
 };
 
