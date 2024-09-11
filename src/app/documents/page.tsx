@@ -1,12 +1,11 @@
 "use client";
-
 import React, { FC, useState } from "react";
 import styles from "./page.module.scss";
 
 import PdfViewer from "@/components/ui/Pdf-viewer/PdfViewer";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-// eslint-disable-next-line @typescript-eslint/ban-types
+
 interface IModalWindow {
   open: any;
   pdfUrl: string;

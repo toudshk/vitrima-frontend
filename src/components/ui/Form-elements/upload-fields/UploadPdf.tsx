@@ -2,9 +2,9 @@ import { useUpload } from "./useUpload";
 import clsx from "clsx";
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
-import { Worker, Viewer,  Page  } from "@react-pdf-viewer/core";
+import { Worker, Viewer  } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
-import { pdfjs } from "react-pdf";
+import { Page, pdfjs } from "react-pdf";
 
 import { IUploadField } from "../form.interface";
 import styles from "./UploadPdf.module.scss";

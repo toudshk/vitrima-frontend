@@ -33,10 +33,10 @@ const UpdateWork: FC = () => {
   } = useForm<IWorkEditInput>({
     mode: "onChange",
   });
- 
-
+ let value = getValues()
+console.log(value)
   const { onSubmit, isLoading } = useWorkEdit(setValue);
-  const { data: tags, isLoading: isTagsLoading } = useSelectTags();
+  const { data: tags, isLoading: isTagsLoading } = useSelectTags(value.workType);
   const { data: workTypes, isLoading: isWorkTypeLoading } = useTypeWorks();
   const { data: buildingTechniques } = useBuildingTechnique();
   const [selectedItem, setSelectedItem] = useState<any>(null);
@@ -192,7 +192,7 @@ const UpdateWork: FC = () => {
                 </div>
                 <div>
                   
-                  <Controller
+                  {/* <Controller
                     name="drawings"
                     control={control}
                     defaultValue={[]}
@@ -200,12 +200,13 @@ const UpdateWork: FC = () => {
                       field: { value, onChange },
                       fieldState: { error },
                     }) => (
+
                       <UploadPdf  
                      
                       placeholder="Чертежи"
                       error={error}
                       folder="drawings"
-                      image={value}
+                      image={value || ''}
                       onChange={onChange}
                       title={""}
                       />
@@ -213,7 +214,7 @@ const UpdateWork: FC = () => {
                     rules={{
                       required: "Фотография обязательна",
                     }}
-                  />
+                  /> */}
                   </div>
           <SecondButton>Редактировать работу</SecondButton>
 
