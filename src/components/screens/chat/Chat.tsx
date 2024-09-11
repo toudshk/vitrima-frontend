@@ -41,20 +41,20 @@ const Chat: FC = () => {
   }
   const { data: friendData } = useUserInfo(friendId);
 
-  // useEffect(() => {
-  //   SocketApi.createConnection();
+  useEffect(() => {
+    SocketApi.createConnection();
 
-  //   SocketApi.socket?.on("client-path", (data) => {
-  //     setArrivalMessage({
-  //       chatId: data.chatId,
-  //       sender: data.sender,
-  //       receiverId: friendId,
-  //       text: data.text,
-  //       createdAt: Date.now(),
-  //       status: "sent"
-  //     });
-  //   });
-  // }, []);
+    SocketApi.socket?.on("client-path", (data) => {
+      setArrivalMessage({
+        chatId: data.chatId,
+        sender: data.sender,
+        receiverId: friendId,
+        text: data.text,
+        createdAt: Date.now(),
+        status: "sent"
+      });
+    });
+  }, []);
 
   if (!user) {
     redirect("/");
