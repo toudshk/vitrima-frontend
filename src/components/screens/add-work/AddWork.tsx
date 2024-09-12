@@ -19,7 +19,7 @@ import { useBuildingTechnique } from "@/hooks/buildingTechnique/useBuildingTechn
 import WorkTypeBlock from "./work-type-block/WorkTypeBlock";
 import clsx from "clsx";
 import { useTypePurpose } from "./usePurposeTypes";
-import UploadPdf from "@/components/ui/Form-elements/upload-fields/UploadPdf";
+// import UploadPdf from "@/components/ui/Form-elements/upload-fields/UploadPdf";
 const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
 });
@@ -191,7 +191,7 @@ const AddWork: FC = () => {
                     />
                   </div>
                   <div>
-                  <Controller
+                  {/* <Controller
                     name="drawings"
                     control={control}
                     defaultValue={[]}
@@ -212,7 +212,7 @@ const AddWork: FC = () => {
                     rules={{
                       required: "Фотография обязательна",
                     }}
-                  />
+                  /> */}
                   </div>
                   <SecondButton>Добавить работу</SecondButton>
                 </div>

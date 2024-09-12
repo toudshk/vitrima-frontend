@@ -17,7 +17,7 @@ import { IWorkType } from "@/components/shared/types/work.types";
 import { useTypeWorks } from "../add-work/useTypeWork";
 import { useBuildingTechnique } from "@/hooks/buildingTechnique/useBuildingTechnique";
 import { useSubTypes } from "../add-work/useSubTypes";
-import UploadPdf from "@/components/ui/Form-elements/upload-fields/UploadPdf";
+//import UploadPdf from "@/components/ui/Form-elements/upload-fields/UploadPdf";
 const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
 });

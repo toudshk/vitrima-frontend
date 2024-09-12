@@ -13,7 +13,7 @@ interface IModalWindow {
 
   scroll: any;
 }
-export const SimpleDialog: FC<IModalWindow> = ({
+ const SimpleDialog: FC<IModalWindow> = ({
   open,
   pdfUrl,
   handleClose,
