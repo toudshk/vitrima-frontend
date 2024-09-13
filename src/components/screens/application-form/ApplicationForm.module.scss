@@ -1,0 +1,16 @@
+.form {
+  @apply mt-[30vh]  max-w-[1734px] mx-auto px-5 h-[70vh];
+  .mainBlock {
+    @apply w-1/2 mx-auto relative h-full;
+    .buttons {
+      @apply mt-auto w-full absolute bottom-0 flex justify-between mb-3;
+      .backLink{
+        @apply px-8 py-2 text-xl bg-gray-300 font-semibold rounded-lg my-auto;
+        transition: all 0.3s ease-in-out; 
+        &:hover {
+            @apply bg-[#dedede];
+          }
+      }
+    }
+  }
+}

@@ -88,6 +88,9 @@ const FirstPage: FC = () => {
                   <Link href={"/select-feed"} className={styles.link}>
                     Просмотр ленты
                   </Link>
+                  <Link href={"/form"} className={styles.link}>
+                    Создать форму
+                  </Link>
                   {!user && (
                     <>
                       <Link href={"/signup"} className={styles.secondLink}>
