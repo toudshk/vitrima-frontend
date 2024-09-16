@@ -9,7 +9,7 @@ export interface IAddApplicationForm {
     minPrice: number;
     maxPrice: number;
     images: string[];
-    phoneNumber: number;
+    phoneNumber: string;
     email: string;
     tags: string[];
     description: string;

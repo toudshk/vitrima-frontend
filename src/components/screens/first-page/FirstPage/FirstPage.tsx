@@ -89,7 +89,7 @@ const FirstPage: FC = () => {
                     Просмотр ленты
                   </Link>
                   <Link href={"/form"} className={styles.link}>
-                    Создать форму
+                  Заказать подбор дизайнера
                   </Link>
                   {!user && (
                     <>

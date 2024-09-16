@@ -1,0 +1,161 @@
+.uploadField {
+  @apply h-full   w-full;
+
+  .filesUploadList {
+    @apply flex flex-wrap;
+    gap: 10px;
+
+    .uploadImage {
+      @apply relative  w-[150px] h-[150px];
+      img {
+        @apply w-full h-full object-cover rounded-2xl;
+      }
+    }
+    .removeImageButton {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: white; /* Фон кнопки, чтобы был виден */
+      border: none;
+      cursor: pointer;
+      border-radius: 50%;
+      padding: 5px;
+    }
+
+    .smallUploadedImageContainer {
+      @apply shrink-0 relative w-[150px]  border-dashed border  border-gray-300 rounded-xl;
+
+      img {
+        @apply   w-[150px] h-[150px];
+      }
+
+      
+    
+      .uploadContainerSvg {
+        @apply -z-10 text-gray-400  text-center;
+        position: absolute;
+        margin: auto;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        img {
+          @apply w-[130px] h-[150px]  mx-auto;
+        }
+      }
+      > label {
+        @apply w-full relative h-full;
+
+        .error {
+          @apply relative -bottom-3;
+        }
+
+        > input {
+          @apply block  w-full h-full  cursor-pointer opacity-0 z-50;
+        }
+      }
+    }
+  }
+
+  .uploadImageContainer {
+    @apply shrink-0 relative mb-10  border-dashed border w-full border-gray-300 rounded-xl;
+
+    height: 20vh;
+    img {
+      @apply image-like-bg  w-[72px] h-[72px];
+    }
+
+    .loader {
+      @apply h-full bottom-0;
+      position: absolute !important;
+    }
+    .imageWork {
+      @apply rounded-md -z-10   w-[90vw]  h-full;
+      object-fit: cover;
+    }
+
+    > span {
+      @apply animate-fade;
+    }
+    .uploadContainerSvg {
+      @apply -z-10 text-gray-400 w-64 text-center h-32;
+      position: absolute;
+      margin: auto;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      img {
+        @apply w-32 h-[88px] mx-auto mt-4;
+      }
+    }
+    > label {
+      @apply w-full relative h-full;
+
+      .error {
+        @apply relative -bottom-3;
+      }
+
+      > input {
+        @apply block  w-full h-full  cursor-pointer opacity-0 z-50;
+      }
+    }
+  }
+
+  .imageList {
+    @apply flex gap-4;
+    .uploadedImageContainer {
+      @apply relative;
+      .uploadedImage {
+        @apply rounded-2xl h-auto image-like-bg cursor-pointer;
+      }
+      .removeImageButton {
+        @apply absolute  rounded-full  cursor-pointer w-8 h-8;
+        top: 5px;
+        right: 5px;
+        background-color: rgba(234, 234, 234, 0.5);
+        backdrop-filter: blur(10px);
+
+        display: none; /* Скрыть кнопку по умолчанию */
+        opacity: 0; /* Начальная непрозрачность */
+        transition: opacity 0.3s ease, display 0.3s ease; /* Переход для opacity и display */
+      }
+
+      &:hover .removeImageButton {
+        display: block; /* Показывать кнопку при наведении на контейнер изображения */
+        opacity: 1; /* Полная непрозрачность */
+      }
+    }
+  }
+}
+
+.error {
+  @apply absolute -bottom-6 left-0 text-sm w-full text-primary;
+}
+@media (max-width: 700px) {
+  .uploadField {
+    @apply w-full h-full;
+
+    .uploadImageContainer {
+      @apply mb-0 max-w-[90vw] h-full;
+
+      .imageWork {
+        @apply h-auto;
+      }
+
+      .uploadContainerSvg {
+        @apply absolute;
+      }
+      > label {
+        @apply h-full flex;
+        > input {
+          flex: 1; /* Растягиваем input на всю доступную ширину внутри label */
+          height: 100%;
+        }
+      }
+    }
+  }
+  .common {
+    @apply rounded-xl mb-6;
+  }
+}

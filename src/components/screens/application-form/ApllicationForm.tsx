@@ -1,8 +1,6 @@
 import dynamic from "next/dynamic";
 import { FC, useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import UploadField from "@/components/ui/Form-elements/upload-fields/UploadFields";
-import Field from "@/components/ui/Form-elements/Field";
 import styles from "./ApplicationForm.module.scss";
 import { IWorkType } from "@/components/shared/types/work.types";
 import SecondButton from "@/components/ui/Button/SecondButton";
@@ -15,6 +13,9 @@ import ApplicationFormInput from "./application-input/AplicationFormInput";
 import MainButton from "@/components/ui/Button/MainButton";
 import Link from "next/link";
 import WorkTypeBlock from "./work-type-block/WorkTypeBlock";
+import CustomDatePicker from "./date-picker/CustomDatePicker";
+import UploadField from "./UploadField/UploadField";
+
 const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
 });
@@ -29,6 +30,9 @@ const ApplicationForm: FC = () => {
     getValues,
   } = useForm<IAddApplicationForm>({
     mode: "onChange",
+    defaultValues: {
+      phoneNumber: "",
+    },
   });
   const { onSubmit } = useApplicationForm();
   const getValue = getValues();
@@ -45,14 +49,31 @@ const ApplicationForm: FC = () => {
   } = useSelectTags(selectedItem?._id);
 
   const [step, setStep] = useState(0);
+  const formatPhoneNumber = (value: string): string => {
+    // Remove non-digit characters
+    const digits = value.replace(/\D/g, "");
+    let formatted = "";
 
+    if (digits.length > 0) formatted += "+7 ";
+    if (digits.length > 1) formatted += digits.substring(1, 4);
+    if (digits.length > 4) formatted += "-" + digits.substring(4, 7);
+    if (digits.length > 7) formatted += "-" + digits.substring(7, 9);
+    if (digits.length > 9) formatted += "-" + digits.substring(9, 11);
+
+    return formatted;
+  };
   let nextStep = () => {
     setStep((prevStep) => prevStep + 1);
   };
   let prevStep = () => {
     setStep((prevStep) => prevStep - 1);
   };
-  console.log(step);
+  
+  const handleKeyDown = (event:any) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  };
 
   useEffect(() => {
     // Fetch subtypes whenever selectedItem changes
@@ -63,7 +84,7 @@ const ApplicationForm: FC = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown}>
         {selectedItem === null ? (
           <WorkTypeBlock setSelectedItem={setSelectedItem} control={control} />
         ) : (
@@ -101,15 +122,21 @@ const ApplicationForm: FC = () => {
                     name="purposeType"
                     control={control}
                     render={({ field, fieldState: { error } }) => (
+                      
+                      <><p className="text-3xl font-bold mb-4">
+                      Назначение
+                    </p>
                       <DynamicSelect
                         error={error}
                         field={field}
-                        placeholder="Назначение"
+                       
                         options={purposeTypes || []}
                         isLoading={isPurposeTypeLoading}
                         isMulti
                       />
+                    </>
                     )}
+
                   />
 
                   {/* Поле выбора технологии строительства (отображается только при определённом selectedItem) */}
@@ -120,19 +147,23 @@ const ApplicationForm: FC = () => {
                           name="buildingTechnique"
                           control={control}
                           render={({ field, fieldState: { error } }) => (
+                            <>
+                            <p className="text-3xl font-bold mb-4">
+                      Технология строительства
+                    </p>
                             <DynamicSelect
                               error={error}
                               field={field}
-                              placeholder="Технология строительства"
                               options={buildingTechniques || []}
                               isMulti={false}
                             />
+                            </>
                           )}
                         />
                       </div>
                     )}
 
-                  <Controller
+                  {/* <Controller
                     name="tags"
                     control={control}
                     render={({ field, fieldState: { error } }) => (
@@ -145,51 +176,44 @@ const ApplicationForm: FC = () => {
                         isMulti
                       />
                     )}
-                  />
+                  /> */}
                 </>
               )}
 
-              {step === 2 && (
-                <div>
-                  <ApplicationFormInput
-                    {...register("startDate")}
-                    placeholder="Начало "
-                    error={errors.finishDate}
-                    title="Начало"
-                  />
-
-                  <ApplicationFormInput
-                    {...register("startDate")}
-                    placeholder="Конец "
-                    error={errors.finishDate}
-                    title="Конец"
-                  />
-                </div>
-              )}
+              {step === 2 && <CustomDatePicker control={control} />}
               {step === 3 && (
                 <div>
-                  <ApplicationFormInput
-                    {...register("minPrice")}
-                    placeholder="Мин цена "
-                    error={errors.minPrice}
-                    title="Мин цена"
-                  />
+                  <div>
+                    <p className="text-3xl font-bold mb-4">
+                      Какую сумму вы готовы выделить для работы?
+                    </p>
+                  </div>
+                  <div className="flex ">
+                    <ApplicationFormInput
+                      {...register("minPrice")}
+                      placeholder="От 0 ₽"
+                      error={errors.minPrice}
+                      style={{ marginRight: "10px" }}
+                    />
 
-                  <ApplicationFormInput
-                    {...register("maxPrice")}
-                    placeholder="Макс цена "
-                    error={errors.maxPrice}
-                    title="Макс цена"
-                  />
+                    <ApplicationFormInput
+                      {...register("maxPrice")}
+                      placeholder="До 0 ₽"
+                      error={errors.maxPrice}
+                    />
+                  </div>
                 </div>
               )}
               {step === 4 && (
                 <div>
-                  <ApplicationFormInput
+                  <p className="text-4xl font-bold mb-2">
+                    Дополнительная информация
+                  </p>
+
+                  <textarea
                     {...register("description")}
-                    placeholder="Подробности "
-                    error={errors.description}
-                    title="Подробности"
+                    placeholder="Например: мне важно, чтобы у дизайнера был опыт работы с жилими помещеняиями площадью 500 м² "
+                    className="border resize-none border-gray-400 rounded-2xl transition-colors focus-within:border-primary h-[170px] text-gray-700 w-full p-2"
                   />
 
                   <Controller
@@ -208,26 +232,57 @@ const ApplicationForm: FC = () => {
                         image={value}
                         onChange={onChange}
                         title={""}
+                        style={{ maxHeight: "20vh !important" }}
                       />
                     )}
                   />
                 </div>
               )}
               {step === 5 && (
-                <div>
-                  <ApplicationFormInput
-                    {...register("phoneNumber")}
-                    placeholder="Номер телефона "
-                    error={errors.phoneNumber}
-                    title="Номер телефона"
-                  />
+                <div className="h-[80%] flex flex-col justify-between">
+                  <div>
+                    <Controller
+                      name="phoneNumber"
+                      control={control}
+                      defaultValue=""
+                      render={({ field }) => (
+                        <ApplicationFormInput
+                          {...field}
+                          title="Номер телефона"
+                          placeholder="Номер телефона"
+                          value={field.value}
+                          onChange={(e) => {
+                            const formattedValue = formatPhoneNumber(
+                              e.target.value
+                            );
+                            // Update the form value with the formatted value
+                            setValue("phoneNumber", formattedValue, {
+                              shouldValidate: true,
+                            });
+                          }}
+                        />
+                      )}
+                    />
+                    <ApplicationFormInput
+                     {...register("email", {
+                      pattern: {
+                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        message: "Введите корректный адрес электронной почты"
+                      }
+                    })}
+                      placeholder="Почта"
+                      error={errors.email}
+                      title="Почта"
+                    />
+                  </div>
 
-                  <ApplicationFormInput
-                    {...register("email")}
-                    placeholder="Почта"
-                    error={errors.email}
-                    title="Почта"
-                  />
+                  <div className="mt-auto">
+                    <p>
+                      Нажимая на кнопку отправить, вы соглашаетесь с{" "}
+                      <a href="/documents">Политикой конфиденциальности</a> и
+                      даете согласие на обработку своих персональных данных
+                    </p>
+                  </div>
                 </div>
               )}
               <div className={styles.buttons}>
@@ -236,16 +291,16 @@ const ApplicationForm: FC = () => {
                     Назад
                   </SecondButton>
                 ) : (
-                  <Link href={'/'} className={styles.backLink}>
-                  На главную
-                </Link>
+                  <Link href={"/"} className={styles.backLink}>
+                    На главную
+                  </Link>
                 )}
                 {step < 5 ? (
-                  <MainButton onClick={() => nextStep()} type="button">
+                  <MainButton onClick={() => nextStep()} type="button" >
                     Продолжить
                   </MainButton>
                 ) : (
-                  <SecondButton>Отправить</SecondButton>
+                  <SecondButton >Отправить</SecondButton>
                 )}
               </div>
             </div>

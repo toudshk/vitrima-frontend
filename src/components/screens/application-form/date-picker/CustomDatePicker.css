@@ -1,0 +1,77 @@
+/* CustomDatePicker.css */
+.react-datepicker-wrapper{
+  @apply w-full;
+}
+.custom-datepicker {
+  @apply border-gray-400 focus-within:border-primary !important;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 16px  !important;
+  width: 100%;
+  font-size: 16px;
+ outline: none;
+}
+
+
+/* Стили для календаря */
+.custom-calendar {
+  border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+/* Стили для заголовка календаря */
+.react-datepicker__header {
+  @apply pt-2 border-b border-gray-300 mx-2;
+  background-color: #fff;
+  /* Цвет фона заголовка */
+  color: white; /* Цвет текста заголовка */
+  text-transform: capitalize;
+}
+
+/* Стили для дней месяца */
+.react-datepicker__day {
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+/* Стили для выбранного дня */
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  @apply bg-blue-500; /* Цвет фона выбранного дня */
+  color: white; /* Цвет текста выбранного дня */
+}
+
+/* Стили для hover эффектов */
+.react-datepicker__day:hover {
+  background-color: #f0f0f0; /* Цвет фона при наведении */
+}
+
+.react-datepicker__day--disabled:hover {
+  background-color: transparent; /* Убираем фон при наведении для недоступных дней */
+}
+
+/* Стили для текущего дня */
+.react-datepicker__day--today {
+  border: 1px solid #007bff; /* Обводка для текущего дня */
+  font-weight: bold;
+}
+
+/* Стили для навигации (кнопки переключения месяцев и годов) */
+.react-datepicker__navigation--next,
+.react-datepicker__navigation--previous {
+  color: #007bff; /* Цвет стрелок */
+}
+
+/* Стили для инпутов */
+.react-datepicker__input-container input {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+/* Стили для поппера (выезжающая часть календаря) */
+.react-datepicker-popper {
+  z-index: 1050; /* Убедитесь, что календарь отображается поверх других элементов */
+}

@@ -2,12 +2,12 @@ import cn from "clsx";
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
 import imgChoosePhoto from "@/app/assets/images/choosePhotosvg.svg";
-import { IUploadField } from "../form.interface";
-import styles from "../Form.module.scss";
-import { useUpload } from "./useUpload";
-import { usePathname } from 'next/navigation'
- 
+
+import styles from "./UploadField.module.scss";
+
 import CloseIcon from "@mui/icons-material/Close";
+import { IUploadField } from "@/components/ui/Form-elements/form.interface";
+import { useUpload } from "@/components/ui/Form-elements/upload-fields/useUpload";
 const UploadField: FC<IUploadField> = ({
   placeholder,
   error,
@@ -17,7 +17,6 @@ const UploadField: FC<IUploadField> = ({
   setImageIsUpload,
   image: initialImages = [], // Default to an empty array if no initial images
 }) => { 
-  const pathname = usePathname()
   const { uploadImage, isLoading } = useUpload((url) => {
   
     setImageList((prev) => [...prev, url]);
@@ -47,53 +46,58 @@ const UploadField: FC<IUploadField> = ({
 
   return (
     <div className={cn(styles.field, styles.uploadField)} style={style}>
-      <div className={cn(styles.uploadImageContainer, imageList.length > 0 && styles.uploadImageContainerWithImage)}>
-        <label>
-          <input
-            type="file"
-            name="image"
-            accept="image/png, image/jpeg, image/jpg"
-            onChange={handleFileChange}
-            multiple // Allow multiple file selection
-          />
-          {error && <div className={styles.error}>{error.message}</div>}
-        </label>
-
-        <div className={styles.uploadContainerSvg}>
-          <Image src={imgChoosePhoto} alt="" />
-          {pathname !== '/form' && (
-        <>
-          <p>Загружайте только те файлы, на которые у вас есть права.</p>
-          <p>Не более 5МБ.</p>
-        </>
-      )}
-        </div>
-      </div>
-
-      {imageList.length > 0 && (
-        <div className={styles.imageList}>
+      {imageList.length > 0 ? (
+        <div className={styles.filesUploadList}>
           {imageList.map((image, index) => (
-            <div key={index} className={styles.uploadedImageContainer}>
+            <div key={index} className={styles.uploadImage}>
               <Image
                 width={200}
                 height={200}
                 src={image}
                 alt="Uploaded"
-           
               />
               <button
                 className={styles.removeImageButton}
                 onClick={() => handleRemoveImage(index)}
+                type="button"
               >
-               <CloseIcon />
+                <CloseIcon />
               </button>
             </div>
           ))}
+          <div className={styles.smallUploadedImageContainer}>
+            <label>
+              <input
+                type="file"
+                name="image"
+                accept="image/png, image/jpeg, image/jpg"
+                onChange={handleFileChange}
+                multiple // Allow multiple file selection
+              />
+              {error && <div className={styles.error}>{error.message}</div>}
+            </label>
+            <div className={styles.uploadContainerSvg}>
+              <Image src={imgChoosePhoto} alt="" />
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.uploadImageContainer}>
+          <label>
+            <input
+              type="file"
+              name="image"
+              accept="image/png, image/jpeg, image/jpg"
+              onChange={handleFileChange}
+              multiple // Allow multiple file selection
+            />
+            {error && <div className={styles.error}>{error.message}</div>}
+          </label>
+          <div className={styles.uploadContainerSvg}>
+            <Image src={imgChoosePhoto} alt="" />
+          </div>
         </div>
       )}
-
-
-
     </div>
   );
 };
