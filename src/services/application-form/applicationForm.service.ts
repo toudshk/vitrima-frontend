@@ -1,3 +1,4 @@
+import { IApplicationForm } from './../../components/shared/types/applicationForm';
 import { axiosClassic } from "@/api/interceptors"
 
 import { API_URL, getApplicationFormUrl } from "../../config/api.config"
@@ -14,5 +15,8 @@ export const ApplicationFormService = {
 		return response
 	},
 
+	async getAll() {
+		return axiosClassic.get<IApplicationForm[]>(getApplicationFormUrl(``), {})
+	},
 	
 }

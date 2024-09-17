@@ -23,4 +23,8 @@ export const navItems: INavItem[] = [
         title: 'Фидбек',
         link: getAdminUrl('feedback')
     },
+    { 
+        title: 'Заявки',
+        link: getAdminUrl('application-form')
+    },
 ]

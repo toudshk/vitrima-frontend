@@ -19,6 +19,7 @@ export const useSubTypes = (_id: any) => {
 			console.log(error, 'Ошибка')
 		},
 	})
+	console.log(queryData)
 
 	return queryData
 }

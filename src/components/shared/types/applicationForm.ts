@@ -2,7 +2,7 @@ export interface IApplicationForm {
   _id: string;
   workType: string;
   objectArea: number;
-  purposeType: string[];
+  purposeType: string;
   buildingTechnique: string;
   startDate: string;
   finishDate: string;

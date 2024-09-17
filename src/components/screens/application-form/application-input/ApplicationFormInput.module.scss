@@ -18,9 +18,14 @@
   }
   .field {
     @apply mb-[1.5vh];
-  
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
     input {
       @apply outline-border-none focus:ring-0 bg-transparent h-10 text-gray-700 w-full  px-[1vw]  text-base;
+      
     }
   }
   

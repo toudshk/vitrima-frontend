@@ -1,48 +1,48 @@
+"use client"
 import { FC, useEffect, useState } from "react";
-import ReactSelect, { ActionMeta } from "react-select";
-import ValueType from "react-select";
+import ReactSelect from "react-select";
 import makeAnimated from "react-select/animated";
 import infoIconSvg from "@/app/assets/images/info.svg";
 import { isMobile } from "react-device-detect";
 
+import { usePathname } from 'next/navigation'
 import styles from "./SelectForFilter.module.scss";
 import { IOption, ISelect } from "./SelectForFilter.interface";
 import Image from "next/image";
 import { ISubType } from "@/components/shared/types/work.types";
 
 import { useMediaQuery } from '@mui/material';
-  
 const animatedComponents = makeAnimated();
-const customStyles = {
+const getCustomStyles = (pathname: string) => ({
   control: (provided: any, state: any) => ({
     ...provided,
-    backgroundColor: isMobile ? "#FFFFFF" : "#EAEAEA",
+    backgroundColor: pathname === '/form' ? '#FFFFFF' : (isMobile ? "#FFFFFF" : "#EAEAEA"),
     border: "1px solid #ABABAB",
     borderRadius: "12px",
   }),
   option: (provided: any, state: any) => ({
-    ...provided,
-    fontSize: isMobile ? "12px" : "24px", // Adjust the font size as needed
+    ...provided, 
+    fontSize: pathname === '/form' ? '16px' : (isMobile ? "12px" : "24px"), // Adjust the font size as needed
   }),
   placeholder: (provided: any, state: any) => ({
     ...provided,
-    fontSize: isMobile ? "12px" : "24px", // Размер шрифта для плейсхолдера
+    fontSize: pathname === '/form' ? '12px' : (isMobile ? "12px" : "24px"), // Размер шрифта для плейсхолдера
   }),
   multiValue: (provided: any) => ({
     ...provided,
-    fontSize: isMobile ? "12px" : "24px", // Adjust the font size for the multi-value container
+    fontSize: pathname === '/form' ? '12px' : (isMobile ? "12px" : "24px"), // Adjust the font size for the multi-value container
   }),
   multiValueLabel: (provided: any) => ({
     ...provided,
-    fontSize: isMobile ? "12px" : "24px", // Adjust the font size for the label within the multi-value container
+    fontSize: pathname === '/form' ? '12px' : (isMobile ? "12px" : "24px"), // Adjust the font size for the label within the multi-value container
   }),
   multiValueRemove: (provided: any) => ({
     ...provided,
-    fontSize: isMobile ? "12px" : "24px", // Adjust the font size for the remove button within the multi-value container
+    fontSize: pathname === '/form' ? '12px' : (isMobile ? "12px" : "24px"), // Adjust the font size for the remove button within the multi-value container
   }),
 
-  // Add more styles for other components as needed
-};
+
+});
 
 
 const DynamicSelect: FC<ISelect> = ({
@@ -65,10 +65,14 @@ const DynamicSelect: FC<ISelect> = ({
           ? (newValue as IOption[]).map((item: IOption) => item.value)
           : (newValue as IOption).value
       );
-      onSelectChange && onSelectChange(newValue); // Вызов нового prop при изменении
+      if (onSelectChange) {
+        onSelectChange(newValue);
+      } // Вызов нового prop при изменении
     }
   };
 
+
+  const pathname = usePathname()
   const getValue = () => {
     if (field.value) {
       return isMulti
@@ -95,6 +99,7 @@ const DynamicSelect: FC<ISelect> = ({
       
       {(title === 'стиль' && !isMobile) && (
         <button
+        type="button"
           className={styles.infoButton}
           onMouseEnter={() => handleMouseEnter(label, description, image)}
           onMouseLeave={handleMouseLeave}
@@ -118,7 +123,7 @@ const DynamicSelect: FC<ISelect> = ({
           onChange={onChange}
           isMulti={isMulti}
           components={animatedComponents}
-          styles={customStyles}
+          styles={getCustomStyles(pathname)}
         />
       </label>
       {error && <div>Ничего не найдено</div>}

@@ -1,8 +1,8 @@
 import dynamic from "next/dynamic";
 import { FC, useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, FormState } from "react-hook-form";
 import styles from "./ApplicationForm.module.scss";
-import { IWorkType } from "@/components/shared/types/work.types";
+import { ISubType, IWorkType } from "@/components/shared/types/work.types";
 import SecondButton from "@/components/ui/Button/SecondButton";
 import { useBuildingTechnique } from "@/hooks/buildingTechnique/useBuildingTechnique";
 import { useApplicationForm } from "./useApplicationForm";
@@ -15,40 +15,68 @@ import Link from "next/link";
 import WorkTypeBlock from "./work-type-block/WorkTypeBlock";
 import CustomDatePicker from "./date-picker/CustomDatePicker";
 import UploadField from "./UploadField/UploadField";
+import { useSubTypes } from "../add-work/useSubTypes";
+import Popup from "./pop-up/PopUp";
 
 const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
 });
+const DynamicSelectForStubType = dynamic(
+  () => import("@/components/screens/filter/select-filter/SelectForFilter")
+);
 
 const ApplicationForm: FC = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isValid, isDirty },
     control,
     setValue,
     getValues,
+    watch,
+    trigger,
   } = useForm<IAddApplicationForm>({
     mode: "onChange",
     defaultValues: {
       phoneNumber: "",
     },
   });
-  const { onSubmit } = useApplicationForm();
-  const getValue = getValues();
 
+  const { onSubmit } = useApplicationForm();
   const { data: purposeTypes, isLoading: isPurposeTypeLoading } =
     useTypePurpose();
+
+  const [selectedSubTypes, setSelectedSubTypes] = useState<string>("");
   const { data: buildingTechniques } = useBuildingTechnique();
+  const [currentSubType, setCurrentSubType] = useState<ISubType | null>(null);
   const [selectedItem, setSelectedItem] = useState<IWorkType | null>(null);
   const [imageIsUpload, setImageIsUpload] = useState(false);
+
+  const interiorId = "656c0a3cfad5c309cd6a9433";
+  const architectureId = "656c0a67fad5c309cd6a9853";
+  const typeId =
+    selectedItem?._id === "656c0a67fad5c309cd6a9853"
+      ? architectureId
+      : interiorId;
+
+  const {
+    data: subTypes,
+    isLoading: isSubTypeLoading,
+    refetch: subTypeRefetch,
+  } = useSubTypes(typeId);
+
   const {
     data: tags,
     isLoading: isTagsLoading,
     refetch: tagRefetch,
   } = useSelectTags(selectedItem?._id);
-
   const [step, setStep] = useState(0);
+
+  const handleSubTypesChange = (selectedValues: any[]) => {
+    const selectedIds = selectedValues.map((option) => option.value);
+    setSelectedSubTypes(selectedIds.join(","));
+  };
+
   const formatPhoneNumber = (value: string): string => {
     // Remove non-digit characters
     const digits = value.replace(/\D/g, "");
@@ -62,16 +90,24 @@ const ApplicationForm: FC = () => {
 
     return formatted;
   };
-  let nextStep = () => {
-    setStep((prevStep) => prevStep + 1);
+
+  const nextStep = async () => {
+    const isFormValid = await trigger(); // Явная проверка валидности формы
+    if (isFormValid) {
+      setStep((prevStep) => prevStep + 1);
+    }
   };
-  let prevStep = () => {
+
+  const prevStep = () => {
     setStep((prevStep) => prevStep - 1);
   };
-  
-  const handleKeyDown = (event:any) => {
-    if (event.key === 'Enter') {
+
+  const handleKeyDown = (event: any) => {
+    if (event.key === "Enter") {
       event.preventDefault();
+    }
+    if (event.target.closest(".custom-select")) {
+      event.preventDefault(); // Останавливаем отправку формы для react-select
     }
   };
 
@@ -79,8 +115,28 @@ const ApplicationForm: FC = () => {
     // Fetch subtypes whenever selectedItem changes
     if (selectedItem?._id) {
       tagRefetch();
+      subTypeRefetch();
     }
   }, [selectedItem]);
+
+  const isStepValid = (currentStep: number) => {
+    switch (currentStep) {
+      case 0:
+        return !errors.objectArea;
+      case 1:
+        return !errors.purposeType;
+      case 2:
+        return true; // Assuming CustomDatePicker doesn't have validation
+      case 3:
+        return !errors.minPrice || !errors.maxPrice;
+      case 4:
+        return !errors.description;
+      case 5:
+        return !errors.phoneNumber && !errors.email;
+      default:
+        return true;
+    }
+  };
 
   return (
     <>
@@ -94,6 +150,10 @@ const ApplicationForm: FC = () => {
                 <ApplicationFormInput
                   {...register("objectArea", {
                     required: "Заполните поле",
+                    pattern: {
+                      value: /^\d*\.?\d+$/, // Регулярное выражение для проверки чисел (включая десятичные)
+                      message: "Введите корректное значение ",
+                    },
                   })}
                   placeholder="0 м²"
                   error={errors.objectArea}
@@ -101,82 +161,65 @@ const ApplicationForm: FC = () => {
                 />
               )}
 
-              {/* <Controller
-                    name="subTypes"
-                    control={control}
-                    render={({ field, fieldState: { error } }) => (
-                      <DynamicSelect
-                        error={error}
-                        field={field}
-                        placeholder="Стили"
-                        options={subTypes || []}
-                        isLoading={isSubTypeLoading}
-                        isMulti
-                      />
-                    )}
-                  /> */}
               {step === 1 && (
                 <>
-                  {/* Поле выбора назначения */}
+                  <p className="text-3xl font-bold mb-4">Назначение</p>
                   <Controller
                     name="purposeType"
                     control={control}
                     render={({ field, fieldState: { error } }) => (
-                      
-                      <><p className="text-3xl font-bold mb-4">
-                      Назначение
-                    </p>
                       <DynamicSelect
                         error={error}
                         field={field}
-                       
                         options={purposeTypes || []}
                         isLoading={isPurposeTypeLoading}
-                        isMulti
+                        
                       />
-                    </>
                     )}
+                  />
+                  <p className="text-3xl font-bold mb-4">Стили</p>
 
+                  <Controller
+                    name="subTypes"
+                    control={control}
+                    render={({ field, fieldState: { error } }) => (
+                      <DynamicSelectForStubType
+                        error={error}
+                        title={"стиль"}
+                        field={field}
+                        options={subTypes}
+                        isMulti
+                       
+                        onSelectChange={handleSubTypesChange}
+                        setCurrentSubType={setCurrentSubType}
+                      />
+                    )}
+                  />
+                  <Popup
+                    isSubTypeLoading={isSubTypeLoading}
+                    currentSubType={currentSubType}
                   />
 
-                  {/* Поле выбора технологии строительства (отображается только при определённом selectedItem) */}
                   {selectedItem &&
                     selectedItem._id === "656c0a67fad5c309cd6a9853" && (
                       <div>
+                        <p className="text-3xl font-bold mb-4">
+                          Технология строительства
+                        </p>
                         <Controller
                           name="buildingTechnique"
                           control={control}
                           render={({ field, fieldState: { error } }) => (
-                            <>
-                            <p className="text-3xl font-bold mb-4">
-                      Технология строительства
-                    </p>
                             <DynamicSelect
                               error={error}
                               field={field}
                               options={buildingTechniques || []}
                               isMulti={false}
                             />
-                            </>
                           )}
                         />
                       </div>
                     )}
-
-                  {/* <Controller
-                    name="tags"
-                    control={control}
-                    render={({ field, fieldState: { error } }) => (
-                      <DynamicSelect
-                        error={error}
-                        field={field}
-                        placeholder="Теги"
-                        options={tags || []}
-                        isLoading={isTagsLoading}
-                        isMulti
-                      />
-                    )}
-                  /> */}
                 </>
               )}
 
@@ -190,14 +233,19 @@ const ApplicationForm: FC = () => {
                   </div>
                   <div className="flex ">
                     <ApplicationFormInput
-                      {...register("minPrice")}
+                      {...register("minPrice", {
+                        required: "Заполните поле",
+                      })}
+                      type="number"
                       placeholder="От 0 ₽"
                       error={errors.minPrice}
                       style={{ marginRight: "10px" }}
                     />
-
                     <ApplicationFormInput
-                      {...register("maxPrice")}
+                      {...register("maxPrice", {
+                        required: "Заполните поле",
+                      })}
+                      type="number"
                       placeholder="До 0 ₽"
                       error={errors.maxPrice}
                     />
@@ -209,13 +257,11 @@ const ApplicationForm: FC = () => {
                   <p className="text-4xl font-bold mb-2">
                     Дополнительная информация
                   </p>
-
                   <textarea
                     {...register("description")}
-                    placeholder="Например: мне важно, чтобы у дизайнера был опыт работы с жилими помещеняиями площадью 500 м² "
+                    placeholder="Например: мне важно, чтобы у дизайнера был опыт работы с жилими помещеняиями площадью 500 м²"
                     className="border resize-none border-gray-400 rounded-2xl transition-colors focus-within:border-primary h-[170px] text-gray-700 w-full p-2"
                   />
-
                   <Controller
                     name="images"
                     control={control}
@@ -244,8 +290,11 @@ const ApplicationForm: FC = () => {
                     <Controller
                       name="phoneNumber"
                       control={control}
+                      rules={{
+                        required: "Заполните поле",
+                      }}
                       defaultValue=""
-                      render={({ field }) => (
+                      render={({ field, fieldState: { error } }) => (
                         <ApplicationFormInput
                           {...field}
                           title="Номер телефона"
@@ -255,27 +304,27 @@ const ApplicationForm: FC = () => {
                             const formattedValue = formatPhoneNumber(
                               e.target.value
                             );
-                            // Update the form value with the formatted value
                             setValue("phoneNumber", formattedValue, {
                               shouldValidate: true,
                             });
                           }}
+                          error={error}
                         />
                       )}
                     />
                     <ApplicationFormInput
-                     {...register("email", {
-                      pattern: {
-                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: "Введите корректный адрес электронной почты"
-                      }
-                    })}
+                      {...register("email", {
+                        required: "Заполните поле",
+                        pattern: {
+                          value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                          message: "Введите корректный адрес электронной почты",
+                        },
+                      })}
                       placeholder="Почта"
                       error={errors.email}
                       title="Почта"
                     />
                   </div>
-
                   <div className="mt-auto">
                     <p>
                       Нажимая на кнопку отправить, вы соглашаетесь с{" "}
@@ -296,11 +345,15 @@ const ApplicationForm: FC = () => {
                   </Link>
                 )}
                 {step < 5 ? (
-                  <MainButton onClick={() => nextStep()} type="button" >
+                  <MainButton
+                    onClick={nextStep}
+                    disabled={!isStepValid(step)}
+                    type="button"
+                  >
                     Продолжить
                   </MainButton>
                 ) : (
-                  <SecondButton >Отправить</SecondButton>
+                  <SecondButton>Отправить</SecondButton>
                 )}
               </div>
             </div>

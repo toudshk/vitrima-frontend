@@ -47,7 +47,6 @@ const useStyles = makeStyles({
     "@media (max-width: 600px)": {
       backgroundColor: "#ffffff", // Белый цвет для мобильных устройств
     },
-
   },
   titleAccordion: {
     borderBottom: "1px solid #ABABAB",
@@ -120,7 +119,6 @@ export default function ControlledAccordions({
   const [localMaxPrice, setLocalMaxPrice] = useState<any>(undefined);
   const [selectedSubTypes, setSelectedSubTypes] = useState<string>("");
   const [selectedPurposeTypes, setSelectedPurposeTypes] = useState<string>("");
-
   const [selectedBuildingTechnique, setSelectedBuildingTechnique] = useState<
     string[]
   >([]);
@@ -204,6 +202,7 @@ export default function ControlledAccordions({
     setSelectedBuildingTechnique([]);
     setSelectedLocation(undefined);
   };
+
 
   const handleChange =
     (panel: string) => (_event: SyntheticEvent, isExpanded: boolean) => {
@@ -400,8 +399,7 @@ export default function ControlledAccordions({
                     inputProps={{
                       placeholder: "Начните вводить область",
                       tabIndex: 0,
-                      className: styles.addressInput
-                       ,
+                      className: styles.addressInput,
                     }}
                     token={DADATA_KEY}
                     onChange={(newValue) => {
@@ -460,7 +458,12 @@ export default function ControlledAccordions({
         </div>
 
         <div className={styles.buttons}>
-          <button className="bg-primary w-1/2 text-white rounded-2xl h-full text-xl px-[3vw] border border-primary" type="submit">Применть</button>
+          <button
+            className="bg-primary w-1/2 text-white rounded-2xl h-full text-xl px-[3vw] border border-primary"
+            type="submit"
+          >
+            Применть
+          </button>
           <button
             className="text-primary border border-primary px-[3vw] rounded-2xl text-xl w-1/2 h-full"
             type="reset"

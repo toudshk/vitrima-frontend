@@ -13,6 +13,7 @@ export interface IAddApplicationForm {
     email: string;
     tags: string[];
     description: string;
+    subTypes: string[]
   
   }
   
