@@ -11,6 +11,7 @@ export interface IAddApplicationForm {
     images: string[];
     phoneNumber: string;
     email: string;
+    name: string;
     tags: string[];
     description: string;
     subTypes: string[]

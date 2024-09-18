@@ -173,7 +173,6 @@ const ApplicationForm: FC = () => {
                         field={field}
                         options={purposeTypes || []}
                         isLoading={isPurposeTypeLoading}
-                        
                       />
                     )}
                   />
@@ -189,7 +188,6 @@ const ApplicationForm: FC = () => {
                         field={field}
                         options={subTypes}
                         isMulti
-                       
                         onSelectChange={handleSubTypesChange}
                         setCurrentSubType={setCurrentSubType}
                       />
@@ -227,7 +225,7 @@ const ApplicationForm: FC = () => {
               {step === 3 && (
                 <div>
                   <div>
-                    <p className="text-3xl font-bold mb-4">
+                    <p className="text-4xl font-bold mb-10">
                       Какую сумму вы готовы выделить для работы?
                     </p>
                   </div>
@@ -298,7 +296,7 @@ const ApplicationForm: FC = () => {
                         <ApplicationFormInput
                           {...field}
                           title="Номер телефона"
-                          placeholder="Номер телефона"
+                          placeholder="+7"
                           value={field.value}
                           onChange={(e) => {
                             const formattedValue = formatPhoneNumber(
@@ -324,6 +322,23 @@ const ApplicationForm: FC = () => {
                       error={errors.email}
                       title="Почта"
                     />
+                    <ApplicationFormInput
+                      {...register("name", {
+                        required: "Заполните поле",
+                        
+                      })}
+                      
+                      error={errors.name}
+                      title="Ваше имя"
+                    />
+                    <div className="my-4">
+                      <p>
+                        Подбор занимает от 1 до 10 дней, после чего мы с вами
+                        свяжемся и отправим подборку на указанную почту
+                      </p>
+                      <p>
+                        Мы ищем дизайнеров вручную и архитекторов исходя из ваших данных как на нашей платформе, так на сторонних ресурсах </p>
+                    </div>
                   </div>
                   <div className="mt-auto">
                     <p>

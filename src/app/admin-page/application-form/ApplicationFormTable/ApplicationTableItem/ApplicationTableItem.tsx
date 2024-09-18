@@ -4,7 +4,7 @@ import React, { FC, useState } from 'react';
 
 const ApplicationTableItem: FC<any> = ({ tableItem, removeHandler }) => {
   const [more, setMore] = useState(false);
-console.log(tableItem)
+
   // Определяем заголовки для каждого элемента
   const items = [
     "Дата обращения",
@@ -21,6 +21,7 @@ console.log(tableItem)
     "Номер",
     "Почта",
     "Назначение",
+    "Имя"
 
   ];
   const images = tableItem.items[10] as string[]; // Assuming images are at index 10

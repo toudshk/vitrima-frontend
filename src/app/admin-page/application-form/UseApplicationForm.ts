@@ -12,7 +12,7 @@ export const useApplicationForm = () => {
       select: ({ data }) =>
         data.map((applicationForm: any) => ({
           _id: applicationForm._id,
-         
+
           items: [
             convertMongoDate(applicationForm.createdAt),
 
@@ -31,7 +31,8 @@ export const useApplicationForm = () => {
             applicationForm.images,
             applicationForm.phoneNumber,
             applicationForm.email,
-             applicationForm.purposeType?.title || 'N/A'
+            applicationForm.purposeType?.title || "N/A",
+            applicationForm?.name || "N/A" 
           ],
         })),
       onError(error) {

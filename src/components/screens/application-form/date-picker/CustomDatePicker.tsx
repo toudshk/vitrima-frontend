@@ -25,6 +25,7 @@ const CustomDatePicker: FC<CustomDatePickerProps> = ({ control }) => {
 
   return (
     <div>
+      <h1 className="text-4xl font-bold mb-10">Когда дизайнер должен приступить и закончить работу?</h1>
       <Controller
         control={control}
         name="startDate"
@@ -32,7 +33,7 @@ const CustomDatePicker: FC<CustomDatePickerProps> = ({ control }) => {
         render={({ field }) => {
           return (
             <>
-              <p className="text-3xl font-bold mb-4">Начало</p>
+              <p className="text-2xl font-bold mb-4">Начало</p>
               <DatePicker
                 className="custom-datepicker"
                 calendarClassName="custom-calendar"
@@ -55,7 +56,7 @@ const CustomDatePicker: FC<CustomDatePickerProps> = ({ control }) => {
         render={({ field }) => {
           return (
             <>
-              <p className="text-3xl font-bold my-4">Конец</p>
+              <p className="text-2xl font-bold my-4">Конец</p>
               <DatePicker
                 className="custom-datepicker"
                 calendarClassName="custom-calendar"
