@@ -191,7 +191,13 @@
         }
         .buttons {
           .middleButtons {
-            @apply rounded-t-[48px] rounded-b-none my-0 py-6  px-6 text-[1.3rem];
+            @apply rounded-t-[48px] rounded-b-none my-0 py-6  px-6 ;
+            a:first-child {
+              @apply text-[5vw];
+            }
+            a:last-child {
+              @apply text-[5vw];
+            }
           }
           .bottomButtons {
             @apply rounded-none pt-0;
