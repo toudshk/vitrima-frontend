@@ -21,8 +21,8 @@ const FirstPage: FC = () => {
   const { ref, inView } = useInView();
   const { user } = useAuth();
   const breakpointColumnsObj = {
-    default: 4,
-    900: 3,
+    default: 10,
+    900: 4,
   };
   const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
 
@@ -80,29 +80,29 @@ const FirstPage: FC = () => {
                 transition={{ duration: 0.5 }}
                 className={styles.logoBlock}
               >
-                <Image src={icon} alt={""} width={500} height={300} />
+                <Image src={icon} alt={""} width={650} height={350} />
                 <h1 className={styles.title}>Все дороги ведут к нам</h1>
               </motion.div>
-              <div className={styles.links}>
-                <div className={styles.topLinks}>
-                  <Link href={"/select-feed"} className={styles.link}>
-                    Просмотр ленты
-                  </Link>
-                  <Link href={"/form"} className={styles.lastLink}>
-                    Заказать подбор дизайнера
-                  </Link>
+              <div className={styles.buttons}>
+                <div className={styles.middleButtons}>
+                  <Link href={"/form"}>Заказать подбор дизайнера</Link>
+                  <Link href={"/select-feed"}>Перейти к просмотру ленты</Link>
+                </div>
+                <div className={styles.bottomButtons}>
                   {!user && (
                     <>
-                      <Link href={"/signup"} className={styles.secondLink}>
-                        Регистрация
-                      </Link>
-                      <Link href={"/login"} className={styles.lastLink}>
-                        Авторизация
-                      </Link>
+                      <Link href={"/login"}>Войти в аккаунт</Link>
+                      <div className={styles.registerBlock}>
+                        <p>Еще не с нами?&nbsp;</p>
+                        <Link href={"/signup"} className={styles.lastLink}>
+                          Зарегиструйся!
+                        </Link>
+                      </div>
                     </>
                   )}
                 </div>
-                {/* <button
+              </div>
+              {/* <button
                   onClick={(e) => {
                     setOpen(true);
                   }}
@@ -110,7 +110,7 @@ const FirstPage: FC = () => {
                 >
                   Участие в конкурсе
                 </button> */}
-              </div>
+
               <ContestModalWindow open={open} setOpen={setOpen} />
             </div>
             <div className={styles.rightBlock}>

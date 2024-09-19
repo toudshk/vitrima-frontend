@@ -1,0 +1,22 @@
+.selectedWork {
+  @apply max-w-[1172px] mb-5;
+
+  .slider {
+    position: relative;
+    .slick-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .slide {
+      width: 100%;
+      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .image {
+    @apply m-0 w-full rounded-2xl object-cover;
+  }
+}

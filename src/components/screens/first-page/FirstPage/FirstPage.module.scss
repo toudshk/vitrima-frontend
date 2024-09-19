@@ -7,87 +7,126 @@
     background-color: #e8e9ee;
 
     .leftBlock {
-      @apply w-[50%] h-full   rounded-r-3xl p-6;
+      @apply w-[48%] h-full;
       z-index: 1;
-      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       position: absolute;
-      left: 0;
+      left: 25%;
       // background-color: rgba(255, 255, 255, 0.2);
       // backdrop-filter: blur(10px);
       .logoBlock {
+        @apply py-[9vh] bg-white rounded-b-[120px];
         > img {
-          @apply mx-auto mt-[15vh];
+          @apply mx-auto;
         }
         .title {
-          @apply text-center text-2xl font-semibold mb-32;
+          @apply text-center text-3xl font-bold;
         }
       }
-      .links {
-        @apply h-auto text-center;
-        display: flex; /* Устанавливаем контейнеру свойство flex */
-        flex-direction: column;
-        justify-content: space-between;
-        .topLinks {
+      .buttons {
+        .middleButtons {
+          @apply text-center  bg-white rounded-[100px] my-14 px-40 py-20;
+
+          flex-grow: 1;
           display: flex; /* Устанавливаем контейнеру свойство flex */
           flex-direction: column;
-          a {
-            @apply text-2xl py-2  px-8 border rounded-2xl mb-3;
-          }
+          justify-content: space-between;
+
           a:first-child {
-            @apply bg-blue-500 border-blue-500 text-gray-300;
-            transition: all 0.3s ease-in-out; /* Добавляем плавность для изменения цвета фона */
-
-            &:hover {
-              @apply bg-white text-primary border-primary;
-            }
+            @apply text-blue-500 uppercase font-bold py-6 mb-8 border-[3px] rounded-[30px] border-blue-500 text-3xl bg-white p-2;
           }
-          .secondLink {
-            @apply bg-primary text-white;
-            transition: all 0.3s ease-in-out; /* Добавляем плавность для изменения цвета фона */
-
-            &:hover {
-              @apply bg-gray-600;
-            }
-          }
-          .lastLink {
-            @apply text-2xl py-2  px-8 border rounded-2xl mb-3;
-            transition: all 0.3s ease-in-out; /* Добавляем плавность для изменения цвета фона */
-
-            &:hover {
-              @apply bg-gray-500  text-white;
-            }
+          a:last-child {
+            @apply text-white uppercase font-bold py-6  border-2 rounded-[30px] border-white text-3xl bg-blue-500 p-2;
           }
         }
-        .contestButton {
-          @apply bg-blue-500 border-blue-500 text-gray-300  text-2xl py-2  px-8 border rounded-2xl;
-          transition: all 0.3s ease-in-out; /* Добавляем плавность для изменения цвета фона */
-
-          &:hover {
-            @apply bg-white text-primary border-primary;
+        .bottomButtons {
+          @apply text-4xl text-center bg-white font-bold rounded-t-[120px] py-[5vh];
+          display: flex; /* Устанавливаем контейнеру свойство flex */
+          flex-direction: column;
+          a:first-child {
+            @apply uppercase text-5xl font-bold mb-4;
+          }
+          .registerBlock {
+            @apply flex  mx-auto;
+            a {
+              @apply underline;
+            }
           }
         }
       }
-      .authButtons {
-        @apply text-center items-center;
+    }
 
-        > a {
-          @apply text-2xl text-gray-300 p-2 w-[45%] border rounded-2xl bg-gray-600;
+    @media (min-width: 2560px) {
+      .leftBlock {
+        .logoBlock {
+          @apply rounded-b-[140px];
+          > img {
+            @apply w-[950px];
+          }
+          .title {
+            @apply text-5xl font-bold;
+          }
         }
-        a:last-child {
-          @apply bg-primary mt-3;
+        .buttons {
+          .middleButtons {
+            @apply rounded-[140px] px-44 py-24;
+            a:first-child {
+              @apply text-[42px] border-[5px] mb-10 py-10 rounded-[50px];
+            }
+            a:last-child {
+              @apply text-[42px] py-10 rounded-[50px];
+            }
+          }
+          .bottomButtons {
+            @apply text-5xl  rounded-t-[140px] py-[5vh];
+
+            a:first-child {
+              @apply text-6xl  mb-6;
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: 1500px) {
+      .leftBlock {
+        .logoBlock {
+          @apply rounded-b-[80px];
+          > img {
+            @apply w-[450px];
+          }
+        }
+        .buttons {
+          .middleButtons {
+            @apply py-14 px-20 rounded-[80px] my-8;
+            a:first-child {
+              @apply text-2xl border-[2px] mb-3 py-4 rounded-3xl;
+            }
+            a:last-child {
+              @apply text-2xl border-[2px] py-4 rounded-3xl;
+            }
+          }
+          .bottomButtons {
+            @apply rounded-t-[80px] text-2xl;
+            a:first-child {
+              @apply text-3xl mb-2;
+            }
+          }
         }
       }
     }
 
     .rightBlock {
-      @apply w-[60%] h-full rounded-l-3xl;
+      @apply w-[100%] h-full;
       z-index: 0;
       position: absolute;
       right: 0;
       top: -50px;
 
       .gallery {
-        @apply mx-auto  pl-3;
+        @apply mx-auto;
         transition: transform 0.5s ease;
         .masonryGallery {
           @apply flex gap-[1vw] mx-4;
@@ -122,7 +161,6 @@
       background-color: rgba(0, 0, 0, 0.5); /* черный цвет с 50% прозрачности */
       pointer-events: none;
     }
-
     .mainRightBlock {
       max-height: 100vh;
 
@@ -138,31 +176,37 @@
 
 @media (max-width: 700px) {
   .container {
+    @apply h-full;
     .mainBlock {
       .leftBlock {
-        @apply w-full h-[55%] rounded-r-none rounded-t-3xl;
-        position: absolute;
-        bottom: 0;
+        @apply w-full left-0;
         .logoBlock {
-          > img {
-            @apply mx-auto mt-[1vh];
+          @apply rounded-b-[48px] py-[3vh];
+          img {
+            @apply w-[300px];
           }
           .title {
-            @apply mb-6;
+            @apply text-xl;
+          }
+        }
+        .buttons {
+          .middleButtons {
+            @apply rounded-t-[48px] rounded-b-none my-0 py-6  px-6 text-[1.3rem];
+          }
+          .bottomButtons {
+            @apply rounded-none pt-0;
+            .registerBlock{
+             @apply text-lg;
+             
+            }
           }
         }
       }
       .rightBlock {
-        @apply w-full h-[60%];
-        top: 0;
-
-        &::after {
-          @apply top-0;
-        }
         .gallery {
-          @apply  pl-0;
+          @apply pl-0;
           .masonryGallery {
-         @apply mx-2;
+            @apply mx-2;
             .image {
               @apply mb-2;
             }

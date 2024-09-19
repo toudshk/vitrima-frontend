@@ -5,6 +5,7 @@ import {
   createTheme,
   useMediaQuery,
 } from "@mui/material";
+
 import { IWork } from "@/components/shared/types/work.types";
 import Image from "next/image";
 import styles from "../ModalWindow.module.scss";
@@ -24,6 +25,7 @@ import TimeUpload from "../timeUpload/TimeUpload";
 import ModalButtons from "./ModalButtons";
 import { usePathname } from "next/navigation";
 import { useUpdateCountViews } from "./useUpdateCountViews";
+import ImageSlider from "./ImageSlider/ImageSlider";
 interface IModalWindow {
   open: any;
   workData: any;
@@ -72,7 +74,7 @@ const ModalWindow: FC<IModalWindow> = ({
   scroll,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
-
+ 
   useEffect(() => {
       let timer: any;
       if (open) {
@@ -193,20 +195,7 @@ const ModalWindow: FC<IModalWindow> = ({
               </div>
             </div>
           </div>
-
-          <div className={styles.selectedWork}>
-            {isLoading ? (
-              <SkeletonLoader borderRadius={12} height={700} width={"100vw"}  className="max-w-[1172px]"/>
-            ) : (
-              <Image
-                className={styles.image}
-                width={2500}
-                height={2500}
-                src={workData?.images[0]}
-                alt={""}
-              />
-            )}
-          </div>
+<ImageSlider workData={workData} isLoading={isLoading} />
           <div className={styles.bottomBlock}>
             <div className={styles.textBlock}>
               <div>
