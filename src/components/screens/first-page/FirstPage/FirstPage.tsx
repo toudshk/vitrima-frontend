@@ -169,7 +169,7 @@ const FirstPage: FC = () => {
                       На этом всё
                     </h1>
                   ) : (
-                    <button ref={ref} className="mt-1" />
+                    <button ref={ref} className="mt-[150px]" />
                   )}
                 </Masonry>
               </div>
