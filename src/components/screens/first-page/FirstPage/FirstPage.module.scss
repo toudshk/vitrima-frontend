@@ -113,7 +113,7 @@
         @apply mx-auto;
         transition: transform 0.5s ease;
         .masonryGallery {
-          @apply flex gap-[1vw];
+          @apply flex gap-[1vw] min-h-[200px];
           .image {
             @apply transition-all mb-4 rounded-lg opacity-0 duration-300;
           }

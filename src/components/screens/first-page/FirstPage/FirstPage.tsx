@@ -118,6 +118,7 @@ const FirstPage: FC = () => {
                 <Masonry
                   breakpointCols={breakpointColumnsObj}
                   className={styles.masonryGallery}
+                  
                 >
                   {objects?.map((item, index) => (
                     <div
@@ -169,7 +170,7 @@ const FirstPage: FC = () => {
                       На этом всё
                     </h1>
                   ) : (
-                    <button ref={ref} className="mt-[150px]" />
+                    <button ref={ref} className="mt-1" />
                   )}
                 </Masonry>
               </div>
