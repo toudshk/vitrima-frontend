@@ -16,7 +16,7 @@ const WorkSlider: FC<{ workData: IWork; isLoading: boolean }> = ({
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
+    arrows: false,
     adaptiveHeight: true,
     fade: true,  
   };

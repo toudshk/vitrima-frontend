@@ -16,12 +16,16 @@ import TimeUpload from "@/components/ui/masonry/timeUpload/TimeUpload";
 
 import { Bounce, toast } from "react-toastify";
 import ContestModalWindow from "./contest-modal-window/ContestModalWindow";
+import { useUser } from "../../profile/useUser";
 
+import baseImage from "@/app/assets/images/base-avatar.jpg";
 const FirstPage: FC = () => {
   const { ref, inView } = useInView();
   const { user } = useAuth();
+
+  const { data: userData } = useUser(user?._id);
   const breakpointColumnsObj = {
-    default: 10,
+    default: 8,
     900: 4,
   };
   const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
@@ -42,30 +46,6 @@ const FirstPage: FC = () => {
 
     loadInitialPage();
   }, [inView, data, fetchNextPage]);
-
-  const notificationShownRef = useRef(false);
-
-  // useEffect(() => {
-  //   // Проверяем, было ли уведомление уже показано
-  //   if (!notificationShownRef.current) {
-  //     // Если уведомление еще не было показано, то показываем его
-  //     toast(
-  //       "Дорогие посетители ВИТРИМЫ, наша платформа сейчас находится в тестовом режиме, поэтому, если вы наткнётесь на функции, которые работают некорректно, то напишите нам на почту, с уважением команда ВИТРИМЫ.",
-  //       {
-  //         position: "top-right",
-  //         autoClose: 7000,
-  //         hideProgressBar: true,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         theme: "light",
-  //         transition: Bounce,
-  //         bodyClassName: "",
-  //       }
-  //     );
-  //     // Помечаем, что уведомление было показано
-  //     notificationShownRef.current = true;
-  //   }
-  // }, []);
 
   const objects = data?.pages.flatMap((page) => page.data);
   return (
@@ -89,7 +69,7 @@ const FirstPage: FC = () => {
                   <Link href={"/select-feed"}>Перейти к просмотру ленты</Link>
                 </div>
                 <div className={styles.bottomButtons}>
-                  {!user && (
+                  {!user ? (
                     <>
                       <Link href={"/login"}>Войти в аккаунт</Link>
                       <div className={styles.registerBlock}>
@@ -99,6 +79,26 @@ const FirstPage: FC = () => {
                         </Link>
                       </div>
                     </>
+                  ) : (
+                    <div className={styles.blockForAuth}>
+                      <div className={styles.userData}>
+                        <div className={styles.avatarWrapper}>
+                          <Image
+                            className={styles.image}
+                            src={userData?.image ? userData.image : baseImage}
+                            width={100}
+                            height={100}
+                            alt=""
+                          />{" "}
+                        </div>
+                        <div className={styles.textBlock}>
+                          <p className={styles.nickName}>
+                            {userData?.nickname}
+                          </p>
+                          <p className={styles.email}>{userData?.email}</p>
+                        </div>
+                      </div>
+                    </div>
                   )}
                 </div>
               </div>
