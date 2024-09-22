@@ -48,18 +48,77 @@ const FirstPage: FC = () => {
   }, [inView, data, fetchNextPage]);
 
   const objects = data?.pages.flatMap((page) => page.data);
+  console.log(objects)
   return (
     <div>
       <div className={styles.container}>
         <div>
           <div className={styles.mainBlock}>
-            
+            <div className={styles.leftBlock}>
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className={styles.logoBlock}
+              >
+                <Image src={icon} alt={""} width={650} height={350} />
+                <h1 className={styles.title}>Все дороги ведут к нам</h1>
+              </motion.div>
+              <div className={styles.buttons}>
+                <div className={styles.middleButtons}>
+                  <Link href={"/form"}>Заказать подбор дизайнера</Link>
+                  <Link href={"/select-feed"}>Перейти к просмотру ленты</Link>
+                </div>
+                <div className={styles.bottomButtons}>
+                  {!user ? (
+                    <>
+                      <Link href={"/login"}>Войти в аккаунт</Link>
+                      <div className={styles.registerBlock}>
+                        <p>Еще не с нами?&nbsp;</p>
+                        <Link href={"/signup"} className={styles.lastLink}>
+                          Зарегиструйся!
+                        </Link>
+                      </div>
+                    </>
+                  ) : (
+                    <div className={styles.blockForAuth}>
+                      <div className={styles.userData}>
+                        <div className={styles.avatarWrapper}>
+                          <Image
+                            className={styles.image}
+                            src={userData?.image ? userData.image : baseImage}
+                            width={100}
+                            height={100}
+                            alt=""
+                          />{" "}
+                        </div>
+                        <div className={styles.textBlock}>
+                          <p className={styles.nickName}>
+                            {userData?.nickname}
+                          </p>
+                          <p className={styles.email}>{userData?.email}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+              {/* <button
+                  onClick={(e) => {
+                    setOpen(true);
+                  }}
+                  className={styles.contestButton}
+                >
+                  Участие в конкурсе
+                </button> */}
+
+              <ContestModalWindow open={open} setOpen={setOpen} />
+            </div>
             <div className={styles.rightBlock}>
               <div className={styles.gallery}>
                 <Masonry
                   breakpointCols={breakpointColumnsObj}
                   className={styles.masonryGallery}
-                  
                 >
                   {objects?.map((item, index) => (
                     <div
