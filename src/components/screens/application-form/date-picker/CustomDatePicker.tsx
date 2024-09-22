@@ -25,7 +25,7 @@ const CustomDatePicker: FC<CustomDatePickerProps> = ({ control }) => {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold mb-10">Когда дизайнер должен приступить и закончить работу?</h1>
+      <h1 className="text-4xl max-[640px]:text-2xl font-bold mb-10 ">Когда дизайнер должен приступить и закончить работу?</h1>
       <Controller
         control={control}
         name="startDate"

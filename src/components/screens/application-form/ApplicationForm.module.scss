@@ -4,12 +4,43 @@
     @apply w-1/2 mx-auto relative h-full;
     .buttons {
       @apply mt-auto w-full absolute bottom-0 flex justify-between mb-3;
+      .continueButton{
+        @apply  text-xl  border-2 text-center bg-blue-500 text-white px-[50px] py-[1.5vh] rounded-2xl;
+        transition: background-color 0.2s ease-in-out; /* Добавляем плавность для изменения цвета фона */
+    
+        &:hover{
+            @apply bg-gray-600;
+        }
+    }
+
+
       .backLink{
         @apply px-8 py-2 text-xl bg-gray-300 font-semibold rounded-lg my-auto;
         transition: all 0.3s ease-in-out; 
         &:hover {
             @apply bg-[#dedede];
           }
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .form{ 
+    @apply mt-[20%] h-[90vh];
+
+    .mainBlock{
+      @apply w-full;
+      .buttons {
+        @apply mb-5;
+        .continueButton{
+          @apply px-4 py-3 text-lg rounded-xl;
+        }
+        .backLink{
+          @apply px-4 py-3 text-lg bg-gray-300 font-semibold rounded-xl my-auto;
+          transition: all 0.3s ease-in-out; 
+         
+        }
       }
     }
   }

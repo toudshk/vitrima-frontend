@@ -134,7 +134,7 @@
 }
 @media (max-width: 700px) {
   .uploadField {
-    @apply w-full h-full;
+    @apply w-full h-48;
 
     .uploadImageContainer {
       @apply mb-0 max-w-[90vw] h-full;

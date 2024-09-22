@@ -36,9 +36,19 @@
 
           a:first-child {
             @apply text-blue-500 uppercase font-bold py-6 mb-8 border-[3px] rounded-[30px] border-blue-500 text-3xl bg-white p-2;
+            transition: all 0.2s ease-in-out; /* Добавляем плавность для изменения цвета фона */
+
+            &:hover{
+                @apply bg-gray-600 text-white border-gray-600;
+            }
           }
           a:last-child {
             @apply text-white uppercase font-bold py-6 border-2 rounded-[30px] border-white text-3xl bg-blue-500 p-2;
+            transition: background-color 0.2s ease-in-out; /* Добавляем плавность для изменения цвета фона */
+
+            &:hover{
+                @apply bg-gray-600;
+            }
           }
         }
 
@@ -47,7 +57,11 @@
           display: flex;
           flex-direction: column;
           a:first-child {
-            @apply uppercase text-5xl font-bold mb-4;
+            @apply uppercase text-5xl font-bold mb-4 ;
+          
+            &:hover {
+              @apply underline;
+            }
           }
           .registerBlock {
             @apply flex mx-auto;
@@ -70,7 +84,7 @@
               }
 
               .image {
-                @apply rounded-full w-16 h-16 relative z-10; /* 100px */
+                @apply rounded-full w-16 h-16 relative z-10 image-like-bg; /* 100px */
               }
 
               .textBlock {
@@ -99,7 +113,7 @@
         @apply mx-auto;
         transition: transform 0.5s ease;
         .masonryGallery {
-          @apply flex gap-[1vw] ;
+          @apply flex gap-[1vw];
           .image {
             @apply transition-all mb-4 rounded-lg opacity-0 duration-300;
           }
@@ -183,12 +197,12 @@
                 }
 
                 .textBlock {
-                  @apply  ml-3;
+                  @apply ml-3;
                   .nickName {
                     @apply text-2xl;
                   }
                   .email {
-                    @apply text-xl ;
+                    @apply text-xl;
                   }
                 }
               }
@@ -232,18 +246,16 @@
                 }
 
                 .textBlock {
-                  @apply  ml-3;
+                  @apply ml-3;
                   .nickName {
                     @apply text-lg;
                   }
                   .email {
-                    @apply text-base ;
+                    @apply text-base;
                   }
                 }
               }
             }
-
-           
           }
         }
       }

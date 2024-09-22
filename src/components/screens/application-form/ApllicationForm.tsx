@@ -225,7 +225,7 @@ const ApplicationForm: FC = () => {
               {step === 3 && (
                 <div>
                   <div>
-                    <p className="text-4xl font-bold mb-10">
+                    <p className="text-4xl max-[640px]:text-2xl font-bold mb-10">
                       Какую сумму вы готовы выделить для работы?
                     </p>
                   </div>
@@ -252,7 +252,7 @@ const ApplicationForm: FC = () => {
               )}
               {step === 4 && (
                 <div>
-                  <p className="text-4xl font-bold mb-2">
+                  <p className="text-4xl max-[640px]:text-2xl font-bold mb-2">
                     Дополнительная информация
                   </p>
                   <textarea
@@ -331,7 +331,7 @@ const ApplicationForm: FC = () => {
                       error={errors.name}
                       title="Ваше имя"
                     />
-                    <div className="my-4">
+                    <div className="my-4 max-[600px]:text-xs">
                       <p>
                         Подбор занимает от 1 до 10 дней, после чего мы с вами
                         свяжемся и отправим подборку на указанную почту
@@ -360,13 +360,14 @@ const ApplicationForm: FC = () => {
                   </Link>
                 )}
                 {step < 5 ? (
-                  <MainButton
+                  <button
+                  className={styles.continueButton}
                     onClick={nextStep}
                     disabled={!isStepValid(step)}
                     type="button"
                   >
                     Продолжить
-                  </MainButton>
+                  </button>
                 ) : (
                   <SecondButton>Отправить</SecondButton>
                 )}
