@@ -62,7 +62,7 @@ const FirstPage: FC = () => {
                 className={styles.logoBlock}
               >
                 <Image src={icon} alt={""} width={650} height={350} />
-                <h1 className={styles.title}>Все дороги ведут к нам</h1>
+                <h1 className={styles.title}>Индивидуальный подбор дизайнеров</h1>
               </motion.div>
               <div className={styles.buttons}>
                 <div className={styles.middleButtons}>
