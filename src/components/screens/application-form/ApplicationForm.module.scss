@@ -28,10 +28,10 @@
 @media (max-width: 700px) {
   .form{ 
    
-    height: calc(100vh - 60px);
+    height: calc(93vh - 60px);
 
     .mainBlock{
-      @apply w-full mt-[20%];
+      @apply w-full ;
       .buttons {
         @apply mb-5;
         .continueButton{
