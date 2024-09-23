@@ -1,7 +1,7 @@
 .form {
-  @apply mt-[10%]  max-w-[1734px] mx-auto px-5 h-[80vh];
+  @apply  max-w-[1734px] mx-auto px-5 h-[80vh];
   .mainBlock {
-    @apply w-1/2 mx-auto relative h-full;
+    @apply w-1/2 mx-auto relative h-full mt-[10%] ;
     .buttons {
       @apply mt-auto w-full absolute bottom-0 flex justify-between mb-3;
       .continueButton{
@@ -27,11 +27,11 @@
 
 @media (max-width: 700px) {
   .form{ 
-    @apply mt-[20%] ;
+   
     height: calc(100vh - 60px);
 
     .mainBlock{
-      @apply w-full;
+      @apply w-full mt-[20%];
       .buttons {
         @apply mb-5;
         .continueButton{
