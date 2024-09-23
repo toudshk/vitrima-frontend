@@ -264,8 +264,9 @@
 
 @media (max-width: 700px) {
   .container {
-    @apply h-full;
     .mainBlock {
+     height: calc(100vh - 60px);
+
       .leftBlock {
         @apply w-full left-0;
         .logoBlock {

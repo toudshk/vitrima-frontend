@@ -27,7 +27,8 @@
 
 @media (max-width: 700px) {
   .form{ 
-    @apply mt-[20%] h-[90vh];
+    @apply mt-[20%] ;
+    height: calc(100vh - 60px);
 
     .mainBlock{
       @apply w-full;
