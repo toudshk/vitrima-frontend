@@ -31,7 +31,7 @@
     height: calc(93vh - 60px);
 
     .mainBlock{
-      @apply w-full ;
+      @apply w-full  mt-[8vh] pt-10;
       .buttons {
         @apply mb-5;
         .continueButton{
