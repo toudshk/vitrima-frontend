@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   title: "Витрима",
   description: "Индивидуальный подбор дизайнеров интерьеров и архитектуры",
   icons: [{ rel: "icon", url: Favicon.src }],
+  verification:{
+    yandex: "dce0d86be52c6f27"
+  }
 };
 
 export default function RootLayout({
