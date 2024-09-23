@@ -1,11 +1,18 @@
+import dynamic from "next/dynamic";
+import Head from "next/head";
 
-import dynamic from 'next/dynamic';
-
-const DynamicFirstPage = dynamic(() => import('../components/screens/first-page/FirstPage/FirstPage'), { ssr: false });
+const DynamicFirstPage = dynamic(
+  () => import("../components/screens/first-page/FirstPage/FirstPage"),
+  { ssr: false }
+);
 
 export default function Home() {
-  
   return (
-    <DynamicFirstPage  />
+    <>
+      <Head>
+        <meta name="yandex-verification" content="dce0d86be52c6f27" />
+      </Head>
+      <DynamicFirstPage />
+    </>
   );
 }
