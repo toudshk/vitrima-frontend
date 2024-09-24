@@ -1,5 +1,5 @@
 import axios, { axiosClassic } from "@/api/interceptors"
-import { IWorkEditInput, IWorkTypeEditInput } from "@/app/add-work/edit-work.interface"
+import { ISubTypeEditInput, IWorkEditInput, IWorkTypeEditInput } from "@/app/add-work/edit-work.interface"
 import { IBuildingTechnique, ISubType, IWork, IWorkType } from "@/components/shared/types/work.types"
 
 import { API_URL, getWorkUrl } from "../../config/api.config"
@@ -88,6 +88,9 @@ export const WorkService = {
 	async getSubTypeByWorkType(id: string) {
 		return await axiosClassic.get<ISubType[]>(getWorkUrl(`/by-work-type/${id}`))
 	},
+	async getAllSubTypes() {
+		return await axiosClassic.get<any>(getWorkUrl(`/sub-types`))
+	},
 
 	async getBuildingTechniqueForArchitecture() {
 		return await axiosClassic.get<IBuildingTechnique[]>(getWorkUrl(`/building-technique`))
@@ -133,13 +136,18 @@ export const WorkService = {
 		  pageParam: pageParam
 		};
 	  },
-	async createSubType(data: IWorkTypeEditInput) {
-		
-		const response = await axiosClassic.post<ISubType>(
-			`${API_URL}${getWorkUrl('/create-sub-type')}`, data
-		)
-		return response
-	},
+	  async createSubType(data: any) {
+		// Проверяем, является ли 'image' массивом и берем первый элемент
+		if (Array.isArray(data.image) && data.image.length > 0) {
+			data.image = data.image[0]; // или можно использовать другой метод, если нужно
+		}
 	
+		const response = await axiosClassic.post<any>(
+			`${API_URL}${getWorkUrl('/create-sub-type')}`, 
+			data
+		);
+		
+		return response;
+	}
 	
 }

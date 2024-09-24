@@ -14,7 +14,8 @@ export interface IAddApplicationForm {
     name: string;
     tags: string[];
     description: string;
-    subTypes: string[]
+    subTypes: string[];
+    location?: any
   
   }
   

@@ -32,7 +32,8 @@ export const useApplicationForm = () => {
             applicationForm.phoneNumber,
             applicationForm.email,
             applicationForm.purposeType?.title || "N/A",
-            applicationForm?.name || "N/A" 
+            applicationForm?.name || "N/A", 
+            applicationForm?.location || "N/A"
           ],
         })),
       onError(error) {

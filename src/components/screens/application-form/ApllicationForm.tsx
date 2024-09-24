@@ -17,6 +17,7 @@ import CustomDatePicker from "./date-picker/CustomDatePicker";
 import UploadField from "./UploadField/UploadField";
 import { useSubTypes } from "../add-work/useSubTypes";
 import Popup from "./pop-up/PopUp";
+import { AddressSuggestions } from "react-dadata";
 
 const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
@@ -42,6 +43,7 @@ const ApplicationForm: FC = () => {
     },
   });
 
+  const DADATA_KEY = "4a9e155a8d8b3989ac9f4a5e58269c44c65f049b";
   const { onSubmit } = useApplicationForm();
   const { data: purposeTypes, isLoading: isPurposeTypeLoading } =
     useTypePurpose();
@@ -51,6 +53,7 @@ const ApplicationForm: FC = () => {
   const [currentSubType, setCurrentSubType] = useState<ISubType | null>(null);
   const [selectedItem, setSelectedItem] = useState<IWorkType | null>(null);
   const [imageIsUpload, setImageIsUpload] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState<string>();
 
   const interiorId = "656c0a3cfad5c309cd6a9433";
   const architectureId = "656c0a67fad5c309cd6a9853";
@@ -71,7 +74,11 @@ const ApplicationForm: FC = () => {
     refetch: tagRefetch,
   } = useSelectTags(selectedItem?._id);
   const [step, setStep] = useState(0);
-
+  const handleLocationChange = (selectedValue: any) => {
+    const regionId = selectedValue.data.region_fias_id;
+    setSelectedLocation(regionId);
+    setValue("location", selectedValue.value); // Ensure this updates the form state
+  };
   const handleSubTypesChange = (selectedValues: any[]) => {
     const selectedIds = selectedValues.map((option) => option.value);
     setSelectedSubTypes(selectedIds.join(","));
@@ -122,7 +129,7 @@ const ApplicationForm: FC = () => {
   const isStepValid = (currentStep: number) => {
     switch (currentStep) {
       case 0:
-        return !errors.objectArea;
+        return !errors.objectArea && !errors.location;
       case 1:
         return !errors.purposeType;
       case 2:
@@ -147,18 +154,50 @@ const ApplicationForm: FC = () => {
           <div className={styles.form}>
             <div className={styles.mainBlock}>
               {step === 0 && (
-                <ApplicationFormInput
-                  {...register("objectArea", {
-                    required: "Заполните поле",
-                    pattern: {
-                      value: /^\d*\.?\d+$/, // Регулярное выражение для проверки чисел (включая десятичные)
-                      message: "Введите корректное значение ",
-                    },
-                  })}
-                  placeholder="0 м²"
-                  error={errors.objectArea}
-                  title="Площадь объекта"
-                />
+                <>
+                  <ApplicationFormInput
+                    {...register("objectArea", {
+                      required: "Заполните поле",
+                      pattern: {
+                        value: /^\d*\.?\d+$/, // Регулярное выражение для проверки чисел (включая десятичные)
+                        message: "Введите корректное значение ",
+                      },
+                    })}
+                    placeholder="0 м²"
+                    error={errors.objectArea}
+                    title="Площадь объекта"
+                  />
+                  <Controller
+                    name="location"
+                    control={control}
+                    render={({ field, fieldState: { error } }) => (
+                      <>
+                        <p className="text-3xl font-bold mb-4">
+                          Местоположение
+                        </p>
+                        <AddressSuggestions
+                         
+                          count={4}
+                          inputProps={{
+                            placeholder: "Начните вводить город",
+                            tabIndex: 0,
+                            className: styles.addressInput,
+                          }}
+                          token={DADATA_KEY}
+                          onChange={(newValue) => {
+                            // Проверьте данные в консоли
+                            handleLocationChange(newValue);
+                          }}
+                          value={field.value}
+                          filterFromBound="city"
+                          filterToBound="city"
+                          filterLocations={[{ country: "россия" }]}
+                        />
+                      </>
+                    )}
+                   
+                  />
+                </>
               )}
 
               {step === 1 && (
@@ -226,7 +265,7 @@ const ApplicationForm: FC = () => {
                 <div>
                   <div>
                     <p className="text-4xl max-[640px]:text-2xl font-bold mb-10">
-                      Какую сумму вы готовы выделить для работы?
+                      Какую сумму вы готовы выделить на разработку проекта?
                     </p>
                   </div>
                   <div className="flex ">
@@ -257,7 +296,7 @@ const ApplicationForm: FC = () => {
                   </p>
                   <textarea
                     {...register("description")}
-                    placeholder="Например: мне важно, чтобы у дизайнера был опыт работы с жилими помещеняиями площадью 500 м²"
+                    placeholder="Мне важно, чтобы у дизайнера был опыт работы с жилыми помещениями площадью более 500 м²."
                     className="border resize-none border-gray-400 rounded-2xl transition-colors focus-within:border-primary h-[170px] text-gray-700 w-full p-2"
                   />
                   <Controller
@@ -325,9 +364,7 @@ const ApplicationForm: FC = () => {
                     <ApplicationFormInput
                       {...register("name", {
                         required: "Заполните поле",
-                        
                       })}
-                      
                       error={errors.name}
                       title="Ваше имя"
                     />
@@ -337,14 +374,19 @@ const ApplicationForm: FC = () => {
                         свяжемся и отправим подборку на указанную почту
                       </p>
                       <p>
-                        Мы вручную ищем дизайнеров и архитекторов исходя из ваших данных как на нашей платформе, так на сторонних ресурсах </p>
+                        Мы вручную ищем дизайнеров и архитекторов исходя из
+                        ваших данных как на нашей платформе, так на сторонних
+                        ресурсах{" "}
+                      </p>
                     </div>
                   </div>
                   <div className="mt-auto">
                     <p>
                       Нажимая на кнопку отправить, вы соглашаетесь с{" "}
-                      <a href="/documents" className="underline">Политикой конфиденциальности</a> и
-                      даете согласие на обработку своих персональных данных
+                      <a href="/documents" className="underline">
+                        Политикой конфиденциальности
+                      </a>{" "}
+                      и даете согласие на обработку своих персональных данных
                     </p>
                   </div>
                 </div>
@@ -361,7 +403,7 @@ const ApplicationForm: FC = () => {
                 )}
                 {step < 5 ? (
                   <button
-                  className={styles.continueButton}
+                    className={styles.continueButton}
                     onClick={nextStep}
                     disabled={!isStepValid(step)}
                     type="button"

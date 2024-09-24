@@ -25,6 +25,13 @@
   }
 }
 
+.addressInput {
+  @apply border  border-gray-400 w-full px-3 text-base py-2 rounded-2xl transition-colors focus-within:border-primary;
+  @media (max-width: 700px) {
+    @apply text-xs bg-white;
+  }
+}
+
 @media (max-width: 700px) {
   .form{ 
    

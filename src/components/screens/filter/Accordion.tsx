@@ -459,13 +459,13 @@ export default function ControlledAccordions({
 
         <div className={styles.buttons}>
           <button
-            className="bg-primary w-1/2 text-white rounded-2xl h-full text-xl px-[3vw] border border-primary"
+            className="bg-primary w-1/2 text-white rounded-2xl h-full text-xl  border border-primary"
             type="submit"
           >
-            Применть
+            Применить
           </button>
           <button
-            className="text-primary border border-primary px-[3vw] rounded-2xl text-xl w-1/2 h-full"
+            className="text-primary border border-primary rounded-2xl text-xl w-1/2 h-full"
             type="reset"
             onClick={() => filterReset()}
           >

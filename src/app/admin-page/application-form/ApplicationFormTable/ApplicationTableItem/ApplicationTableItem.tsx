@@ -21,7 +21,8 @@ const ApplicationTableItem: FC<any> = ({ tableItem, removeHandler }) => {
     "Номер",
     "Почта",
     "Назначение",
-    "Имя"
+    "Имя",
+    "Местоположение"
 
   ];
   const images = tableItem.items[10] as string[]; // Assuming images are at index 10
