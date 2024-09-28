@@ -1,0 +1,197 @@
+.gallery-wrap {
+  background-color: #000;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+.gallery-wrap::after {
+  content: "";
+  position: absolute;
+  bottom: 15%;
+  left: 3%;
+
+  width: 92%;
+  height: 1px;
+  background-color: #dbd8d6;
+  z-index: 0;
+}
+
+.gallery-counter {
+  position: fixed;
+  top: 10%;
+  left: 100px;
+  z-index: 1;
+  mix-blend-mode: difference;
+  line-height: 16px;
+  color: #dbd8d6;
+  font-weight: 600;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+
+  .divider {
+    content: "";
+    background-color: white;
+    width: 6.25vw;
+    margin: 7px 10px;
+    height: 1px;
+    display: inline-block;
+  }
+  p {
+    margin-top: 10px;
+    font-size: 5.25vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .gallery-counter {
+    top: 2%;
+    left: 10px;
+  }
+}
+.fade-out {
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+.gallery {
+  height: 100vh;
+  position: relative;
+  padding: 10vh 0;
+  width: 500%;
+  display: flex;
+  flex-wrap: nowrap;
+
+  .gallery-item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    will-change: transform;
+  }
+  .special-style {
+    .gallery-item-info {
+      transform: translateX(0vw) !important;
+      bottom: 7vw;
+      .gallery-info-title {
+        max-width: 55vw;
+      }
+    }
+    .gallery-item-image {
+      width: 55vw !important;
+    }
+  }
+
+  .gallery-item-info {
+    position: absolute;
+    bottom: 10vw;
+    z-index: 1;
+    transform: translateX(35vw);
+    color: white;
+    color: white;
+    .gallery-info-title {
+      max-width: 30vw;
+      font-weight: 400;
+      transform: translateX(-35%) scale(0.7); /* Изначальное положение */
+      font-size: 1.6vw;
+      opacity: 0; /* Изначально невидим */
+      
+      transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+      -webkit-font-smoothing: antialiased;
+  }
+    .visible {
+      opacity: 1; /* Делаем видимым */
+      transform: translateX(0) scale(1); /* Возвращаем к нормальному положению */
+  }
+  }
+
+  @media (max-width: 700px) {
+    .special-style {
+      .gallery-item-info {
+        transform: translateX(0vw) !important;
+        bottom: 110vw;
+        .gallery-info-title {
+          max-width: 80vw;
+        }
+      }
+      .gallery-item-image {
+        width: 80vw !important;
+      }
+    }
+    .gallery-item-info {
+      bottom: 70vw;
+      z-index: 1;
+      transform: translateX(0vw);
+
+      .gallery-info-title {
+        max-width: 80vw;
+        font-size: 4vw;
+        transform: translateX(0%) translateY(-30%);
+      }
+    }
+  }
+  @media (min-width: 1900px) {
+    .gallery-item-info {
+      transform: translateX(42vw);
+      bottom: 6vw;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .gallery-item-info {
+      transform: translateX(42vw);
+      bottom: 12vw;
+    }
+  }
+  .gallery-item-wrapper {
+    aspect-ratio: 16/9;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 20vw 1fr 200px;
+    width: 100vw;
+
+    &.is-reveal {
+      .gallery-item-image {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        filter: none;
+      }
+      .gallery-item-info {
+        .gallery-info-title {
+          transform: translateX(0) scale(1);
+        }
+      }
+    }
+  }
+
+  .gallery-item-image {
+    background-size: cover;
+    background-position: center;
+    transform-origin: center;
+    width: 30vw;
+    will-change: transform;
+    transform: scale(0.7);
+    transition: all 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+    filter: grayscale(100%) sepia(20%) brightness(80%);
+
+    border-radius: 2vw;
+  }
+  @media (max-width: 700px) {
+    .gallery-item-wrapper {
+      grid-template-columns: 10vw 1fr 50px;
+    }
+    .gallery-item-image {
+      width: 80vw;
+    }
+  }
+
+  @media (min-width: 1900px) {
+    .gallery-item-image {
+      width: 40vw;
+    }
+  }
+  @media (min-width: 2560px) {
+    .gallery-item-image {
+      width: 40vw;
+    }
+  }
+}

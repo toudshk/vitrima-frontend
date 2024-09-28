@@ -1,5 +1,6 @@
 .container {
   @apply -mt-[7vh];
+  overflow-x: hidden;
 
   .mainBlock {
     @apply h-[100vh] flex overflow-hidden;
@@ -289,7 +290,7 @@
             }
           }
           .bottomButtons {
-            @apply rounded-none pt-0;
+            @apply rounded-none p-0;
             .registerBlock {
               @apply text-lg;
             }

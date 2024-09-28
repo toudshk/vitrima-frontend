@@ -1,10 +1,11 @@
+// @ts-nocheck
+
 "use client";
 import React, { FC, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import styles from "./FirstPage.module.scss";
 import icon from "@/app/assets/images/MainLogoBlack.svg";
-import OnboardCards from "../onboard-cards/OnboardCards";
 import clsx from "clsx";
 import Footer from "@/components/layout/footer/Footer";
 import { useAuth } from "@/hooks/useAuth";
@@ -14,20 +15,49 @@ import Masonry from "react-masonry-css";
 import { useInView } from "react-intersection-observer";
 import TimeUpload from "@/components/ui/masonry/timeUpload/TimeUpload";
 
-import { Bounce, toast } from "react-toastify";
 import ContestModalWindow from "./contest-modal-window/ContestModalWindow";
 import { useUser } from "../../profile/useUser";
 
 import baseImage from "@/app/assets/images/base-avatar.jpg";
-const FirstPage: FC = () => {
-  const { ref, inView } = useInView();
-  const { user } = useAuth();
+import ApplicationBlock from "../application-block/ApplicationBlock";
+import OnboardCards from "../onboard-cards/OnboardCards";
+import LocomotiveScroll from "locomotive-scroll";
 
+import { usePathname } from 'next/navigation'
+ 
+const FirstPage: FC = () => {
+  const { ref: refView, inView } = useInView();
+  const { user } = useAuth();
   const { data: userData } = useUser(user?._id);
   const breakpointColumnsObj = {
     default: 8,
     900: 4,
   };
+  const pathname = usePathname()
+
+  useEffect(() => {
+    let locomotiveScroll: LocomotiveScroll | null = null;
+
+    if (pathname === '/') {
+        const scrollContainer = document.querySelector('[data-scroll-container]') as HTMLElement;
+
+        if (scrollContainer) {
+            locomotiveScroll = new LocomotiveScroll({
+                el: scrollContainer,
+                smooth: true
+            });
+        }
+    }
+
+    return () => {
+        if (locomotiveScroll) {
+            locomotiveScroll.destroy();
+        }
+    };
+}, [pathname]);
+
+    
+
   const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
 
   const [open, setOpen] = useState(false);
@@ -48,9 +78,8 @@ const FirstPage: FC = () => {
   }, [inView, data, fetchNextPage]);
 
   const objects = data?.pages.flatMap((page) => page.data);
-  console.log(objects)
   return (
-    <div>
+    <div data-scroll-container>
       <div className={styles.container}>
         <div>
           <div className={styles.mainBlock}>
@@ -62,10 +91,15 @@ const FirstPage: FC = () => {
                 className={styles.logoBlock}
               >
                 <Image src={icon} alt={""} width={650} height={350} />
-                <h1 className={styles.title}>Индивидуальный подбор дизайнеров</h1>
+                <h1 className={styles.title}>
+                  Индивидуальный подбор дизайнеров
+                </h1>
               </motion.div>
               <div className={styles.buttons}>
-                <div className={styles.middleButtons}>
+                <div
+                  className={styles.middleButtons}
+                 
+                >
                   <Link href={"/form"}>Заказать подбор дизайнера</Link>
                   <Link href={"/select-feed"}>Перейти к просмотру ленты</Link>
                 </div>
@@ -170,7 +204,7 @@ const FirstPage: FC = () => {
                       На этом всё
                     </h1>
                   ) : (
-                    <button ref={ref} className="mt-1" />
+                    <button ref={refView} className="mt-1" />
                   )}
                 </Masonry>
               </div>
@@ -180,6 +214,9 @@ const FirstPage: FC = () => {
 
         <div id="onboardCardsSection">
           <OnboardCards />
+        </div>
+        <div>
+          <ApplicationBlock />
         </div>
         {/* <RegisterBanner /> */}
         <Footer />

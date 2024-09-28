@@ -1,0 +1,52 @@
+.container {
+  background-color: #000;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+
+  .title {
+    @apply absolute text-white text-[5.25vw] uppercase font-bold  px-[1vw] py-[2vw] bg-primary z-10 border-b border-b-[#dbd8d6];
+    -webkit-font-smoothing: antialiased;
+  }
+  .subtitles {
+    @apply flex flex-col z-0 border-r border-r-[#dbd8d6];
+    height: 400%;
+    position: relative;
+    padding: 10vh 0;
+    width: 100vw;
+    .subtitle {
+      @apply text-white  uppercase font-thin text-[2.25vw];
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+      background-size: cover;
+      background-position: center;
+      transform-origin: center;
+
+      will-change: transform;
+      transform: scale(0.7);
+      transition: all 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+      p {
+        @apply text-[10vw] font-bold;
+      }
+
+      &:first-child {
+        @apply mt-48;
+      }
+      @media (max-width: 700px) {
+        @apply text-[7vw];
+      }
+    }
+
+    .isReveal {
+      transform: scale(1);
+      font-size: 3.5vw;
+      color: #ffffff;
+      @media (max-width: 700px) {
+        @apply text-[10vw];
+      }
+    }
+   
+  }
+}
