@@ -149,6 +149,7 @@ export default function OnboardCards() {
 
   gsap.registerPlugin(ScrollTrigger);
 
+  
   useEffect(() => {
     const pin = gsap.fromTo(
       sectionRef.current,
@@ -165,6 +166,8 @@ export default function OnboardCards() {
           end: "2000 top",
           scrub: 0.6,
           pin: true,
+          markers: true
+          
         },
       }
     );

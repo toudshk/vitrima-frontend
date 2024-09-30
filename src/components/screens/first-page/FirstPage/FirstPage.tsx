@@ -212,11 +212,12 @@ const FirstPage: FC = () => {
           </div>
         </div>
 
-        <div id="onboardCardsSection">
-          <OnboardCards />
-        </div>
+       
         <div>
           <ApplicationBlock />
+        </div>
+        <div id="onboardCardsSection" >
+          <OnboardCards />
         </div>
         {/* <RegisterBanner /> */}
         <Footer />

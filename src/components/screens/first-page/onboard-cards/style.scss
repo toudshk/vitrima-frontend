@@ -1,5 +1,5 @@
 .gallery-wrap {
-  background-color: #fff;
+  background-color: #000;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -48,6 +48,7 @@
     top: 2%;
     left: 10px;
   }
+  
 }
 .fade-out {
   transition: opacity 0.5s ease;
@@ -61,6 +62,9 @@
   width: 500%;
   display: flex;
   flex-wrap: nowrap;
+ 
+  touch-action: pan-y;
+
 
   .gallery-item {
     width: 100%;
@@ -86,8 +90,8 @@
     bottom: 10vw;
     z-index: 1;
     transform: translateX(35vw);
-    color: black;
-    color: black;
+    color: white;
+    color: white;
     .gallery-info-title {
       max-width: 30vw;
       font-weight: 400;

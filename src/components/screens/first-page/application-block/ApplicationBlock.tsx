@@ -12,8 +12,8 @@ const SubtitleItem: FC<{
   isActive: boolean;
 }> = ({ subtitle, updateActiveTitle, index, isActive }) => {
   const ref = useRef(null);
+ 
   const onScreen = useOnScreen(ref, 0.5);
-
   useEffect(() => {
     if (onScreen && !isActive) {
       updateActiveTitle(index);
@@ -33,12 +33,14 @@ const SubtitleItem: FC<{
         ease: "elastic",
         scrollTrigger: {
           trigger: element,
-          start: "top bottom",
+          start: "top top",
           end: "top center",
           scrub: true,
         },
       }
     );
+
+    
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
