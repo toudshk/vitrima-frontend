@@ -166,8 +166,6 @@ export default function OnboardCards() {
           end: "2000 top",
           scrub: 0.6,
           pin: true,
-          markers: true
-          
         },
       }
     );
