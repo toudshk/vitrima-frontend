@@ -1,6 +1,6 @@
 
-import icon from "@/app/assets/images/MainLogo.svg";
-import mobileIcon from "@/app/assets/images/WhiteIconLogo.svg"
+import icon from "@/app/assets/images/MainLogoBlack.svg";
+import mobileIcon from "@/app/assets/images/BlackIconLogo.svg"
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
 import styles from './icons.module.scss'

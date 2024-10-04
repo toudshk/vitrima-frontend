@@ -5,7 +5,9 @@
 	}
 
 	> input {
-		@apply w-full  border border-gray-700 rounded-3xl px-[2vw] text-gray-600 bg-gray-700 focus:border-gray-600 focus:text-gray-400 placeholder:text-gray-600   outline-none;
+		@apply w-full  border-2 border-gray-300 rounded-2xl py-1 px-[2vw] text-gray-700 bg-gray-300
+		hover:border-gray-300 hover:border-2 hover:bg-white
+		focus:border-gray-400 focus:text-gray-400 placeholder:text-gray-600   outline-none;
 		transition: all 0.2s ease; /* Анимация светлой тени */
   
 	  &::placeholder {

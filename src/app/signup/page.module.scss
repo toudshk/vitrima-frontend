@@ -1,14 +1,15 @@
 .container {
-  @apply mt-[9vh];
-  @apply flex;
+  @apply flex -mt-[7vh];
   .leftBlock {
+    @apply border-white my-[1vw]  ml-[1vw] flex justify-end;
+   border-radius: 1vw;
     background: url("../../components/common/images/ui/authPage/AuthBg.png")
       no-repeat center center;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     min-width: 50%;
-    height: 91vh;
+    height: 95vh;
 
     @media (max-width: 1336px) {
       display: none;

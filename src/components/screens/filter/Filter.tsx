@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation'
  import styles from './Filter.module.scss'
 import { ISubType } from "@/components/shared/types/work.types";
 import { useMediaQuery } from '@mui/material';
-
+import FilterListIcon from '@mui/icons-material/FilterList';
 type Anchor = "right";
 
 export default function Filter() {
@@ -86,9 +86,10 @@ export default function Filter() {
       {(["right"] as const).map((anchor) => (
         <Fragment key={anchor}>
           <button
-            className={"text-gray-300 uppercase"}
+            className={"text-primary items-center  text-xl font-bold p-2  rounded-2xl border border-gray-300 hover:bg-gray-300 "}
             onClick={toggleDrawer(anchor, true)}
           >
+            <FilterListIcon className='pb-1'/>
             Фильтр
           </button>
           <SwipeableDrawer

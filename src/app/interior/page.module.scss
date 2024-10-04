@@ -6,7 +6,7 @@
     @apply pt-[8vw];
   }
   .title {
-    @apply text-4xl mx-[1vw] text-gray-450 mb-[3vw];
+    @apply text-4xl mx-[1vw] text-gray-450 ;
     @media(max-width: 700px) {
       @apply text-2xl
     }

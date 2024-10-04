@@ -1,0 +1,197 @@
+.block {
+  @apply mt-[9vh];
+  .links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    @media (max-width: 800px) {
+      display: flex;
+      flex-direction: column;
+      a {
+        @apply text-[4vw];
+        min-width: 100vw;
+        &:first-child {
+          border: none;
+          border-bottom: 1px solid black;
+        }
+      }
+    }
+
+    .leftBlock {
+      @apply h-[65vh] w-[45%] border border-gray-400 m-3 rounded-2xl relative transition duration-300 ease-in-out;
+
+      flex: 1 0 auto;
+
+      @media (min-width: 2000px) {
+        @apply rounded-[30px] h-[50vh] m-9;
+      }
+      @media (max-width: 800px) {
+        @apply h-[35vh] w-[90%];
+        .title {
+          position: relative !important;
+          font-size: 10vw !important;
+        }
+        &:hover .title {
+          font-size: 10vw !important;
+        }
+      }
+
+      &:hover .gallery {
+        opacity: 1;
+        visibility: visible;
+      }
+      &:hover .title {
+        @apply text-[6.5vw];
+        transform: translateY(200%);
+      }
+
+      .title {
+        @apply z-50 text-4xl absolute left-0 right-0;
+        top: 50%;
+        transition: all 0.5s ease;
+        text-align: center;
+      }
+      .gallery {
+        @apply mx-auto absolute max-h-[50%]  rounded-t-2xl;
+        overflow: hidden;
+        transition: opacity 1s ease, visibility 1s ease;
+        opacity: 0;
+        visibility: hidden;
+
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: white;
+        z-index: -20;
+        @media (min-width: 2000px) {
+          border-top-left-radius: 30px !important;
+          border-top-right-radius: 30px !important;
+        }
+
+        .masonryGallery {
+          @apply flex gap-[0.7vw] relative max-h-[50%] ;
+         
+        }
+        &::before {
+          
+          height: 100%;
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: linear-gradient(
+            to top,
+            rgba(255, 255, 255, 1),
+            rgba(231, 245, 255, 0.1)
+          );
+          z-index: 1;
+
+          @media (min-width: 2000px) {
+            border-top-left-radius: 30px !important;
+            border-top-right-radius: 30px !important;
+          }
+        }
+      }
+    }
+
+    .leftBlock:hover {
+      @apply shadow-lg;
+      transform: scale(1.01);
+    }
+    .rightBlock {
+      @apply h-[65vh] w-[45%] border border-gray-400 m-3 rounded-2xl relative transition duration-300 ease-in-out;
+
+      flex: 1 0 auto;
+
+      
+      @media (min-width: 2000px) {
+        @apply rounded-[30px] h-[50vh] m-9;
+      }
+      @media (max-width: 800px) {
+        @apply h-[35vh] w-[90%];
+        .title {
+          position: relative !important;
+          font-size: 10vw !important;
+        }
+        &:hover .title {
+          font-size: 10vw !important;
+        }
+      }
+
+      &:hover .gallery {
+        opacity: 1;
+        visibility: visible;
+      }
+      &:hover .title {
+        @apply text-[6.5vw];
+        transform: translateY(200%);
+      }
+
+      .title {
+        @apply z-50 text-4xl absolute left-0 right-0; /* Позиционируем абсолютно */
+        top: 50%; /* Изначальное положение вверху блока */
+        transition: all 0.5s ease; /* Плавный переход */
+        text-align: center; /* Выравнивание текста по центру */
+      }
+      .gallery {
+        @apply mx-auto absolute max-h-[50%]  rounded-t-2xl;
+        overflow: hidden;
+        transition: opacity 1s ease, visibility 1s ease;
+        opacity: 0;
+        visibility: hidden;
+
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: white;
+        z-index: -20;
+
+        @media (min-width: 2000px) {
+          border-top-left-radius: 30px !important;
+          border-top-right-radius: 30px !important;
+        }
+  
+
+        .masonryGallery {
+          @apply flex  gap-[0.7vw] relative max-h-[50%] rounded-t-2xl;
+          
+        }
+        &::before {
+          @apply rounded-t-2xl;
+          height: 100%;
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: linear-gradient(
+            to top,
+            rgba(255, 255, 255, 1),
+            rgba(231, 245, 255, 0.1)
+          );
+          z-index: 1;
+         
+        }
+      }
+    }
+
+    .rightBlock:hover {
+      @apply shadow-lg;
+      transform: scale(1.01);
+    }
+  }
+  p {
+    margin: 0 auto;
+    width: 50vw;
+    @apply text-[2.8vh] text-center mt-[5vh];
+    @media (max-width: 800px) {
+      @apply w-[90vw] mt-[2vh];
+    }
+  }
+}

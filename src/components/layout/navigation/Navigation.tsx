@@ -64,7 +64,7 @@ const Navigation = () => {
         })}
       >
         <Link className={styles.logo} href="/">
-          <MainLogo height={30} />
+          <MainLogo height={25} />
         </Link>
         {user ? (
           <>
@@ -86,20 +86,18 @@ const Navigation = () => {
               </Link>
               )}
              
-              {(pathname === "architecture" || pathname === "interior") && (
-                <Filter />
-              )}
+             
               <DropdownMenu />
             </div>
           </>
         ) : (
-          <div className="flex select-none">
+          <div className="flex select-none items-center">
             <Link className={styles.button} href={"/login"}>
-              ВХОД
+              Вход
             </Link>
-            <p className={styles.apost}>&nbsp;/&nbsp;</p>
+         
             <Link className={styles.button} href={"/signup"}>
-              РЕГИСТРАЦИЯ
+            Регистрация
             </Link>
           </div>
         )}
