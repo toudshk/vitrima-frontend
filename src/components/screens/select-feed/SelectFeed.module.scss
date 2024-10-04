@@ -47,7 +47,7 @@
       }
 
       .title {
-        @apply z-50 text-4xl absolute left-0 right-0;
+        @apply z-20 text-4xl absolute left-0 right-0;
         top: 50%;
         transition: all 0.5s ease;
         text-align: center;
@@ -132,7 +132,7 @@
       }
 
       .title {
-        @apply z-50 text-4xl absolute left-0 right-0; /* Позиционируем абсолютно */
+        @apply z-20 text-4xl absolute left-0 right-0; /* Позиционируем абсолютно */
         top: 50%; /* Изначальное положение вверху блока */
         transition: all 0.5s ease; /* Плавный переход */
         text-align: center; /* Выравнивание текста по центру */
