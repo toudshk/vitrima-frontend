@@ -25,7 +25,7 @@ const LoginLayout: FC = () => {
           className="text-white bg-gray-300 bg-opacity-50 rounded-2xl px-2 py-1 ml-auto  mt-4 mr-5 h-8 hover:bg-opacity-70"
         >
           На главную
-          <ArrowForwardIcon fontSize='16px'/>
+          <ArrowForwardIcon fontSize='small'/>
         </Link>
       </div>
       <div className={styles.rightBlock}>
