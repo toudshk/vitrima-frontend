@@ -88,7 +88,7 @@
   .gallery-item-info {
   margin-top:10px;
     z-index: 1;
-    transform: translateX(35vw);
+    transform: translateX(35vw) translateY(-22vh);
     color: white;
     color: white;
     .gallery-info-title {
@@ -134,14 +134,14 @@
   }
   @media (min-width: 1900px) {
     .gallery-item-info {
-      transform: translateX(42vw);
+      transform: translateX(42vw) translateY(-20vh);
       bottom: 6vw;
     }
   }
 
   @media (min-width: 2560px) {
     .gallery-item-info {
-      transform: translateX(42vw);
+      transform: translateX(42vw)  translateY(-20vh);
       bottom: 12vw;
     }
   }
