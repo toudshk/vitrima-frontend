@@ -53,7 +53,7 @@
         text-align: center;
       }
       .gallery {
-        @apply mx-auto absolute rounded-t-2xl;
+        @apply mx-auto absolute rounded-2xl;
 
         overflow: hidden;
         transition: opacity 1s ease, visibility 1s ease;

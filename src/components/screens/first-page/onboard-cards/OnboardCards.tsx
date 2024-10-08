@@ -100,9 +100,7 @@ const GalleryItem: FC<{ data: any; updateActiveImage: any; index: number}> = ({
     <div className={cn("gallery-item-wrapper", { "is-reveal": onScreen })}>
       <div></div>
       <div className={itemClass} ref={ref}>
-        <div className="gallery-item-info">
-          <h1 className={cn("gallery-info-title", {"visible" : onScreen})}>{data.title}</h1>
-        </div>
+       
         <Image
           alt=""
           width={3000}
@@ -110,6 +108,9 @@ const GalleryItem: FC<{ data: any; updateActiveImage: any; index: number}> = ({
           className="gallery-item-image"
           src={data.src}
         />
+         <div className="gallery-item-info">
+          <h1 className={cn("gallery-info-title", {"visible" : onScreen})}>{data.title}</h1>
+        </div>
       </div>
       <div></div>
     </div>

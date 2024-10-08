@@ -86,8 +86,7 @@
   }
 
   .gallery-item-info {
-    position: absolute;
-    bottom: 10vw;
+  margin-top:10px;
     z-index: 1;
     transform: translateX(35vw);
     color: white;
@@ -112,7 +111,7 @@
     .special-style {
       .gallery-item-info {
         transform: translateX(0vw) !important;
-        bottom: 110vw;
+        bottom: 52vh;
         .gallery-info-title {
           max-width: 80vw;
         }
@@ -122,7 +121,7 @@
       }
     }
     .gallery-item-info {
-      bottom: 70vw;
+      bottom: 40%;
       z-index: 1;
       transform: translateX(0vw);
 
