@@ -18,6 +18,7 @@ import UploadField from "./UploadField/UploadField";
 import { useSubTypes } from "../add-work/useSubTypes";
 import Popup from "./pop-up/PopUp";
 import { AddressSuggestions } from "react-dadata";
+import 'react-dadata/dist/react-dadata.css';
 
 const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
@@ -153,6 +154,18 @@ const ApplicationForm: FC = () => {
         ) : (
           <div className={styles.form}>
             <div className={styles.mainBlock}>
+              <div className="flex justify-between">
+                <div className="text-xl text-gray-500 font-bold">
+                  {selectedItem._id === "656c0a3cfad5c309cd6a9433" ? (
+                    <div>Интерьер</div>
+                  ) : (
+                    <div>Архитектура</div>
+                  )}
+                </div>
+                <div className="text-xl text-gray-500 font-bold">
+                  {Math.round(((step + 1) / 6) * 100)}%
+                </div>
+              </div>
               {step === 0 && (
                 <>
                   <ApplicationFormInput
@@ -172,11 +185,10 @@ const ApplicationForm: FC = () => {
                     control={control}
                     render={({ field, fieldState: { error } }) => (
                       <>
-                        <p className="text-3xl font-bold mb-4">
+                        <p className="text-4xl font-bold mb-4  max-[600px]:text-2xl max-[600px]:mb-2">
                           Местоположение
                         </p>
                         <AddressSuggestions
-                         
                           count={4}
                           inputProps={{
                             placeholder: "Начните вводить город",
@@ -195,14 +207,15 @@ const ApplicationForm: FC = () => {
                         />
                       </>
                     )}
-                   
                   />
                 </>
               )}
 
               {step === 1 && (
                 <>
-                  <p className="text-3xl font-bold mb-4">Назначение</p>
+                  <p className="text-3xl font-bold mb-4 max-[600px]:text-2xl max-[600px]:mb-2">
+                    Назначение
+                  </p>
                   <Controller
                     name="purposeType"
                     control={control}
@@ -215,7 +228,9 @@ const ApplicationForm: FC = () => {
                       />
                     )}
                   />
-                  <p className="text-3xl font-bold mb-4">Стили</p>
+                  <p className="text-3xl font-bold mb-4 max-[600px]:text-2xl max-[600px]:mb-2">
+                    Стили
+                  </p>
 
                   <Controller
                     name="subTypes"
@@ -240,7 +255,7 @@ const ApplicationForm: FC = () => {
                   {selectedItem &&
                     selectedItem._id === "656c0a67fad5c309cd6a9853" && (
                       <div>
-                        <p className="text-3xl font-bold mb-4">
+                        <p className="text-3xl font-bold mb-4 max-[600px]:text-2xl max-[600px]:mb-2">
                           Технология строительства
                         </p>
                         <Controller
@@ -290,7 +305,7 @@ const ApplicationForm: FC = () => {
                 </div>
               )}
               {step === 4 && (
-                <div>
+                  <div className={styles.topBlock}>
                   <p className="text-4xl max-[640px]:text-2xl font-bold mb-2">
                     Дополнительная информация
                   </p>
@@ -322,7 +337,7 @@ const ApplicationForm: FC = () => {
                 </div>
               )}
               {step === 5 && (
-                <div className="h-[80%] flex flex-col justify-between">
+                <div className={styles.topBlock}>
                   <div>
                     <Controller
                       name="phoneNumber"
@@ -380,7 +395,7 @@ const ApplicationForm: FC = () => {
                       </p>
                     </div>
                   </div>
-                  <div className="mt-auto">
+                  <div className="mt-auto mb-12">
                     <p>
                       Нажимая на кнопку отправить, вы соглашаетесь с{" "}
                       <a href="/documents" className="underline">
