@@ -97,13 +97,14 @@ const PersonalInfo: NextPageAuth = () => {
                       "border  border-gray-400 w-full px-3 py-3 rounded-2xl transition-colors focus-within:border-primary ",
                   }}
                   token={DADATA_KEY}
-                  onChange={(newValue) => {
-                    onChange(newValue?.data.fias_id);
-                  }}
-                  value={value}
-                  filterFromBound="region"
-                  filterToBound="region"
-                  filterLocations={[{ country: "россия" }]}
+                onChange={(newValue) => {
+                            // Проверьте данные в консоли
+                            onChange(newValue!.value);
+                          }}
+                          value={value}
+                          filterFromBound="city"
+                          filterToBound="city"
+                          filterLocations={[{ country: "россия" }]}
                 />
               )}
             />

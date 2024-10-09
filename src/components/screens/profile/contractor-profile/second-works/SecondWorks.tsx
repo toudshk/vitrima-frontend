@@ -6,18 +6,22 @@ import GalleryWorks from './GalleryWorks'
 import ServiceAndPrice from '@/components/screens/settings-profile/service-and-price/ServiceAndPrice'
 import { NextPageAuth } from '@/components/shared/types/auth.types'
 import ServiceAndPriceInProfile from './ServiceAndPrice'
-const SecondWorks : NextPageAuth = () => {
+import AboutProfile from './about-profile/AboutProfile'
+const SecondWorks : NextPageAuth<{userData:any}> = ({userData}) => {
   
-  const [showDownloading, setShowDownloading] = useState(true);
+  const [showDownloading, setShowDownloading] = useState('downloading');
   const [activeTab, setActiveTab] = useState('downloading')
 
+ 
   const handleNavigation = (target: string) => {
     setActiveTab(target);
-    
-    if (target === 'downloading') {
-      setShowDownloading(true);
-    } else if (target === 'price-service') {
-      setShowDownloading(false);
+
+    if (target === "downloading") {
+      setShowDownloading("downloading");
+    }  if (target === "price-service") {
+      setShowDownloading("price-service");
+    } if (target === "about") {
+      setShowDownloading("about");
     }
   };
 
@@ -36,10 +40,17 @@ const SecondWorks : NextPageAuth = () => {
                 Услуги и цены
               </button>
             </li>
+            <li className={clsx({ [styles.active]: activeTab === 'about' })}>
+              <button  onClick={() => handleNavigation('about')}>
+                О профиле
+              </button>
+            </li>
           </ul>
         </div>
 
-        {showDownloading ? <GalleryWorks  /> : <ServiceAndPriceInProfile/>}
+        {showDownloading ==='downloading' && <GalleryWorks  />}
+        {showDownloading === 'price-service' && <ServiceAndPriceInProfile/>}
+        {showDownloading === 'about' && <AboutProfile userData={userData}/>}
       </div>
 
   );

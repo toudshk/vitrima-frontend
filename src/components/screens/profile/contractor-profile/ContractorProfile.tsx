@@ -71,7 +71,7 @@ const ContractorProfile: FC<ContractorProfileProps> = ({
         </div>
       </div>
       <div className={styles.blockWorks}>
-        <ProfileWorks id={id} />
+        <ProfileWorks id={id} userData={userData}/>
       </div>
     </div>
   );

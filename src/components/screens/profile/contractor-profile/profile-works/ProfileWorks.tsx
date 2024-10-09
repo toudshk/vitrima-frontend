@@ -9,7 +9,7 @@ import SecondWorks from "../second-works/SecondWorks";
 import { useAuth } from "@/hooks/useAuth";
 import Link from "next/link";
 
-const ProfileWorks: FC<{ id: string }> = ({ id }) => {
+const ProfileWorks: FC<{ id: string, userData: any }> = ({ id,userData }) => {
   const { user } = useAuth();
   const { data, isLoading } = useWork();
   let isOwner = id === user?._id;
@@ -88,7 +88,7 @@ const ProfileWorks: FC<{ id: string }> = ({ id }) => {
       </div>
 
       <div>
-        <SecondWorks />
+        <SecondWorks userData={userData}/>
       </div>
     </div>
   );

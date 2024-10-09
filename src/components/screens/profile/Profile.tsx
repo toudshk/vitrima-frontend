@@ -13,7 +13,6 @@ const Profile: React.FC = () => {
   
   let userId = params.id
   const { data, isLoading } = useUser(userId);
-
     return (
       <>
       {data?.isContractor ? (
