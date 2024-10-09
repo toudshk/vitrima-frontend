@@ -10,28 +10,33 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LanguageIcon from "@mui/icons-material/Language";
 import VkIcon from "@/components/common/icons/VkIcon";
+
 const AboutProfile: FC<{ userData: any }> = ({ userData }) => {
-  console.log(userData);
   const formattedDate = dayjs(userData.createdAt)
     .locale("ru")
     .format("MMM YYYY");
 
+  const socialProfiles = userData?.socialProfiles || {};
   const socialLinks = [
     {
       platform: "instagram",
       icon: <InstagramIcon />,
-      text: userData.socialProfiles.instagram,
+      text: socialProfiles.instagram,
     },
     {
       platform: "telegram",
       icon: <TelegramIcon />,
-      text: userData.socialProfiles.telegram,
+      text: socialProfiles.telegram,
     },
-    { platform: "vk", icon: <VkIcon />, text: userData.socialProfiles.vk },
+    {
+      platform: "vk",
+      icon: <VkIcon />,
+      text: socialProfiles.vk,
+    },
     {
       platform: "website",
       icon: <LanguageIcon />,
-      text: userData.socialProfiles.webSite,
+      text: socialProfiles.webSite,
     },
   ];
 
@@ -39,13 +44,13 @@ const AboutProfile: FC<{ userData: any }> = ({ userData }) => {
     <div className={styles.wrapper}>
       <div className={styles.leftBlock}>
         <p className="font-bold text-2xl text-gray-700 mb-3">Биография</p>
-        {userData.description}
+        {userData.description || "Нет информации о биографии."}
       </div>
       <div className={styles.rightBlock}>
         <div className={styles.grayBlock}>
           <ul>
             <li>
-              <LocationOnOutlinedIcon /> {userData.location}
+              <LocationOnOutlinedIcon /> {userData.location || "Не указано"}
             </li>
             <li>
               <PermIdentityOutlinedIcon /> С нами с {formattedDate}
@@ -54,18 +59,21 @@ const AboutProfile: FC<{ userData: any }> = ({ userData }) => {
         </div>
         <div className={styles.socialLinksBlock}>
           <h2 className="text-2xl font-bold mb-4">Социальные сети</h2>
-          {socialLinks.map(
-            ({ platform, icon, text }) =>
-              text && (
+          {socialLinks.some(link => link.text) ? (
+            socialLinks.map(({ platform, icon, text }) =>
+              text ? (
                 <div
                   key={platform}
                   rel="noopener noreferrer"
                   className={styles.socialLink}
                 >
-                  <div className="mr-2 text-gray-700">{icon}</div>{" "}
+                  <div className="mr-2 text-gray-700">{icon}</div>
                   <div className="font-semibold">{text}</div>
                 </div>
-              )
+              ) : null
+            )
+          ) : (
+            <p className="text-gray-400 font-bold text-base ">Пока что пусто</p>
           )}
         </div>
       </div>
