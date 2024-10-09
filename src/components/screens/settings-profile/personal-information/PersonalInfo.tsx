@@ -33,62 +33,51 @@ const PersonalInfo: NextPageAuth = () => {
       <div className={styles.fields}>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <>
-            <div className={styles.topBlock}>
-              <Controller
-                name="image"
-                control={control}
-                defaultValue=""
-                render={({
-                  field: { value, onChange },
-                  fieldState: { error },
-                }) => (
-                  <div className={styles.avatar}>
-                    <UploadAvatar
-                      placeholder="Фотография"
-                      error={error}
-                      folder="image"
-                      image={value}
-                      onChange={onChange}
-                      title={""}
-                      isLoading={isLoading}
-                    />
-                  </div>
-                )}
-              />
-              <div className={styles.nicknameEmailBlock}>
-                <div className={styles.nickname}>
-                  <Field
-                    title="Название компании / ФИО"
-                    {...register("nickname", {
-                      required: "Никнейм обязательно",
-                    })}
-                    placeholder="Никнейм"
-                    error={errors.nickname}
+            <Controller
+              name="image"
+              control={control}
+              defaultValue=""
+              render={({
+                field: { value, onChange },
+                fieldState: { error },
+              }) => (
+                <div className={styles.avatar}>
+                  <UploadAvatar
+                    placeholder="Фотография"
+                    error={error}
+                    folder="image"
+                    image={value}
+                    onChange={onChange}
+                    title={""}
+                    isLoading={isLoading}
                   />
                 </div>
-                <div className={styles.mail}>
-                  <Field
-                    {...register("email", {
-                      required: "почта обязательна",
-                    })}
-                    placeholder="Почта"
-                    error={errors.email}
-                    title="Почта"
-                  />
-                </div>
+              )}
+            />
+            <div className={styles.nicknameEmailBlock}>
+              <div className={styles.nickname}>
+                <Field
+                  title="Название компании / ФИО"
+                  {...register("nickname", {
+                    required: "Никнейм обязательно",
+                  })}
+                  placeholder="Никнейм"
+                  error={errors.nickname}
+                />
               </div>
+              {/* <div className={styles.mail}>
+                <Field
+                  {...register("email", {
+                    required: "почта обязательна",
+                  })}
+                  placeholder="Почта"
+                  error={errors.email}
+                  title="Почта"
+                />
+              </div> */}
             </div>
 
-            <Field
-              {...register("description", { maxLength: 200 })}
-              placeholder="Напишите ваши услуги, которые вы предоставляете"
-              error={errors.description}
-              title="Описание услуг"
-            />
-            {errors.description && errors.description.type === "maxLength" && (
-              <p>Описание не должно превышать 200 символов</p>
-            )}
-            <p className="text-xl mb-[1vw] text-primary">
+            <p className="text-xl mb-2 text-primary">
               Регион вашей деятельности
             </p>
 
@@ -119,8 +108,19 @@ const PersonalInfo: NextPageAuth = () => {
               )}
             />
           </>
-
-          <button className={styles.button}>Сохранить</button>
+          <p className={styles.titleTextArea}>Описание услуг</p>
+          <textarea
+            className={styles.textArea}
+            {...register("description")}
+            placeholder="Напишите ваши услуги, которые вы предоставляете"
+            title="Описание услуг"
+          />
+          {errors.description && errors.description.type === "maxLength" && (
+            <p>Описание не должно превышать 200 символов</p>
+          )}
+            <div className="w-full flex justify-end">
+            <button className={styles.button}>Сохранить</button>
+          </div>
         </form>
         {/* <Link href={`/unsubscribe`} className="flex items-center justify-center mt-3  text-xl font-bold">
       Отменить подписку

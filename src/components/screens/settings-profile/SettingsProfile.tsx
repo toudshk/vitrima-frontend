@@ -2,23 +2,26 @@
 
 import { NextPageAuth } from "@/components/shared/types/auth.types";
 import React, { useState } from "react";
-import clsx from 'clsx'
+import clsx from "clsx";
 import { Meta } from "@/utils/meta";
 import styles from "./SettingsProfile.module.scss";
 
 import PersonalInfo from "./personal-information/PersonalInfo";
 import ServiceAndPrice from "./service-and-price/ServiceAndPrice";
-const SettingsProfile: NextPageAuth<{user: any}> = ({user}) => {
-  const [showPersonalInfo, setShowPersonalInfo] = useState(true);
-  const [activeTab, setActiveTab] = useState('personal-info');
+import SocialProfiles from "./social-profiles/SocialProfiles";
+const SettingsProfile: NextPageAuth<{ user: any }> = ({ user }) => {
+  const [showPersonalInfo, setShowPersonalInfo] = useState("personal-info");
+  const [activeTab, setActiveTab] = useState("personal-info");
 
   const handleNavigation = (target: string) => {
     setActiveTab(target);
-    
-    if (target === 'personal-info') {
-      setShowPersonalInfo(true);
-    } else if (target === 'works') {
-      setShowPersonalInfo(false);
+
+    if (target === "personal-info") {
+      setShowPersonalInfo("personal-info");
+    }  if (target === "works") {
+      setShowPersonalInfo("works");
+    } if (target === "social-profiles") {
+      setShowPersonalInfo("social-profiles");
     }
   };
 
@@ -27,20 +30,35 @@ const SettingsProfile: NextPageAuth<{user: any}> = ({user}) => {
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <ul>
-            <li className={clsx({ [styles.active]: activeTab === 'personal-info' })}>
-              <a href='#personal-info' onClick={() => handleNavigation('personal-info')}>
+            <li
+              className={clsx({
+                [styles.active]: activeTab === "personal-info",
+              })}
+            >
+              <a
+                href="#personal-info"
+                onClick={() => handleNavigation("personal-info")}
+              >
                 Личная информация
               </a>
             </li>
-            <li className={clsx({ [styles.active]: activeTab === 'works' })}>
-              <a href='#works' onClick={() => handleNavigation('works')}>
+            <li className={clsx({ [styles.active]: activeTab === "works" })}>
+              <a href="#works" onClick={() => handleNavigation("works")}>
                 Услуги и цены
+              </a>
+            </li>
+            <li className={clsx({ [styles.active]: activeTab === "social-profiles" })}>
+              <a href="#social-profiles" onClick={() => handleNavigation("social-profiles")}>
+                Социальные сети
               </a>
             </li>
           </ul>
         </div>
-
-        {showPersonalInfo ? <PersonalInfo /> : <ServiceAndPrice />}
+        <div className={styles.mainBlock}>
+          {showPersonalInfo === 'personal-info' && <PersonalInfo />}
+          {showPersonalInfo === 'works' &&  <ServiceAndPrice />}
+          {showPersonalInfo === 'social-profiles' &&  <SocialProfiles />}
+        </div>{" "}
       </div>
     </Meta>
   );

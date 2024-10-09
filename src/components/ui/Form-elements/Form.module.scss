@@ -3,7 +3,7 @@
 }
 
 .common {
-  @apply relative border border-gray-400 rounded-2xl transition-colors focus-within:border-primary;
+  @apply relative   transition-colors focus-within:border-primary;
 
   > label {
     @apply block;
@@ -20,9 +20,20 @@
   @apply mb-[1.5vh];
 
   input {
-    @apply outline-border-none focus:ring-0 bg-transparent h-10 text-gray-700 w-full  px-[1vw]  text-base;
+    @apply border-2 rounded-2xl border-gray-300  bg-transparent min-h-[45px] h-[15%] text-gray-700 w-full   px-[1vw]  text-lg;
+
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  input:hover {
+    @apply border-gray-400;
+    box-shadow: 0 0 0 3px rgba(#1c60c5, 0.3); /* Плавное свечение */
+  }
+  input:focus {
+    @apply border-blue-500 outline-none border-2;
+    box-shadow: 0 0 0 3px rgba(#1c60c5, 0.3); /* Плавное свечение */
   }
 }
+
 
 .uploadField {
   @apply h-full   w-full;
@@ -85,10 +96,9 @@
         @apply absolute  rounded-full  cursor-pointer w-8 h-8;
         top: 5px;
         right: 5px;
-        background-color: rgba(234, 234, 234, 0.5 );
-backdrop-filter: blur(10px);
-    
-       
+        background-color: rgba(234, 234, 234, 0.5);
+        backdrop-filter: blur(10px);
+
         display: none; /* Скрыть кнопку по умолчанию */
         opacity: 0; /* Начальная непрозрачность */
         transition: opacity 0.3s ease, display 0.3s ease; /* Переход для opacity и display */
@@ -100,8 +110,6 @@ backdrop-filter: blur(10px);
       }
     }
   }
-
- 
 
   .zoomedImageOverlay {
     /* Стили для оверлея увеличенного изображения */

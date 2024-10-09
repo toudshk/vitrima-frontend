@@ -1,0 +1,35 @@
+.fields {
+    @apply mx-auto w-1/2 mt-10;
+    .avatar {
+      @apply mb-4 ;
+    }
+    .titleTextArea {
+      @apply text-xl mb-2 mt-4;
+    }
+    .textArea {
+      @apply border border-gray-400 bg-transparent rounded-2xl text-gray-700 w-full pt-2 px-[1vw] text-base;
+      height: 150px;
+      resize: none;
+    }
+    .button {
+      @apply bg-primary w-1/4 text-white text-xl h-16 rounded-2xl mt-[2vw] ;
+      :hover {
+        @apply bg-gray-600;
+      }
+    }
+  }
+  @media (max-width: 800px) {
+    .fields {
+      @apply w-[90vw];
+  
+      
+        @apply block;
+        .avatar {
+          @apply mb-4 flex justify-center;
+        }
+       
+      
+    }
+  }
+  
+  

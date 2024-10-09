@@ -1,16 +1,18 @@
 .fields {
-  @apply mx-auto w-4/6 mt-6;
-  .topBlock {
-    @apply flex;
-    .nicknameEmailBlock {
-      @apply w-full ml-[10%];
-      .nickname {
-        @apply w-full;
-      }
-    }
+  @apply mx-auto w-4/6 mt-10;
+  .avatar {
+    @apply mb-4 ;
+  }
+  .titleTextArea {
+    @apply text-xl mb-2 mt-4;
+  }
+  .textArea {
+    @apply border border-gray-400 bg-transparent rounded-2xl text-gray-700 w-full pt-2 px-[1vw] text-base;
+    height: 150px;
+    resize: none;
   }
   .button {
-    @apply bg-primary w-full text-white text-xl h-16 rounded-2xl mt-[2vw];
+    @apply bg-primary w-1/4 text-white text-xl h-16 rounded-2xl mt-[2vw] ;
     :hover {
       @apply bg-gray-600;
     }
@@ -20,15 +22,13 @@
   .fields {
     @apply w-[90vw];
 
-    .topBlock {
+    
       @apply block;
       .avatar {
         @apply mb-4 flex justify-center;
       }
-      .nicknameEmailBlock {
-        @apply ml-0;
-      }
-    }
+     
+    
   }
 }
 

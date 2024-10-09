@@ -1,45 +1,44 @@
+.header {
+  @apply relative mt-[10vh];
+  overflow: visible ;
+  
+  > ul {
+    @apply flex pt-[6vh] pl-[5vw]  mx-auto relative;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0.1vw; /* Высота вашего border */
+      background-color: #eaeaea; /* Цвет вашего border */
+      z-index: -50;
+    }
 
-  .header {
-    @apply relative ;
-    overflow: visible; /* Разрешить видимость "выхода" за пределы .wrapper */
-
-   
-    > ul {
-      @apply flex pt-[6vh] pl-[5vw]  mx-auto relative;
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 0.1vw; /* Высота вашего border */
-        background-color: #eaeaea; /* Цвет вашего border */
-        z-index: -50;
+    > li {
+      @apply mr-10  text-gray-450 transition-all  ease-in-out relative;
+      > a {
+        @apply text-xl   mb-10;
       }
-      
-      > li {
-        @apply mr-10  text-gray-450 transition-all  ease-in-out relative;
-        > a {
-          @apply text-xl   mb-10;
-        }
-        &.active {
-          @apply border-b-[0.1vw] border-gray-600 z-20 text-gray-700;
-        }
+      &.active {
+        @apply border-b-[0.1vw] border-gray-600 z-20 text-gray-700;
       }
     }
   }
-
+}
 
 @media (max-width: 700px) {
- 
-    .header {
-      > ul {
-        > li {
-          > a {
-            @apply text-base;
-          }
+  .header {
+    > ul {
+      > li {
+        > a {
+          @apply text-base;
         }
       }
     }
   }
+}
 
+.mainBlock {
+  @apply max-w-[1400px] mx-auto;
+}

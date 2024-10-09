@@ -2,7 +2,7 @@
   @apply flex -mt-[7vh];
   .leftBlock {
     @apply border-white my-[1vw]  ml-[1vw] flex justify-end;
-   border-radius: 1vw;
+    border-radius: 1vw;
     background: url("../../components/common/images/ui/authPage/AuthBg.png")
       no-repeat center center;
     -moz-background-size: cover;
@@ -16,10 +16,13 @@
     }
   }
   .rightBlock {
-    @apply mx-[5vw] items-center my-auto;
+    @apply mx-[5vw] items-center my-auto ;
 
     .logotype {
-      @apply mx-[4vh] mb-[3.1vh];
+      @apply w-full mb-[3.1vh] flex justify-center;
+      img{
+        @apply mx-auto;
+      }
     }
     @media (max-width: 1336px) {
       @apply px-3;
@@ -46,7 +49,7 @@
     .docLink {
       @apply my-2;
       > a {
-        @apply inline underline ;
+        @apply inline underline;
       }
       > p {
         @apply inline;
@@ -55,6 +58,16 @@
 
     form {
       @apply my-5;
+    }
+    @media (min-width: 1900px) {
+      form {
+        @apply my-7;
+      }
+    }
+    @media (min-width: 2500px) {
+      form {
+        @apply my-10;
+      }
     }
   }
 }
