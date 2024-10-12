@@ -3,13 +3,24 @@
   @apply w-full;
 }
 .custom-datepicker {
-  @apply border-gray-400 focus-within:border-primary !important;
-  width: 100%;
-  font-size: 16px;
-  border-radius: 16px  !important;
-  width: 100%;
-  font-size: 16px;
- outline: none;
+  border: 2px solid #cbd5e1; /* Default border color */
+  border-radius: 16px !important; /* Rounded corners */
+  width: 100%; /* Full width */
+  font-size: 16px; /* Font size */
+  outline: none; /* Remove outline */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+/* Styles for focus state */
+.custom-datepicker:focus-within {
+  border-color: #1c60c5 !important; /* Change border color on focus */
+  box-shadow: 0 0 0 3px rgba(28, 96, 197, 0.3); /* Ring effect on focus */
+}
+
+/* Styles for hover state */
+.custom-datepicker:hover {
+  border-color: #a0aec0; /* Change border color on hover */
+  box-shadow: 0 0 0 3px rgba(28, 96, 197, 0.3); /* Optional hover ring effect */
 }
 
 
@@ -65,7 +76,7 @@
 
 /* Стили для инпутов */
 .react-datepicker__input-container input {
-  border: 1px solid #ddd;
+  border: 2px solid #cbd5e1; /* Default border color */
   border-radius: 4px;
   padding: 8px;
   font-size: 16px;

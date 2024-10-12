@@ -9,20 +9,31 @@ import { IOption, ISelect } from './Select.interface'
 
 const animatedComponents = makeAnimated()
 const customStyles = {
-    control: (provided:any ,state: any) => ({
-      ...provided,
-	  borderColor:'#999',
-      background: 'transparent',
-		borderRadius: "12px",
-     
-    }),
-    menu: (provided:any) => ({
-      ...provided,
-      
-    }),
-
-};
-
+	control: (provided: any, state: any) => ({
+    ...provided,
+    borderColor: state.isFocused ? '#1c60c5' : '#cbd5e1',
+     // Focus border color  
+     borderWidth: '2px',
+	  background: 'transparent',
+	  borderRadius: '12px',
+	  minHeight: '45px', // Similar to min-h-[45px]
+	  height: '15%', // Adjust this based on your needs
+	  color: '#4a5568', // Text color equivalent to text-gray-700
+	  width: '100%', // Full width
+	  padding: '0 1vw', // Padding similar to px-[1vw]
+	  fontSize: '18px', // Equivalent to text-lg
+	  transition: 'border-color 0.3s, box-shadow 0.3s',
+	  boxShadow: state.isFocused ? '0 0 0 3px rgba(28, 96, 197, 0.3)' : 'none', // Box shadow on focus
+	  '&:hover': {
+		boxShadow: '0 0 0 3px rgba(28, 96, 197, 0.3)', // Hover box shadow
+	  },
+  }),
+  
+	menu: (provided: any) => ({
+	  ...provided,
+	  // Add any additional menu styles here if needed
+	}),
+  };
 
 const Select: FC<ISelect> = ({
 	placeholder,

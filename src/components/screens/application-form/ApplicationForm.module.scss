@@ -2,8 +2,8 @@
   @apply max-w-[1734px] mx-auto px-5 h-[80vh];
   .mainBlock {
     @apply w-1/2 mx-auto relative h-full mt-[10%];
-    .topBlock{
-      @apply h-[80%] flex flex-col justify-between overflow-y-auto;
+    .topBlock {
+      @apply h-[80%] flex flex-col justify-between overflow-y-auto px-1;
       mask-image: linear-gradient(
         to bottom,
         black 80%,
@@ -12,11 +12,28 @@
       &::-webkit-scrollbar {
         display: none; /* Скрывает полосу прокрутки */
       }
-    
+
+      .textArea {
+        @apply  resize-none border-2 rounded-2xl h-[250px] border-gray-300  bg-transparent  text-gray-700 w-full px-[1vw] text-lg;
+
+        transition: border-color 0.3s, box-shadow 0.3s;
+
+        @media (max-width: 700px) {
+          @apply text-lg bg-white rounded-xl px-1;
+        }
+      }
+      .textArea:hover {
+        @apply border-gray-400;
+        box-shadow: 0 0 0 3px rgba(#1c60c5, 0.3); /* Плавное свечение */
+      }
+      .textArea:focus {
+        @apply border-blue-500 outline-none border-2;
+        box-shadow: 0 0 0 3px rgba(#1c60c5, 0.3); /* Плавное свечение */
+      }
     }
     .buttons {
       @apply mt-auto w-full absolute bottom-0 flex justify-between mb-3;
-    
+
       .continueButton {
         @apply text-xl  border-2 text-center bg-blue-500 text-white px-[50px] py-[1.5vh] rounded-2xl;
         transition: background-color 0.2s ease-in-out; /* Добавляем плавность для изменения цвета фона */
@@ -38,10 +55,21 @@
 }
 
 .addressInput {
-  @apply border  border-gray-400 w-full px-3 text-base py-2 rounded-2xl transition-colors focus-within:border-primary;
+  @apply border-2 rounded-2xl border-gray-300  bg-transparent min-h-[45px] h-[15%] text-gray-700 w-full   px-[1vw]  text-lg;
+
+  transition: border-color 0.3s, box-shadow 0.3s;
+
   @media (max-width: 700px) {
     @apply text-lg bg-white rounded-xl px-1;
   }
+}
+.addressInput:hover {
+  @apply border-gray-400;
+  box-shadow: 0 0 0 3px rgba(#1c60c5, 0.3); /* Плавное свечение */
+}
+.addressInput:focus {
+  @apply border-blue-500 outline-none border-2;
+  box-shadow: 0 0 0 3px rgba(#1c60c5, 0.3); /* Плавное свечение */
 }
 
 @media (max-width: 700px) {
@@ -50,6 +78,8 @@
 
     .mainBlock {
       @apply w-full  mt-[8vh] pt-10;
+
+      
       .buttons {
         @apply mb-5;
         .continueButton {

@@ -70,7 +70,7 @@ const SignUpFields: FC<IAuthFields> = ({
             placeholder="Почта"
             // error={errors.email}
           />
-          <Field
+          {/* <Field
             {...register(
               "inn",
               isPasswordRequired
@@ -86,7 +86,7 @@ const SignUpFields: FC<IAuthFields> = ({
             placeholder="ИНН"
 
             // error={errors.password}
-          />
+          /> */}
           <Field
             {...register("nickname")}
             placeholder="Название компании / ФИО"

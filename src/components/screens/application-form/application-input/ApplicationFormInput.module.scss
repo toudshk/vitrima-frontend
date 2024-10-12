@@ -3,7 +3,7 @@
 }
 
 .common {
-  @apply relative border border-gray-400 rounded-2xl transition-colors focus-within:border-primary;
+  @apply relative rounded-2xl transition-colors focus-within:border-primary;
 
   > label {
     @apply block;
@@ -14,7 +14,12 @@
   }
 }
 .subtitle {
-  @apply text-4xl font-bold mb-2;
+  @apply text-4xl font-bold mb-4;
+}
+@media (max-width: 600px) {
+  .subtitle {
+    @apply mb-2;
+  }
 }
 .field {
   @apply mb-[1.5vh];
@@ -24,7 +29,17 @@
     margin: 0;
   }
   input {
-    @apply outline-border-none focus:ring-0 bg-transparent h-10 text-gray-700 w-full  px-[1vw]  text-base;
+    @apply border-2 rounded-2xl border-gray-300  bg-transparent min-h-[45px] h-[15%] text-gray-700 w-full   px-[1vw]  text-lg;
+
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  input:hover {
+    @apply border-gray-400;
+    box-shadow: 0 0 0 3px rgba(#1c60c5, 0.3); /* Плавное свечение */
+  }
+  input:focus {
+    @apply border-blue-500 outline-none border-2;
+    box-shadow: 0 0 0 3px rgba(#1c60c5, 0.3); /* Плавное свечение */
   }
 }
 
@@ -165,7 +180,7 @@
     }
   }
 
-  .subtitle{
+  .subtitle {
     @apply text-2xl;
   }
   .common {

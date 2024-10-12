@@ -312,7 +312,7 @@ const ApplicationForm: FC = () => {
                   <textarea
                     {...register("description")}
                     placeholder="Мне важно, чтобы у дизайнера был опыт работы с жилыми помещениями площадью более 500 м²."
-                    className="border resize-none border-gray-400 rounded-2xl transition-colors focus-within:border-primary h-[170px] text-gray-700 w-full p-2"
+                    className={styles.textArea}
                   />
                   <Controller
                     name="images"
@@ -330,7 +330,7 @@ const ApplicationForm: FC = () => {
                         image={value}
                         onChange={onChange}
                         title={""}
-                        style={{ maxHeight: "20vh !important" }}
+                        style={{ maxHeight: "20vh !important",  margin: "5px 0 0", }}
                       />
                     )}
                   />
