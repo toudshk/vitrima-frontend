@@ -41,13 +41,13 @@ export const registerContractor = createAsyncThunk<
   ISignUpContractor
 >(
   "auth/register/contractor",
-  async ({ email, password, nickname, inn }, thunkApi) => {
+  async ({ email, password, nickname }, thunkApi) => {
     try {
       const response = await AuthService.registerContractor(
         email,
         password,
         nickname,
-        inn
+        
       );
 
       // toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее отправлено уже письмо")

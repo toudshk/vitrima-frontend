@@ -37,7 +37,7 @@ export interface ISignUpContractor {
   email: string;
   password: string;
   nickname: string;
-  inn: string;
+  // inn: string;
  
 }
 export interface IAuthApplicantResponse extends ITokens {
