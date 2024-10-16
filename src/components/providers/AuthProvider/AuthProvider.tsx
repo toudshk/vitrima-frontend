@@ -13,7 +13,6 @@ const AuthProvider: FC<{children: React.ReactNode}> = ({children}) => {
 	const { user } = useAuth()
 	const { checkAuth, logout } = useActions()
 	const pathname = usePathname()
-	console.log(pathname)
 	useEffect(() => {
 		const accessToken = Cookies.get('accessToken')
 		// if (accessToken) checkAuth()

@@ -16,10 +16,9 @@ export const useSubTypes = (_id: any) => {
 				})
 			),
 		onError(error) {
-			console.log(error, 'Ошибка')
+			
 		},
 	})
-	console.log(queryData)
 
 	return queryData
 }

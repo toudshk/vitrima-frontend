@@ -1,6 +1,6 @@
 .container {
     position: relative;
-    height: 80vh;
+    height: 85vh;
     .itemsBlock {
       position: absolute;
       top: 50%;
@@ -30,9 +30,17 @@
         }
       }
     }
+    .bottomBlock {
+      @apply absolute bottom-[0%] border-gray-300 border-t w-full flex items-center justify-center;
+      
+      p {
+        @apply text-xl font-bold mt-3;
+      }
+    }
   }
   @media (max-width: 700px) {
     .container{
+      @apply h-[80vh];
       .itemsBlock{
         @apply w-full;
         >h1{
@@ -47,6 +55,12 @@
               @apply mr-0;
             }
           }
+        }
+      }
+      .bottomBlock {
+        
+        p {
+          @apply text-base font-bold mt-2 mx-2;
         }
       }
     }

@@ -14,7 +14,6 @@ export const useSelectTags = (_id: any) => {
 				})
 			),
 		onError(error) {
-			console.log(error, 'tag list')
 		},
 	})
 

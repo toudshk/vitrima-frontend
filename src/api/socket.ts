@@ -10,11 +10,9 @@ class SocketApi {
     });
 
     this.socket.on("connect", () => {
-      console.log("connected");
     });
 
     this.socket.on("disconnect", (e) => {
-      console.log("disconnect");
     });
   }
 }

@@ -14,31 +14,35 @@ const WorkTypeBlock: FC<IWorkTypeBlock> = ({ setSelectedItem, control }) => {
   const { data: workTypes, isLoading: isWorkTypeLoading } = useTypeWorks();
   return (
     <div className={styles.container}>
-        <div className={styles.itemsBlock}>
-      <h1>Что именно вас интересует?</h1>
-      <div className={styles.toggleButton}>
-        <Controller
-          name="workType"
-          control={control}
-          render={({ field, fieldState: { error } }) => (
-            <div>
-              {workTypes?.map((item) => (
-                <button
-                  key={item._id}
-                  onClick={() => {
-                    field.onChange(item);
-                    setSelectedItem(item);
-                  }}
-                  className={styles.button}
-                >
-                  {item.title}
-                </button>
-              ))}
-            </div>
-          )}
-        />
+      <div className={styles.itemsBlock}>
+        <h1>Что именно вас интересует?</h1>
+        <div className={styles.toggleButton}>
+          <Controller
+            name="workType"
+            control={control}
+            render={({ field, fieldState: { error } }) => (
+              <div>
+                {workTypes?.map((item) => (
+                  <button
+                    key={item._id}
+                    onClick={() => {
+                      field.onChange(item);
+                      setSelectedItem(item);
+                    }}
+                    className={styles.button}
+                  >
+                    {item.title}
+                  </button>
+                ))}
+              </div>
+            )}
+          />
+        </div>
+       
       </div>
-      </div>
+      <div className={styles.bottomBlock}>
+          <p>Подбор дизайнера - бесплатная услуга для вас, где мы находим специалиста под ваши критерии.</p>
+        </div>
     </div>
   );
 };
