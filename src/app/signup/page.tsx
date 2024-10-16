@@ -7,6 +7,12 @@ import styles from "./page.module.scss";
 import SignUpForms from "@/components/shared/user/SignUpForms";
 import Link from "next/link";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Регистрация",
+  description: "Присоединяйтесь к нам и начинайте воплощать в жизнь творческие идеи.",
+}
 
 const SignupLayout: FC = () => {
 

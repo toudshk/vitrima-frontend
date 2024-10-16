@@ -5,6 +5,11 @@ import Feedback from "@/components/screens/feedback/Feedback";
 import styles from "./page.module.scss"
 import { MainLogoBlack } from "@/components/common/icons/MainLogoBlack";
 import ResetPassword from "@/components/screens/reset-password/ResetPassword";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Забыли пароль?",
+}
+
 const Page: NextPageAuth = () => {
  
 

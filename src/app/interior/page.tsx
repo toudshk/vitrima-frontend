@@ -6,7 +6,11 @@ import InteriorGallery from "@/components/screens/main-page/Gallery";
 import { useAuth } from "@/hooks/useAuth";
 import { redirect } from "next/navigation";
 import Filter from "@/components/screens/filter/Filter";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Лента с проектами интерьера.",
+}
 export default function Page() {
   return (
     <>
