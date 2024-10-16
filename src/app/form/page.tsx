@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { NextPageAuth } from "@/components/shared/types/auth.types";
 import { useAuth } from "@/hooks/useAuth";
