@@ -1,4 +1,4 @@
-"use client";
+
 import { FC } from "react";
 import styles from "../signup/page.module.scss";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
