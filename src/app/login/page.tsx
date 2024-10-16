@@ -1,4 +1,4 @@
-
+"use client"
 import { FC } from "react";
 import styles from "../signup/page.module.scss";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -7,10 +7,7 @@ import LoginForms, { IAuthInput } from "@/components/shared/user/LoginForms";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "Уже с нами? Войдити в аккаунт",
-  description: "Мы вас очень ждем",
-}
+
 const LoginLayout: FC = () => {
   const {
     register: registerInput,
