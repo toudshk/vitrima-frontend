@@ -24,7 +24,7 @@ const CustomDatePicker: FC<CustomDatePickerProps> = ({ control }) => {
   const minDate = new Date(); // Текущая дата
 
   return (
-    <div>
+    <div  id="third-slide">
       <h1 className="text-4xl max-[640px]:text-2xl font-bold mb-10 ">Когда дизайнер должен приступить и закончить работу?</h1>
       <Controller
         control={control}

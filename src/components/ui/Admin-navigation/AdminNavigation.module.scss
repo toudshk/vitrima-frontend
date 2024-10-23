@@ -26,3 +26,27 @@
 		}
 	}
 }
+@media (max-width: 700px) {
+	.nav{
+		@apply w-full m-0;
+		>ul{
+			@apply block rounded-none mt-20 bg-white ;
+			>li{
+				@apply m-1;
+				>a{
+					@apply text-base bg-gray-300 rounded-xl;
+					&::before {
+						display:none;
+					
+					}
+	
+					&.active {
+						@apply text-opacity-100 bg-gray-450;
+	
+						
+					}
+				}
+			}
+		}
+	}
+}

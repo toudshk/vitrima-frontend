@@ -184,7 +184,9 @@ const ApplicationForm: FC = () => {
                   />
                   <Controller
                     name="location"
-                    control={control}
+                    control={control}  
+                    rules={{ required: "Заполните поле" }} 
+
                     render={({ field, fieldState: { error } }) => (
                       <>
                         <p className="text-4xl font-bold mb-4  max-[600px]:text-2xl max-[600px]:mb-2">
@@ -201,12 +203,15 @@ const ApplicationForm: FC = () => {
                           onChange={(newValue) => {
                             // Проверьте данные в консоли
                             handleLocationChange(newValue);
+                              field.onChange(newValue); // Обновляем значение в контроллере
+
                           }}
                           value={field.value}
                           filterFromBound="city"
                           filterToBound="city"
                           filterLocations={[{ country: "россия" }]}
                         />
+                         {error && <div className={styles.error}>{error.message}</div>}
                       </>
                     )}
                   />

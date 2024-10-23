@@ -4,10 +4,11 @@ import { FC } from "react";
 
 import styles from "./AdminTable.module.scss";
 import Image from "next/image";
+import Link from "next/link";
 
 const AdminTableItem: FC<any> = ({ tableItem, removeHandler }) => {
   return (
-    <div className={styles.item}>
+    <Link  className={styles.item} href={`/profile/${tableItem._id}`}>
       {tableItem.items.map((value: any) => (
         <div key={value}>
           {value.startsWith("/uploads") ? (
@@ -22,7 +23,7 @@ const AdminTableItem: FC<any> = ({ tableItem, removeHandler }) => {
         editUrl={tableItem.editUrl}
         removeHandler={() => removeHandler(tableItem._id)}
       />
-    </div>
+    </Link>
   );
 };
 

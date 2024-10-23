@@ -18,3 +18,10 @@
 		}
 	}
 }
+@media (max-width: 700px) {
+	.statistics{
+		.block{
+			@apply w-full mr-4;
+		}
+	}
+}
