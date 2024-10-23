@@ -45,7 +45,9 @@ const ApplicationForm: FC = () => {
       phoneNumber: "",
     },
   });
+  const value = getValues()
 
+  console.log(value)
   const DADATA_KEY = "4a9e155a8d8b3989ac9f4a5e58269c44c65f049b";
   const { onSubmit } = useApplicationForm();
   const { data: purposeTypes, isLoading: isPurposeTypeLoading } =
@@ -203,7 +205,7 @@ const ApplicationForm: FC = () => {
                           onChange={(newValue) => {
                             // Проверьте данные в консоли
                             handleLocationChange(newValue);
-                              field.onChange(newValue); // Обновляем значение в контроллере
+                              field.onChange(newValue!.value); // Обновляем значение в контроллере
 
                           }}
                           value={field.value}
