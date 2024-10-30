@@ -26,6 +26,7 @@
 
 /* Стили для календаря */
 .custom-calendar {
+  z-index: 400;
   border-radius: 8px;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -84,5 +85,6 @@
 
 /* Стили для поппера (выезжающая часть календаря) */
 .react-datepicker-popper {
+  
   z-index: 1050; /* Убедитесь, что календарь отображается поверх других элементов */
 }

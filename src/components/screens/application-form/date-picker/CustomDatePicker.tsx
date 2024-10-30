@@ -24,53 +24,90 @@ const CustomDatePicker: FC<CustomDatePickerProps> = ({ control }) => {
   const minDate = new Date(); // Текущая дата
 
   return (
-    <div  id="third-slide">
-      <h1 className="text-4xl max-[640px]:text-2xl font-bold mb-10 ">Когда дизайнер должен приступить и закончить работу?</h1>
-      <Controller
-        control={control}
-        name="startDate"
-        rules={{ required: true }}
-        render={({ field }) => {
-          return (
-            <>
-              <p className="text-2xl font-bold mb-4">Начало</p>
-              <DatePicker
-                className="custom-datepicker"
-                calendarClassName="custom-calendar"
-                placeholderText={"Дата"}
-                locale="ru"
-                minDate={minDate}
-                dateFormat="d MMM yyyy" // Форматирование даты, чтобы совпадало с dayjs
-                onChange={(date) => field.onChange(date)}
-                selected={field.value}
-              />
-            </>
-          );
-        }}
-      />
-
-      <Controller
-        control={control}
-        name="finishDate"
-        rules={{ required: true }}
-        render={({ field }) => {
-          return (
-            <>
-              <p className="text-2xl font-bold my-4">Конец</p>
-              <DatePicker
-                className="custom-datepicker"
-                calendarClassName="custom-calendar"
-                placeholderText="Дата"
-                locale="ru"
-                minDate={minDate}
-                dateFormat="d MMM yyyy" // Форматирование даты, чтобы совпадало с dayjs
-                onChange={(date) => field.onChange(date)}
-                selected={field.value}
-              />
-            </>
-          );
-        }}
-      />
+    <div className="flex flex-col justify-start ">
+      <div>
+        <h1 className="text-4xl max-[640px]:text-2xl font-bold mb-10 ">
+          Когда дизайнер должен приступить и закончить работу?
+        </h1>
+        <div className="flex items-center gap-[10px] w-2/3">
+          <div className="w-full">
+            <Controller
+              control={control}
+              name="startDate"
+              rules={{ required: true }}
+              render={({ field }) => {
+                return (
+                  <>
+                    <p className="text-2xl font-bold mb-4">Начало</p>
+                    <DatePicker
+                      className="custom-datepicker"
+                      calendarClassName="custom-calendar"
+                      placeholderText={"Дата"}
+                      locale="ru"
+                      minDate={minDate}
+                      dateFormat="d MMM yyyy" // Форматирование даты, чтобы совпадало с dayjs
+                      onChange={(date) => field.onChange(date)}
+                      selected={field.value}
+                    />
+                  </>
+                );
+              }}
+            />
+          </div>
+          <div className="w-full"> 
+            <Controller
+              control={control}
+              name="finishDate"
+              rules={{ required: true }}
+              render={({ field }) => {
+                return (
+                  <>
+                    <p className="text-2xl font-bold mb-4">Конец</p>
+                    <DatePicker
+                      className="custom-datepicker"
+                      calendarClassName="custom-calendar"
+                      placeholderText="Дата"
+                      locale="ru"
+                      minDate={minDate}
+                      dateFormat="d MMM yyyy" // Форматирование даты, чтобы совпадало с dayjs
+                      onChange={(date) => field.onChange(date)}
+                      selected={field.value}
+                    />
+                  </>
+                );
+              }}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="my-10 h-[30vh] max-[700px]:h-[50vh]">
+        <h1 className="text-4xl max-[640px]:text-2xl font-bold mb-10 ">
+          Как скоро планируете начать ремонт?
+        </h1>
+        <div className="flex items-center gap-[10px]">
+          <div>
+            <Controller
+              control={control}
+              name="startDateRealization"
+              rules={{ required: true }}
+              render={({ field }) => {
+                return (
+                  <DatePicker
+                    className="custom-datepicker"
+                    calendarClassName="custom-calendar"
+                    placeholderText={"Дата"}
+                    locale="ru"
+                    minDate={minDate}
+                    dateFormat="d MMM yyyy" // Форматирование даты, чтобы совпадало с dayjs
+                    onChange={(date) => field.onChange(date)}
+                    selected={field.value}
+                  />
+                );
+              }}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

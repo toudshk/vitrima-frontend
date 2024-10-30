@@ -20,7 +20,8 @@ import UploadField from "./UploadField/UploadField";
 import { useSubTypes } from "../add-work/useSubTypes";
 import Popup from "./pop-up/PopUp";
 import { AddressSuggestions } from "react-dadata";
-import 'react-dadata/dist/react-dadata.css';
+import "react-dadata/dist/react-dadata.css";
+import FormatInput from "./formatInput/FormatInput";
 
 const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
@@ -43,11 +44,11 @@ const ApplicationForm: FC = () => {
     mode: "onChange",
     defaultValues: {
       phoneNumber: "",
+      images: []
+      
     },
   });
-  const value = getValues()
-
-  console.log(value)
+  const value = getValues();
   const DADATA_KEY = "4a9e155a8d8b3989ac9f4a5e58269c44c65f049b";
   const { onSubmit } = useApplicationForm();
   const { data: purposeTypes, isLoading: isPurposeTypeLoading } =
@@ -59,7 +60,7 @@ const ApplicationForm: FC = () => {
   const [selectedItem, setSelectedItem] = useState<IWorkType | null>(null);
   const [imageIsUpload, setImageIsUpload] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState<string>();
-
+const [checkbox, setCheckBox] = useState(false)
   const interiorId = "656c0a3cfad5c309cd6a9433";
   const architectureId = "656c0a67fad5c309cd6a9853";
   const typeId =
@@ -131,6 +132,7 @@ const ApplicationForm: FC = () => {
     }
   }, [selectedItem]);
 
+
   const isStepValid = (currentStep: number) => {
     switch (currentStep) {
       case 0:
@@ -142,12 +144,16 @@ const ApplicationForm: FC = () => {
       case 3:
         return !errors.minPrice || !errors.maxPrice;
       case 4:
-        return !errors.description;
+        return !errors.description && (value.images.length > 0  || checkbox === true ) ;
       case 5:
         return !errors.phoneNumber && !errors.email;
       default:
         return true;
     }
+  };
+  
+  const handleCheckboxChange = () => {
+    setCheckBox(true);
   };
 
   return (
@@ -186,9 +192,8 @@ const ApplicationForm: FC = () => {
                   />
                   <Controller
                     name="location"
-                    control={control}  
-                    rules={{ required: "Заполните поле" }} 
-
+                    control={control}
+                    rules={{ required: "Заполните поле" }}
                     render={({ field, fieldState: { error } }) => (
                       <>
                         <p className="text-4xl font-bold mb-4  max-[600px]:text-2xl max-[600px]:mb-2">
@@ -205,18 +210,24 @@ const ApplicationForm: FC = () => {
                           onChange={(newValue) => {
                             // Проверьте данные в консоли
                             handleLocationChange(newValue);
-                              field.onChange(newValue!.value); // Обновляем значение в контроллере
-
+                            field.onChange(newValue!.value); // Обновляем значение в контроллере
                           }}
                           value={field.value}
                           filterFromBound="city"
                           filterToBound="city"
                           filterLocations={[{ country: "россия" }]}
                         />
-                         {error && <div className={styles.error}>{error.message}</div>}
+                        {error && (
+                          <div className={styles.error}>{error.message}</div>
+                        )}
                       </>
                     )}
-                  />
+                  /> <>
+                  <p className="text-4xl font-bold my-4  max-[600px]:text-2xl max-[600px]:mb-2">
+                  В каком формате потребуется проект
+                  </p>
+                  <FormatInput control={control} />
+                </>
                 </>
               )}
 
@@ -284,38 +295,71 @@ const ApplicationForm: FC = () => {
                 </>
               )}
 
-              {step === 2 && <CustomDatePicker control={control} />}
-              {step === 3 && (
-                <div>
-                  <div>
-                    <p className="text-4xl max-[640px]:text-2xl font-bold mb-10">
-                      Какую сумму вы готовы выделить на разработку проекта?
-                    </p>
-                  </div>
-                  <div className="flex ">
-                    <ApplicationFormInput
-                      {...register("minPrice", {
-                        required: "Заполните поле",
-                      })}
-                      type="number"
-                      placeholder="От 0 ₽"
-                      error={errors.minPrice}
-                      style={{ marginRight: "10px" }}
-                    />
-                    <ApplicationFormInput
-                      {...register("maxPrice", {
-                        required: "Заполните поле",
-                      })}
-                      type="number"
-                      placeholder="До 0 ₽"
-                      error={errors.maxPrice}
-                    />
-                  </div>
+              {step === 2 && (
+                <div className={styles.dateBlock}>
+                  <CustomDatePicker control={control} />
                 </div>
               )}
+              {step === 3 && (
+                <>
+                  <div>
+                    <div>
+                      <p className="text-4xl max-[640px]:text-2xl font-bold mb-6">
+                        Какую сумму вы готовы выделить на
+                      </p>
+                      <p className="text-2xl font-bold mb-4">
+                        разработку проекта
+                      </p>
+                    </div>
+                    <div className="flex ">
+                      <ApplicationFormInput
+                        {...register("minPrice", {
+                          required: "Заполните поле",
+                        })}
+                        type="number"
+                        placeholder="От 0 ₽"
+                        error={errors.minPrice}
+                        style={{ marginRight: "10px" }}
+                      />
+                      <ApplicationFormInput
+                        {...register("maxPrice", {
+                          required: "Заполните поле",
+                        })}
+                        type="number"
+                        placeholder="До 0 ₽"
+                        error={errors.maxPrice}
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-10">
+                    <div>
+                      <p className="text-2xl font-bold mb-4">ремонт</p>
+                    </div>
+                    <div className="flex ">
+                      <ApplicationFormInput
+                        {...register("minPriceRealization", {
+                          required: "Заполните поле",
+                        })}
+                        type="number"
+                        placeholder="От 0 ₽"
+                        error={errors.minPriceRealization}
+                        style={{ marginRight: "10px" }}
+                      />
+                      <ApplicationFormInput
+                        {...register("maxPriceRealization", {
+                          required: "Заполните поле",
+                        })}
+                        type="number"
+                        placeholder="До 0 ₽"
+                        error={errors.maxPriceRealization}
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
               {step === 4 && (
-                  <div className={styles.topBlock}>
-                  <p className="text-4xl max-[640px]:text-2xl font-bold mb-2">
+                <div className={styles.topBlock}>
+                  <p className="text-4xl max-[640px]:text-2xl font-bold mb-4">
                     Дополнительная информация
                   </p>
                   <textarea
@@ -323,6 +367,22 @@ const ApplicationForm: FC = () => {
                     placeholder="Мне важно, чтобы у дизайнера был опыт работы с жилыми помещениями площадью более 500 м²."
                     className={styles.textArea}
                   />
+                  <p className="text-4xl max-[640px]:text-2xl font-bold my-4">
+                    Референсы
+                  </p>
+                  
+                    <div>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          onChange={handleCheckboxChange}
+                        />
+                        <p className='ml-2 '>Если у вас нет референсов, то нажмите на галочку
+                        </p>
+                      </label>
+                     
+                    </div>
+                 
                   <Controller
                     name="images"
                     control={control}
@@ -331,7 +391,8 @@ const ApplicationForm: FC = () => {
                       field: { value, onChange },
                       fieldState: { error },
                     }) => (
-                      <UploadField
+                     
+                        <UploadField
                         setImageIsUpload={setImageIsUpload}
                         placeholder="Фотография"
                         error={error}
@@ -339,8 +400,13 @@ const ApplicationForm: FC = () => {
                         image={value}
                         onChange={onChange}
                         title={""}
-                        style={{ maxHeight: "20vh !important",  margin: "5px 0 0", }}
+                        style={{
+                          maxHeight: "20vh !important",
+                          margin: "5px 0 0",
+                        }}
                       />
+                    
+                     
                     )}
                   />
                 </div>

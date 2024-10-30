@@ -2,8 +2,25 @@
   @apply max-w-[1734px] mx-auto px-5 h-[80vh];
   .mainBlock {
     @apply w-1/2 mx-auto relative h-full mt-[10%];
+    .dateBlock{
+      @apply h-[80%] overflow-y-auto px-1 ;
+      mask-image: linear-gradient(
+        to bottom,
+        black 90%,
+      transparent
+      ); 
+      &::-webkit-scrollbar {
+        display: none; /* Скрывает полосу прокрутки */
+      }
+    }
+    @media (max-width: 700px) {
+      .dateBlock{
+        @apply overflow-hidden h-[100%];
+        mask-image: none
+      }
+    }
     .topBlock {
-      @apply h-[80%] flex flex-col justify-between overflow-y-auto px-1;
+      @apply h-[80%] flex flex-col justify-between overflow-y-auto px-1 ;
       mask-image: linear-gradient(
         to bottom,
         black 80%,

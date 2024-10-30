@@ -1,6 +1,6 @@
-import MainButton from '@/components/ui/Button/MainButton';
-import Image from 'next/image';
-import React, { FC, useState } from 'react';
+import MainButton from "@/components/ui/Button/MainButton";
+import Image from "next/image";
+import React, { FC, useState } from "react";
 
 const ApplicationTableItem: FC<any> = ({ tableItem, removeHandler }) => {
   const [more, setMore] = useState(false);
@@ -10,20 +10,23 @@ const ApplicationTableItem: FC<any> = ({ tableItem, removeHandler }) => {
     "Дата обращения",
     "Тип работы",
     "Площадь объекта",
+    "Формат",
+    "Дата начала реализ. проекта",
     "Тип строительства",
-	"Стили",
+    "Стили",
     "Дата начала",
     "Дата конец",
     "Мин. цена",
-    "Макс цена",
+    "Макс. цена",
+    "Мин. цена реализации проекта",
+    "Макс. цена реализации проекта",
     "Комментарий",
     "Фотографии",
     "Номер",
     "Почта",
     "Назначение",
     "Имя",
-    "Местоположение"
-
+    "Местоположение",
   ];
   const images = tableItem.items[10] as string[]; // Assuming images are at index 10
 
@@ -41,7 +44,10 @@ const ApplicationTableItem: FC<any> = ({ tableItem, removeHandler }) => {
       {more && (
         <div className="mt-2 space-y-2">
           {items.map((label, index) => (
-            <div key={index} className="flex justify-between p-2 bg-white border border-gray-200 rounded-md shadow-sm">
+            <div
+              key={index}
+              className="flex justify-between p-2 bg-white border border-gray-200 rounded-md shadow-sm"
+            >
               <span className="text-gray-800 font-semibold">{label}:</span>
               {label === "Фотографии" ? (
                 <div className="flex gap-2">

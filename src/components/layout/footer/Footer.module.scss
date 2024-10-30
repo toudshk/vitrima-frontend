@@ -15,6 +15,9 @@
       justify-content: start;
     }
   }
+  .socialLinks{
+    @apply mt-2;
+  }
   .contacts{
     @apply text-[0.8vw] ml-auto text-gray-500 text-end ;
   }

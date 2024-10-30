@@ -70,7 +70,7 @@ const DynamicSelect: FC<ISelect> = ({
   title
 }) => {
   const onChange = (
-    newValue: IOption | IOption[],
+    newValue: IOption | IOption[] | any,
     { action }: any
   ) => {
     if (action !== "input-change") {
@@ -84,7 +84,6 @@ const DynamicSelect: FC<ISelect> = ({
       } // Вызов нового prop при изменении
     }
   };
-
 
   const pathname = usePathname()
   const getValue = () => {
@@ -111,7 +110,7 @@ const DynamicSelect: FC<ISelect> = ({
     <div className={styles.itemBlock}>
       <div className="mr-auto ">{label}</div>
       
-      {(title === 'стиль' && !isMobile) && (
+      {((title === 'стиль' || title === 'формат')  && !isMobile) && (
         <button
         type="button"
           className={styles.infoButton}
@@ -140,7 +139,7 @@ const DynamicSelect: FC<ISelect> = ({
           styles={getCustomStyles(pathname)}
         />
       </label>
-      {error && <div>Ничего не найдено</div>}
+      {error && <div>Заполните поле</div>}
     </div>
   );
 };

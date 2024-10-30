@@ -19,6 +19,11 @@
   z-index: 10;
   width: 300px;
 }
+@media (max-width: 700px) {
+  .imageBlock {
+    left: -0%;
+  }
+}
 
 .visible {
   opacity: 1;

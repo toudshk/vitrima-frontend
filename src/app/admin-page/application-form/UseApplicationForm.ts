@@ -18,6 +18,9 @@ export const useApplicationForm = () => {
 
             applicationForm.workType.title,
             applicationForm.objectArea,
+            applicationForm?.format || 'N/A',
+            convertMongoDate(applicationForm?.startDateRealization) || 'N/A',
+
             applicationForm.buildingTechnique.map(
               (technique: any) => technique.title
             ),
@@ -27,13 +30,16 @@ export const useApplicationForm = () => {
             convertMongoDate(applicationForm.finishDate),
             applicationForm.minPrice,
             applicationForm.maxPrice,
+            applicationForm?.minPriceRealization|| 'N/A',
+            applicationForm?.maxPriceRealization || 'N/A',
+            
             applicationForm.description,
             applicationForm.images,
             applicationForm.phoneNumber,
             applicationForm.email,
             applicationForm.purposeType?.title || "N/A",
             applicationForm?.name || "N/A", 
-            applicationForm?.location || "N/A"
+            applicationForm?.location || "N/A",
           ],
         })),
       onError(error) {

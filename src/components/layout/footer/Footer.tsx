@@ -3,6 +3,7 @@ import { WhiteIconLogo } from "../../common/icons/WhiteIconLogo";
 import styles from "./Footer.module.scss";
 import Link from "next/link";
 
+import TelegramIcon from "@mui/icons-material/Telegram";
 const Footer = () => {
   return (
     <div className={styles.content}>
@@ -10,18 +11,25 @@ const Footer = () => {
         <WhiteIconLogo width={24} />
       </div>
       <div className="flex">
-        <ul className={styles.links}>
-          {/* <li className={styles.link} >Все права защищены</li> */}
-          <li className={styles.link}>
-            <Link href={"/documents"}>Политика конфиденциальности</Link>
-          </li>
-          <li className={styles.link}>
-            <Link href={"/documents"}>Использование файлов cookie</Link>
-          </li>
-          <li className={styles.link}>
-            <Link href={"/documents"}>Правовая информация</Link>
-          </li>
-        </ul>
+        <div>
+          <ul className={styles.links}>
+            {/* <li className={styles.link} >Все права защищены</li> */}
+            <li className={styles.link}>
+              <Link href={"/documents"}>Политика конфиденциальности</Link>
+            </li>
+            <li className={styles.link}>
+              <Link href={"/documents"}>Использование файлов cookie</Link>
+            </li>
+            <li className={styles.link}>
+              <Link href={"/documents"}>Правовая информация</Link>
+            </li>
+          </ul>
+          <div className={styles.socialLinks}>
+              <Link href={"https://t.me/vitrimaru"} >
+            <TelegramIcon />
+            </Link>
+          </div>
+        </div>
         <div className={styles.contacts}>
           ИП Малявко Михаил Дмитриевич
           <br />
