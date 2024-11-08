@@ -1,0 +1,39 @@
+// VideoCall.module.scss
+
+.videoCallContainer {
+    @apply flex flex-col items-center justify-center h-screen bg-[#2f3136] p-4;
+  }
+  
+  .videoWrapper {
+    @apply flex space-x-4 mb-6;
+  }
+  
+  .localVideo {
+    @apply w-32 h-16 border-2 border-[#4f545c] rounded-lg shadow-lg object-cover;
+
+  }
+  
+  .remoteVideo {
+    @apply w-full h-[80vh] border-2 border-[#4f545c] rounded-lg shadow-xl  object-cover;
+  }
+  
+  .callButtons {
+    @apply flex space-x-4;
+  }
+  
+  .callButton {
+    @apply px-6 py-2 font-bold rounded-lg transition-transform transform hover:scale-105;
+  }
+  
+  .startCallButton {
+    @apply bg-[#43b581] text-white hover:bg-[#3b9d73];
+  }
+  
+  .endCallButton {
+    @apply bg-[#f04747] text-white hover:bg-[#e03e3e];
+  }
+  
+  .callButton:disabled {
+    @apply bg-[#6b727a] cursor-not-allowed;
+  }
+  

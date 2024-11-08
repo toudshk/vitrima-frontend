@@ -12,4 +12,13 @@ export interface IApplicationForm {
   tags: string[];
   description: string;
   createdAt: string;
+  location: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  format: string;
+  minPriceRealization: number;
+  maxPriceRealization: number;
+  chatId: any;
+  startDateRealization: string;
 }

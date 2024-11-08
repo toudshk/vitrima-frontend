@@ -27,7 +27,7 @@ const animation = {
   },
 };
 const Navigation = () => {
-  SocketApi.createConnection();
+  // SocketApi.createConnection();
 
   const { data } = useUnreadMessages();
   let countUnreadMessages = data?.length ?? 0;
@@ -36,14 +36,14 @@ const Navigation = () => {
   const pathname = usePathname().substring(1);
   const [arrivalMessage, setArrivalMessage] = useState(false);
 
-  useEffect(() => {
-    SocketApi.socket?.on("client-path", (data) => {
-      if (user && user._id === data.receiver) {
-        setArrivalMessage(true);
-      }
-    });
+  // useEffect(() => {
+  //   SocketApi.socket?.on("client-path", (data) => {
+  //     if (user && user._id === data.receiver) {
+  //       setArrivalMessage(true);
+  //     }
+  //   });
     
-  }, []);
+  // }, []);
   // Обработчик события для ссылки "чат", который сбрасывает уведомление
   const handleChatLinkClick = () => {
     setArrivalMessage(false);

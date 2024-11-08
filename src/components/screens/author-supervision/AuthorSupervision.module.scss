@@ -1,0 +1,43 @@
+.container{
+    @apply mt-[9vh] flex h-[91vh];
+    .leftBlock{
+        @apply w-1/4 max-h-[91vh] flex overflow-y-auto  shadow-lg;
+    flex-direction: column;
+    }
+
+    .leftBlock::-webkit-scrollbar {
+    display: none; /* Для Chrome, Safari и Edge */
+}
+    .rightBlock{
+        @apply w-3/4;
+        .chatBox{
+            @apply h-full;
+            .chatBoxTop{
+                @apply h-5/6 min-h-[80vh];
+            }
+
+            .chatBoxBottomContainer{
+                @apply w-full;
+                .chatBoxBottom{
+                    @apply flex w-full items-center;
+                    div{
+                        @apply w-full;
+                    }
+                }
+            }
+            .videoCall {
+                position: fixed; /* Чтобы окно оставалось поверх всего */
+                top: 0;
+                left: 0;
+                width: 100vw; /* Занимает всю ширину экрана */
+                height: 100vh; /* Занимает всю высоту экрана */
+                background-color: rgba(30, 30, 30, 0.9); /* Темный полупрозрачный фон, как в Discord */
+                z-index: 9999; /* Устанавливаем, чтобы окно было поверх всех других элементов */
+                display: flex;
+                justify-content: center; /* Центрируем содержимое */
+                align-items: center; /* Центрируем содержимое */
+                overflow: hidden;
+            }
+        }
+    }
+}

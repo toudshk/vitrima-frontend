@@ -31,6 +31,25 @@ export const AuthService = {
 
     return response;
   },
+
+  async registerWorker(email: string, password: string, nickname: string) {
+    const response = await axiosClassic.post<IAuthApplicantResponse>(
+      `${API_URL}${getAuthUrl("/register/worker")}`,
+      {
+        email,
+        password,
+        nickname,
+      }
+    );
+
+    if (response.data.accessToken) {
+      console.log(response.data)
+      saveToStorage(response.data);
+    }
+
+    return response;
+  },
+
   async registerContractor(
     email: string,
     password: string,

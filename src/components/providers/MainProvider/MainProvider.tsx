@@ -32,8 +32,13 @@ const MainProvider: FC<{ children: any }> = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <ReduxProvider>
-      {pathname !== "/" && pathname !== "/login" && pathname !== "/signup" && <Header />}
-      <motion.div
+        {pathname !== "/" &&
+          pathname !== "/login" &&
+          pathname !== "/signup" &&
+          pathname !== "/signup-workers" &&
+          
+          <Header />}
+        <motion.div
           className="mt-[7vh]"
           variants={animation}
           initial="hidden"
@@ -41,7 +46,9 @@ const MainProvider: FC<{ children: any }> = ({ children }) => {
           exit="hidden"
         >
           <Metrika />
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+          {children}
+          </AuthProvider>
         </motion.div>
       </ReduxProvider>
       <ToastContainer />

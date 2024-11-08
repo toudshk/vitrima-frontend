@@ -1,0 +1,35 @@
+.item{
+    @apply my-2 border border-gray-300 rounded-2xl p-2 flex;  
+
+    .modalWindow {
+        @apply fixed inset-0 bg-primary bg-opacity-50 flex justify-center items-center;
+       
+    }
+    
+    .windowContent {
+        @apply bg-gray-300 rounded-2xl p-6 w-[50vw] h-[50vh] overflow-auto shadow-lg;
+        > input {
+            @apply  border border-gray-400 rounded-3xl px-8 py-2 bg-gray-300 placeholder:text-gray-600 block w-auto text-gray-600  outline-none;
+        }
+        &::-webkit-scrollbar {
+            display: none; /* Скрывает полосу прокрутки */
+          }
+    }
+    
+    .userTable {
+        @apply w-full mt-4;
+    }
+    
+    .userTable a {
+        @apply block p-2 text-blue-500 hover:text-blue-800 transition-colors;
+    }
+    
+    .userTable a:hover {
+        @apply underline;
+    }
+    
+    .closeButton {
+        @apply mt-4 bg-red text-white rounded px-4 py-2 hover:bg-blue-800;
+    }
+   
+}

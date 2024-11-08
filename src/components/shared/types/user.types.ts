@@ -10,6 +10,7 @@ export interface IApplicant {
   image: string;
   subscriptions?: string[];
   saved?: string[];
+  isWorker: boolean
 }
 interface ISocialProfiles {
   vk?: string;
@@ -17,6 +18,7 @@ interface ISocialProfiles {
   telegram?: string;
   webSite?: string;
 }
+export interface IWorker extends IApplicant {}
 export interface IContractor extends IApplicant {
   inn: string;
   description: string;

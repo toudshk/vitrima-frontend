@@ -23,7 +23,7 @@ const MessageField: FC<{
   messages: any;
 }> = ({ currentChat, messages }) => {
   
-  SocketApi.createConnection();
+  // SocketApi.createConnection();
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [newMessage, setNewMessage] = useState("");
   const { user } = useAuth();

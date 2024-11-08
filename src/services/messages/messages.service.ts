@@ -1,5 +1,4 @@
 import axios, { axiosClassic } from "@/api/interceptors";
-import SocketApi from "@/api/socket";
 import { API_URL, getMessageUrl } from "@/config/api.config";
 
 export const MessagesService = {

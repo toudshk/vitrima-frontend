@@ -1,0 +1,74 @@
+.container {
+    @apply flex -mt-[7vh];
+    .leftBlock {
+      @apply border-white my-[1vw]  ml-[1vw] flex justify-end;
+      border-radius: 1vw;
+      background: url("../../components/common/images/ui/authPage/AuthBg.png")
+        no-repeat center center;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      min-width: 50%;
+      height: 95vh;
+  
+      @media (max-width: 1336px) {
+        display: none;
+      }
+    }
+    .rightBlock {
+      @apply mx-[5vw] items-center my-auto ;
+  
+      .logotype {
+        @apply w-full mb-[3.1vh] flex justify-center;
+        img{
+          @apply mx-auto;
+        }
+      }
+      @media (max-width: 1336px) {
+        @apply px-3;
+        margin-top: 20vh;
+      }
+  
+      .authButtons {
+        button {
+          @apply w-full rounded-2xl;
+          transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        button:first-child {
+          &:hover {
+            @apply bg-white text-primary border-2;
+          }
+        }
+        button:last-child {
+          @apply border-2;
+          &:hover {
+            @apply bg-gray-400 text-primary border-gray-400;
+          }
+        }
+      }
+      .docLink {
+        @apply my-2;
+        > a {
+          @apply inline underline;
+        }
+        > p {
+          @apply inline;
+        }
+      }
+  
+      form {
+        @apply my-5;
+      }
+      @media (min-width: 1900px) {
+        form {
+          @apply my-7;
+        }
+      }
+      @media (min-width: 2500px) {
+        form {
+          @apply my-10;
+        }
+      }
+    }
+  }
+  

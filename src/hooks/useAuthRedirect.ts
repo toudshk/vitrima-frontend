@@ -9,8 +9,12 @@ export const useAuthRedirect = () => {
 	const { push } = useRouter()
 
 	const redirect = '/select-feed'
+	const workerRedirect = '/author-supervision'
 	useEffect(() => {
-		if (user) {push(redirect)}
+		if (user) {push(redirect)
+
+		if (user.isWorker) {push(workerRedirect)}		
+		}
 		
 	}, [user, redirect, push])
 }

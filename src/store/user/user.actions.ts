@@ -9,8 +9,37 @@ import {
   IAuthApplicantResponse,
   IAuthResponse,
   IAuthContractorResponse,
+  IAuthWorkerResponse,
+  ISignUpWorker,
 } from "./user.interface";
 import { errorCatch } from "@/api/api.helpers";
+
+
+export const registerWorker = createAsyncThunk<
+IAuthWorkerResponse,
+ISignUpWorker
+>(
+  "auth/register/worker",
+    async ({ email, password, nickname }, thunkApi) => {
+     
+      try {
+        const response = await AuthService.registerWorker(
+          email,
+          password,
+          nickname,
+
+        );
+        // toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее уже отправлено письмо")
+        toast.success("Вы успешно зарегистрировались!");
+
+        return response.data;
+      } catch (error: any) {
+        toast.error(error.response.data.message);
+
+        return thunkApi.rejectWithValue(error);
+      }
+    }
+  );
 
 export const registerApplicant = createAsyncThunk<
   IAuthApplicantResponse,

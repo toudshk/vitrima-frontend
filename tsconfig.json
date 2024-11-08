@@ -34,8 +34,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "tailwind.config.js"
-, "src/utils/metrika.js"  ],
+    "tailwind.config.js",
+    "src/utils/metrika.js"
+  ],
   "exclude": [
     "node_modules"
   ]
