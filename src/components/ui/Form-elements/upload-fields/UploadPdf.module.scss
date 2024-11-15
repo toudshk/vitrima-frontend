@@ -1,13 +1,40 @@
-.field {
-  .topBlock {
-    @apply block;
-    .title {
-      @apply text-2xl mb-4;
-    }
-    .button{
-        @apply rounded-xl;
-    }
+.uploadIconButton {
+  color: #888; // Цвет иконки, можно настроить
+  &:hover {
+    color: #555; // Цвет при наведении
   }
-  .pdfList {
+}
+
+.uploadedPdfContainer {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+}
+
+.removeImageButton {
+  @apply rounded-xl z-20;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.inactiveField {
+  display: none;
+}
+
+.field {
+  @apply max-w-[200px] absolute bottom-14 left-36 min-w-[20vh] bg-white border border-gray-300 rounded-xl  shadow-lg p-3 gap-1;
+  overflow: hidden; /* Обрезает текст, выходящий за границы */
+  white-space: nowrap; /* Запрещает перенос текста на новую строку */
+  text-overflow: ellipsis;
+  .uploadedPdfBlock p {
+    @apply z-10;
+    max-width: 150px; /* Установите желаемую максимальную ширину */
+    overflow: hidden; /* Обрезает текст, выходящий за границы */
+    white-space: nowrap; /* Запрещает перенос текста на новую строку */
+    text-overflow: ellipsis; /* Добавляет троеточие, если текст не помещается */
   }
 }

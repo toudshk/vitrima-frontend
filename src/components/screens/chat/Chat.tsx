@@ -18,6 +18,9 @@ import { useUserInfo } from "./useUserInfo";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import baseImage from "@/app/assets/images/base-avatar.jpg";
 import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
+import { useChat } from "../author-supervision/application-forms/useCreateChat";
+
+import { useChat as useCreateChat } from "@/hooks/chat/useChat";
 const Chat: FC = () => {
   const [chats, setChats] = useState([]);
 
@@ -32,33 +35,39 @@ const Chat: FC = () => {
 
   const sortedChats = nonEmptyChats.sort(
     (a: any, b: any) =>
-      new Date(b.lastMessageTime).getTime() - new Date(a.lastMessageTime).getTime()
+      new Date(b.lastMessageTime).getTime() -
+      new Date(a.lastMessageTime).getTime()
   );
 
- let friendId: any
+  let friendId: any;
   if (currentChat && currentChat.members) {
     friendId = currentChat.members.find((m: any) => m !== user?._id);
   }
   const { data: friendData } = useUserInfo(friendId);
 
-  // useEffect(() => {
-  //   SocketApi.createConnection();
+  const { data: adminData } = useUserInfo("670cd5e6a4253287ebc155d0");
 
-  //   SocketApi.socket?.on("client-path", (data) => {
-  //     setArrivalMessage({
-  //       chatId: data.chatId,
-  //       sender: data.sender,
-  //       receiverId: friendId,
-  //       text: data.text,
-  //       createdAt: Date.now(),
-  //       status: "sent"
-  //     });
-  //   });
-  // }, []);
+  useEffect(() => {
+    SocketApi.createConnection();
+
+    SocketApi.socket?.on("client-path", (data) => {
+      setArrivalMessage({
+        chatId: data.chatId,
+        sender: data.sender,
+        receiverId: friendId,
+        text: data.text,
+        createdAt: Date.now(),
+        drawings: data.drawings,
+        images: data.iamges,
+        status: "sent",
+      });
+    });
+  }, []);
 
   if (!user) {
     redirect("/");
   }
+
   useEffect(() => {
     if (nonEmptyChats) {
       setChats(nonEmptyChats);
@@ -66,11 +75,13 @@ const Chat: FC = () => {
   }, [nonEmptyChats]);
 
   const { data: messageData } = useMessages(currentChat?._id);
+
   useEffect(() => {
     if (messageData) {
       setMessages(messageData);
     }
   }, [currentChat]);
+
   useEffect(() => {
     arrivalMessage &&
       currentChat?.members.includes(arrivalMessage.sender) &&
@@ -86,8 +97,6 @@ const Chat: FC = () => {
   }, [messages]);
 
   const handleChatItemClick = (chat: any) => {
-    // Set the current chat using Redux
-
     dispatch(setCurrentChat(chat));
     setMenuOpen(!isMenuOpen);
   };
@@ -97,9 +106,7 @@ const Chat: FC = () => {
     setMenuOpen(!isMenuOpen);
   };
 
-
-  
-
+  const { onSubmit } = useCreateChat(user?._id, "669c8a959afed2548433df0f");
   return (
     <div className={styles.messenger}>
       <div
@@ -125,7 +132,16 @@ const Chat: FC = () => {
             </div>
           ))
         ) : (
-          <div className="text-center">Нет доступных чатов</div>
+          <div>
+            <button className="w-full" onClick={onSubmit}>
+              <ChatItem
+                chat={{ members: [adminData?.data._id, user._id] }}
+                currentUser={user!._id}
+                currentChat={currentChat}
+              />
+            </button>
+            <div className="text-center">Нет доступных чатов</div>
+          </div>
         )}
       </div>
       <div className={styles.chatBox}>
@@ -152,14 +168,18 @@ const Chat: FC = () => {
           {currentChat ? (
             <>
               <div className={styles.chatBoxTop}>
-                {messages?.map((message: any) => (
-                  <div ref={scrollRef} key={message._id}>
-                    <Message
-                      message={message}
-                      own={message.sender === user?._id}
-                    />
-                  </div>
-                ))}
+                {(friendData?.data._id === adminData?.data._id) && messages.length == 0 ? (
+                  <div>В этом чате наш специалист будет помогать вам быстро и без нервов</div>
+                ) : (
+                  messages?.map((message: any) => (
+                    <div ref={scrollRef} key={message._id}>
+                      <Message
+                        message={message}
+                        own={message.sender === user?._id}
+                      />
+                    </div>
+                  ))
+                )}
               </div>
               <div className={styles.chatBoxBottomContainer}>
                 <div className={styles.chatBoxBottom}>

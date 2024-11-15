@@ -44,20 +44,20 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
   const mutation = useMutation("create message", (_id: any) =>
     MessagesService.updateStatus(_id)
   );
-  // SocketApi.createConnection();
-  // SocketApi.socket?.on("client-path", (data) => {
-  //   {
-  //     chat._id === data.chatId &&
-  //       setLastMessage({
-  //         chatId: data.chatId,
-  //         sender: data.sender,
-  //         receiverId: friendId,
-  //         text: data.text,
-  //         createdAt: Date.now(),
-  //         status: "sent",
-  //       });
-  //   }
-  // });
+  SocketApi.createConnection();
+  SocketApi.socket?.on("client-path", (data) => {
+    {
+      chat._id === data.chatId &&
+        setLastMessage({
+          chatId: data.chatId,
+          sender: data.sender,
+          receiverId: friendId,
+          text: data.text,
+          createdAt: Date.now(),
+          status: "sent",
+        });
+    }
+  });
 
   useEffect(() => {
     if (currentChat?._id === chat._id) {

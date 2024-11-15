@@ -2,7 +2,7 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import ApplicationFormsItem from "./application-forms/ApplicationFormsItem";
 import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
-import { useApplicationForm } from "./useApplicationForms";
+import { useProjectForm } from "./useProjectForm";
 import styles from "./AuthorSupervision.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentChat, setCurrentChat } from "@/store/chat/chat.slice";
@@ -12,18 +12,26 @@ import { Message } from "../chat/message/Message";
 import MessageField from "../chat/MessageField";
 import { useMessages } from "../chat/useMessage";
 import SocketApi from "@/api/socket";
+import clsx from 'clsx';
 import Link from "next/link";
 import VideoCall from "./video-call/VideoCall";
-
+import PhoneIcon from "@mui/icons-material/Phone";
+import { IApplicationForm } from "@/components/shared/types/applicationForm";
+import { IProject } from "@/components/shared/types/project.types";
 const AuthorSupervision: FC = () => {
+  const currentChat = useSelector(selectCurrentChat);
   const dispatch = useDispatch();
+
   const [arrivalMessage, setArrivalMessage] = useState<any>(null);
+  const [messages, setMessages] = useState<any>([]);
+
   const scrollRef = useRef<HTMLDivElement>(null);
   const { user } = useAuth();
   const [openVideoCall, setOpenVideoCall] = useState(false);
-  const { data, isLoading } = useApplicationForm();
 
-  const currentChat = useSelector(selectCurrentChat);
+  const { data, isLoading } = useProjectForm();
+
+  const [currentAppWork, setCurrentAppWork] = useState<IProject>();
 
   let friendId: any;
   if (currentChat && currentChat.members) {
@@ -31,27 +39,25 @@ const AuthorSupervision: FC = () => {
   }
   const { data: friendData } = useUserInfo(friendId);
 
-  // Храним сообщения в состоянии
-  const [messages, setMessages] = useState<any>([]);
-
-  // Обработчик клика по элементу чата (для выбора группы)
-  const handleChatItemClick = (chat: any) => {
-    dispatch(setCurrentChat(chat));
-  };
-
   useEffect(() => {
     SocketApi.createConnection();
 
-    SocketApi.socket?.on("client-path", () => {
-      console.log(SocketApi.socket?.id);
+    SocketApi.socket?.on("client-path", (data) => {
+      setArrivalMessage({
+        chatId: data.chatId,
+        sender: data.sender,
+        receiverId: friendId,
+        text: data.text,
+        createdAt: Date.now(),
+        status: "sent",
+      });
     });
-  }, [SocketApi.socket]);
+  }, []);
 
-  // Загружаем сообщения для текущей группы
   const { data: messageData } = useMessages(currentChat?._id);
   useEffect(() => {
-    if (messageData) {
-      setMessages(messageData);
+    if (messageData && messageData.length) {
+      setMessages(messageData); // Обновляем только когда данные есть
     }
   }, [currentChat]);
 
@@ -65,17 +71,30 @@ const AuthorSupervision: FC = () => {
     }
   }, [arrivalMessage, currentChat]);
 
+  useEffect(() => {
+    const scrollElement = scrollRef.current as HTMLElement | undefined;
+
+    if (scrollElement) {
+      scrollElement.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
+  const handleChatItemClick = (chat: any, item: any) => {
+    dispatch(setCurrentChat(chat));
+    setCurrentAppWork(item);
+  };
+console.log(currentAppWork)
   return (
     <div className={styles.container}>
       <div className={styles.leftBlock}>
         {isLoading ? (
           <SkeletonLoader count={1} height={48} className="mt-4" />
         ) : (
-          data!.map((item) => (
+          data!.map((item: any) => (
             <button
               key={item._id}
               // href={`author-supervision/room/${item?.chatId?._id}`}
-              onClick={() => handleChatItemClick(item.chatId)}
+              onClick={() => handleChatItemClick(item.chatId, item)}
             >
               <ApplicationFormsItem item={item} />
             </button>
@@ -88,16 +107,27 @@ const AuthorSupervision: FC = () => {
             <div className={styles.chatBlockFriend}>
               <p>{friendData?.data.nickname}</p>
               {friendData && (
-                <button onClick={() => setOpenVideoCall(true)}>
-                  {" "}
-                  видеозвонок{" "}
+                <button
+                  onClick={() => setOpenVideoCall(true)}
+                  className={styles.callButton}
+                >
+                  <PhoneIcon />
                 </button>
               )}
             </div>
+            {currentAppWork?.applicationForm && (
+              <div className={styles.workBlock}>
+                Данные клиента:{" "}
+                <p>
+                  {currentAppWork?.applicationForm.location}, комментарий:
+                  {currentAppWork?.applicationForm.description}
+                </p>
+              </div>
+            )}
 
             {currentChat ? (
               <>
-                <div className={styles.chatBoxTop}>
+                <div className={clsx(styles.chatBoxTop, currentAppWork && styles.chatBotTopLong)}>
                   {messages?.map((message: any) => (
                     <div ref={scrollRef} key={message._id}>
                       <Message
@@ -109,22 +139,27 @@ const AuthorSupervision: FC = () => {
                 </div>
                 <div className={styles.chatBoxBottomContainer}>
                   <div className={styles.chatBoxBottom}>
+                  
                     <MessageField
                       currentChat={currentChat}
                       messages={messages}
                     />
+                 
                   </div>
                 </div>
-               
+
                 {openVideoCall && (
                   <div className={styles.videoCall}>
-                    <VideoCall chatId={currentChat._id}  setOpenVideoCall={setOpenVideoCall}/>
+                    <VideoCall
+                      chatId={currentChat._id}
+                      setOpenVideoCall={setOpenVideoCall}
+                    />
                   </div>
                 )}
               </>
             ) : (
               <div className={styles.noConversationText}>
-                <span>Выберите чат</span>
+                {/* <span>Выберите чат</span> */}
               </div>
             )}
           </div>

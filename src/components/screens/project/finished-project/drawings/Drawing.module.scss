@@ -1,0 +1,57 @@
+.formContainer {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .drawingsPreview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .previewItem a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .previewItem a:hover {
+    text-decoration: underline;
+  }
+  
+
+
+  .block{
+    .field{
+        .pdfList{
+            @apply flex  gap-2 mb-6;
+            overflow: hidden; /* Обрезает текст, выходящий за границы */
+            white-space: nowrap; /* Запрещает перенос текста на новую строку */
+            text-overflow: ellipsis;
+            .item{
+                @apply w-[200px]  rounded-xl bg-gray-300 p-2;
+                overflow: hidden; /* Обрезает текст, выходящий за границы */
+                white-space: nowrap; /* Запрещает перенос текста на новую строку */
+                text-overflow: ellipsis;
+                p{
+                    @apply w-[170px] ;
+                    overflow: hidden; /* Обрезает текст, выходящий за границы */
+                    white-space: nowrap; /* Запрещает перенос текста на новую строку */
+                    text-overflow: ellipsis;
+                }
+                .link{
+                    @apply text-xl font-bold ;
+                }
+            }
+        }
+    }
+    .addButton{
+        @apply cursor-pointer text-xl border border-gray-400 p-2 rounded-xl ;  
+    }
+  }

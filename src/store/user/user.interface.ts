@@ -1,19 +1,26 @@
-import { IApplicant, IContractor, IWorker } from "@/components/shared/types/user.types";
+import {
+  IApplicant,
+  IContractor,
+  IWorker,
+} from "@/components/shared/types/user.types";
 
 export interface IContractorState {
   email: string;
-  isContractor: boolean
-  isAdmin: boolean
-  isSubscribe: boolean
-_id: string
-isWorker: boolean
+  isContractor: boolean;
+  isAdmin: boolean;
+  isSubscribe: boolean;
+  _id: string;
+  isWorker: boolean;
+  isInspector: boolean;
 }
 export interface IApplicantState {
   email: string;
-  isContractor: boolean
-  isAdmin: boolean
-  _id: string
-  isWorker: boolean
+  isContractor: boolean;
+  isAdmin: boolean;
+  _id: string;
+  isWorker: boolean;
+  isInspector: boolean
+
 }
 
 export interface ITokens {
@@ -46,7 +53,6 @@ export interface ISignUpContractor {
   password: string;
   nickname: string;
   // inn: string;
- 
 }
 export interface IAuthApplicantResponse extends ITokens {
   user: IApplicant;
@@ -60,8 +66,9 @@ export interface IAuthContractorResponse extends ITokens {
 
 export interface IAuthResponse extends ITokens {
   user: (IApplicant | IContractor | IWorker) & {
-    isAdmin: boolean
-    isContractor: boolean
-    isWorker: boolean
-  }
+    isAdmin: boolean;
+    isContractor: boolean;
+    isWorker: boolean;
+    isInspector: boolean;
+  };
 }

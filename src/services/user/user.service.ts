@@ -1,4 +1,4 @@
-import { IContractor } from '@/components/shared/types/user.types';
+import { IContractor, IWorker } from '@/components/shared/types/user.types';
 import  axios, { axiosClassic }  from "@/api/interceptors"
 import { ISettingsProfileInput } from '@/components/screens/settings-profile/settings.interface';
 import { IApplicant } from "@/components/shared/types/user.types"
@@ -35,10 +35,23 @@ export const UserService = {
 		return axiosClassic.get<IContractor>(getUsersUrl(`/contractor/${contractorId}`))
 	},
 
+	async workerById(workerId: string) {
+		return axiosClassic.get<IWorker>(getUsersUrl(`/worker/${workerId}`))
+	},
+
 	
 
 	async getUsers(searchTerm?: string) {
-		return axios.get<IApplicant[] | IContractor[]>(getUsersUrl(``), {
+		return axios.get<IApplicant[] | IContractor[] | IWorker[]>(getUsersUrl(``), {
+			params: searchTerm
+				? {
+						searchTerm,
+				  }
+				: {},
+		})
+	},
+	async getWorkers(searchTerm?: string) {
+		return axios.get<IWorker[]>(getUsersUrl(`/workers`), {
 			params: searchTerm
 				? {
 						searchTerm,

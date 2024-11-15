@@ -1,0 +1,34 @@
+.field{
+  @apply relative;
+  .imageList{
+    @apply absolute bottom-12 -right-2 min-w-[20vh] bg-white border border-gray-300 rounded-xl grid shadow-lg p-3 gap-1;
+  }
+}
+
+
+.uploadIconButton {
+    color: #888;  // Цвет иконки, можно настроить
+    &:hover {
+      color: #555;  // Цвет при наведении
+    }
+  }
+  
+  .uploadedImageContainer {
+    position: relative;
+    display: inline-block;
+    img{
+      @apply rounded-xl;
+    }
+  }
+  
+  .removeImageButton {
+    @apply rounded-xl;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  

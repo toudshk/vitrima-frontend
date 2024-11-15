@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import { getKeys } from "@/utils/object/getKeys";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
-import { AuthService } from "@/services/auth/auth.service";
 
 export const useProfile = (
   setValue: any

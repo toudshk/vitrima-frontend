@@ -9,3 +9,6 @@ export const getApplicationFormUrl = (string: string) => `/application-form${str
 export const getServicePrice = (string: string) => `/service-price${string}`
 export const getMessageUrl = (string: string) => `/message${string}`
 export const getFeedBackUrl = (string: string) => `/feedback${string}`
+export const getProjectUrl = (string: string) => `/project${string}`
+export const getCarpenterUrl = (string: string) => `/furniture${string}`
+

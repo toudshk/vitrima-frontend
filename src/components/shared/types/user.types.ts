@@ -11,6 +11,8 @@ export interface IApplicant {
   subscriptions?: string[];
   saved?: string[];
   isWorker: boolean
+  isInspector: boolean
+
 }
 interface ISocialProfiles {
   vk?: string;

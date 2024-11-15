@@ -18,11 +18,15 @@ export const MessagesService = {
     sender,
     receiver,
     chatId,
+    images,
+    drawings
   }: {
     text: string;
     sender: string;
     chatId: string;
     receiver: string;
+    images: string[]
+    drawings: string[]
   }) {
     try {
       const response = await axiosClassic.post(`${API_URL}/message`, {
@@ -30,6 +34,8 @@ export const MessagesService = {
         sender,
         receiver,
         chatId,
+        images,
+        drawings
       });
       return response.data;
     } catch (error) {

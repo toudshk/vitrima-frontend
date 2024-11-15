@@ -19,7 +19,6 @@ const ApplicationFormTable: FC<IAdminTable> = ({
 	headerItems,
 	isLoading,
 }) => {
-
 	return (
 		<div  >
 			<AdminTableHeader headerItems={headerItems} />

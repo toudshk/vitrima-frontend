@@ -16,12 +16,8 @@ export const ApplicationFormService = {
   async getAll() {
     return axiosClassic.get<IApplicationForm[]>(getApplicationFormUrl(``), {});
   },
-  async createChat(senderId: string, receiverId: string, formId: string) {
-    const response = axiosClassic.post(getApplicationFormUrl("/create-chat"), {
-      senderId,
-      receiverId,
-      formId,
-    });
-    return response;
-  },
+ 
+  async getAllByMemberId(memberId:string) {
+    return axiosClassic.get(getApplicationFormUrl(`/by-member/${memberId}`), {})
+  }
 };

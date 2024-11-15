@@ -1,43 +1,101 @@
-.container{
-    @apply mt-[9vh] flex h-[91vh];
-    .leftBlock{
-        @apply w-1/4 max-h-[91vh] flex overflow-y-auto  shadow-lg;
+.container {
+  @apply mt-[9vh] flex h-[91vh];
+  .leftBlock {
+    @apply w-1/4 max-h-[91vh] flex overflow-y-auto  shadow-lg px-2;
     flex-direction: column;
-    }
+  }
 
-    .leftBlock::-webkit-scrollbar {
+  .leftBlock::-webkit-scrollbar {
     display: none; /* Для Chrome, Safari и Edge */
-}
-    .rightBlock{
-        @apply w-3/4;
-        .chatBox{
-            @apply h-full;
-            .chatBoxTop{
-                @apply h-5/6 min-h-[80vh];
+  }
+  .rightBlock {
+    @apply w-3/4 border-l border-l-gray-300;
+    .chatBox {
+      @apply h-full;
+
+      .chatBoxWrapper {
+        .chatBlockFriend {
+          @apply flex justify-between px-4 border-b border-gray-300 pb-2;
+          svg {
+            @apply text-gray-500;
+          }
+          svg:hover {
+            @apply text-gray-600; /* цвет при наведении */
+          }
+        }
+        .workBlock {
+          @apply border-b border-gray-300 px-4 py-2;
+        }
+      }
+      .chatBotTopLong{
+        height: 78vh !important
+      }
+      .chatBoxTop {
+        @apply h-[68vh] overflow-y-scroll;
+
+        overflow: auto;
+        scrollbar-width: thin; /* для Firefox */
+        scrollbar-color: transparent transparent; /* для Firefox */
+        -ms-overflow-style: none; /* для IE и Edge */
+
+        &::-webkit-scrollbar {
+          width: 0px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: transparent;
+        }
+      }
+
+      .chatBoxBottomContainer {
+        @apply bg-white w-[80%] mx-auto;
+        z-index: 10;
+        .chatBoxBottom {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .chatMessageInput {
+            width: 100%;
+          }
+
+          .submitButton {
+            @apply ml-4;
+
+            .chatSubmitButton {
+              @apply w-12 h-12 -mt-2 bg-gray-300 rounded-full p-3;
+              border: none;
+              cursor: pointer;
+              color: #0088cc;
+              transition: all 0.3s, color 0.3s;
+            }
+            .disabledChatSubmitButton {
+              color: #000;
             }
 
-            .chatBoxBottomContainer{
-                @apply w-full;
-                .chatBoxBottom{
-                    @apply flex w-full items-center;
-                    div{
-                        @apply w-full;
-                    }
-                }
+            .chatSubmitButton:hover {
+              @apply bg-[#cbdde6];
+              color: #fff;
             }
-            .videoCall {
-                position: fixed; /* Чтобы окно оставалось поверх всего */
-                top: 0;
-                left: 0;
-                width: 100vw; /* Занимает всю ширину экрана */
-                height: 100vh; /* Занимает всю высоту экрана */
-                background-color: rgba(30, 30, 30, 0.9); /* Темный полупрозрачный фон, как в Discord */
-                z-index: 9999; /* Устанавливаем, чтобы окно было поверх всех других элементов */
-                display: flex;
-                justify-content: center; /* Центрируем содержимое */
-                align-items: center; /* Центрируем содержимое */
-                overflow: hidden;
-            }
+          }
         }
+      }
+      .videoCall {
+        position: fixed; /* Чтобы окно оставалось поверх всего */
+        top: 0;
+        left: 0;
+        width: 100vw; /* Занимает всю ширину экрана */
+        height: 100vh; /* Занимает всю высоту экрана */
+        background-color: rgba(
+          30,
+          30,
+          30,
+          0.9
+        ); /* Темный полупрозрачный фон, как в Discord */
+        z-index: 9999; /* Устанавливаем, чтобы окно было поверх всех других элементов */
+        display: flex;
+        justify-content: center; /* Центрируем содержимое */
+        align-items: center; /* Центрируем содержимое */
+        overflow: hidden;
+      }
     }
+  }
 }

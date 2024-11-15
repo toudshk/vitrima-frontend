@@ -7,8 +7,9 @@ export interface IMessage {
 	createdAt: string
 	sender: IUser
     receiver: string
-
+images:string[]
 status: string
+drawings: string[]
 }
 
 export interface IChat {

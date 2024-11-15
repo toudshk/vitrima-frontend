@@ -1,0 +1,41 @@
+.container {
+  @apply mt-[9vh] max-w-[1440px] mx-auto h-[80vh] px-2;
+  .block {
+    @apply h-full flex justify-center flex-col items-center;
+    .title {
+      @apply uppercase text-3xl mx-auto text-center font-bold;
+    }
+    .serviceList {
+      @apply flex flex-wrap justify-center gap-4 h-full;
+      margin-top: 1.5rem;
+      list-style-type: none;
+      padding: 0;
+      .item {
+        @apply text-2xl font-bold uppercase h-[300px] border-2 border-gray-700 flex justify-center
+        max-w-[250px] cursor-pointer rounded-3xl px-3 text-center;
+
+       
+        align-items: center;
+
+        flex-grow: 1; /* Элемент будет расти, заполняя доступное пространство */
+       
+        transition: background-color 0.3s, transform 0.2s ease-in-out,
+          box-shadow 0.3s; // Плавные переходы
+      }
+      .activeItem {
+        @apply bg-blue-500 text-white;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); /* Тень для активного элемента */
+        transform: scale(1.05); /* Легкое увеличение размера */
+      }
+      .inactiveItem {
+        color: #1f2937; /* Темный текст */
+        &:hover {
+          @apply bg-gray-300;
+        }
+      }
+    }
+    .linkTitle {
+      @apply text-2xl font-bold;
+    }
+  }
+}

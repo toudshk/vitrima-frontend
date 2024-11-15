@@ -1,13 +1,10 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-// Adjust the path accordingly
-import { useRouter } from "next/navigation"; // Assuming you are using Next.js
-import { ChatsService } from "@/services/chat/chat.service";
-import { setCurrentChat } from "@/store/chat/chat.slice";
+import { useRouter } from "next/navigation"; 
 import { useDispatch } from "react-redux";
 import { FC } from "react";
-import { ApplicationFormService } from "@/services/application-form/applicationForm.service";
 import { toast } from "react-toastify";
+import { ProjectService } from "@/services/project/project.service";
 
 
 export const useChat = (receiverId: string, senderId: string, formId: string, setModalWindow: any) => {
@@ -20,7 +17,7 @@ export const useChat = (receiverId: string, senderId: string, formId: string, se
       // Check if the chat already exists
     
      
-        const newChat = await ApplicationFormService.createChat(receiverId, senderId, formId);
+        const newChat = await ProjectService.createChat(receiverId, senderId, formId);
         setModalWindow(false)
         toast.success("Чат создан")
        

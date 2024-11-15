@@ -100,7 +100,7 @@ const FirstPage: FC = () => {
                   className={styles.middleButtons}
                  
                 >
-                  <Link href={"/form"}>Заказать подбор дизайнера</Link>
+                  <Link href={"/project"}>Заказать подбор дизайнера</Link>
                   <Link href={"/select-feed"}>Перейти к просмотру ленты</Link>
                 </div>
                 <div className={styles.bottomButtons}>

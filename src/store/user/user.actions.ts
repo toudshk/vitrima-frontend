@@ -13,6 +13,7 @@ import {
   ISignUpWorker,
 } from "./user.interface";
 import { errorCatch } from "@/api/api.helpers";
+import { usePathname } from "next/navigation";
 
 
 export const registerWorker = createAsyncThunk<
@@ -47,6 +48,7 @@ export const registerApplicant = createAsyncThunk<
 >(
   "auth/register/applicant",
   async ({ email, password, nickname }, thunkApi) => {
+  
     try {
       const response = await AuthService.registerApplicant(
         email,
@@ -54,9 +56,17 @@ export const registerApplicant = createAsyncThunk<
         nickname
       );
       // toast.success("Вы успешно зарегистрировались! Пожалуйста, подтвердите вашу почту, на нее уже отправлено письмо")
-      toast.success("Вы успешно зарегистрировались!");
+      
+      
+      if (localStorage.getItem("redirectToProject") === "true") {
+
+        window.location.href = "/project";
+        localStorage.removeItem("redirectToProject"); // Очистить флаг
+        return response.data;
+      }
 
       return response.data;
+      
     } catch (error: any) {
       toast.error(error.response.data.message);
 
@@ -119,8 +129,6 @@ export const checkAuth = createAsyncThunk<IAuthResponse>(
       if (errorCatch(error) === "токен не является строкой") {
         thunkApi.dispatch(logout());
       }
-      console.log("test");
-
       return thunkApi.rejectWithValue(error);
     }
   }

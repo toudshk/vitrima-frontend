@@ -19,4 +19,7 @@ export interface IAddApplicationForm {
   description: string;
   subTypes: string[];
   location?: any;
+  projectId: string;
+  applicantId: string;
+  password: string
 }

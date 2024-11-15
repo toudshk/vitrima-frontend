@@ -7,34 +7,38 @@ import SendIcon from "@mui/icons-material/Send";
 import { useAuth } from "@/hooks/useAuth";
 import { MessagesService } from "@/services/messages/messages.service";
 import socket from "@/api/socket";
-import clsx from 'clsx'
-import SocketApi from "@/api/socket";
-
+import clsx from "clsx";
+import UploadFileInMessage from "./file-in-message/FileInMessages";
+import UploadPdf from "@/components/ui/Form-elements/upload-fields/UploadPdf";
 interface IMessage {
   chatId: string;
   text: string;
   sender: string;
-  receiver: string
+  receiver: string;
+  images: string[]; // Добавляем поле для изображений
+  drawings: string[];
 }
 
 const MessageField: FC<{
   currentChat: any;
-
   messages: any;
 }> = ({ currentChat, messages }) => {
-  
-  // SocketApi.createConnection();
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [newMessage, setNewMessage] = useState("");
   const { user } = useAuth();
-
+  const [images, setImages] = useState<string[]>([]); // Состояние для изображений
+  const [drawings, setDrawings] = useState<string[]>([]);
   const mutation = useMutation(
     "create message",
     (message: IMessage) => MessagesService.createMessage(message),
     {
-      onError(error) {},
+      onError(error) {
+        console.error(error);
+      },
       onSuccess(createdMessage) {
-        setNewMessage("");
+        setNewMessage(""); // Очищаем поле после отправки сообщения
+        setImages([]); // Очищаем загруженные изображения
+        setDrawings([]);
       },
     }
   );
@@ -45,34 +49,58 @@ const MessageField: FC<{
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
-      if (!newMessage.trim()) {
-        return; // Exit early if the message is empty or contains only whitespace
+      if (!newMessage.trim() && images.length === 0) {
+        return; // Выход, если нет текста и изображений
       }
-     
 
-      // Your existing logic for creating and sending a message using mutation
       const messageData = {
         text: newMessage,
         chatId: currentChat._id,
         sender: user!._id,
         receiver: filteredMembers[0],
+        images: images,
         createdAt: Date.now(),
+        drawings: drawings,
       };
       mutation.mutate(messageData);
 
       if (inputRef.current) {
-        inputRef.current.style.height = "40px";
+        inputRef.current.style.height = "40px"; // Сброс высоты текстового поля
       }
 
-      // Clear the input value after submitting the form
+      // Очищаем поле ввода и изображения
       setNewMessage("");
     },
-    [newMessage, user, currentChat, mutation, messages]
+    [newMessage, images, user, currentChat, mutation, filteredMembers]
   );
+
+  const handleImagesChange = (newImages: string[]) => {
+    setImages(newImages);
+  };
+
+  const handleDrawingsChange = (newDrawings: string[]) => {
+    setDrawings(newDrawings);
+  };
 
   return (
     <>
-      <div className={styles.chatMessageInput}>
+      <UploadFileInMessage
+        setImageIsUpload={() => {}}
+        placeholder="Фотография"
+        folder="chat-images"
+        image={images}
+        onChange={handleImagesChange} // Передаем функцию для обновления изображений
+        title={""}
+      />
+      <UploadPdf
+        setImageIsUpload={() => {}}
+        placeholder="Чертежи"
+        folder="chat-drawings"
+        image={drawings}
+        onChange={handleDrawingsChange}
+        title={""}
+      />
+      <div className='w-full'>
         <DynamicInput
           placeholder="Напишите сообщение..."
           inputValue={newMessage}
@@ -81,10 +109,20 @@ const MessageField: FC<{
           onEnterPress={handleSubmit}
         />
       </div>
-      <IconButton  onClick={handleSubmit} disabled={!newMessage.trim()} className={styles.submitButton}>
-        <SendIcon className={clsx(newMessage.length === 0 && styles.disabledChatSubmitButton, styles.chatSubmitButton)} />
+      <IconButton
+        onClick={handleSubmit}
+        disabled={!newMessage.trim() && images.length === 0} // Кнопка отправки активна, если есть текст или изображения
+        className={styles.submitButton}
+      >
+        <SendIcon
+          className={clsx(
+            newMessage.length === 0 &&
+              images.length === 0 &&
+              styles.disabledChatSubmitButton,
+            styles.chatSubmitButton
+          )}
+        />
       </IconButton>
-  
     </>
   );
 };

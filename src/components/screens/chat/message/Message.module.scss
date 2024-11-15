@@ -1,12 +1,10 @@
 /* Общий контейнер для сообщения */
 .message {
-  @apply flex px-[10px] py-[6px] rounded-xl m-2;
- 
+  @apply flex flex-col  rounded-xl m-2;
   width: fit-content;
   overflow-wrap: break-word;
   word-wrap: break-word;
-  max-width:500px;
-  
+  max-width: 500px;
 }
 
 /* Стиль для собственных сообщений */
@@ -15,7 +13,7 @@
   margin-left: auto; /* Установим margin-left в auto для сдвига вправо */
   background-color: #0088cc; /* Цвет фона для собственных сообщений */
   color: #fff; /* Цвет текста для собственных сообщений */
-  .messageBottom{
+  .messageBottom {
     @apply text-white;
   }
 }
@@ -26,18 +24,17 @@
   background-color: #e4e6eb; /* Цвет фона для сообщений от друзей */
 }
 
-/* Стиль верхней части сообщения */
-.messageTop {
-  margin-bottom: 4px; /* Уменьшаем отступ сверху */
-}
 
+
+.messageTextBlock{
+  @apply flex px-[10px] py-[6px] justify-between;
+}
 /* Стиль текста сообщения */
 .messageText {
-@apply text-xl;
+  @apply text-xl px-[10px] py-[6px];
   margin-right: 15px;
-
   word-break: break-all;
-  overflow-wrap: break-word; /* For additional support */
+  overflow-wrap: break-word; /* Дополнительная поддержка для переноса слов */
   max-width: 100%;
 }
 
@@ -47,27 +44,70 @@
   align-self: flex-end;
   font-size: 12px;
   color: #777;
-  .checkMessage{
-    
-    svg{
-    @apply w-4 h-4 ml-[2px];
-
+  .checkMessage {
+    svg {
+      @apply w-4 h-4 ml-[2px];
     }
   }
 }
 
+/* Стили для изображений в сообщении */
+.imageContainer {
+  @apply rounded-xl;
+ 
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  
+}
 
+.imageWrapper {
+  @apply rounded-t-lg;
+  max-width: 500px;
+  height: auto;
+  overflow: hidden;
+ 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Легкая тень для изображений */
+}
+
+.messageImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Обеспечиваем, чтобы изображение заполнило контейнер, сохраняя пропорции */
+}
+
+.pdfContainer{
+  .pdfWrapper{
+    @apply px-2;
+    .pdfDocument:hover{
+      @apply underline;
+    }
+  }
+}
+
+/* Адаптивность для мобильных устройств */
 @media (max-width: 700px) {
-  .message{ 
-   
+  .message {
     max-width: 250px;
+  }
+  .messageTextBlock{
+
     padding: 6px;
+
   }
-  .messageText{
-    @apply text-sm mr-2;
-    
+  .messageText {
+    @apply px-[0px] py-[0px] text-sm mr-2;
   }
-  .messageBottom{
-    @apply text-[10px]
+  .messageBottom {
+    @apply text-[10px];
+  }
+  
+  /* Стили для изображений на мобильных */
+  .imageContainer {
+    gap: 4px;
+  }
+
+  .imageWrapper {
+    max-width: 120px; /* Уменьшаем размер изображения на мобильных */
   }
 }

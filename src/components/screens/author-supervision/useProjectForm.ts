@@ -4,14 +4,19 @@ import { useMemo } from "react";
 import { useQuery } from "react-query";
 import { convertMongoDate } from "@/utils/date/ConverMongoDate";
 import { ApplicationFormService } from "@/services/application-form/applicationForm.service";
-export const useApplicationForm = () => {
+import { useAuth } from "@/hooks/useAuth";
+import { ProjectService } from "@/services/project/project.service";
+export const useProjectForm = () => {
   const queryData = useQuery(
-    ["application form list"],
-    () => ApplicationFormService.getAll(),
+    ["get projects"],
+    () => {
+        return ProjectService.getAllProjects(); 
+    },
     {
-      select: ({ data }) => data
-        
-      
+    
+      onError(error) {
+        console.log(error, "application form list");
+      },
     }
   );
 

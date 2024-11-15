@@ -22,6 +22,10 @@ import Popup from "./pop-up/PopUp";
 import { AddressSuggestions } from "react-dadata";
 import "react-dadata/dist/react-dadata.css";
 import FormatInput from "./formatInput/FormatInput";
+import { useProject } from "../project/useProject";
+import { useParams } from "next/navigation";
+import { useAuth } from "@/hooks/useAuth";
+import { useActions } from "@/hooks/useActions";
 
 const DynamicSelect = dynamic(() => import("@/components/ui/Select/Select"), {
   ssr: false,
@@ -31,6 +35,12 @@ const DynamicSelectForStubType = dynamic(
 );
 
 const ApplicationForm: FC = () => {
+  const { registerApplicant } = useActions();
+  const params = useParams();
+  const { user } = useAuth();
+  // Ensure params.id is a string or undefined, by accessing the first value of the array if it’s an array.
+  const projectId = Array.isArray(params.id) ? params.id[0] : params.id;
+
   const {
     handleSubmit,
     register,
@@ -44,12 +54,14 @@ const ApplicationForm: FC = () => {
     mode: "onChange",
     defaultValues: {
       phoneNumber: "",
-      images: []
-      
+      images: [],
+      projectId: projectId,
+      applicantId: user?._id,
     },
   });
   const value = getValues();
   const DADATA_KEY = "4a9e155a8d8b3989ac9f4a5e58269c44c65f049b";
+
   const { onSubmit } = useApplicationForm();
   const { data: purposeTypes, isLoading: isPurposeTypeLoading } =
     useTypePurpose();
@@ -60,7 +72,7 @@ const ApplicationForm: FC = () => {
   const [selectedItem, setSelectedItem] = useState<IWorkType | null>(null);
   const [imageIsUpload, setImageIsUpload] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState<string>();
-const [checkbox, setCheckBox] = useState(false)
+  const [checkbox, setCheckBox] = useState(false);
   const interiorId = "656c0a3cfad5c309cd6a9433";
   const architectureId = "656c0a67fad5c309cd6a9853";
   const typeId =
@@ -132,7 +144,6 @@ const [checkbox, setCheckBox] = useState(false)
     }
   }, [selectedItem]);
 
-
   const isStepValid = (currentStep: number) => {
     switch (currentStep) {
       case 0:
@@ -144,14 +155,16 @@ const [checkbox, setCheckBox] = useState(false)
       case 3:
         return !errors.minPrice || !errors.maxPrice;
       case 4:
-        return !errors.description && (value.images.length > 0  || checkbox === true ) ;
+        return (
+          !errors.description && (value.images.length > 0 || checkbox === true)
+        );
       case 5:
         return !errors.phoneNumber && !errors.email;
       default:
         return true;
     }
   };
-  
+
   const handleCheckboxChange = () => {
     setCheckBox(true);
   };
@@ -222,12 +235,13 @@ const [checkbox, setCheckBox] = useState(false)
                         )}
                       </>
                     )}
-                  /> <>
-                  <p className="text-4xl font-bold my-4  max-[600px]:text-2xl max-[600px]:mb-2">
-                  В каком формате потребуется проект
-                  </p>
-                  <FormatInput control={control} />
-                </>
+                  />{" "}
+                  <>
+                    <p className="text-4xl font-bold my-4  max-[600px]:text-2xl max-[600px]:mb-2">
+                      В каком формате потребуется проект
+                    </p>
+                    <FormatInput control={control} />
+                  </>
                 </>
               )}
 
@@ -370,19 +384,16 @@ const [checkbox, setCheckBox] = useState(false)
                   <p className="text-4xl max-[640px]:text-2xl font-bold my-4">
                     Референсы
                   </p>
-                  
-                    <div>
-                      <label className="flex items-center">
-                        <input
-                          type="checkbox"
-                          onChange={handleCheckboxChange}
-                        />
-                        <p className='ml-2 '>Если у вас нет референсов, то нажмите на галочку
-                        </p>
-                      </label>
-                     
-                    </div>
-                 
+
+                  <div>
+                    <label className="flex items-center">
+                      <input type="checkbox" onChange={handleCheckboxChange} />
+                      <p className="ml-2 ">
+                        Если у вас нет референсов, то нажмите на галочку
+                      </p>
+                    </label>
+                  </div>
+
                   <Controller
                     name="images"
                     control={control}
@@ -391,8 +402,7 @@ const [checkbox, setCheckBox] = useState(false)
                       field: { value, onChange },
                       fieldState: { error },
                     }) => (
-                     
-                        <UploadField
+                      <UploadField
                         setImageIsUpload={setImageIsUpload}
                         placeholder="Фотография"
                         error={error}
@@ -405,8 +415,6 @@ const [checkbox, setCheckBox] = useState(false)
                           margin: "5px 0 0",
                         }}
                       />
-                    
-                     
                     )}
                   />
                 </div>
@@ -439,18 +447,7 @@ const [checkbox, setCheckBox] = useState(false)
                         />
                       )}
                     />
-                    <ApplicationFormInput
-                      {...register("email", {
-                        required: "Заполните поле",
-                        pattern: {
-                          value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                          message: "Введите корректный адрес электронной почты",
-                        },
-                      })}
-                      placeholder="Почта"
-                      error={errors.email}
-                      title="Почта"
-                    />
+
                     <ApplicationFormInput
                       {...register("name", {
                         required: "Заполните поле",
@@ -470,7 +467,7 @@ const [checkbox, setCheckBox] = useState(false)
                       </p>
                     </div>
                   </div>
-                  <div className="mt-auto mb-12">
+                  {/* <div className="mt-auto mb-12">
                     <p>
                       Нажимая на кнопку отправить, вы соглашаетесь с{" "}
                       <a href="/documents" className="underline">
@@ -478,7 +475,34 @@ const [checkbox, setCheckBox] = useState(false)
                       </a>{" "}
                       и даете согласие на обработку своих персональных данных
                     </p>
-                  </div>
+                  </div> */}
+
+                  <ApplicationFormInput
+                    {...register("email", {
+                      required: "Заполните поле",
+                      pattern: {
+                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        message: "Введите корректный адрес электронной почты",
+                      },
+                    })}
+                    placeholder="Почта"
+                    error={errors.email}
+                    title="Почта"
+                  />
+                  {!user && (
+                    <ApplicationFormInput
+                      {...register("password", {
+                        required: "Заполните поле",
+                        minLength: {
+                          value: 6,
+                          message: "Пароль должен содержать минимум 6 символов",
+                        },
+                      })}
+                      placeholder="Пароль"
+                      error={errors.password}
+                      title="Пароль"
+                    />
+                  )}
                 </div>
               )}
               <div className={styles.buttons}>

@@ -13,6 +13,7 @@ export interface IField extends TypeInputPropsField {}
 export interface IUploadField {
 	folder?: string
 	image?: any
+	drawing?: any
 	onChange: (...event: any[]) => void
 	placeholder: string
 	error?: FieldError
@@ -20,7 +21,9 @@ export interface IUploadField {
 	title: string
 	isNoImage?: boolean
 	images?: string[]
+	drawings? : string[]
 	setImageIsUpload?: any
+	setDrawingIsUpload?: any
 }
 
 

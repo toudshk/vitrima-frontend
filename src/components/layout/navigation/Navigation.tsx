@@ -36,15 +36,14 @@ const Navigation = () => {
   const pathname = usePathname().substring(1);
   const [arrivalMessage, setArrivalMessage] = useState(false);
 
-  // useEffect(() => {
-  //   SocketApi.socket?.on("client-path", (data) => {
-  //     if (user && user._id === data.receiver) {
-  //       setArrivalMessage(true);
-  //     }
-  //   });
+  useEffect(() => {
+    SocketApi.socket?.on("client-path", (data) => {
+      if (user && user._id === data.receiver) {
+        setArrivalMessage(true);
+      }
+    });
     
-  // }, []);
-  // Обработчик события для ссылки "чат", который сбрасывает уведомление
+  }, []);
   const handleChatLinkClick = () => {
     setArrivalMessage(false);
     countUnreadMessages = 0

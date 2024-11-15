@@ -1,107 +1,111 @@
-// import { useUpload } from "./useUpload";
-// import clsx from "clsx";
-// import Image from "next/image";
-// import { FC, useEffect, useState } from "react";
-// import { Worker, Viewer  } from "@react-pdf-viewer/core";
-// import "@react-pdf-viewer/core/lib/styles/index.css";
-// import { Page, pdfjs } from "react-pdf";
+import { useUpload } from "./useUpload";
+import cn from "clsx";
+import Image from "next/image";
+import { FC, useEffect, useState } from "react";
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import { Page, pdfjs } from "react-pdf";
+import AttachFileIcon from "@mui/icons-material/AttachFile";
+import { IUploadField } from "../form.interface";
+import styles from "./UploadPdf.module.scss";
+import CloseIcon from "@mui/icons-material/Close";
+import { IconButton } from "@mui/material";
+import SkeletonLoader from "../../skeleton-loader/skeletonLoader";
+const UploadPdf: FC<IUploadField> = ({
+  placeholder,
 
-// import { IUploadField } from "../form.interface";
-// import styles from "./UploadPdf.module.scss";
-// import SkeletonLoader from "../../skeleton-loader/skeletonLoader";
-// import CloseIcon from "@mui/icons-material/Close";
-// import { SimpleDialog } from "@/app/documents/page";
-// const UploadPdf: FC<IUploadField> = ({
-//   placeholder,
-//   error,
-//   style,
-//   image: initialPdfArray = [],
-//   folder,
-//   onChange,
-// }) => {
-//   const [open, setOpen] = useState(false);
+  style,
+  image: initialPdfArray = [],
+  folder,
+  onChange,
+}) => {
+  const [open, setOpen] = useState(false);
 
-//   const { uploadImage, isLoading } = useUpload((url) => {
-//     setPdfList((prev) => [...prev, url]);
-//     onChange([...pdfList, url]);
-//   }, folder);
-//   const [pdfList, setPdfList] = useState<string[]>([]);
-//   console.log(pdfList);
-//   useEffect(() => {
-//     setPdfList(initialPdfArray);
-//   }, [initialPdfArray]);
+  const { uploadImage, isLoading } = useUpload((url) => {
+    setPdfList((prev) => [...prev, url]);
+    onChange([...pdfList, url]);
+  }, folder);
+  const [pdfList, setPdfList] = useState<string[]>([]);
 
-//   const [workData, setWorkData] = useState();
-//   console.log(workData);
-//   const handleClickOpen = () => {
-//     setOpen(true);
-//   };
+  useEffect(() => {
+    setPdfList(initialPdfArray);
+  }, [initialPdfArray]);
 
-//   const handleClose = (value: string) => {
-//     setOpen(false);
-//   };
-//   const handleWorkData = (value: any) => {
-//     setWorkData(value);
-//     setOpen(true);
-//   };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleRemoveImage = (index: number) => {
+    const newPdfList = [...pdfList];
+    newPdfList.splice(index, 1);
+    setPdfList(newPdfList);
+    onChange(newPdfList); // Обновляем список изображений
+  };
 
-//   const [scroll, setScroll] = useState("body");
+  const handleWorkData = (value: any) => {
+    setOpen(true);
+  };
+  const [scroll, setScroll] = useState("body");
 
-//   const handleRemoveFile = (index: number) => {
-//     const newImageList = [...pdfList];
-//     newImageList.splice(index, 1);
-//     setPdfList(newImageList);
-//     onChange(newImageList); // Update parent component with the new list
-//   };
-//   return (
-//     <div className={styles.field}>
-//       <label className={styles.topBlock}>
-//         <span className={styles.title}>{placeholder}</span>
-//         <div className={styles.button}>
-//           <input type="file" accept=".pdf" onChange={uploadImage} multiple />
-//           {error && <div className={styles.error}>{error.message}</div>}
-//         </div>
-//       </label>
-//       <div className={styles.pdfList}>
-//         {pdfList.map((item) => {
-//           const startIndex = item.indexOf("/uploads/drawings/");
-//           const displayText =
-//             startIndex !== -1
-//               ? item.substring(startIndex + "/uploads/drawings/".length)
-//               : item;
+  const handleRemoveFile = (index: number) => {
+    const newImageList = [...pdfList];
+    newImageList.splice(index, 1);
+    setPdfList(newImageList);
+    onChange(newImageList); // Update parent component with the new list
+  };
+  console.log(pdfList.length)
+  return (
+    <div className={styles.block}>
+      <div className={cn(styles.field, { [styles.inactiveField]: pdfList.length === 0 })}>
+        {pdfList.length > 0 && (
+          <div className={styles.pdfList}>
+            {pdfList.map((item, index) => {
+              const startIndex = item.indexOf("/uploads/chat-drawings/");
+              const displayText =
+                startIndex !== -1
+                  ? item
+                      .substring(startIndex + "/uploads/chat-drawings/".length)
+                      .split("_")
+                      .pop()
+                  : item;
 
-//           return (
-//             <button
-//               key={item}
-//               onClick={(e) => {
-//                 handleWorkData(item);
-//                 handleClickOpen();
-//               }}
-//             >
-//               <Worker
-//                 workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}
-//               >
-//                 <Viewer renderPage={renderFirstPage}  fileUrl={item}/>
-//               </Worker>
-//               {displayText}
-//             </button>
-//           );
-//         })}
-//       </div>
-//       <SimpleDialog
-//         open={open}
-//         pdfUrl={workData ? workData : ""}
-//         scroll={scroll}
-//         handleClose={handleClose}
-//       />
-//     </div>
-//   );
-// };
+              return (
+                <div className={styles.uploadedPdfBlock} key={index}>
+                  <button
+                    className={styles.removeImageButton}
+                    onClick={() => handleRemoveFile(index)}
+                  >
+                    <CloseIcon />
+                  </button>
+                  {isLoading ? <SkeletonLoader /> : <p>{displayText}</p>}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+      <div
+        className={cn(
+          styles.uploadImageContainer,
+          pdfList.length > 0 && styles.uploadImageContainerWithImage
+        )}
+      >
+        <label className={styles.topBlock} htmlFor="pdf-file-upload-input">
+          <IconButton component="span" className={styles.uploadIconButton}>
+            <AttachFileIcon />
+          </IconButton>
+        </label>
+        <div className={styles.button}>
+          <input
+            type="file"
+            accept=".pdf"
+            onChange={uploadImage}
+            multiple
+            style={{ display: "none" }}
+            id="pdf-file-upload-input"
+          />
+        </div>{" "}
+      </div>
+    </div>
+  );
+};
 
-// export default UploadPdf;
-
-
-// const renderFirstPage = (props: any) => {
-//   const { doc } = props;
-//   return <Page key={1} pageIndex={0} />;
-// };
+export default UploadPdf;

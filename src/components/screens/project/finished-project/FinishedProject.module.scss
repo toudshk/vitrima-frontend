@@ -1,0 +1,30 @@
+.container {
+  @apply mt-[9vh]  mx-auto  h-[91vh];
+
+  .serviceList {
+    @apply flex flex-wrap justify-center gap-4  px-2 max-w-[1440px] flex-grow h-[81vh] mx-auto pt-32;
+   
+    list-style-type: none;
+
+    .item {
+      @apply text-2xl font-bold uppercase h-[280px] border-2 border-gray-700 flex justify-center
+          max-w-[200px] cursor-pointer rounded-3xl px-3 text-center;
+
+      align-items: center;
+
+      flex-grow: 1; /* Элемент будет расти, заполняя доступное пространство */
+
+      transition: background-color 0.3s, transform 0.2s ease-in-out,
+        box-shadow 0.3s; // Плавные переходы
+    }
+  
+    
+  }
+  .linkTitle {
+    @apply text-2xl font-bold;
+  }
+
+  .bottomBlock{
+    @apply w-full bg-primary text-white  mt-auto h-[10vh]  text-center;
+  }
+}
