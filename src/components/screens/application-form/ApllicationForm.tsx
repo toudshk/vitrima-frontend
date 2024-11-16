@@ -168,7 +168,6 @@ const ApplicationForm: FC = () => {
   const handleCheckboxChange = () => {
     setCheckBox(true);
   };
-
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown}>
@@ -455,29 +454,7 @@ const ApplicationForm: FC = () => {
                       error={errors.name}
                       title="Ваше имя"
                     />
-                    <div className="my-4 max-[600px]:text-xs">
-                      <p>
-                        Подбор занимает от 1 до 10 дней, после чего мы с вами
-                        свяжемся и отправим подборку на указанную почту
-                      </p>
-                      <p>
-                        Мы вручную ищем дизайнеров и архитекторов исходя из
-                        ваших данных как на нашей платформе, так на сторонних
-                        ресурсах{" "}
-                      </p>
-                    </div>
-                  </div>
-                  {/* <div className="mt-auto mb-12">
-                    <p>
-                      Нажимая на кнопку отправить, вы соглашаетесь с{" "}
-                      <a href="/documents" className="underline">
-                        Политикой конфиденциальности
-                      </a>{" "}
-                      и даете согласие на обработку своих персональных данных
-                    </p>
-                  </div> */}
-
-                  <ApplicationFormInput
+                      <ApplicationFormInput
                     {...register("email", {
                       required: "Заполните поле",
                       pattern: {
@@ -500,9 +477,33 @@ const ApplicationForm: FC = () => {
                       })}
                       placeholder="Пароль"
                       error={errors.password}
-                      title="Пароль"
+                      title="Придумайте пароль"
                     />
                   )}
+                    <div className="my-4 max-[600px]:text-xs">
+                      <p>
+                        Подбор занимает от 1 до 10 дней, после чего мы с вами
+                        свяжемся и отправим подборку на указанную почту
+                      </p>
+                      <p>
+                        Мы вручную ищем дизайнеров и архитекторов исходя из
+                        ваших данных как на нашей платформе, так на сторонних
+                        ресурсах{" "}
+                      </p>
+                    </div>
+                   
+                  </div>
+                  {/* <div className="mt-auto mb-12">
+                    <p>
+                      Нажимая на кнопку отправить, вы соглашаетесь с{" "}
+                      <a href="/documents" className="underline">
+                        Политикой конфиденциальности
+                      </a>{" "}
+                      и даете согласие на обработку своих персональных данных
+                    </p>
+                  </div> */}
+
+                 
                 </div>
               )}
               <div className={styles.buttons}>

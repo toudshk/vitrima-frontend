@@ -5,12 +5,10 @@ import dayjs from "dayjs";
 import DoneIcon from "@mui/icons-material/Done";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import Image from "next/image"; // Используем Image для отображения изображений
-import { IMessage } from "../Chat.types";
-
+import { IMessage } from "../Chat.types";import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import { Document, Page } from "react-pdf";
 import Link from "next/link";
 export function Message({ message, own }: { message: IMessage; own: boolean }) {
-
   return (
     <div
       className={clsx([styles.message], {
@@ -39,19 +37,28 @@ export function Message({ message, own }: { message: IMessage; own: boolean }) {
       {/* Render PDFs if available */}
       {message.drawings && message.drawings.length > 0 && (
         <div className={styles.pdfContainer}>
-          {message.drawings.map((pdf, index) => (
-            <div key={index} className={styles.pdfWrapper}>
-              <Link
-               href={pdf}
-               target="_blank" 
-               rel="noopener noreferrer" 
-                className={styles.pdfDocument}
-              >
-              {pdf}
-              </Link>
-            
-            </div>
-          ))}
+          {message.drawings.map((pdf, index) => {
+            const startIndex = pdf.indexOf("/uploads/chat-drawings/");
+            const displayText =
+              startIndex !== -1
+                ? pdf
+                    .substring(startIndex + "/uploads/chat-drawings/".length)
+                    .split("_")
+                    .pop()
+                : pdf;
+            return (
+              <div key={index} className={styles.pdfWrapper}>
+                <Link
+                  href={pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.pdfDocument}
+                >
+                 <InsertDriveFileOutlinedIcon/> {displayText}
+                </Link>
+              </div>
+            );
+          })}
         </div>
       )}
 
@@ -72,4 +79,4 @@ export function Message({ message, own }: { message: IMessage; own: boolean }) {
       </div>
     </div>
   );
-};
+}

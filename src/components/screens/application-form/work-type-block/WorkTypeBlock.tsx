@@ -38,11 +38,10 @@ const WorkTypeBlock: FC<IWorkTypeBlock> = ({ setSelectedItem, control }) => {
             )}
           />
         </div>
-       
       </div>
-      <div className={styles.bottomBlock}>
+      {/* <div className={styles.bottomBlock}>
           <p>Подбор дизайнера - бесплатная услуга для вас, где мы находим специалиста под ваши критерии.</p>
-        </div>
+        </div> */}
     </div>
   );
 };

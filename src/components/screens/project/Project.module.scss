@@ -6,7 +6,7 @@
       @apply uppercase text-3xl mx-auto text-center font-bold;
     }
     .serviceList {
-      @apply flex flex-wrap justify-center gap-4 h-full;
+      @apply flex flex-wrap justify-center gap-4   h-[80%];
       margin-top: 1.5rem;
       list-style-type: none;
       padding: 0;
@@ -14,11 +14,10 @@
         @apply text-2xl font-bold uppercase h-[300px] border-2 border-gray-700 flex justify-center
         max-w-[250px] cursor-pointer rounded-3xl px-3 text-center;
 
-       
         align-items: center;
 
         flex-grow: 1; /* Элемент будет расти, заполняя доступное пространство */
-       
+
         transition: background-color 0.3s, transform 0.2s ease-in-out,
           box-shadow 0.3s; // Плавные переходы
       }
@@ -35,7 +34,32 @@
       }
     }
     .linkTitle {
-      @apply text-2xl font-bold;
+      @apply text-2xl font-bold mb-2;
     }
+    
+      
+    
   }
+}
+
+@media (max-width: 700px) {
+  .container {
+     .block {
+      .title{
+        @apply text-xl;
+      }
+      .serviceList {
+        @apply  grid grid-cols-2 gap-3 mt-0;
+        align-content: center;
+        .item {
+          @apply h-[150px] text-lg;
+        }
+      }
+      .linkTitle{
+        @apply text-xl mt-2 mb-0;
+      }
+    }
+    
+  }
+  
 }

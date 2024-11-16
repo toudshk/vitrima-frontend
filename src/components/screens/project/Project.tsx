@@ -5,11 +5,17 @@ import Link from "next/link";
 import { useProject } from "./useProject";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IProjectAddInput } from "./add-project.interface";
+import MainButton from "@/components/ui/Button/MainButton";
 const Project: FC = () => {
-  const [activeItems, setActiveItems] = useState<string[]>([]); 
-  const { onSubmit } = useProject(); 
+  const [activeItems, setActiveItems] = useState<string[]>([]);
+  const { onSubmit } = useProject();
 
-  const { register, handleSubmit, setValue, formState: { errors } } = useForm<IProjectAddInput>(); 
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm<IProjectAddInput>();
 
   // Массив услуг
   const services = [
@@ -21,14 +27,14 @@ const Project: FC = () => {
   ];
 
   const toggleItem = (serviceName: string, field: string) => {
-    const newState = activeItems.includes(serviceName) 
+    const newState = activeItems.includes(serviceName)
       ? activeItems.filter((item) => item !== serviceName)
-      : [...activeItems, serviceName]; 
+      : [...activeItems, serviceName];
 
     setActiveItems(newState);
 
     const value = newState.includes(serviceName) ? null : undefined;
-// @ts-ignore
+    // @ts-ignore
     setValue(field, value); // Обновляем форму
   };
 
@@ -49,7 +55,11 @@ const Project: FC = () => {
             {services.map(({ name, field }) => (
               <li
                 key={name}
-                className={`${styles.item} ${activeItems.includes(name) ? styles.activeItem : styles.inactiveItem}`}
+                className={`${styles.item} ${
+                  activeItems.includes(name)
+                    ? styles.activeItem
+                    : styles.inactiveItem
+                }`}
                 onClick={() => toggleItem(name, field)} // Переключаем активность услуги
               >
                 {name}
@@ -57,7 +67,6 @@ const Project: FC = () => {
             ))}
           </ul>
 
-      
           <div>
             <h1 className={styles.linkTitle}>
               Подробное описание каждой услуги вы можете прочесть{" "}
@@ -66,10 +75,11 @@ const Project: FC = () => {
               </Link>
             </h1>
           </div>
-
-          <button type="submit" className="mt-4 btn btn-primary">
-            Отправить проект
-          </button>
+          <div className="w-full grid place-items-end" >
+            <MainButton type="submit" disabled={activeItems.length === 0}>
+              Продолжить
+            </MainButton>
+          </div>
         </form>
       </div>
     </div>
