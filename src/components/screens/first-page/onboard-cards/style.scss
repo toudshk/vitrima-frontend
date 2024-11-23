@@ -3,6 +3,7 @@
   position: relative;
   width: 100vw;
   height: 100vh;
+  
 }
 .gallery-wrap::after {
   content: "";
@@ -39,7 +40,7 @@
   }
   p {
     margin-top: 10px;
-    font-size: 5.25vw;
+    font-size: 3.25vw;
   }
 }
 
@@ -59,7 +60,7 @@
   height: 100vh;
   position: relative;
   padding: 10vh 0;
-  width: 500%;
+  width: 600%;
   display: flex;
   flex-wrap: nowrap;
  
@@ -76,7 +77,7 @@
     .gallery-item-info {
       transform: translateX(0vw) !important;
       bottom: 7vw;
-      .gallery-info-title {
+      .gallery-info-subtitle {
         max-width: 55vw;
       }
     }
@@ -88,10 +89,10 @@
   .gallery-item-info {
   margin-top:10px;
     z-index: 1;
-    transform: translateX(35vw) translateY(-22vh);
+    transform: translateX(35vw) translateY(-60vh);
     color: white;
     color: white;
-    .gallery-info-title {
+    .gallery-info-subtitle {
       max-width: 30vw;
       font-weight: 400;
       transform: translateX(-35%) scale(0.7); /* Изначальное положение */
@@ -112,7 +113,7 @@
       .gallery-item-info {
         transform: translateX(0vw) !important;
         bottom: 52vh;
-        .gallery-info-title {
+        .gallery-info-subtitle {
           max-width: 80vw;
         }
       }
@@ -125,7 +126,7 @@
       z-index: 1;
       transform: translateX(0vw);
 
-      .gallery-info-title {
+      .gallery-info-subtitle {
         max-width: 80vw;
         font-size: 4vw;
         transform: translateX(0%) translateY(-30%);
@@ -134,14 +135,14 @@
   }
   @media (min-width: 1900px) {
     .gallery-item-info {
-      transform: translateX(42vw) translateY(-20vh);
+      transform: translateX(42vw) translateY(-60vh);
       bottom: 6vw;
     }
   }
 
   @media (min-width: 2560px) {
     .gallery-item-info {
-      transform: translateX(42vw)  translateY(-20vh);
+      transform: translateX(42vw) translateY(-60vh);
       bottom: 12vw;
     }
   }
@@ -159,7 +160,8 @@
         filter: none;
       }
       .gallery-item-info {
-        .gallery-info-title {
+      
+        .gallery-info-subtitle {
           transform: translateX(0) scale(1);
         }
       }

@@ -5,7 +5,6 @@ import Link from "next/link";
 import React, { FC, useState } from "react";
 
 const ApplicationTableItem: FC<any> = ({ tableItem, removeHandler }) => {
-  console.log(tableItem)
   return (
     <div className="p-4 bg-gray-100 rounded-lg shadow-md">
       <div className="flex flex-col gap-2 mb-2">

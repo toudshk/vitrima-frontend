@@ -23,8 +23,11 @@ import ApplicationBlock from "../application-block/ApplicationBlock";
 import OnboardCards from "../onboard-cards/OnboardCards";
 import LocomotiveScroll from "locomotive-scroll";
 
+import { useSearchParams } from 'next/navigation'
 import { usePathname } from 'next/navigation'
- 
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+
+import { useRouter } from 'next/router'
 const FirstPage: FC = () => {
   const { ref: refView, inView } = useInView();
   const { user } = useAuth();
@@ -35,6 +38,8 @@ const FirstPage: FC = () => {
   };
   const pathname = usePathname()
 
+  
+  console.log(pathname)
   useEffect(() => {
     let locomotiveScroll: LocomotiveScroll | null = null;
 
@@ -56,7 +61,8 @@ const FirstPage: FC = () => {
     };
 }, [pathname]);
 
-    
+
+
 
   const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
 
@@ -100,7 +106,7 @@ const FirstPage: FC = () => {
                   className={styles.middleButtons}
                  
                 >
-                  <Link href={"/project"}>Заказать подбор дизайнера</Link>
+                  <Link href={"/project"}>Заказать подбор специалиста</Link>
                   <Link href={"/select-feed"}>Перейти к просмотру ленты</Link>
                 </div>
                 <div className={styles.bottomButtons}>

@@ -8,11 +8,6 @@ class SocketApi {
       rejectUnauthorized: false, // Это может быть необходимо для самоподписанных сертификатов, но будьте осторожны
     });
 
-    this.socket.on("connect", () => {
-    });
-
-    this.socket.on("disconnect", (e) => {
-    });
   }
 }
-export default SocketApi
+export default SocketApi;

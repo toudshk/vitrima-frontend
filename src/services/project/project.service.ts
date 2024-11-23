@@ -13,11 +13,22 @@ export const ProjectService = {
       throw error;
     }
   },
+  
 
   // Получить проект по ID
   async getProjectById(projectId: any) {
     try {
       const response = await axios.get(getProjectUrl(`/${projectId}`));
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching project:", error);
+      throw error;
+    }
+  },
+  
+  async getProjectsByApplicantId(applicantId: any) {
+    try {
+      const response = await axios.get(getProjectUrl(`/by-applicant/${applicantId}`));
       return response.data;
     } catch (error) {
       console.error("Error fetching project:", error);

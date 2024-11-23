@@ -20,41 +20,45 @@ import Image from "next/image";
 const images = [
   {
     src: smallImg,
-    title:
-      "Создайте профиль, загрузите свои работы – и вы сможете начать привлекать внимание клиентов и увеличивать свою популярность.",
+
+    subtitle:
+      "Мы подбираем дизайнера на основе ваших данных и пожеланий. Сначала мы отбираем лучших претендентов, после чего проверяем им альбомы с проектами, рабочие чертежи и реализованные проекты, после чего направляем вам лучших кандидатов. Вам не придется самим тратить время на подбор и переживать на счет того, что дизайнер может оказаться не компетентным.",
   },
   {
     src: smallImg2,
-    title:
-      "Мы создаем максимально короткий путь от вас – профессионального исполнителя – к вашим потенциальным заказчикам.",
+  
+    subtitle:
+      "Мы подбираем строителей на основе ваших данных и пожеланий. В первую очередь мы проверяем их уже реализованные проекты на предмет брака, внимательно осматриваем сложные моменты и как они были выполнены и соотносим цену и качество. Вам не придется переживать за то, что строительная бригада выполнит свою работу не качественно или завысит цену. Мы поможем вам подобрать хороших строителей по справедливой цене.",
   },
   {
     src: bigImg,
-    title:
-      "Витрима – онлайн-платформа, где вы сможете продвигать свои услуги и расширить свою клиентскую базу. ",
+  
+    subtitle:
+      "Мы проверяем рабочие чертежи, которые выполнил для вас дизайнер на предмет неточностей или недостатка рабочей информации для реализации проекта. Это нужно, чтобы в момент ремонта у строителей не возникали вопросы по реализации. Также это нужно для того, чтобы ваш ремонт получился таким же, как и на визуализациях.",
   },
   {
     src: smallImg3,
-    title:
-      "Витрима – онлайн-платформа, которая максимально упростит процесс подбора подрядчика",
+   
+    subtitle:
+      "Эта услуга пока находится в разработке. просим прощения за доставленные неудобства.",
   },
   {
     src: smallImg4,
-    title:
-      "Мы ценим ваше время, поэтому предлагаем только надежных и проверенных специалистов.",
+   
+    subtitle:
+      "Зачастую дизайнеры предлагают вам свои варианты, где вы можете заказать мебель на заказ для вашего проекта, но не всегда эти фабрики делают хорошо. Дизайнеры могут их рекомендовать потому, что получат с этого процент, а мы предлагаем вам подбор фабрик для заказа всей вашей мебели на заказ для вашего проекта. Мы подберем качественные фабрики и проверим их качество самостоятельно, чтобы ваша мебель прослужила вам еще долгие годы.",
   },
-  {
-    src: bigImg2,
-    title:
-      "Благодаря проработанной системе фильтров и удобной ленте работ вы с легкостью сможете найти исполнителя, который подойдет именно вам.",
-  },
+  // {
+  //   src: bigImg2,
+  //   title:
+  //     "Благодаря проработанной системе фильтров и удобной ленте работ вы с легкостью сможете найти исполнителя, который подойдет именно вам.",
+  // },
 ];
 
-const GalleryItem: FC<{ data: any; updateActiveImage: any; index: number}> = ({
+const GalleryItem: FC<{ data: any; updateActiveImage: any; index: number }> = ({
   data,
   updateActiveImage,
   index,
- 
 }) => {
   const ref = useRef(null);
 
@@ -100,7 +104,6 @@ const GalleryItem: FC<{ data: any; updateActiveImage: any; index: number}> = ({
     <div className={cn("gallery-item-wrapper", { "is-reveal": onScreen })}>
       <div></div>
       <div className={itemClass} ref={ref}>
-       
         <Image
           alt=""
           width={3000}
@@ -108,8 +111,10 @@ const GalleryItem: FC<{ data: any; updateActiveImage: any; index: number}> = ({
           className="gallery-item-image"
           src={data.src}
         />
-         <div className="gallery-item-info">
-          <h1 className={cn("gallery-info-title", {"visible" : onScreen})}>{data.title}</h1>
+        <div className="gallery-item-info">
+          <h1 className={cn("gallery-info-subtitle", { visible: onScreen })}>
+            {data.subtitle}
+          </h1>
         </div>
       </div>
       <div></div>
@@ -119,38 +124,33 @@ const GalleryItem: FC<{ data: any; updateActiveImage: any; index: number}> = ({
 
 export default function OnboardCards() {
   const [activeImage, setActiveImage] = useState(1);
-
-  const [text, setText] = useState(
-    activeImage <= 3 ? "подрядчикам" : "соискателям"
-  );
+  const [text, setText] = useState("");
   const [fadeOut, setFadeOut] = useState(false);
 
+  const texts = [
+    "Подбор дизайнера",
+    "Подбор строителей",
+    "Проверка рабочих чертежей",
+    "Ведение стройки онлайн",
+    "Создание комплектации мебели на заказ",
+  ];
+
   useEffect(() => {
-    if (activeImage > 3 && text !== "соискателям") {
+    if (text !== texts[activeImage - 1]) {
       setFadeOut(true);
       const timer = setTimeout(() => {
-        setText("соискателям");
+        setText(texts[activeImage - 1]);
         setFadeOut(false);
       }, 500); // Время должно совпадать с transition в CSS
 
       return () => clearTimeout(timer);
-    } else if (activeImage <= 3 && text !== "подрядчикам") {
-      setFadeOut(true);
-      const timer = setTimeout(() => {
-        setText("подрядчикам");
-        setFadeOut(false);
-      }, 500);
-
-      return () => clearTimeout(timer);
     }
-  }, [activeImage]);
-
+  }, [activeImage, texts, text]);
   const sectionRef = useRef(null);
   const triggerRef = useRef(null);
 
   gsap.registerPlugin(ScrollTrigger);
 
-  
   useEffect(() => {
     const pin = gsap.fromTo(
       sectionRef.current,

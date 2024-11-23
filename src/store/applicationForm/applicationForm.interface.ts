@@ -21,5 +21,7 @@ export interface IAddApplicationForm {
   location?: any;
   projectId: string;
   applicantId: string;
-  password: string
+  password: string;
+  isDesignProject?: boolean
+  designProject?: string[]
 }

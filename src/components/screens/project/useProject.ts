@@ -13,30 +13,11 @@ export const useProject = () => {
   const { mutateAsync } = useMutation(
     "create project",
     async (data: IProjectAddInput) => {
-      try {
-        console.log(data)
-        if (data.chosenDesigners === null) {
-          const project = await ProjectService.createProject(data);
+     
+        const project = await ProjectService.createProject(data);
 
-          router.push(`/form/${project._id}`);
-        } else if (!data.applicantId && !user?._id) {
-          toast.error("Пожалуйста, зарегистрируйтесь");
-
-          localStorage.setItem("redirectToProject", "true");
-          router.push(`/signup`);
-        } else {
-          const updatedData = {
-            ...data,  
-            applicantId: user?._id, // Добавляем applicantId
-          };
-          console.log(updatedData)
-          const project = await ProjectService.createProject(updatedData);
-         
-          router.push(`/profile/${project.applicantId}`);
-        }
-      } catch (error: any) {
-        toast.error(error.response.data.message);
-      }
+        router.push(`/form/${project._id}`);
+      
     }
   );
 

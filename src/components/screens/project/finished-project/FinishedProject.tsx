@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useFinishedProject } from "./useFinishedProject";
 import { useAuth } from "@/hooks/useAuth";
+import { ISubType } from "@/components/shared/types/work.types";
 const FinishedProject: FC = () => {
   const { user } = useAuth();
   const { data } = useFinishedProject();
@@ -75,6 +76,7 @@ const FinishedProject: FC = () => {
         ]
       : []),
   ];
+  console.log(data?.applicationForm);
   return (
     <div className={styles.container}>
       <div className={styles.serviceList}>
@@ -84,13 +86,41 @@ const FinishedProject: FC = () => {
           </Link>
         ))}
       </div>
-      {showChosenDesigners && (
-        <div className={styles.bottomBlock}>
-          Имя заказчика: {data?.applicationForm?.name}, Расположение проекта:{" "}
-          {data?.applicationForm?.location}, Номер телефона:{" "}
-          {data?.applicationForm?.phoneNumber}
-        </div>
-      )}
+
+      <div className={styles.bottomBlock}>
+        Имя заказчика: {data?.applicationForm?.name}, Расположение проекта:{" "}
+        {data?.applicationForm?.location}, Номер телефона:{" "}
+        {data?.applicationForm?.phoneNumber}, Площадь объекта:{" "}
+        {data?.applicationForm?.workType && (
+          <>
+            Тип проекта: {data?.applicationForm?.workType.title},
+          </>
+        )}{" "}
+        {data?.applicationForm?.objectArea}м²,{" "}
+        {data?.applicationForm?.minPrice && (
+          <>
+            Бюджет на дизайн: {data?.applicationForm?.minPrice} ₽ -{" "}
+            {data?.applicationForm?.maxPrice} ₽,
+          </>
+        )}{" "}
+        {data?.applicationForm?.minPriceRealization && (
+          <>
+            Бюджет на ремонт: {data?.applicationForm?.minPriceRealization} ₽ -{" "}
+            {data?.applicationForm?.maxPriceRealization} ₽
+          </>
+        )}{" "}
+        {data?.applicationForm?.format && (
+          <>Формат: {data?.applicationForm?.format}</>
+        )}
+        {data?.applicationForm?.subTypes?.length > 0 && (
+          <div className="flex">
+            <p>Стили:</p>
+            {data.applicationForm.subTypes.map((item: ISubType) => (
+              <p key={item._id}>{item.title}</p>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

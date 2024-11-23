@@ -13,6 +13,7 @@ import "dayjs/locale/ru"; // Для русской локализации
 
 interface CustomDatePickerProps {
   control: any;
+  projectData: any;
 }
 
 const formatDate = (date: Date) => {
@@ -20,7 +21,7 @@ const formatDate = (date: Date) => {
   return dayjs(date).format("D MMM YYYY"); // Форматирование даты как 20 сен. 2024
 };
 
-const CustomDatePicker: FC<CustomDatePickerProps> = ({ control }) => {
+const CustomDatePicker: FC<CustomDatePickerProps> = ({ control, projectData }) => {
   const minDate = new Date(); // Текущая дата
 
   const [isMobile, setIsMobile] = useState(false);
@@ -43,8 +44,10 @@ const CustomDatePicker: FC<CustomDatePickerProps> = ({ control }) => {
   return (
     <div className="flex flex-col justify-start ">
       <div>
+        {projectData && projectData.chosenDesigners === null && (
+          <>
         <h1 className="text-4xl max-[640px]:text-2xl font-bold mb-10 ">
-          Когда дизайнер должен приступить и закончить работу?
+          Когда дизайнер должен приступить и закончить проект?
         </h1>
         <div className="flex items-center gap-[10px] w-2/3 max-[700px]:w-full">
           <div className="w-full">
@@ -98,7 +101,11 @@ const CustomDatePicker: FC<CustomDatePickerProps> = ({ control }) => {
             />
           </div>
         </div>
+        </>
+        )}
       </div>
+      {projectData && projectData.chosenBuilders === null && (
+        
       <div className="my-10 h-[30vh] max-[700px]:h-[50vh]">
         <h1 className="text-4xl max-[640px]:text-2xl font-bold mb-10 ">
           Как скоро планируете начать ремонт?
@@ -128,6 +135,7 @@ const CustomDatePicker: FC<CustomDatePickerProps> = ({ control }) => {
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 };

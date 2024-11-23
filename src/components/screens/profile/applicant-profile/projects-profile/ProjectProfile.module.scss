@@ -1,0 +1,9 @@
+.item{
+    @apply border border-gray-300 shadow-lg  rounded-2xl p-3  h-[200px] w-[200px] flex flex-col justify-between;
+    .topBlock{
+        @apply text-base;
+    } 
+    .createdAt{
+        @apply text-gray-500 font-bold  
+    }
+}

@@ -58,9 +58,24 @@ const Chat: FC = () => {
         text: data.text,
         createdAt: Date.now(),
         drawings: data.drawings,
-        images: data.iamges,
+        images: data.images,
         status: "sent",
       });
+    });
+    SocketApi.socket?.on("user-last-online", (data) => {
+      console.log(
+        `Пользователь ${data.userId} был в сети последний раз: ${data.lastOnline}`
+      );
+      // Вы можете отобразить эту информацию в интерфейсе
+    });
+
+    // Слушаем обновление статуса пользователя
+    SocketApi.socket?.on("user-status", (data) => {
+      console.log(
+        `Пользователь ${data.userId} сейчас ${
+          data.isOnline ? "в сети" : "не в сети"
+        }`
+      );
     });
   }, []);
 
@@ -168,8 +183,12 @@ const Chat: FC = () => {
           {currentChat ? (
             <>
               <div className={styles.chatBoxTop}>
-                {(friendData?.data._id === adminData?.data._id) && messages.length == 0 ? (
-                  <div>В этом чате наш специалист будет помогать вам быстро и без нервов</div>
+                {friendData?.data._id === adminData?.data._id &&
+                messages.length == 0 ? (
+                  <div>
+                    В этом чате наш специалист будет помогать вам быстро и без
+                    нервов
+                  </div>
                 ) : (
                   messages?.map((message: any) => (
                     <div ref={scrollRef} key={message._id}>
