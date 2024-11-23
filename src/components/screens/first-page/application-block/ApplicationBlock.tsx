@@ -105,7 +105,7 @@ const ApplicationBlock: FC = () => {
 
   return (
     <div className={styles.container} ref={triggerRef}>
-      <h1 className={styles.title}>Как происходит подбор дизайнера</h1>
+      <h1 className={styles.title}>Как происходит подбор исполнителей</h1>
       <div ref={sectionRef} className={styles.subtitles}>
         {data.map((item, index) => (
           <SubtitleItem

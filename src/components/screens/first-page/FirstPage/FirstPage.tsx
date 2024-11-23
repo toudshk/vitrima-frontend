@@ -98,7 +98,7 @@ const FirstPage: FC = () => {
               >
                 <Image src={icon} alt={""} width={650} height={350} />
                 <h1 className={styles.title}>
-                  Индивидуальный подбор дизайнеров
+                  Индивидуальный подбор исполнителей
                 </h1>
               </motion.div>
               <div className={styles.buttons}>
