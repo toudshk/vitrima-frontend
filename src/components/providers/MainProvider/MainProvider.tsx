@@ -36,8 +36,10 @@ const MainProvider: FC<{ children: any }> = ({ children }) => {
           pathname !== "/login" &&
           pathname !== "/signup" &&
           pathname !== "/signup-workers" &&
-          
-          <Header />}
+          pathname !== "/project" &&
+          !pathname.startsWith("/form/") && ( // Проверка на начало пути
+            <Header />
+          )}
         <motion.div
           className="mt-[7vh]"
           variants={animation}

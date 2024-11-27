@@ -6,8 +6,11 @@ import { useProject } from "./useProject";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IProjectAddInput } from "./add-project.interface";
 import MainButton from "@/components/ui/Button/MainButton";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 const Project: FC = () => {
   const [activeItems, setActiveItems] = useState<string[]>([]);
+  const [expandedItems, setExpandedItems] = useState<string[]>([]); // Для управления раскрытием описаний
   const { onSubmit } = useProject();
 
   const {
@@ -19,11 +22,31 @@ const Project: FC = () => {
 
   // Массив услуг
   const services = [
-    { name: "Подбор дизайнера", field: "chosenDesigners" },
-    { name: "Подбор строителей", field: "chosenBuilders" },
-    { name: "Проверка рабочих чертежей", field: "drawings" },
-    { name: "Ведение стройки онлайн", field: "constructionManagement" },
-    { name: "Создание комплектации мебели на заказ", field: "chosenCarpenter" },
+    {
+      name: "Подбор дизайнера",
+      field: "chosenDesigners",
+      desc: "Подбор дизайнера происходит на основе ваших предпочтений. Для экономии вашего времени, всю работу от отбора претендентов до проверки рабочих чертежей мы берём на себя, после чего,вы делаете выбор из лучших кандидатов, предоставленными нами.",
+    },
+    {
+      name: "Подбор строителей",
+      field: "chosenBuilders",
+      desc: "Выбор строителей производится основываясь на ваших данных. Мы проверяем кандидатов и их реализованные проекты, после чего соотносим цену и качество услуги каждого строителя. Наш сервис подберёт для вас лучших специалистов.",
+    },
+    {
+      name: "Проверка рабочих чертежей",
+      field: "drawings",
+      desc: "Рабочие чертежи проходят проверку на соответствие требованиям проекта и оценку полноты рабочей информации. Это способствует более точной реализации проекта.",
+    },
+    {
+      name: "Ведение стройки онлайн",
+      field: "constructionManagement",
+      desc: "Эта услуга пока находится в разработке...",
+    },
+    {
+      name: "Создание комплектации мебели на заказ",
+      field: "chosenCarpenter",
+      desc: "Мы подберем качественные фабрики и проверим их качество...",
+    },
   ];
 
   const toggleItem = (serviceName: string, field: string) => {
@@ -38,7 +61,14 @@ const Project: FC = () => {
     setValue(field, value); // Обновляем форму
   };
 
-  // Обработчик отправки формы
+  const toggleDescription = (serviceName: string) => {
+    const newState = expandedItems.includes(serviceName)
+      ? expandedItems.filter((item) => item !== serviceName)
+      : [...expandedItems, serviceName];
+
+    setExpandedItems(newState);
+  };
+
   const handleFormSubmit: SubmitHandler<IProjectAddInput> = (data) => {
     onSubmit(data); // Отправляем данные на сервер
   };
@@ -46,37 +76,67 @@ const Project: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.block}>
-        <h1 className={styles.title}>
-          Выберите услуги, которые также хотите включить в ваш проект
-        </h1>
+        <h1 className={styles.title}>Выберите интересующие вас услуги</h1>
 
         <form onSubmit={handleSubmit(handleFormSubmit)}>
-          <ul className={styles.serviceList}>
-            {services.map(({ name, field }) => (
-              <li
+          <div className={styles.serviceList}>
+            {services.map(({ name, field, desc }) => (
+              <button
                 key={name}
+                type="button"
                 className={`${styles.item} ${
                   activeItems.includes(name)
                     ? styles.activeItem
                     : styles.inactiveItem
                 }`}
-                onClick={() => toggleItem(name, field)} // Переключаем активность услуги
               >
-                {name}
-              </li>
+                <div className="flex w-full justify-between">
+                  <div
+                    className={styles.itemHeader}
+                    onClick={() =>
+                      
+                      toggleItem(name, field)}
+                  >
+                    {name}
+                  </div>
+                  <div
+                    className={styles.arrow}
+                    onClick={(e) => {
+                      e.stopPropagation(); // Останавливаем всплытие события
+                      toggleDescription(name);
+                    }}
+                  >
+                    {expandedItems.includes(name) ? (
+                      <KeyboardArrowUpIcon
+                        fontSize="large"
+                        style={{ color: "text-gray-300" }}
+                      />
+                    ) : (
+                      <KeyboardArrowDownIcon fontSize="large" />
+                    )}
+                  </div>
+                </div>
+                {expandedItems.includes(name) && (
+                  <p className={styles.description}>{desc}</p>
+                )}
+              </button>
             ))}
-          </ul>
-
+          </div>
+          {/* 
           <div>
             <h1 className={styles.linkTitle}>
-              Подробное описание каждой услуги вы можете прочесть{" "}
+              Подробнее об услугах{" "}
               <Link href="/" className="text-gray-400">
                 ТУТ
               </Link>
             </h1>
-          </div>
-          <div className="w-full grid place-items-end" >
-            <MainButton type="submit" disabled={activeItems.length === 0}>
+          </div> */}
+          <div className={styles.buttonBlock}>
+            <MainButton
+              className="w-full border-gray-300"
+              type="submit"
+              disabled={activeItems.length === 0}
+            >
               Продолжить
             </MainButton>
           </div>

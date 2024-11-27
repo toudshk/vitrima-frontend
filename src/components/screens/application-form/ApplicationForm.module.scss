@@ -1,5 +1,5 @@
 .form {
-  @apply max-w-[1734px] mx-auto px-5 h-[80vh];
+  @apply max-w-[1734px] mx-auto px-5 -mt-[7vh] ;
   .mainBlock {
     @apply w-1/2 mx-auto relative h-full mt-[10%];
     .dateBlock{
@@ -91,10 +91,10 @@
 
 @media (max-width: 700px) {
   .form {
-    height: calc(93vh - 80px);
+    height: calc(100vh - 80px);
 
     .mainBlock {
-      @apply w-full  mt-[8vh] pt-10;
+      @apply w-full   pt-10;
 
       
       .buttons {

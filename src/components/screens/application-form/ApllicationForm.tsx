@@ -172,7 +172,7 @@ const ApplicationForm: FC = () => {
   };
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown}>
+      <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown} className='h-[100vh]'>
         {selectedItem === null ? (
           <WorkTypeBlock setSelectedItem={setSelectedItem} control={control} />
         ) : (
@@ -237,14 +237,14 @@ const ApplicationForm: FC = () => {
                       </>
                     )}
                   />{" "}
-                  {projectData && projectData.chosenDesigners === null && (
+                  {/* {projectData && projectData.chosenDesigners === null && (
                     <>
                       <p className="text-4xl font-bold my-4  max-[600px]:text-2xl max-[600px]:mb-2">
                         В каком формате потребуется проект
                       </p>
                       <FormatInput control={control} />
                     </>
-                  )}
+                  )} */}
                 </>
               )}
 

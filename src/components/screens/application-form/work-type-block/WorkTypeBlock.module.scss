@@ -1,34 +1,22 @@
 .container {
+  @apply   -mt-[7vh] p-2 h-[100vh];
     position: relative;
-    height: 85vh;
+    
     .itemsBlock {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      @apply w-full h-full px-2;
+     
       h1 {
-        @apply text-4xl text-center mb-10 font-semibold;
+        @apply  text-3xl font-bold bg-white rounded-2xl p-3 mt-2 mb-4 text-center;
       }
-      .toggleButton {
-        @apply mt-auto;
-        > div {
-          @apply mx-auto flex justify-between;
-          .button {
-            @apply text-4xl text-center py-16 border border-gray-300 min-w-[45%] rounded-xl;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
-            transition: background-color 0.3s; /* Плавный переход цвета */
-          }
-          .button:hover {
-            background-color: #f0f0f0; /* Цвет при наведении */
-          }
-          .button:active {
-            background-color: #d9d9d9; /* Цвет при нажатии */
-          }
-          .button:first-child {
-            @apply mr-2;
-          }
-        }
-      }
+      .toggleButton{
+        @apply flex mt-0 justify-center max-w-[1440px]  gap-2 bg-white rounded-2xl p-2;
+       
+           .button{
+             @apply h-[150px]  border w-[400px] rounded-2xl   items-center  p-2 text-4xl;
+           }
+          
+         
+       }
     }
     .bottomBlock {
       @apply absolute bottom-[0%] border-gray-300 border-t w-full flex items-center justify-center;
@@ -40,21 +28,20 @@
   }
   @media (max-width: 700px) {
     .container{
-      @apply h-[80vh];
+     
       .itemsBlock{
         @apply w-full;
-        >h1{
-          @apply text-3xl;
+        h1 {
+          @apply  text-3xl font-bold bg-white rounded-2xl p-3 mt-2 mb-4 text-center;
         }
         .toggleButton{
-          >div{
+         @apply flex flex-col mt-0 justify-normal w-full gap-2 bg-white rounded-2xl p-2;
+        
             .button{
-              @apply text-xl px-4 w-[49%] py-10;
+              @apply h-[150px]  border w-full rounded-2xl max-w-full  items-center  p-2 text-4xl;
             }
-            .button:first-child {
-              @apply mr-0;
-            }
-          }
+           
+          
         }
       }
       .bottomBlock {

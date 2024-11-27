@@ -39,7 +39,6 @@ const FirstPage: FC = () => {
   const pathname = usePathname()
 
   
-  console.log(pathname)
   useEffect(() => {
     let locomotiveScroll: LocomotiveScroll | null = null;
 
