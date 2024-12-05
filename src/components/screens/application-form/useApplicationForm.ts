@@ -23,7 +23,7 @@ export const useApplicationForm = () => {
       try {
         await ApplicationFormService.create(data);
         toast.success("Отправлено");
-        router.push(`/profile/${user?._id}`);
+        router.push(`/chat`);
       } catch (error: any) {
         toast.error(error.response.data.message);
       }
@@ -31,6 +31,7 @@ export const useApplicationForm = () => {
   );
 
   const onSubmit: SubmitHandler<IAddApplicationForm> = async (data) => {
+    console.log(data)
     // Проверяем, есть ли applicantId
     if (!data.applicantId) {
       // Если applicantId отсутствует, выполняем регистрацию пользователя

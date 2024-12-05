@@ -1,5 +1,5 @@
 .container {
-  @apply -mt-[7vh] max-w-[1440px] mx-auto h-[100vh] px-2;
+  @apply -mt-[7vh] max-w-[1440px] mx-auto h-[100vh] px-2 max-w-[600px];
   .block {
     .title {
       @apply uppercase text-3xl mx-auto text-center font-bold mb-10;

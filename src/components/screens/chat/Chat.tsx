@@ -25,7 +25,6 @@ const Chat: FC = () => {
   const [chats, setChats] = useState([]);
 
   const currentChat = useSelector(selectCurrentChat);
-
   const dispatch = useDispatch();
   const [arrivalMessage, setArrivalMessage] = useState<any>(null);
   const [messages, setMessages] = useState<any>([]);
@@ -121,7 +120,10 @@ const Chat: FC = () => {
     setMenuOpen(!isMenuOpen);
   };
 
-  const { onSubmit } = useCreateChat(user?._id, "669c8a959afed2548433df0f");
+
+  console.log(friendData?.data._id , adminData?.data._id )
+
+  const { onSubmit } = useCreateChat(user?._id, "670cd5e6a4253287ebc155d0");
   return (
     <div className={styles.messenger}>
       <div
@@ -149,11 +151,13 @@ const Chat: FC = () => {
         ) : (
           <div>
             <button className="w-full" onClick={onSubmit}>
+            <div onClick={() => handleChatItemClick({ members: [adminData?.data._id, user._id] })}>
               <ChatItem
                 chat={{ members: [adminData?.data._id, user._id] }}
                 currentUser={user!._id}
                 currentChat={currentChat}
               />
+              </div>
             </button>
             <div className="text-center">Нет доступных чатов</div>
           </div>
@@ -185,9 +189,8 @@ const Chat: FC = () => {
               <div className={styles.chatBoxTop}>
                 {friendData?.data._id === adminData?.data._id &&
                 messages.length == 0 ? (
-                  <div>
-                    В этом чате наш специалист будет помогать вам быстро и без
-                    нервов
+                  <div className="text-gray-500 px-4 text-lg">
+                   В этом чате, мы будем уточнять у вас необходимые детали, отправлять варианты исполнителей и помогать с решением ваших вопросов!
                   </div>
                 ) : (
                   messages?.map((message: any) => (
