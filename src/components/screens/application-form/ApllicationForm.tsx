@@ -190,7 +190,7 @@ const ApplicationForm: FC = () => {
                       required: "Заполните поле",
                     })}
                     error={errors.name}
-                    title="Ваше имя"
+                    title="Ваше имя и отчество"
                   />
                   <ApplicationFormInput
                     {...register("email", {
