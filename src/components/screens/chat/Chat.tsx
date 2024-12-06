@@ -21,6 +21,7 @@ import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 import { useChat } from "../author-supervision/application-forms/useCreateChat";
 
 import { useChat as useCreateChat } from "@/hooks/chat/useChat";
+import { useSupportInfo } from "@/hooks/support/useSupportInfo";
 const Chat: FC = () => {
   const [chats, setChats] = useState([]);
 
@@ -44,8 +45,7 @@ const Chat: FC = () => {
   }
   const { data: friendData } = useUserInfo(friendId);
 
-  const { data: adminData } = useUserInfo("670cd5e6a4253287ebc155d0");
-
+  const { data: supportData } = useSupportInfo()
   useEffect(() => {
     SocketApi.createConnection();
 
@@ -121,9 +121,7 @@ const Chat: FC = () => {
   };
 
 
-  console.log(friendData?.data._id , adminData?.data._id )
-
-  const { onSubmit } = useCreateChat(user?._id, "670cd5e6a4253287ebc155d0");
+  const { onSubmit } = useCreateChat(user?._id, supportData?._id);
   return (
     <div className={styles.messenger}>
       <div
@@ -151,9 +149,9 @@ const Chat: FC = () => {
         ) : (
           <div>
             <button className="w-full" onClick={onSubmit}>
-            <div onClick={() => handleChatItemClick({ members: [adminData?.data._id, user._id] })}>
+            <div onClick={() => handleChatItemClick({ members: [supportData?._id, user._id] })}>
               <ChatItem
-                chat={{ members: [adminData?.data._id, user._id] }}
+                chat={{ members: [supportData?._id, user._id] }}
                 currentUser={user!._id}
                 currentChat={currentChat}
               />
@@ -187,7 +185,7 @@ const Chat: FC = () => {
           {currentChat ? (
             <>
               <div className={styles.chatBoxTop}>
-                {friendData?.data._id === adminData?.data._id &&
+                {friendData?.data._id === supportData?._id &&
                 messages.length == 0 ? (
                   <div className="text-gray-500 px-4 text-lg">
                    В этом чате, мы будем уточнять у вас необходимые детали, отправлять варианты исполнителей и помогать с решением ваших вопросов!

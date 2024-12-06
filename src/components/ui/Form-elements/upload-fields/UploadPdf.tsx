@@ -51,7 +51,6 @@ const UploadPdf: FC<IUploadField> = ({
     setPdfList(newImageList);
     onChange(newImageList); // Update parent component with the new list
   };
-  console.log(pdfList.length)
   return (
     <div className={styles.block}>
       <div className={cn(styles.field, { [styles.inactiveField]: pdfList.length === 0 })}>

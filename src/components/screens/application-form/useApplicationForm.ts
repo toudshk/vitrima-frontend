@@ -1,21 +1,23 @@
+import { useSupportInfo } from "@/hooks/support/useSupportInfo";
 import { useActions } from "@/hooks/useActions";
 import { useAuth } from "@/hooks/useAuth";
 import { ApplicationFormService } from "@/services/application-form/applicationForm.service";
 import { IAddApplicationForm } from "@/store/applicationForm/applicationForm.interface";
-import {
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { setCurrentChat } from "@/store/chat/chat.slice";
+import { useRouter, useSearchParams } from "next/navigation";
 import { SubmitHandler } from "react-hook-form";
 import { useMutation } from "react-query";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 export const useApplicationForm = () => {
   const { registerApplicant } = useActions();
   const { user } = useAuth();
 
+  const { data: supportData } = useSupportInfo();
   const router = useRouter();
 
+  const dispatch = useDispatch();
 
   const { mutateAsync } = useMutation(
     "create application form",
@@ -23,6 +25,9 @@ export const useApplicationForm = () => {
       try {
         await ApplicationFormService.create(data);
         toast.success("Отправлено");
+        dispatch(
+          setCurrentChat({ members: [supportData?._id, user?._id] })
+        );
         router.push(`/chat`);
       } catch (error: any) {
         toast.error(error.response.data.message);
@@ -31,7 +36,7 @@ export const useApplicationForm = () => {
   );
 
   const onSubmit: SubmitHandler<IAddApplicationForm> = async (data) => {
-    console.log(data)
+    console.log(data);
     // Проверяем, есть ли applicantId
     if (!data.applicantId) {
       // Если applicantId отсутствует, выполняем регистрацию пользователя

@@ -29,6 +29,7 @@ const ChatItem: FC<IChatItem> = ({ chat, currentUser, currentChat }) => {
   const { user } = useAuth();
   const friendId = chat.members.find((m: any) => m !== currentUser);
   const { data } = useUserInfo(friendId);
+
   const { data: messageData, isLoading } = useMessages(chat._id);
 
   const markAsRead = () => {

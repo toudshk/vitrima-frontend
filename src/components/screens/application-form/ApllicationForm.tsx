@@ -42,6 +42,7 @@ const ApplicationForm: FC = () => {
   } = useForm<IAddApplicationForm>({
     mode: "onChange",
     defaultValues: {
+      location: "",
       phoneNumber: "",
     //   images: [],
       projectId: projectId,
@@ -49,7 +50,6 @@ const ApplicationForm: FC = () => {
     },
   });
   const value = getValues();
-  console.log(value)
   const DADATA_KEY = "4a9e155a8d8b3989ac9f4a5e58269c44c65f049b";
 
   const { onSubmit } = useApplicationForm();
@@ -109,7 +109,7 @@ const ApplicationForm: FC = () => {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="h-[86vh]  max-[600px]:h-[100vh] "
+        className="h-[86vh]  max-[600px]:h-[calc(100vh - 60px)] "
       >
         {selectedItem === null ? (
           <WorkTypeBlock setSelectedItem={setSelectedItem} control={control} />
