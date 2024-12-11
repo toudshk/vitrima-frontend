@@ -9,7 +9,7 @@ import { useQuery } from "react-query";
 export const useSupportInfo = () => {
     const queryData = useQuery(
       ["get support info"],
-      () => UserService.getSupport("support"),
+      () => UserService.getSupport("support@support.ru"),
       {
         select: (response: AxiosResponse<any>) => response.data[0], // Обращаемся к `data`, а затем берем первый элемент массива
         onError(error) {
