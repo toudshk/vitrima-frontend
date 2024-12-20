@@ -54,4 +54,5 @@ export const applicantSlice = createSlice({
   },
 });
 
+
 export const { reducer } = applicantSlice;
