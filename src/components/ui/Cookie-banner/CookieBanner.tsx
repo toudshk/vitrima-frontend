@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { acceptCookies } from "@/store/user/cookie.slice";
 import styles from "./CookieBanner.module.scss";
 import MainButton from "../Button/MainButton";
+import { TypeRootState } from "@/store/store";
 const CookieBanner = () => {
-  const isVisible = useSelector(acceptCookies);
+  const isVisible = useSelector((state: TypeRootState) => state.cookieBanner.isVisible);
   const dispatch = useDispatch();
-  //@ts-ignore
-  if (!isVisible.payload!.cookie.isVisible) return null;
+
+  if (!isVisible) return null;
 
   return (
     <div className={styles.block}>

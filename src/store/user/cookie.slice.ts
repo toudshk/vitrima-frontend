@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { getStoreLocal } from "@/utils/local-storage";
 const initialState = {
-  isVisible: !localStorage.getItem('cookiesAccepted'),
+  isVisible: !getStoreLocal('cookiesAccepted'),
 };
 
 const cookieBannerSlice = createSlice({
@@ -18,5 +19,4 @@ const cookieBannerSlice = createSlice({
 });
 
 export const { acceptCookies } = cookieBannerSlice.actions;
-
-export const { reducer } = cookieBannerSlice;
+export default cookieBannerSlice.reducer;
