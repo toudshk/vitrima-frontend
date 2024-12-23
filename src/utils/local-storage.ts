@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
 
 export const getStoreLocal = (name: string) => {
   if (typeof localStorage !== "undefined") {
@@ -7,7 +7,7 @@ export const getStoreLocal = (name: string) => {
       try {
         const parsedData = JSON.parse(ls);
         
-        // Проверяем, является ли parsedData undefined
+        
         if (parsedData === undefined) {
           localStorage.removeItem(name); // Удаляем из локального хранилища
           window.location.reload(); // Перезагружаем страницу

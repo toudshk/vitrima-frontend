@@ -8,7 +8,7 @@ import { ChangeEvent, useMemo, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 
 import { useParams, useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
 import { IServicePriceEditInput } from "./service-price-edit/edit-servicePrice.interface";
 import { SubmitHandler } from "react-hook-form";
 

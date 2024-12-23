@@ -8,6 +8,30 @@ import Image from "next/image"; // Используем Image для отобр�
 import { IMessage } from "../Chat.types";import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import { Document, Page } from "react-pdf";
 import Link from "next/link";
+
+
+function formatMessageText(text: string): JSX.Element[] {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = text.split(urlRegex);
+
+  return parts.map((part, index) => {
+    if (urlRegex.test(part)) {
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
+          {part}
+        </a>
+      );
+    }
+    return <span key={index}>{part}</span>;
+  });
+}
+
 export function Message({ message, own }: { message: IMessage; own: boolean }) {
   return (
     <div
@@ -63,7 +87,7 @@ export function Message({ message, own }: { message: IMessage; own: boolean }) {
       )}
 
       <div className={styles.messageTextBlock}>
-        <p className={styles.messageText}>{message.text}</p>
+      <p className={styles.messageText}>{formatMessageText(message.text)}</p>
 
         <div className={styles.messageBottom}>
           {dayjs(message.createdAt).format("HH:mm")}

@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { SubmitHandler } from "react-hook-form";
 import { useMutation } from "react-query";
-import { toast } from "react-toastify";
 
 export const useProject = () => {
   const router = useRouter();

@@ -1,7 +1,7 @@
 import { useAuth } from "@/hooks/useAuth";
 import { PaymentService } from "@/services/payment/payment.service";
 import { useMutation } from "react-query";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 export const useSubscribe = () => {
     const {user} = useAuth()

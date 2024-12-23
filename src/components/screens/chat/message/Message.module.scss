@@ -25,7 +25,9 @@
 }
 
 
-
+.link {
+  text-decoration: underline;
+}
 .messageTextBlock{
   @apply relative flex flex-col px-[10px] py-[6px] justify-between;
 }

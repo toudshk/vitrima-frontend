@@ -8,8 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { SubmitHandler } from "react-hook-form";
 import { useMutation } from "react-query";
 import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
-
+import toast from 'react-hot-toast';
 export const useApplicationForm = () => {
   const { registerApplicant } = useActions();
   const { user } = useAuth();

@@ -1,5 +1,5 @@
 import { AuthService } from "@/services/auth/auth.service";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {

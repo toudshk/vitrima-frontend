@@ -5,7 +5,8 @@ import { getKeys } from "@/utils/object/getKeys";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { SubmitHandler, UseFormSetValue } from "react-hook-form";
 import { useMutation, useQuery } from "react-query";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
+
 
 export const useWorkEdit = (setValue: UseFormSetValue<IWorkEditInput>) => {
   const router = useRouter();

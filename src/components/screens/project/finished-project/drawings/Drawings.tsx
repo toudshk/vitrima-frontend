@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useDrawings } from "./UseDrawings";
-import { toast } from "react-toastify";
 import SkeletonLoader from "@/components/ui/skeleton-loader/skeletonLoader";
 import styles from "./Drawing.module.scss";
 import MainButton from "@/components/ui/Button/MainButton";

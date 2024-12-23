@@ -11,8 +11,6 @@ import { API_URL, getAuthUrl } from "@/config/api.config";
 import { getContentType } from "@/api/api.helpers";
 import { axiosClassic } from "@/api/interceptors";
 
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
 
 export const AuthService = {
   async registerApplicant(email: string, password: string, nickname: string) {

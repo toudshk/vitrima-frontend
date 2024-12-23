@@ -3,7 +3,8 @@ import { useMutation } from "react-query";
 import { useRouter } from "next/navigation"; 
 import { useDispatch } from "react-redux";
 import { FC } from "react";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
+
 import { ProjectService } from "@/services/project/project.service";
 
 

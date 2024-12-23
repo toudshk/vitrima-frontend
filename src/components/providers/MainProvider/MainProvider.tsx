@@ -1,13 +1,12 @@
 "use client";
 
 import { FC, useEffect, useState } from "react";
-import "react-toastify/dist/ReactToastify.css";
 
 import Cookies from "js-cookie";
 import { ReduxProvider } from "../ReduxProvider";
 import Header from "@/components/layout/header/Header";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ToastContainer, toast } from "react-toastify";
+import toast, { Toaster } from 'react-hot-toast';
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
@@ -55,7 +54,7 @@ const MainProvider: FC<{ children: any }> = ({ children }) => {
           <CookieBanner />
         </motion.div>
       </ReduxProvider>
-      <ToastContainer />
+         <Toaster />
     </QueryClientProvider>
   );
 };

@@ -6,7 +6,8 @@ import { TagService } from "@/services/tag/tag.service";
 import { convertMongoDate } from "@/utils/date/ConverMongoDate";
 import { ChangeEvent, useMemo, useState } from "react";
 import { useMutation, useQuery } from "react-query";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
+
 import { SubmitHandler } from "react-hook-form";
 import generateSlug from "@/utils/generateSlug";
 import { WorkService } from "@/services/work/work.service";

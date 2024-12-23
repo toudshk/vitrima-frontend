@@ -1,6 +1,6 @@
 import { ChangeEvent, useMemo, useState } from "react";
 import { useMutation, useQuery } from "react-query";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
 import { useAuth } from "@/hooks/useAuth";
 import { FeedbackService } from "@/services/feedback/feedback.service";
 import { PaymentService } from "@/services/payment/payment.service";

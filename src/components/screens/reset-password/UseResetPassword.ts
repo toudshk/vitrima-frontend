@@ -1,7 +1,8 @@
 import { AuthService } from "@/services/auth/auth.service";
 import { ChangeEvent, useMemo, useState } from "react";
 import { useMutation, useQuery } from "react-query";
-import { toast } from "react-toastify";
+import toast from 'react-hot-toast';
+
 
 
 export const useResetPassword = () => {
