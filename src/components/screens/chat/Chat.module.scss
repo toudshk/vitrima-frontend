@@ -123,8 +123,7 @@
       }
     }
     .chatBox {
-    
-      @apply max-w-[92vh];
+    height: calc(92vh - 80px);
       .chatBoxWrapper {
       
         .chatBlockFriend {
