@@ -124,7 +124,7 @@
     }
     .chatBox {
     
-    
+      @apply max-w-[92vh];
       .chatBoxWrapper {
       
         .chatBlockFriend {
