@@ -115,7 +115,6 @@
 @media (max-width: 700px) {
   .messenger {
     @apply  mt-[8vh];
-    height: calc(92vh - 80px);
     .chatMenu {
       @apply absolute h-[90vh]  pr-0 pt-3 pl-2 bg-white z-20 w-full;
       left: -600px;
@@ -125,15 +124,14 @@
     }
     .chatBox {
     
-      height: calc(92vh - 80px);
-
+    
       .chatBoxWrapper {
       
         .chatBlockFriend {
           @apply pl-2;
         }
         .chatBoxTop {
-          @apply h-[61vh]  w-full;
+          @apply  w-full;
         }
         .chatBoxBottomContainer {
           @apply w-full;
