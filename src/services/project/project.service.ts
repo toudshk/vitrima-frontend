@@ -113,15 +113,15 @@ export const ProjectService = {
 
   //сервисы для выбора строителя и дизайнера и мебельщика
 
-  async createChosenDesigner(designerData: any, projectId: any) {
+  async createPotentialDesigners(designersIds: string[], projectId: any) {
     try {
       const response = await axios.post(
-        getProjectUrl(`/${projectId}/designer`),
-        designerData
+        getProjectUrl(`/${projectId}/potential-designers`), 
+        { designerIds: designersIds }
       );
       return response.data;
     } catch (error) {
-     
+      console.error("Error while creating chosen potential designers:", error);
       throw error;
     }
   },
@@ -154,6 +154,7 @@ export const ProjectService = {
       throw error;
     }
   },
+
 
   async createChosenBuilder(builderData: any, projectId: any) {
     try {
@@ -203,5 +204,21 @@ export const ProjectService = {
   async updateCarpenter(_id: any, furniture: ICarpenterInput) {
     const response = await axios.put(getCarpenterUrl(`/${_id}`), furniture);
     return response.data;
+  },
+
+
+
+
+
+  
+  
+  async addPotentialDesignerForProject(projectId: string, designerId: string) {
+    try {
+      const response = await axios.post(getProjectUrl(`/${projectId}/chose-designer`), {designerId});
+      return response.data;
+    } catch (error) {
+      console.error("Error creating project:", error);
+      throw error;
+    }
   },
 };

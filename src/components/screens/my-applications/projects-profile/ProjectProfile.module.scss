@@ -1,0 +1,64 @@
+.wrapper {
+  @apply mt-[9vh] max-w-[1440px] px-2 mx-auto;
+  .linkToChat{
+    @apply  border rounded-2xl border-gray-300 p-2 ;
+  }
+}
+.item {
+  @apply border border-gray-300 shadow-md  rounded-2xl    flex flex-col justify-between py-2 mb-3;
+ 
+  .title {
+    @apply pl-3 text-3xl font-bold;
+  }
+  .designersList {
+    @apply flex gap-2;
+  }
+  .createdAt {
+    @apply text-gray-500 font-bold mt-3 ml-3;
+  }
+}
+
+.item {
+  width: 100%;
+}
+
+.topBlock {
+  margin-bottom: 20px;
+}
+
+.sliderContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.navButton {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.designersList {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 0;
+
+  /* Скрытие прокрутки */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE и Edge */
+}
+
+.designersList::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+@media (max-width: 600px) {
+  .title {
+    @apply text-3xl mb-2;
+  }
+}

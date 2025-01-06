@@ -1,0 +1,72 @@
+.designerItem {
+  @apply rounded-2xl bg-[#f0f2f5] w-[250px] relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+.titleLink{
+  @apply absolute text-white bg-gray-300 bg-opacity-50 rounded-2xl px-2 py-1 right-3 mt-4 w-auto h-8 hover:bg-opacity-70;
+}
+
+}
+.designerItem:first-child{
+  @apply ml-3;
+}
+.designerItem:last-child{
+  @apply mr-3;
+}
+
+.designerImage {
+  @apply rounded-t-2xl ;
+
+}
+
+.profileLink {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding: 12px 0;
+  width: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+
+.sliderItem {
+  @apply grid;
+  width: 75px;
+  height: 75px;
+}
+
+.workImage {
+  border-radius: 8px;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.bottomBlock {
+  @apply p-2 w-full;
+  >p{
+    @apply text-xl mb-5;
+  }
+  .linkToProfile {
+    @apply bg-blue-500 text-white py-2 px-3 rounded-2xl w-full;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .designerItem{
+    @apply min-w-[60vw];
+
+    .bottomBlock{
+      > p{
+        @apply text-center text-2xl font-bold mb-4;
+      }
+    }
+  }
+}

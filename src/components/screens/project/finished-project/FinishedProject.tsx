@@ -9,8 +9,8 @@ import { ISubType } from "@/components/shared/types/work.types";
 const FinishedProject: FC = () => {
   const { user } = useAuth();
   const { data } = useFinishedProject();
-  const showChosenDesigners =
-    data?.chosenDesigners === null || data?.chosenDesigners;
+  const showPotentialDesigners =
+    data?.potentialDesigners === null || data?.potentialDesigners;
 
   const showChosenBuilders =
     data?.chosenBuilders === null || data?.chosenBuilders;
@@ -23,11 +23,11 @@ const FinishedProject: FC = () => {
     data?.chosenCarpenter === null || data?.chosenCarpenter;
 
   const services = [
-    ...(showChosenDesigners && user?.isAdmin
+    ...(showPotentialDesigners && user?.isAdmin
       ? [
           {
             name: "Выбранные дизайнеры",
-            field: "chosenDesigners",
+            field: "potentialDesigners",
             link: `${data?._id}/add-designer`,
           },
         ]
@@ -76,7 +76,7 @@ const FinishedProject: FC = () => {
         ]
       : []),
   ];
-  console.log(data?.applicationForm);
+  
   return (
     <div className={styles.container}>
       <div className={styles.serviceList}>
@@ -92,9 +92,7 @@ const FinishedProject: FC = () => {
         {data?.applicationForm?.location}, Номер телефона:{" "}
         {data?.applicationForm?.phoneNumber}, Площадь объекта:{" "}
         {data?.applicationForm?.workType && (
-          <>
-            Тип проекта: {data?.applicationForm?.workType.title},
-          </>
+          <>Тип проекта: {data?.applicationForm?.workType.title},</>
         )}{" "}
         {data?.applicationForm?.objectArea}м²,{" "}
         {data?.applicationForm?.minPrice && (

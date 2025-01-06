@@ -35,8 +35,9 @@ export interface ICarpenter {
 
 export interface IProject {
   _id: string;
-  chosenDesigners?: IChosenDesigners | null;
+  chosenDesigner?: IChosenDesigners | null;
   chosenBuilders?: IChosenBuilders | null;
+  potentialDesigners?: any | null;
   applicationForm?: IApplicationForm;
   drawings?: string[];
   chosenCarpenter?: ICarpenter[] | null;

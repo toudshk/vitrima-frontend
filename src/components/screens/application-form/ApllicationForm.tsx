@@ -6,9 +6,7 @@ import { Controller, useForm, FormState } from "react-hook-form";
 import styles from "./ApplicationForm.module.scss";
 import { ISubType, IWorkType } from "@/components/shared/types/work.types";
 import SecondButton from "@/components/ui/Button/SecondButton";
-import { useBuildingTechnique } from "@/hooks/buildingTechnique/useBuildingTechnique";
 import { useApplicationForm } from "./useApplicationForm";
-import { useTypePurpose } from "../add-work/usePurposeTypes";
 import { useSelectTags } from "../add-work/useSelectTags";
 import { IAddApplicationForm } from "@/store/applicationForm/applicationForm.interface";
 import ApplicationFormInput from "./application-input/AplicationFormInput";
@@ -18,13 +16,9 @@ import { useSubTypes } from "../add-work/useSubTypes";
 import "react-dadata/dist/react-dadata.css";
 import { useParams } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
-import { useActions } from "@/hooks/useActions";
-import { useFinishedProject } from "../project/finished-project/useFinishedProject";
-import { Checkbox } from "@mui/material";
 import { AddressSuggestions } from "react-dadata";
 
 const ApplicationForm: FC = () => {
-  const { registerApplicant } = useActions();
   const params = useParams();
   const { user } = useAuth();
   // Ensure params.id is a string or undefined, by accessing the first value of the array if it’s an array.

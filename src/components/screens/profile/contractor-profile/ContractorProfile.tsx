@@ -16,7 +16,6 @@ const ContractorProfile: FC<ContractorProfileProps> = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [openDescription, setOpenDescription] = useState(false);
-  console.log(openDescription);
   const descriptionElementRef = useRef<HTMLElement>(null);
   useEffect(() => {
     if (open) {

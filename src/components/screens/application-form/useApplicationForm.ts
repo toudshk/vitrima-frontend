@@ -35,7 +35,7 @@ export const useApplicationForm = () => {
   );
 
   const onSubmit: SubmitHandler<IAddApplicationForm> = async (data) => {
-    console.log(data);
+
     // Проверяем, есть ли applicantId
     if (!data.applicantId) {
       // Если applicantId отсутствует, выполняем регистрацию пользователя

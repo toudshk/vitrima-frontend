@@ -32,7 +32,7 @@ const AddDesignerForProject: NextPageAuth = () => {
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <Field
           {...register("title")}
-          placeholder="Название студии или ФИО дизайнера"
+          placeholder="Название фирмы"
           error={errors.title}
         />
           <Field

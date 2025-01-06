@@ -61,11 +61,18 @@ const DropdownMenu = () => {
           <Link href={"/add-work"}>Добавить новую работу</Link>
         )}
 
-
         <Link href={"/feedback"}>
           {/* <EmailIcon className="max-w-[15%] mr-1" /> */}
           Обратная связь
         </Link>
+
+        {user?.isContractor === false && (
+          <Link href={`/my-applications`}>
+            {/* <PersonIcon /> */}
+            Мои заявки
+          </Link>
+        )}
+
         <Link href={`/profile/${user?._id}`}>
           {/* <PersonIcon /> */}
           Профиль
@@ -84,8 +91,6 @@ const DropdownMenu = () => {
 
 export default DropdownMenu;
 
-
-        
 // {user?.isContractor === true && (
 //   <a
 //     onClick={(e) => {

@@ -67,6 +67,15 @@ export const UserService = {
     });
   },
 
+  async getContractors(searchTerm?: string) {
+    return axios.get<any>(getUsersUrl(`/contractors`), {
+      params: searchTerm
+        ? {
+            searchTerm,
+          }
+        : {},
+    });
+  },
   async updateUser(_id: string, data: ISettingsProfileInput) {
     return axios.put<string>(getUsersUrl(`/${_id}`), data);
   },
