@@ -3,7 +3,7 @@
 
   .serviceList {
     @apply flex flex-wrap justify-center gap-4  px-2 max-w-[1440px] flex-grow h-[81vh] mx-auto pt-32;
-   
+
     list-style-type: none;
 
     .item {
@@ -17,17 +17,21 @@
       transition: background-color 0.3s, transform 0.2s ease-in-out,
         box-shadow 0.3s; // Плавные переходы
     }
-  
-    
+   
+  }
+  @media (max-width: 600px) {
+    .serviceList {
+      @apply flex-col py-10 h-[77vh];
+      .item {
+        @apply text-lg px-4 h-6 max-w-none ;
+      }
+    }
   }
   .linkTitle {
     @apply text-2xl font-bold;
   }
 
-  .bottomBlock{
+  .bottomBlock {
     @apply w-full bg-primary text-white  mt-auto min-h-[10vh]  text-center px-[10vw];
   }
 }
-
-
-

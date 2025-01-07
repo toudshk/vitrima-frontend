@@ -19,10 +19,10 @@ export const navItems: INavItem[] = [
         title: 'Теги',
         link: getAdminUrl('tags')
     },
-    { 
-        title: 'Фидбек',
-        link: getAdminUrl('feedback')
-    },
+    // { 
+    //     title: 'Фидбек',
+    //     link: getAdminUrl('feedback')
+    // },
     { 
         title: 'Заявки',
         link: getAdminUrl('application-form')
