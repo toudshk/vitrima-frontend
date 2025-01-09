@@ -36,7 +36,7 @@
       @apply text-2xl font-bold mb-2;
     }
     .buttonBlock{
-      @apply w-full fixed bottom-0 left-0 px-4 pb-4 bg-white; 
+      @apply w-full  flex justify-center fixed bottom-0 left-0 px-4 pb-4 bg-white; 
     }
     .linkTitle {
       @apply text-xl my-3;

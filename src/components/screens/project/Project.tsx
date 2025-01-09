@@ -133,7 +133,7 @@ const Project: FC = () => {
           </div> */}
           <div className={styles.buttonBlock}>
             <MainButton
-              className="w-full border-gray-300"
+              className="w-full border-gray-300 max-w-[600px]"
               type="submit"
               disabled={activeItems.length === 0}
             >

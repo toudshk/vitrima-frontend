@@ -43,7 +43,12 @@
       }
       &:hover .title {
         @apply text-[6.5vw];
-        transform: translateY(200%);
+        transform: translateY(10vh);
+      }
+      @media (max-width: 600px){
+        &:hover .title {
+          transform: translateY(5vh);
+        }
       }
 
       .title {
@@ -132,7 +137,12 @@
       }
       &:hover .title {
         @apply text-[6.5vw];
-        transform: translateY(200%);
+        transform: translateY(10vh);
+      }
+      @media (max-width: 600px){
+        &:hover .title {
+          transform: translateY(5vh);
+        }
       }
 
       .title {
