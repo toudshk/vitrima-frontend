@@ -38,13 +38,13 @@ const ApplicationForm: FC = () => {
     defaultValues: {
       location: "",
       phoneNumber: "",
-    //   images: [],
+      //   images: [],
       projectId: projectId,
       applicantId: user?._id,
     },
   });
   const value = getValues();
-  console.log(value.location)
+  console.log(value.location);
   const DADATA_KEY = "4a9e155a8d8b3989ac9f4a5e58269c44c65f049b";
 
   const { onSubmit } = useApplicationForm();
@@ -89,8 +89,6 @@ const ApplicationForm: FC = () => {
 
     return formatted;
   };
-
-
 
   useEffect(() => {
     // Fetch subtypes whenever selectedItem changes
@@ -151,44 +149,53 @@ const ApplicationForm: FC = () => {
                       />
                     )}
                   />
-                  <Controller
-  name="location"
-  control={control}
-  rules={{ required: "Заполните поле" }}
-  render={({ field, fieldState: { error } }) => (
-    <>
-      <p className="text-4xl font-bold mb-4 max-[600px]:text-2xl max-[600px]:mb-2">
-        Местоположение
-      </p>
-      <AddressSuggestions
-        count={4}
-        inputProps={{
-          placeholder: "Начните вводить город",
-          tabIndex: 0,
-          className: styles.addressInput,
-          onBlur: (e) => {
-            // Устанавливаем значение в React Hook Form при потере фокуса
-            const inputValue = e.target.value;
-            if (inputValue) {
-              field.onChange(inputValue);
-            }
-          },
-        }}
-        token={DADATA_KEY}
-        onChange={(newValue) => {
-          // Устанавливаем значение при выборе подсказки
-          handleLocationChange(newValue);
-          field.onChange(newValue!.value);
-        }}
-        value={field.value}
-        filterFromBound="city"
-        filterToBound="city"
-        filterLocations={[{ country: "россия" }]}
-      />
-      {error && <p className="text-red-500">{error.message}</p>}
-    </>
-  )}
-/>
+                  {/* <Controller
+                    name="location"
+                    control={control}
+                    rules={{ required: "Заполните поле" }}
+                    render={({ field, fieldState: { error } }) => (
+                      <>
+                        <p className="text-4xl font-bold mb-4 max-[600px]:text-2xl max-[600px]:mb-2">
+                          Местоположение
+                        </p>
+                        <AddressSuggestions
+                          count={4}
+                          inputProps={{
+                            placeholder: "Начните вводить город",
+                            tabIndex: 0,
+                            className: styles.addressInput,
+                            onBlur: (e) => {
+                              // Устанавливаем значение в React Hook Form при потере фокуса
+                              const inputValue = e.target.value;
+                              if (inputValue) {
+                                field.onChange(inputValue);
+                              }
+                            },
+                          }}
+                          token={DADATA_KEY}
+                          onChange={(newValue) => {
+                            // Устанавливаем значение при выборе подсказки
+                            handleLocationChange(newValue);
+                            field.onChange(newValue!.value);
+                          }}
+                          value={field.value}
+                          filterFromBound="city"
+                          filterToBound="city"
+                          filterLocations={[{ country: "россия" }]}
+                        />
+                        {error && (
+                          <p className="text-red-500">{error.message}</p>
+                        )}
+                      </>
+                    )}
+                  /> */}
+                   <ApplicationFormInput
+                    {...register("location", {
+                      required: "Заполните поле",
+                    })}
+                    error={errors.location}
+                    title="Местоположение"
+                  />
                   <ApplicationFormInput
                     {...register("name", {
                       required: "Заполните поле",
