@@ -226,7 +226,7 @@ const ApplicationForm: FC = () => {
                             handleLocationChange(newValue);
                             field.onChange(newValue!.value); // Обновляем значение в контроллере
                           }}
-                          value={field.value}
+                          // value={field.value}
                           filterFromBound="city"
                           filterToBound="city"
                           filterLocations={[{ country: "россия" }]}
