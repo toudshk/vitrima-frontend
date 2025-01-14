@@ -189,7 +189,7 @@ const ApplicationForm: FC = () => {
                       </>
                     )}
                   /> */}
-                   <ApplicationFormInput
+                  <ApplicationFormInput
                     {...register("location", {
                       required: "Заполните поле",
                     })}
@@ -215,7 +215,7 @@ const ApplicationForm: FC = () => {
                     error={errors.email}
                     title="Почта"
                   />
-                  {!user && (
+                  {/* {!user && (
                     <ApplicationFormInput
                       {...register("password", {
                         required: "Заполните поле",
@@ -228,7 +228,7 @@ const ApplicationForm: FC = () => {
                       error={errors.password}
                       title="Придумайте пароль"
                     />
-                  )}
+                  )} */}
                   <div className="mt-4 mb-16 max-[600px]:text-xs">
                     <p>
                       Нажимая на кнопку отправить, вы соглашаетесь с{" "}
@@ -238,9 +238,8 @@ const ApplicationForm: FC = () => {
                       и даете согласие на обработку своих персональных данных.
                     </p>
                     <p>
-                      Вас перенаправит на наш чат, где мы сможем отправлять вам
-                      варианты. Мы позвоним вам в ближайшее время для уточнения
-                      всех необходимых деталей, после чего приступим к подбору.{" "}
+                      Мы позвоним вам в ближайшее время для уточнения всех
+                      необходимых деталей, после чего приступим к подбору.{" "}
                     </p>
                     <p>Спасибо за оставленную заявку!</p>
                   </div>
