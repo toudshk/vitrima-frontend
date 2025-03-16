@@ -13,7 +13,10 @@ import { usePathname } from "next/navigation";
 import { useActions } from "@/hooks/useActions";
 import { Metrika } from "@/utils/metrika";
 import AuthProvider from "../AuthProvider/AuthProvider";
-import CookieBanner from "@/components/ui/Cookie-banner/CookieBanner";
+import dynamic from 'next/dynamic';
+
+const CookieBanner = dynamic(() => import('@/components/ui/Cookie-banner/CookieBanner'), { ssr: false });
+
 const animation = {
   hidden: {
     opacity: 0,
@@ -41,7 +44,6 @@ const MainProvider: FC<{ children: any }> = ({ children }) => {
             <Header />
           )}
         <motion.div
-          className="mt-[7vh]"
           variants={animation}
           initial="hidden"
           animate="visible"

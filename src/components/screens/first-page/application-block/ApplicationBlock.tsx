@@ -63,20 +63,18 @@ const ApplicationBlock: FC = () => {
     { title: "мы рассматриваем вашу заявку" },
     { title: "ищем специалистов на основе ваших данных" },
     { title: "изучаем портфолио и реализованные работы" },
-    { title: "ппроверяем их рабочую документацию и отзывы клиентов" },
+    { title: "проверяем их рабочую документацию и отзывы клиентов" },
     {
       title:
         "связываем с вами и отправляем вам лучшие варианты в нашем чате",
     },
   ];
 
-  const sectionRef = useRef(null);
-  const triggerRef = useRef(null);
   const [activeTitle, setActiveTitle] = useState(-1);
 
   useEffect(() => {
     const pin = gsap.fromTo(
-      sectionRef.current,
+      "#subtitles",
       {
         translateY: 0,
       },
@@ -85,11 +83,12 @@ const ApplicationBlock: FC = () => {
         ease: "none",
         duration: 1,
         scrollTrigger: {
-          trigger: triggerRef.current,
+          trigger: '#applications',
           start: "top top",
           end: "2000 top",
           scrub: 0.6,
           pin: true,
+          // markers: true
         },
       }
     );
@@ -104,9 +103,9 @@ const ApplicationBlock: FC = () => {
   };
 
   return (
-    <div className={styles.container} ref={triggerRef}>
+    <div className={styles.container} id='applications'>
       <h1 className={styles.title}>Как происходит подбор исполнителей</h1>
-      <div ref={sectionRef} className={styles.subtitles}>
+      <div id="subtitles" className={styles.subtitles}>
         {data.map((item, index) => (
           <SubtitleItem
             subtitle={item.title}

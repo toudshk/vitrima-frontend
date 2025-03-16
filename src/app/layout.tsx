@@ -9,7 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 import MainProvider from "@/components/providers/MainProvider/MainProvider";
 
 const myFont = localFont({
-  src: "./assets/fonts/Jura-VariableFont_wght.ttf",
+  src: "./assets/fonts/Montserrat-VariableFont_wght.ttf",
   display: "swap",
 });
 

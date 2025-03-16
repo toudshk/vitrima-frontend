@@ -70,6 +70,10 @@ const config = {
 						objectFit: 'cover',
 						pointerEvents: 'none',
 					},
+					'.nav-height': {
+						height: 'calc(100vh - 60px)',
+					
+					}
 				})
 		}),
 	],

@@ -9,6 +9,15 @@ const nextConfig = {
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.resolve.alias.canvas = false
     config.resolve.alias.encoding = false
+    config.module.rules.push({
+      test: /\.(glsl|vs|fs|vert|frag)$/,
+      use: [
+        'raw-loader',
+        {
+          loader: "glslify-loader",
+        },
+      ],
+    });
     return config
   },
   async rewrites() {

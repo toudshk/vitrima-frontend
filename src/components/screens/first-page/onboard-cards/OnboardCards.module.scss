@@ -1,0 +1,28 @@
+.container {
+  @apply mx-auto flex flex-col relative    bg-[#f0f0f0]  nav-height md:h-[2750px];
+  overflow-y: hidden;
+  @media (min-height: 1700px) {
+    @apply h-[100vh];
+  }
+.gallery{
+  @apply  py-16 ;
+  .item {
+    @apply absolute flex mx-8 h-[500px]   bg-white rounded-xl   px-8 border border-gray-300;
+
+    .textBlock {
+      @apply text-center items-center flex flex-col justify-between w-1/2 py-8;
+      .title {
+        @apply text-5xl font-bold uppercase;
+      }
+      .text {
+        @apply text-base font-medium w-2/3 mx-auto ;
+      }
+      span{
+        @apply text-5xl font-bold;
+      }
+    }
+    .image {
+      @apply w-1/2 image-like-bg;
+    }
+  }}
+}
