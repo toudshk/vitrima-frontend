@@ -244,7 +244,7 @@ const directionalLightPositionZ = 10.0;
       <mesh
         geometry={geometry}
         frustumCulled={false}
-        position={[0, isMobile ? -1.3 * 0 : 0, 0]}
+        position={[0, isMobile ? 1.3 : 0, 0]}
       >
         <CustomShaderMaterial
           ref={materialRef}
@@ -301,7 +301,7 @@ const SphereModel = () => {
   };
 
   return (
-    <div className="h-[100vh - 60px] md:h-[100vh]" >
+    <div className="h-full md:h-[100vh]" >
       <Canvas
       
         camera={{

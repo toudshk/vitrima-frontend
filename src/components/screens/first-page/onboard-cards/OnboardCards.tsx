@@ -82,6 +82,7 @@ export default function OnboardCards() {
         scrub: true,
         start: "top 0%",
         end: '2000 top',
+        // markers: true
       },
     });
   

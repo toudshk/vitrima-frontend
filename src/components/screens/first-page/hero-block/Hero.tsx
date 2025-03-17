@@ -46,8 +46,8 @@ const Scene = (props: any) => {
     <>
       <Canvas
         onClick={click}
-        shadows
-        dpr={[1, 1.5]}
+        // shadows
+        dpr={[1, 1]}
         gl={{ antialias: false }}
         camera={{ position: [0, 0, 15], fov: 17.5, near: 1, far: 20 }}
         {...props}
@@ -75,7 +75,7 @@ const Scene = (props: any) => {
                   anisotropicBlur={0.1}
                   chromaticAberration={0.1}
                   samples={8}
-                  resolution={256}
+                  resolution={8}
                 />
               </Model>
             </Connector>
@@ -83,7 +83,7 @@ const Scene = (props: any) => {
           <EffectComposer disableNormalPass multisampling={8}>
             <N8AO distanceFalloff={1} aoRadius={1} intensity={4} />
           </EffectComposer>
-          <Environment resolution={256}>
+          <Environment resolution={128}>
             <group rotation={[-Math.PI / 3, 0, 1]}>
               <Lightformer
                 form="circle"
@@ -228,7 +228,7 @@ const Hero: FC = () => {
             </Link>
           */}
 
-        <Scene
+        {/* <Scene
           style={{
             position: "absolute",
             top: 0,
@@ -238,7 +238,7 @@ const Hero: FC = () => {
             zIndex: 0,
             overflow: "hidden",
           }}
-        />
+        /> */}
       </div>
     </section>
   );

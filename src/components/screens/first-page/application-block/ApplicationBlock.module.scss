@@ -4,11 +4,11 @@
   height: 100vh;
 
   .title {
-    @apply absolute text-primary text-5xl text-center uppercase font-bold w-full py-[2vw] bg-white z-10 border-b border-b-[#dbd8d6];
+    @apply absolute text-primary text-2xl md:text-5xl text-center uppercase font-bold w-full py-[2vw] bg-white z-10 border-b border-b-[#dbd8d6];
     -webkit-font-smoothing: antialiased;
   }
   .subtitles {
-    @apply flex flex-col z-0  w-2/5 border-r  border-r-[#dbd8d6];
+    @apply flex flex-col z-0 h-1/2 md:h-full md:w-2/5 border-r  border-r-[#dbd8d6];
     height: 400%;
     position: relative;
 
