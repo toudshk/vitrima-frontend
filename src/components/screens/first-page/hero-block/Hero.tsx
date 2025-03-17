@@ -228,7 +228,7 @@ const Hero: FC = () => {
             </Link>
           */}
 
-        {/* <Scene
+        <Scene
           style={{
             position: "absolute",
             top: 0,
@@ -238,7 +238,7 @@ const Hero: FC = () => {
             zIndex: 0,
             overflow: "hidden",
           }}
-        /> */}
+        />
       </div>
     </section>
   );
