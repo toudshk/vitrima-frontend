@@ -17,6 +17,7 @@ import "react-dadata/dist/react-dadata.css";
 import { useParams } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { AddressSuggestions } from "react-dadata";
+import MainButton from "@/components/ui/Button/MainButton";
 
 const ApplicationForm: FC = () => {
   const params = useParams();
@@ -111,11 +112,11 @@ const ApplicationForm: FC = () => {
             <div className={styles.mainBlock}>
               <div>
                 <div className="flex justify-between ">
-                  <div className="text-xl text-gray-500 font-bold">
+                  <div className="uppercase text-3xl  font-medium text-gray-500  pl-2 mb-4 pb-2 border-b border-b-gray-450 w-full">
                     {selectedItem._id === "656c0a3cfad5c309cd6a9433" ? (
-                      <div>Интерьер</div>
+                      <p className="tracking-tighter italic">Интерьер</p>
                     ) : (
-                      <div>Архитектура</div>
+                      <p className="tracking-tighter italic">Архитектура</p>
                     )}
                   </div>
                   {/* <div className="text-xl text-gray-500 font-bold">
@@ -193,6 +194,7 @@ const ApplicationForm: FC = () => {
                     {...register("location", {
                       required: "Заполните поле",
                     })}
+                       placeholder="г. Москва"
                     error={errors.location}
                     title="Местоположение"
                   />
@@ -250,7 +252,7 @@ const ApplicationForm: FC = () => {
                   На главную
                 </Link>
 
-                <SecondButton disabled={!isValid}>Отправить</SecondButton>
+                <button className={styles.sendButton} disabled={!isValid}>Отправить</button>
               </div>
             </div>
           </div>

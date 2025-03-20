@@ -7,8 +7,8 @@
     }
 
     .serviceList {
-      @apply flex flex-wrap justify-center gap-3 md:gap-4   mx-2  md:mx-0 h-[80%];
-      margin-top: 1.5rem;
+      @apply flex flex-wrap justify-center gap-3 md:gap-4   mx-2 mt-6 md:mx-0 h-[80%];
+
       list-style-type: none;
       padding: 0;
       .item {

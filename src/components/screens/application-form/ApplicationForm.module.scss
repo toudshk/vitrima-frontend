@@ -1,26 +1,22 @@
 .form {
-  @apply max-w-[1734px] mx-auto px-5  h-full ;
+  @apply max-w-[1734px] mx-auto   h-full bg-gray-200 pt-8;
   .mainBlock {
-    @apply w-1/2 mx-auto relative h-full  flex flex-col justify-between;
-    .dateBlock{
-      @apply h-[80%] overflow-y-auto px-1 ;
-      mask-image: linear-gradient(
-        to bottom,
-        black 90%,
-      transparent
-      ); 
+    @apply w-1/2 mx-auto relative h-full  flex flex-col justify-between ;
+    .dateBlock {
+      @apply h-[80%] overflow-y-auto px-1;
+      mask-image: linear-gradient(to bottom, black 90%, transparent);
       &::-webkit-scrollbar {
         display: none; /* Скрывает полосу прокрутки */
       }
     }
     @media (max-width: 700px) {
-      .dateBlock{
+      .dateBlock {
         @apply overflow-hidden h-[100%];
-        mask-image: none
+        mask-image: none;
       }
     }
     .topBlock {
-      @apply h-full max-h-[90vh] flex flex-col justify-between overflow-y-auto px-1 ;
+      @apply h-full max-h-[90vh] flex flex-col justify-between overflow-y-auto px-2;
       mask-image: linear-gradient(
         to bottom,
         black 80%,
@@ -31,7 +27,7 @@
       }
 
       .textArea {
-        @apply  resize-none border-2 rounded-2xl h-[250px] border-gray-300  bg-transparent  text-gray-700 w-full px-[1vw] text-lg;
+        @apply resize-none border-2 rounded-2xl h-[250px] border-gray-300  bg-transparent  text-gray-700 w-full px-[1vw] text-lg;
 
         transition: border-color 0.3s, box-shadow 0.3s;
 
@@ -67,6 +63,14 @@
           @apply bg-[#dedede];
         }
       }
+      .sendButton {
+        @apply text-xl  border-2 text-center bg-blue-500 text-white px-4 py-2 rounded-2xl cursor-pointer;
+        transition: background-color 0.2s ease-in-out; /* Добавляем плавность для изменения цвета фона */
+
+        &:hover {
+          @apply bg-gray-600;
+        }
+      }
     }
   }
 }
@@ -94,9 +98,8 @@
     height: calc(100vh - 80px);
 
     .mainBlock {
-      @apply w-full   pt-10 ;
+      @apply w-full  ;
 
-      
       .buttons {
         @apply mb-5;
         .continueButton {

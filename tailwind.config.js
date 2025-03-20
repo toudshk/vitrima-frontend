@@ -21,6 +21,7 @@ const config = {
         800: "#113E81",
       },
       gray: {
+		200: "#F0F0F0",
         300: "#EAEAEA",
         450: "#c5c5c5",
         400: "#ABABAB",
