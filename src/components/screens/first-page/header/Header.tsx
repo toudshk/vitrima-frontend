@@ -34,7 +34,7 @@ const Header: FC = () => {
         ) : (
           <div className={styles.blockForAuth}>
             <div className={styles.userData}>
-              <div className={styles.avatarWrapper}>
+              {/* <div className={styles.avatarWrapper}>
                 <Image
                   className={styles.image}
                   src={userData?.image ? userData.image : baseImage}
@@ -42,7 +42,7 @@ const Header: FC = () => {
                   height={100}
                   alt=""
                 />{" "}
-              </div>
+              </div> */}
               <div className={styles.textBlock}>
                 <p className={styles.nickName}>{userData?.nickname}</p>
                 <p className={styles.email}>{userData?.email}</p>

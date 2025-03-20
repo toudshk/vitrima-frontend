@@ -26,4 +26,34 @@
     @apply hidden md:flex flex-col font-bold items-start mr-auto;
     
   }
+
+  .blockForAuth {
+    @apply flex flex-col mx-auto;
+
+    .userData {
+      @apply flex items-center;
+      .avatarWrapper {
+        @apply relative;
+
+        &::before {
+          content: "";
+          @apply absolute inset-0 -top-[2px] -left-[2px] -right-[2px] -bottom-[2px] rounded-full bg-blue-500 opacity-60 shadow-lg;
+        }
+      }
+
+      .image {
+        @apply rounded-full w-16 h-16 relative z-10 image-like-bg; /* 100px */
+      }
+
+      .textBlock {
+        @apply flex flex-col ;
+        .nickName {
+          @apply text-base text-gray-700 mr-auto;
+        }
+        .email {
+          @apply text-sm text-gray-500;
+        }
+      }
+    }
+  }
 }
