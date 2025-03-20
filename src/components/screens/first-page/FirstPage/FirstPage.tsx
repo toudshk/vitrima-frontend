@@ -15,12 +15,11 @@ import TimeUpload from "@/components/ui/masonry/timeUpload/TimeUpload";
 
 import ContestModalWindow from "./contest-modal-window/ContestModalWindow";
 import { useUser } from "../../profile/useUser";
-
+import LoaderBlock from "../hero-block/loader/LoaderBlock";
 import baseImage from "@/app/assets/images/base-avatar.jpg";
 import ApplicationBlock from "../application-block/ApplicationBlock";
 import OnboardCards from "../onboard-cards/OnboardCards";
 import LocomotiveScroll from "locomotive-scroll";
-
 import { useSearchParams } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
@@ -61,7 +60,6 @@ const FirstPage: FC = () => {
 
   return (
     <>
-      <Suspense fallback={null}>
         <div data-scroll-container>
           <Header />
           <div className="w-full  bg-gray-400 relative">
@@ -74,8 +72,6 @@ const FirstPage: FC = () => {
           
           <Footer />
         </div>
-      </Suspense>
-      <Loader />
     </>
   );
 };

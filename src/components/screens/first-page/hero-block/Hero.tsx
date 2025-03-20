@@ -26,18 +26,7 @@ import {
 import { EffectComposer, N8AO } from "@react-three/postprocessing";
 import { easing } from "maath";
 import zIndex from "@mui/material/styles/zIndex";
-
-function LoaderBlock() {
-  const { progress } = useProgress();
-  return (
-    <Html center>
-      <div className="flex flex-col items-center justify-center p-4 bg-gray-800 text-white rounded-lg shadow-lg">
-        <p className="text-lg font-semibold">Loading...</p>
-        <p className="text-sm">{progress.toFixed(0)}%</p>
-      </div>
-    </Html>
-  );
-}
+import LoaderBlock from "./loader/LoaderBlock";
 
 
 const Scene = (props: any) => {
@@ -65,7 +54,7 @@ const Scene = (props: any) => {
         camera={{ position: [0, 0, 15], fov: 17.5, near: 1, far: 20 }}
         {...props}
       >
-        <Suspense fallback={<LoaderBlock/>}>
+        <Suspense fallback={null}>
           <color attach="background" args={["#c5c5c5"]} />
           <ambientLight intensity={0.4} />
           <spotLight
@@ -130,7 +119,7 @@ const Scene = (props: any) => {
           </Environment>
         </Suspense>
       </Canvas>
-      <Loader />
+      <LoaderBlock />
     </>
   );
 };
@@ -245,7 +234,7 @@ const Hero: FC = () => {
           </div>
         </div>
 
-        {/* <Scene
+        <Scene
           style={{
             position: "absolute",
             top: 0,
@@ -255,7 +244,7 @@ const Hero: FC = () => {
             zIndex: 0,
             overflow: "hidden",
           }}
-        /> */}
+        />
       </div>
     </section>
   );
