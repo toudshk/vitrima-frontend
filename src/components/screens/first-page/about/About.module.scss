@@ -23,7 +23,8 @@
         @apply ml-auto;
       }
       .link{
-        @apply cursor-pointer ;
+        @apply text-2xl cursor-pointer  border py-3 px-4 bg-blue-500 rounded-2xl w-auto text-white font-semibold italic mt-10;
+        
       }
     }
   }
