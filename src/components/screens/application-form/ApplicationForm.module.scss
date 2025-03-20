@@ -1,7 +1,7 @@
 .form {
-  @apply max-w-[1734px] mx-auto   h-full bg-gray-200 pt-8;
+  @apply max-w-[1734px] mx-auto   h-full  pt-8;
   .mainBlock {
-    @apply w-1/2 mx-auto relative h-full  flex flex-col justify-between ;
+    @apply w-full md:w-1/2 mx-auto relative h-full  flex flex-col justify-between;
     .dateBlock {
       @apply h-[80%] overflow-y-auto px-1;
       mask-image: linear-gradient(to bottom, black 90%, transparent);
@@ -16,7 +16,7 @@
       }
     }
     .topBlock {
-      @apply h-full max-h-[90vh] flex flex-col justify-between overflow-y-auto px-2;
+      @apply h-full max-h-[90vh] md:max-h-[70vh] flex flex-col  overflow-y-auto px-2;
       mask-image: linear-gradient(
         to bottom,
         black 80%,
@@ -45,10 +45,10 @@
       }
     }
     .buttons {
-      @apply mt-auto w-full absolute bottom-0 flex justify-between mb-3;
+      @apply mt-auto w-[95vw] mx-2 md:mx-0 md:w-full absolute bottom-0 flex justify-between mb-6 ;
 
       .continueButton {
-        @apply text-xl  border-2 text-center bg-blue-500 text-white px-[50px] py-[1.5vh] rounded-2xl;
+        @apply text-xl  border-2 text-center bg-blue-500 text-white px-[50px] py-3 rounded-2xl;
         transition: background-color 0.2s ease-in-out; /* Добавляем плавность для изменения цвета фона */
 
         &:hover {
@@ -57,14 +57,14 @@
       }
 
       .backLink {
-        @apply px-8 py-2 text-xl bg-gray-300 font-semibold rounded-lg my-auto;
+        @apply px-8 py-3 text-xl bg-gray-300 font-semibold rounded-lg my-auto;
         transition: all 0.3s ease-in-out;
         &:hover {
           @apply bg-[#dedede];
         }
       }
       .sendButton {
-        @apply text-xl  border-2 text-center bg-blue-500 text-white px-4 py-2 rounded-2xl cursor-pointer;
+        @apply text-xl  border-2 text-center bg-blue-500 text-white px-4 py-3 rounded-2xl cursor-pointer;
         transition: background-color 0.2s ease-in-out; /* Добавляем плавность для изменения цвета фона */
 
         &:hover {
@@ -94,22 +94,11 @@
 }
 
 @media (max-width: 700px) {
-  .form {
-    height: calc(100vh - 80px);
-
-    .mainBlock {
-      @apply w-full  ;
-
-      .buttons {
-        @apply mb-5;
-        .continueButton {
-          @apply px-4 py-3 text-lg rounded-xl;
-        }
-        .backLink {
-          @apply px-4 py-3 text-lg bg-gray-300 font-semibold rounded-xl my-auto;
-          transition: all 0.3s ease-in-out;
-        }
-      }
-    }
+  .continueButton {
+    @apply px-4 py-3 text-lg rounded-xl;
+  }
+  .backLink {
+    @apply px-4 py-3 text-lg bg-gray-300 font-semibold rounded-xl my-auto;
+    transition: all 0.3s ease-in-out;
   }
 }

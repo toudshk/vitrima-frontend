@@ -103,14 +103,14 @@ const ApplicationForm: FC = () => {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="nav-height md:h-[100vh]"
+        className="nav-height md:h-[100vh] bg-gray-200"
       >
         {selectedItem === null ? (
           <WorkTypeBlock setSelectedItem={setSelectedItem} control={control} />
         ) : (
           <div className={styles.form}>
             <div className={styles.mainBlock}>
-              <div>
+              <div  className={styles.topBlock}>
                 <div className="flex justify-between ">
                   <div className="uppercase text-3xl  font-medium text-gray-500  pl-2 mb-4 pb-2 border-b border-b-gray-450 w-full">
                     {selectedItem._id === "656c0a3cfad5c309cd6a9433" ? (
@@ -124,7 +124,7 @@ const ApplicationForm: FC = () => {
                 </div> */}
                 </div>
 
-                <div className={styles.topBlock}>
+                <div>
                   <Controller
                     name="phoneNumber"
                     control={control}
