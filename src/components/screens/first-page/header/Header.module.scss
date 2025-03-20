@@ -3,19 +3,27 @@
      md:w-[15%] w-full  bg-transparent md:bg-[rgba(255,255,255,0.3)] 
       md:flex-col items-end py-8 md:py-16 px-10 justify-between z-10
       md:backdrop-blur-md;
+  
+    .logoBlock {
+      @apply w-[10vw] h-auto mb-4;
+      .image {
+        @apply w-full;
+      }
+    }
+  
   @media (max-width: 800px) {
     .logoBlock {
-      @apply w-full h-full ;
+      @apply w-full h-full;
       mix-blend-mode: difference;
 
       img {
-        @apply h-full w-1/2 mx-auto ;
-
+        @apply h-full w-1/2 mx-auto;
       }
     }
   }
 
   .authButtons {
-    @apply hidden md:flex flex-col font-bold;
+    @apply hidden md:flex flex-col font-bold items-start mr-auto;
+    
   }
 }

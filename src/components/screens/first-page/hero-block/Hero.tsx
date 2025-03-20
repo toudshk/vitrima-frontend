@@ -5,7 +5,7 @@ import Link from "next/link";
 import * as THREE from "three";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import SouthEastIcon from '@mui/icons-material/SouthEast';
+import SouthEastIcon from "@mui/icons-material/SouthEast";
 import { useRef, useReducer, useMemo, FC, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
@@ -26,6 +26,19 @@ import {
 import { EffectComposer, N8AO } from "@react-three/postprocessing";
 import { easing } from "maath";
 import zIndex from "@mui/material/styles/zIndex";
+
+function LoaderBlock() {
+  const { progress } = useProgress();
+  return (
+    <Html center>
+      <div className="flex flex-col items-center justify-center p-4 bg-gray-800 text-white rounded-lg shadow-lg">
+        <p className="text-lg font-semibold">Loading...</p>
+        <p className="text-sm">{progress.toFixed(0)}%</p>
+      </div>
+    </Html>
+  );
+}
+
 
 const Scene = (props: any) => {
   const accents = ["#E7F0FF", "#1C60C5", "#113E81"];
@@ -52,7 +65,7 @@ const Scene = (props: any) => {
         camera={{ position: [0, 0, 15], fov: 17.5, near: 1, far: 20 }}
         {...props}
       >
-        <Suspense fallback={null}>
+        <Suspense fallback={<LoaderBlock/>}>
           <color attach="background" args={["#c5c5c5"]} />
           <ambientLight intensity={0.4} />
           <spotLight
@@ -210,25 +223,29 @@ const Hero: FC = () => {
   useGSAP(() => {
     gsap.to("#title", { opacity: 1, delay: 0.7 });
 
-    gsap.to("#link", { opacity: 1,  delay: 1.5 });
+    gsap.to("#link", { opacity: 1, delay: 1.5 });
   }, []);
 
   return (
     <section className={styles.mainBlock}>
       <div className={styles.content}>
-          <div className={styles.rightBlock}>
-            <h2 id="title">подбор<br />дизайнеров</h2>
-            <Link id="link" href={"/project"}>
-              <b className={styles.b}>заказать подбор</b> <SouthEastIcon/>
+        <div className={styles.rightBlock}>
+          <h2 id="title">
+            подбор
+            <br />
+            исполнителей
+          </h2>
+          <div className={styles.links}>
+            <Link id="link" href={"/project"} >
+              <span>заказать подбор</span> <SouthEastIcon />
             </Link>
+            <Link id="link" href={"/select-feed"}>
+            <span>лента работ</span> <SouthEastIcon />
+          </Link>
           </div>
-        
-            {/* <Link id="link" href={"/select-feed"}>
-              работы дизайнеров
-            </Link>
-          */}
+        </div>
 
-        <Scene
+        {/* <Scene
           style={{
             position: "absolute",
             top: 0,
@@ -238,7 +255,7 @@ const Hero: FC = () => {
             zIndex: 0,
             overflow: "hidden",
           }}
-        />
+        /> */}
       </div>
     </section>
   );

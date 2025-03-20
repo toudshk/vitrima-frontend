@@ -1,6 +1,6 @@
 .mainBlock {
   @apply nav-height md:h-[100vh];
-  
+
   .content {
     @apply h-full relative;
 
@@ -9,38 +9,35 @@
           md:top-[10%] right-0 px-3 md:px-0 py-8 md:py-0 md:right-[-80%]  absolute md:relative z-10  w-full md:w-1/6 items-center rounded-t-3xl;
 
       mix-blend-mode: difference;
-          direction: rtl;
+      direction: rtl;
 
       @media (max-width: 800px) {
         direction: ltr;
         backdrop-filter: blur(10px);
         background-color: rgba(255, 255, 255, 0.3);
-        
-        mix-blend-mode: normal ;
 
+        mix-blend-mode: normal;
       }
 
       h2 {
-        @apply  opacity-0 text-3xl  md:text-5xl font-bold mb-4  md:mb-8 uppercase text-primary   md:text-[#dbd8d6];
+        @apply opacity-0 text-3xl  md:text-5xl font-bold mb-4  md:mb-8 uppercase text-primary   md:text-[#dbd8d6];
 
         @media (max-width: 800px) {
-          
           direction: ltr;
-          
-         
         }
-       
       }
-      a {
-        @apply opacity-0 text-xl  flex  items-center md:flex-col justify-between px-5 py-4 text-primary md:text-gray-300 transition-colors duration-300 hover:text-gray-500  rounded-xl h-[75px] md:h-[150px];
-        background-color: rgba(255, 255, 255, 0.3);
-        backdrop-filter: blur(10px);
-        svg {
-          @apply ml-auto;
-        }
-        @media (max-width: 800px) {
-          
-           mix-blend-mode: normal;
+      .links {
+        @apply flex flex-col  md:flex-row gap-4  ;
+        a {
+          @apply opacity-0 text-xl  flex  items-center md:items-end md:flex-col justify-between px-5 py-4 text-primary md:text-gray-300 transition-all duration-300 hover:text-gray-500 hover:bg-gray-700  font-semibold rounded-xl h-[75px] min-w-[220px] md:h-[120px];
+          background-color: rgba(255, 255, 255, 0.3);
+          backdrop-filter: blur(10px);
+          svg {
+            @apply ml-auto;
+          }
+          @media (max-width: 800px) {
+            mix-blend-mode: normal;
+          }
         }
       }
     }

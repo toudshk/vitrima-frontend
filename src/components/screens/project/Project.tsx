@@ -76,7 +76,7 @@ const Project: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.block}>
-        <h1 className={styles.title}>Выберите интересующие вас услуги</h1>
+        <h1 className={styles.title}>Выбор услуг</h1>
 
         <form onSubmit={handleSubmit(handleFormSubmit)}>
           <div className={styles.serviceList}>
@@ -90,50 +90,20 @@ const Project: FC = () => {
                     : styles.inactiveItem
                 }`}
               >
-                <div className="flex w-full justify-between">
                   <div
                     className={styles.itemHeader}
-                    onClick={() =>
-                      
-                      toggleItem(name, field)}
+                    onClick={() => toggleItem(name, field)}
                   >
                     {name}
                   </div>
-                  <div
-                    className={styles.arrow}
-                    onClick={(e) => {
-                      e.stopPropagation(); // Останавливаем всплытие события
-                      toggleDescription(name);
-                    }}
-                  >
-                    {expandedItems.includes(name) ? (
-                      <KeyboardArrowUpIcon
-                        fontSize="large"
-                        style={{ color: "text-gray-300" }}
-                      />
-                    ) : (
-                      <KeyboardArrowDownIcon fontSize="large" />
-                    )}
-                  </div>
-                </div>
-                {expandedItems.includes(name) && (
-                  <p className={styles.description}>{desc}</p>
-                )}
+                
               </button>
             ))}
           </div>
-          {/* 
-          <div>
-            <h1 className={styles.linkTitle}>
-              Подробнее об услугах{" "}
-              <Link href="/" className="text-gray-400">
-                ТУТ
-              </Link>
-            </h1>
-          </div> */}
+
           <div className={styles.buttonBlock}>
             <MainButton
-              className="w-full border-gray-300 max-w-[600px]"
+              className="w-full border-gray-300 max-w-[600px] h-[80px] "
               type="submit"
               disabled={activeItems.length === 0}
             >

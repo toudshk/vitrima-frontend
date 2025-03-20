@@ -1,7 +1,7 @@
 .form {
-  @apply max-w-[1734px] mx-auto px-5 -mt-[7vh] h-full ;
+  @apply max-w-[1734px] mx-auto px-5  h-full ;
   .mainBlock {
-    @apply w-1/2 mx-auto relative h-full mt-[10%] flex flex-col justify-between;
+    @apply w-1/2 mx-auto relative h-full  flex flex-col justify-between;
     .dateBlock{
       @apply h-[80%] overflow-y-auto px-1 ;
       mask-image: linear-gradient(
@@ -20,7 +20,7 @@
       }
     }
     .topBlock {
-      @apply h-[70vh] flex flex-col justify-between overflow-y-auto px-1 ;
+      @apply h-[70%] flex flex-col justify-between overflow-y-auto px-1 ;
       mask-image: linear-gradient(
         to bottom,
         black 80%,

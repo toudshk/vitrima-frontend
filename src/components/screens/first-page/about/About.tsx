@@ -1,27 +1,34 @@
 import React, { FC, useRef } from "react";
 import styles from "./About.module.scss";
 import SphereModel from "./sphere-model/Sphere";
-
+import SplitType from 'split-type'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 const About: FC = () => {
   const sectionRef = useRef(null);
+ 
   gsap.registerPlugin(ScrollTrigger);
   useGSAP(() => {
-    gsap.to("#about-title", {
+    const splitText = new SplitType('#about-title', {types: 'chars,words'})
+    let chars = splitText.chars
+    gsap.set(chars, { opacity: 0});
+
+    gsap.to(chars, {
       scrollTrigger: {
         trigger: "#about-title",
-        start: "top 95%",
+        start: "top 70%",
+        // markers: true
       },
+      yPercent: -20,
       opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power2.inOut",
+      stagger: 0.005,
+      duration: 0.2,
+      ease: "power.out",
     });
 
-    gsap.to("#subtitles", { opacity: 1, delay: 1.5, pointerEvents: "all" });
+    gsap.to("#subtitles", { opacity: 1, delay: 1 });
   }, []);
   return (
     <section className={styles.container} ref={sectionRef}>
@@ -30,7 +37,7 @@ const About: FC = () => {
       </div>
       <div className={styles.textBlock}>
         <span id="about-title">
-          Почему вы должны доверить нам подбор исполнителей в сфере интерьера и
+          Почему вы должны доверить нам подбор  исполнителей в сфере интерьера и
           архитектуры?
         </span>
 

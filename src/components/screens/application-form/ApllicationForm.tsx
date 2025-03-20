@@ -102,7 +102,7 @@ const ApplicationForm: FC = () => {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="h-[86vh]  max-[600px]:h-[calc(100vh - 60px)] "
+        className="nav-height md:h-[100vh]"
       >
         {selectedItem === null ? (
           <WorkTypeBlock setSelectedItem={setSelectedItem} control={control} />

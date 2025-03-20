@@ -1,54 +1,35 @@
 .container {
-  @apply   -mt-[7vh] p-2 h-[100vh];
-    position: relative;
-    
-    .itemsBlock {
-      @apply w-full h-full px-2;
-     
-      h1 {
-        @apply  text-3xl font-bold bg-white rounded-2xl p-3 mt-2 mb-4 text-center;
-      }
-      .toggleButton{
-        @apply flex mt-0 justify-center max-w-[1440px]  gap-2 bg-white rounded-2xl p-2 mx-auto;
-       
-           .button{
-             @apply h-[150px]  border w-[400px] rounded-2xl   items-center  p-2 text-4xl;
-           }
-          
-         
-       }
+  @apply pt-2 md:pt-8  nav-height md:h-[100vh] bg-[#f0f0f0];
+  position: relative;
+
+  .itemsBlock {
+    @apply max-w-[600px] mx-auto;
+
+    h1 {
+      @apply uppercase text-3xl tracking-tighter italic font-medium text-primary   mt-2 mb-4 mx-auto md:mb-10 pl-2  pb-2 border-b border-b-gray-450;
     }
-    .bottomBlock {
-      @apply absolute bottom-[0%] border-gray-300 border-t w-full flex items-center justify-center;
+    .toggleButton {
+      @apply flex  flex-col   mt-0 justify-center max-w-[1440px]  gap-2 bg-[#f0f0f0] rounded-2xl mx-2  md:mx-auto;
+
+      .button {
+        @apply text-xl    bg-[#e7e7e7] min-h-[80px] px-4 text-start
+          w-full cursor-pointer rounded-3xl;
+        transition: background-color 0.3s, transform 0.2s ease-in-out,
+          box-shadow 0.3s;
+      }
       
-      p {
-        @apply text-xl font-bold mt-3;
+      .button:active {
+        @apply bg-blue-500 text-white;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.2); /* Тень для активного элемента */
+        transform: scale(1.01); /* Легкое увеличение размера */
       }
     }
   }
-  @media (max-width: 700px) {
-    .container{
-     
-      .itemsBlock{
-        @apply w-full;
-        h1 {
-          @apply  text-3xl font-bold bg-white rounded-2xl p-3 mt-2 mb-4 text-center;
-        }
-        .toggleButton{
-         @apply flex flex-col mt-0 justify-normal w-full gap-2 bg-white rounded-2xl p-2;
-        
-            .button{
-              @apply h-[150px]  border w-full rounded-2xl max-w-full  items-center  p-2 text-4xl;
-            }
-           
-          
-        }
-      }
-      .bottomBlock {
-        
-        p {
-          @apply text-base font-bold mt-2 mx-2;
-        }
-      }
+  .bottomBlock {
+    @apply absolute bottom-[0%] border-gray-300 border-t w-full flex items-center justify-center;
+
+    p {
+      @apply text-xl font-bold mt-3;
     }
   }
+}

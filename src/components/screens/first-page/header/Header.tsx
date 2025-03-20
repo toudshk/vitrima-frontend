@@ -12,13 +12,20 @@ const Header: FC = () => {
   const { data: userData } = useUser(user?._id);
   return (
     <header className={styles.header}>
-      <div className={styles.logoBlock}>
-        <Image src={icon} alt={""} width={93} height={50} />
-      </div>
-    
+        <div className={styles.logoBlock}>
+          <Image
+            src={icon}
+            alt={""}
+            width={93}
+            height={50}
+            className={styles.image}
+          />
+        </div>
+       
       <div className={styles.authButtons}>
         {!user ? (
           <>
+            {" "}
             <Link href={"/login"}>Вход</Link>
             <Link href={"/signup"} className={styles.lastLink}>
               Регистрация

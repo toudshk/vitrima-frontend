@@ -1,23 +1,25 @@
 .container {
-  @apply -mt-[7vh]  mx-auto h-[100vh] px-2 max-w-[600px];
+  @apply pt-8  mx-auto nav-height md:h-[100vh]   bg-[#f0f0f0];
   .block {
+    @apply max-w-[600px] mx-auto;
     .title {
-      @apply uppercase text-3xl mx-auto text-center font-bold mb-10;
+      @apply uppercase text-3xl tracking-tighter italic font-medium text-primary   mt-2 mb-4 mx-auto md:mb-10 pl-2  pb-2 border-b border-b-gray-450;
     }
+
     .serviceList {
-      @apply flex flex-wrap justify-center gap-4   h-[80%];
+      @apply flex flex-wrap justify-center gap-3 md:gap-4   mx-2  md:mx-0 h-[80%];
       margin-top: 1.5rem;
       list-style-type: none;
       padding: 0;
       .item {
-        @apply text-xl  font-bold h-auto border  justify-start select-none 
-        w-full cursor-pointer rounded-3xl max-w-full  text-start items-center;
-      
+        @apply text-xl   font-medium min-h-[80px] bg-[#e7e7e7] justify-start select-none 
+        w-full cursor-pointer rounded-3xl max-w-full items-center  px-2     text-start;
+
         transition: background-color 0.3s, transform 0.2s ease-in-out,
           box-shadow 0.3s; /* Плавные переходы */
-        gap: 5px; /* Расстояние между элементами заголовка и описания */
-        .itemHeader{
-          @apply w-full py-3 pl-3 items-center;
+        /* Расстояние между элементами заголовка и описания */
+        .itemHeader {
+          @apply w-full p-3 items-center;
         }
       }
       .activeItem {
@@ -35,8 +37,8 @@
     .linkTitle {
       @apply text-2xl font-bold mb-2;
     }
-    .buttonBlock{
-      @apply w-full  flex justify-center fixed bottom-0 left-0 px-4 pb-4 bg-white; 
+    .buttonBlock {
+      @apply w-full  flex justify-center fixed bottom-0 left-0 px-4 pb-4 bg-[#f0f0f0];
     }
     .linkTitle {
       @apply text-xl my-3;
@@ -51,7 +53,6 @@
 
 .description {
   @apply text-lg text-primary px-3 pb-3;
- 
 }
 .arrow {
   @apply my-auto relative pl-4 cursor-pointer text-gray-600 ml-2 py-3 pr-3; // Добавляем отступ слева для стрелки
@@ -63,44 +64,5 @@
     top: 0;
     bottom: 0;
     width: 1px;
-  }
-}
-@media (max-width: 700px) {
-  .container {
-    @apply pt-2 ;
-    height: calc(100vh - 60px);
-    .block {
-      .title {
-        @apply text-[28px] bg-white rounded-2xl mt-2 mb-4;
-      }
-      .serviceList {
-        @apply flex mt-0 justify-normal w-full gap-2 rounded-2xl p-2  items-start overflow-auto;
-        align-content: start;
-        .item {
-          @apply text-xl  font-bold h-auto border  justify-start select-none 
-          w-full cursor-pointer rounded-3xl max-w-full px-3 text-start items-center;
-        
-          transition: background-color 0.3s, transform 0.2s ease-in-out,
-            box-shadow 0.3s; /* Плавные переходы */
-          gap: 5px; /* Расстояние между элементами заголовка и описания */
-          
-        }
-        .activeItem {
-          @apply bg-blue-500 text-white;
-          box-shadow: 0 0 10px rgba(59, 130, 246, 0.2); /* Тень для активного элемента */
-          transform: scale(1.01); /* Легкое увеличение размера */
-          .description {
-            @apply text-white; // Показываем при раскрытии
-          }
-          .arrow {
-            @apply text-white;
-            &::before {
-              @apply bg-white;
-            }
-          }
-        }
-      }
-      
-    }
   }
 }

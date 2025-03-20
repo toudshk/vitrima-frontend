@@ -15,7 +15,7 @@ const WorkTypeBlock: FC<IWorkTypeBlock> = ({ setSelectedItem, control }) => {
   return (
     <div className={styles.container}>
       <div className={styles.itemsBlock}>
-        <h1>Что именно вас интересует?</h1>
+        <h1>Что вас интересует?</h1>
 
         <Controller
           name="workType"
