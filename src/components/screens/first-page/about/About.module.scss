@@ -2,29 +2,34 @@
   @apply bg-[#f0f0f0] h-[100vh]   relative;
   .model {
     @apply absolute w-[100vw] h-[40vh]  md:w-[100vw] md:h-[100vh] md:-left-[35%];
-    
   }
   .textBlock {
     @apply pt-44 md:pt-32  px-8  relative z-20;
-    
+
     span {
       @apply text-4xl md:text-6xl font-medium   italic  text-primary;
       letter-spacing: -0.07em;
       // mix-blend-mode: difference;
     }
-    .bottomText {
-      @apply flex flex-col md:w-1/2 ml-auto text-xl mt-6 gap-8 opacity-0;
+    .link {
+      @apply flex flex-col md:w-2/5 ml-auto text-xl mt-6 gap-8 opacity-0 border border-gray-700 rounded-2xl p-4 bg-transparent transition duration-300;
+    
+      letter-spacing: -0.07em;
+    
+    
+    &:hover {
+      @apply bg-primary bg-opacity-10;
+    }
 
-      p {
-        @apply  tracking-tighter   font-medium text-primary;
+
+      .titleLink {
+        @apply text-3xl font-bold;
       }
-     
-      a{
-        @apply ml-auto;
-      }
-      .link{
-        @apply text-2xl cursor-pointer  border py-3 px-4 bg-blue-500 rounded-2xl w-auto text-white font-semibold italic mt-10;
-        
+      .bottomBlock {
+        @apply flex justify-between items-end w-full; 
+        .textLink {
+          @apply w-full md:w-2/3;
+        }
       }
     }
   }

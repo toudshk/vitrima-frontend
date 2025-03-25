@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
+import EastIcon from "@mui/icons-material/East";
 const About: FC = () => {
   const sectionRef = useRef(null);
 
@@ -35,7 +36,7 @@ const About: FC = () => {
         // markers: true
       },
       opacity: 1,
-      delay: 1.5,
+      delay: 1,
     });
   }, []);
   return (
@@ -49,20 +50,21 @@ const About: FC = () => {
           архитектуры?
         </span>
 
-        <div className={styles.bottomText} id="subtitles">
-          <p>
-            Годы работы с заказчиками по всей стране. С нами вы найдете лучшего
-            кандидата в вашем городе или на другой стороне планеты
-          </p>
+        <Link className={styles.link} href={"/project"} id="subtitles">
+          <p className={styles.titleLink}>Заказать подбор</p>
+          <div className={styles.bottomBlock}>
+            <p className={styles.textLink}>
+              Годы работы с заказчиками по всей стране. С нами вы найдете
+              лучшего кандидата в вашем городе или на другой стороне планеты
+            </p>
+            <EastIcon />
+          </div>
           {/* <ul>
           <li>Персональный подход</li>
           <li>Эффективное исполнение</li>
           <li>Бесплатный подбор</li>
         </ul> */}
-          <Link href={"/project"} className={styles.link}>
-            Заказать подбор
-          </Link>
-        </div>
+        </Link>
       </div>
     </section>
   );
