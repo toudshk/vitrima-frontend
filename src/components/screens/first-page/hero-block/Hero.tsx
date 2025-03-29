@@ -49,7 +49,7 @@ const Scene = (props: any) => {
       <Canvas
         onClick={click}
         // shadows
-        dpr={[1, 1]}
+        dpr={[1, 2]}
         gl={{ antialias: false }}
         camera={{ position: [0, 0, 15], fov: 17.5, near: 1, far: 20 }}
         {...props}
