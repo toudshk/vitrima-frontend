@@ -27,7 +27,7 @@ export const useApplicationForm = () => {
         // dispatch(
         //   setCurrentChat({ members: [supportData?._id, user?._id] })
         // );
-        router.push(`/`);
+        router.push(`/my-applications`);
       } catch (error: any) {
         toast.error(error.response.data.message);
       }
@@ -36,23 +36,23 @@ export const useApplicationForm = () => {
 
   const onSubmit: SubmitHandler<IAddApplicationForm> = async (data) => {
 
-    // // Проверяем, есть ли applicantId
-    // if (!data.applicantId) {
-    //   // Если applicantId отсутствует, выполняем регистрацию пользователя
-    //   const registrationResponse = await registerApplicant({
-    //     email: data.email,
-    //     password: data.password,
-    //     nickname: data.name,
-    //   });
+    // Проверяем, есть ли applicantId
+    if (!data.applicantId) {
+      // Если applicantId отсутствует, выполняем регистрацию пользователя
+      const registrationResponse = await registerApplicant({
+        email: data.email,
+        password: data.password,
+        nickname: data.name,
+      });
 
-    //   if (registrationResponse) {
-    //     // @ts-ignore
-    //     data.applicantId = registrationResponse.payload.user._id;
-    //   } else {
-    //     toast.error("Не удалось зарегистрировать пользователя");
-    //     return; // Останавливаем выполнение, если регистрация не удалась
-    //   }
-    // }
+      if (registrationResponse) {
+        // @ts-ignore
+        data.applicantId = registrationResponse.payload.user._id;
+      } else {
+        toast.error("Не удалось зарегистрировать пользователя");
+        return; // Останавливаем выполнение, если регистрация не удалась
+      }
+    }
 
     // После успешной регистрации или если applicantId уже был, вызываем mutateAsync
     await mutateAsync(data);

@@ -15,7 +15,6 @@ export const useFinishedProject = () => {
       select: (data) => data, // Извлекаем только нужные данные из ответа
     }
   );
-
   return {
     data,
     isLoading,

@@ -9,17 +9,15 @@ import styles from "./MyApplications.module.scss";
 import { convertMongoDate } from "@/utils/date/ConverMongoDate";
 const MyApplications: React.FC = () => {
   const { user } = useAuth();
-  const { data } = useProjects(user!._id);
+  const { data, isLoading } = useProjects(user!._id);
 console.log(data)
-  return (
+return (
+  isLoading ? (
+    <div>Загрузка</div>
+  ) : (
     <div className="flex flex-col gap-3 max-w-[1440px] px-2 mx-auto mt-[9vh]">
-      {data ? (
-        <div>
-          <h1 className="text-5xl  text-gray-300 font-bold">У вас нет активных заявок</h1>
-          
-        </div>
-      ) : (
-        data?.map((project: IProject) => (
+      {data && data.length > 0 ? (
+        data.map((project: IProject) => (
           <Link
             key={project._id}
             href={`my-applications/${project._id}`}
@@ -34,9 +32,15 @@ console.log(data)
             <NorthEastIcon />
           </Link>
         ))
+      ) : (
+        <h1 className="text-5xl text-gray-300 font-bold">
+          У вас нет активных заявок
+        </h1>
       )}
     </div>
-  );
+  )
+);
+
 };
 
 export default MyApplications;

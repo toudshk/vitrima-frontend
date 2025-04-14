@@ -14,9 +14,10 @@ import { ISubType } from "@/components/shared/types/work.types";
 import { useMediaQuery } from '@mui/material';
 const animatedComponents = makeAnimated();
 const getCustomStyles = (pathname: string) => ({
+  
   control: (provided: any, state: any) => ({
     ...provided,
-    backgroundColor: pathname === '/form' ? '#FFFFFF' : (isMobile ? "#FFFFFF" : "#EAEAEA"),
+    backgroundColor: pathname.startsWith('/form') ? '#E7E7E7' : (isMobile ? "#FFFFFF" : "#EAEAEA"),
     borderColor: state.isFocused ? '#1c60c5' : '#cbd5e1',
      // Focus border color  
      borderWidth: '2px',
@@ -86,6 +87,7 @@ const DynamicSelect: FC<ISelect> = ({
   };
 
   const pathname = usePathname()
+  
   const getValue = () => {
     if (field.value) {
       return isMulti

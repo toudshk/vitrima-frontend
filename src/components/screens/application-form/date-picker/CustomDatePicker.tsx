@@ -106,7 +106,7 @@ const CustomDatePicker: FC<CustomDatePickerProps> = ({ control, projectData }) =
       </div>
       {projectData && projectData.chosenBuilders === null && (
         
-      <div className="my-10 h-[30vh] max-[700px]:h-[50vh]">
+      <div className="my-10 ">
         <h1 className="text-4xl max-[640px]:text-2xl font-bold mb-10 ">
           Как скоро планируете начать ремонт?
         </h1>

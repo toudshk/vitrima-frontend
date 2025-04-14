@@ -20,7 +20,6 @@ const AddDesignerForProject: NextPageAuth = () => {
   const { data, handleSearch, searchTerm } = useContractors();
   const { onSubmit, data: selectedData } = useDesigner(selectedDesigners);
   const { data: projectData } = useFinishedProject();
-
   const toggleDesignerSelection = (designer: IContractor) => {
     setSelectedDesigners((prev) =>
       prev.some((d) => d._id === designer._id)
@@ -28,7 +27,7 @@ const AddDesignerForProject: NextPageAuth = () => {
         : [...prev, designer]
     );
   };
-
+console.log(projectData)
   return (
     <Meta title="Personal info">
       {/* <form onSubmit={handleSubmit(onSubmit)}> */}
@@ -52,7 +51,7 @@ const AddDesignerForProject: NextPageAuth = () => {
                 <div className="flex justify-between w-full items-center">
                   <div className={styles.nickname}>{item.nickname}</div>
 
-                  {projectData?.chosenDesigner === item._id && (
+                  {projectData?.chosenDesigner?._id === item._id && (
                     <CheckCircleIcon color="success" />
                   )}
                 </div>

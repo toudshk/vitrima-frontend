@@ -1,9 +1,9 @@
 .form {
-  @apply max-w-[1734px] mx-auto   h-full  pt-8;
+  @apply max-w-[1734px] mx-auto   h-full  pt-8 bg-gray-200;
   .mainBlock {
-    @apply w-full md:w-1/2 mx-auto relative h-full  flex flex-col justify-between;
+    @apply w-full md:w-1/2 mx-auto relative h-full  flex flex-col;
     .dateBlock {
-      @apply h-[80%] overflow-y-auto px-1;
+      @apply h-full overflow-y-auto px-1;
       mask-image: linear-gradient(to bottom, black 90%, transparent);
       &::-webkit-scrollbar {
         display: none; /* Скрывает полосу прокрутки */
@@ -16,7 +16,7 @@
       }
     }
     .topBlock {
-      @apply h-full max-h-[90vh] md:max-h-[70vh] flex flex-col  overflow-y-auto px-2;
+      @apply h-full  flex flex-col  overflow-y-auto px-2;
       mask-image: linear-gradient(
         to bottom,
         black 80%,
@@ -45,7 +45,7 @@
       }
     }
     .buttons {
-      @apply mt-auto w-[95vw] mx-2 md:mx-0 md:w-full absolute bottom-0 flex justify-between mb-6 ;
+      @apply mt-auto w-[95vw] mx-2 md:mx-0 md:w-full absolute bottom-0 flex justify-between mb-6;
 
       .continueButton {
         @apply text-xl  border-2 text-center bg-blue-500 text-white px-[50px] py-3 rounded-2xl;
@@ -76,13 +76,9 @@
 }
 
 .addressInput {
-  @apply border-2 rounded-2xl border-gray-300  bg-transparent min-h-[45px] h-[15%] text-gray-700 w-full mb-3  px-[1vw]  text-lg;
+  @apply border rounded-2xl border-gray-400  bg-[#e7e7e7]  min-h-[45px] h-[15%] text-gray-700 w-full   px-[1vw] mb-3 text-lg;
 
   transition: border-color 0.3s, box-shadow 0.3s;
-
-  @media (max-width: 700px) {
-    @apply text-lg bg-white rounded-xl px-1;
-  }
 }
 .addressInput:hover {
   @apply border-gray-400;

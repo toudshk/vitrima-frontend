@@ -4,6 +4,8 @@
 }
 
 .custom-datepicker {
+  
+   background-color: #e7e7e7;
   border: 2px solid #cbd5e1; /* Default border color */
   border-radius: 16px !important; /* Rounded corners */
   width: 100%; /* Full width */

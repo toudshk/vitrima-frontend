@@ -14,7 +14,7 @@ const customStyles = {
     borderColor: state.isFocused ? '#1c60c5' : '#cbd5e1',
      // Focus border color  
      borderWidth: '2px',
-	  background: 'transparent',
+	  background: '#e7e7e7',
 	  borderRadius: '12px',
 	  minHeight: '45px', // Similar to min-h-[45px]
 	  height: '15%', // Adjust this based on your needs
